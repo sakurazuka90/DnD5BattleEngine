@@ -17,7 +17,7 @@ public class PlayerSpooler : MonoBehaviour {
 
 		mPool = new List<Player> ();
 
-		mSpool = new Player[2];
+		//mSpool = new Player[2];
 
 		GameObject fig1 = GameObject.Find ("Figurine1");
 		Player pl1 = new Player ();
@@ -35,7 +35,8 @@ public class PlayerSpooler : MonoBehaviour {
 		pl2.playerName = "Goblin 1";
 		pl2.setAbility (AbilityNames.DEXTERITY, 14);
 
-
+		mPool.Add (pl1);
+		mPool.Add (pl2);
 		mSpool [0] = pl1;
 		mSpool [1] = pl2;
 
@@ -73,7 +74,18 @@ public class PlayerSpooler : MonoBehaviour {
 
 	private void prepareSpool()
 	{
+		Dictionary<int,List<Player>> lvInitDict = new Dictionary<int, List<Player>> ();
 		foreach (Player lvPlayer in mPool) {
+
+			int lvInit = lvPlayer.rollTest(TestsNames.INITIATIVE);
+			if (lvInitDict.ContainsKey (lvInit)) {
+				lvInitDict [lvInit].Add (lvPlayer);
+			} else {
+				List<Player> lvList = new List<Player> ();
+				lvList.Add (lvPlayer);
+				lvInitDict.Add (lvInit,lvList);
+			}
+
 		}
 	}
 

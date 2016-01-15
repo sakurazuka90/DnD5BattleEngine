@@ -19,6 +19,9 @@ public class Player {
 
 	public Player ()
 	{
+		mAbilities = new Dictionary<AbilityNames, Ability> ();
+
+		mTestAbilities = new Dictionary<TestsNames, AbilityNames> ();
 		mTestAbilities.Add(TestsNames.INITIATIVE,AbilityNames.DEXTERITY);
 	}
 
