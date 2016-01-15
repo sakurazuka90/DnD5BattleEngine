@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DiceRoller{
 
-	public int RollDice(int pmSides, int pmDiceAmount)
+	public static int RollDice(int pmSides, int pmDiceAmount)
 	{
 		int lvResult = 0;
 

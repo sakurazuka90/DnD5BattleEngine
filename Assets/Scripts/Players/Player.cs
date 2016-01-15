@@ -15,11 +15,11 @@ public class Player {
 
 	private Dictionary<AbilityNames,Ability> mAbilities;
 
-	private Dictionary<TestsNames,List<Dictionary<BonusConditionNames,int>>> mBonuses;
+	private Dictionary<TestsNames,AbilityNames> mTestAbilities;
 
 	public Player ()
 	{
-
+		mTestAbilities.Add(TestsNames.INITIATIVE,AbilityNames.DEXTERITY);
 	}
 
 	public void setAbility(AbilityNames pmName, int pmScore)
@@ -28,9 +28,10 @@ public class Player {
 		mAbilities.Add (pmName, new Ability(pmScore));
 	}
 
-	public int rollInitiative()
+	public int rollTest(TestsNames pmName)
 	{
-		return 0;
+		Debug.Log (playerName + " rolled ");
+		return DiceRoller.RollDice (20, 1) + mAbilities [mTestAbilities [pmName]].getModifier ();
 	}
 
 }

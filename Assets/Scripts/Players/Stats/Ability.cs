@@ -19,6 +19,11 @@ public class Ability{
 
 	}
 
+	public int getModifier()
+	{
+		return mModifier;
+	}
+
 
 
 	

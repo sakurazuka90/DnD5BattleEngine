@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerSpooler : MonoBehaviour {
 
 	Player [] mSpool;
+	private List<Player> mPool;
 	public GameObject mSpooledObject;
 	private int mSpooledId;
 
@@ -12,6 +14,8 @@ public class PlayerSpooler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		mPool = new List<Player> ();
 
 		mSpool = new Player[2];
 
@@ -65,6 +69,12 @@ public class PlayerSpooler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	private void prepareSpool()
+	{
+		foreach (Player lvPlayer in mPool) {
+		}
 	}
 
 	private void UpdateImage()
