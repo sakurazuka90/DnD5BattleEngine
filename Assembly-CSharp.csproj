@@ -6,7 +6,7 @@
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
 	<RootNamespace></RootNamespace>
-	<ProjectGuid>{740DF409-E5D3-5517-1F50-1EEEBC6DF595}</ProjectGuid>
+	<ProjectGuid>{D76A72C6-98F3-E9B0-BACB-83DEA4349EA3}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<AssemblyName>Assembly-CSharp</AssemblyName>
@@ -53,6 +53,10 @@
      <Compile Include="Assets\Scripts\Players\Player.cs" />
      <Compile Include="Assets\Scripts\Players\PlayerSpooler.cs" />
      <Compile Include="Assets\Scripts\Players\Stats\Ability.cs" />
+     <Compile Include="Assets\Scripts\Players\Stats\AbilityNames.cs" />
+     <Compile Include="Assets\Scripts\Players\Stats\BonusConditionNames.cs" />
+     <Compile Include="Assets\Scripts\Players\Stats\DiceRoller.cs" />
+     <Compile Include="Assets\Scripts\Players\Stats\TestsNames.cs" />
      <Compile Include="Assets\Scripts\SelectFromGrid.cs" />
      <None Include="Assets\Shaders\WarpJump.shader" />
      <None Include="Assets\Shaders\Billboard.shader" />

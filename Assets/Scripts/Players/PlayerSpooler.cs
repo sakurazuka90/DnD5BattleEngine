@@ -21,6 +21,7 @@ public class PlayerSpooler : MonoBehaviour {
 		Sprite spr1 = Resources.Load<Sprite>("001");
 		pl1.PlayerSprite = spr1;
 		pl1.playerName = "Kurrdar the Mighty";
+		pl1.setAbility (AbilityNames.DEXTERITY, 10);
 
 		GameObject fig2 = GameObject.Find ("Figurine2");
 		Player pl2 = new Player ();
@@ -28,6 +29,7 @@ public class PlayerSpooler : MonoBehaviour {
 		Sprite spr2 = Resources.Load<Sprite>("002");
 		pl2.PlayerSprite = spr2;
 		pl2.playerName = "Goblin 1";
+		pl2.setAbility (AbilityNames.DEXTERITY, 14);
 
 
 		mSpool [0] = pl1;
