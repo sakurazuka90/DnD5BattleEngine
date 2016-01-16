@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class PlayerSpooler : MonoBehaviour {
 
@@ -37,8 +38,10 @@ public class PlayerSpooler : MonoBehaviour {
 
 		mPool.Add (pl1);
 		mPool.Add (pl2);
-		mSpool [0] = pl1;
-		mSpool [1] = pl2;
+		//mSpool [0] = pl1;
+		//mSpool [1] = pl2;
+
+		prepareSpool ();
 
 		mSpooledId = 0;
 		updateFigurine ();
@@ -74,9 +77,10 @@ public class PlayerSpooler : MonoBehaviour {
 
 	private void prepareSpool()
 	{
+		mSpool = new Player[mPool.Count];
+
 		Dictionary<int,List<Player>> lvInitDict = new Dictionary<int, List<Player>> ();
 		foreach (Player lvPlayer in mPool) {
-
 			int lvInit = lvPlayer.rollTest(TestsNames.INITIATIVE);
 			if (lvInitDict.ContainsKey (lvInit)) {
 				lvInitDict [lvInit].Add (lvPlayer);
@@ -85,8 +89,32 @@ public class PlayerSpooler : MonoBehaviour {
 				lvList.Add (lvPlayer);
 				lvInitDict.Add (lvInit,lvList);
 			}
-
 		}
+
+		List<int> lvKeys = lvInitDict.Keys.ToList();
+		lvKeys.Sort ();
+		lvKeys.Reverse ();
+
+		int lvArrayCount = 0;
+
+		foreach (int lvKey in lvKeys) {
+			List<Player> lvCurrentInitPlayers = lvInitDict [lvKey];
+			if (lvCurrentInitPlayers.Count == 1) {
+				Player lvCurrentPlayer = lvCurrentInitPlayers [0];
+
+				mSpool [lvArrayCount] = lvCurrentPlayer;
+
+				lvArrayCount++;
+				Debug.Log ("Initiative " + lvKey + " player " + lvCurrentPlayer.playerName);
+			} else {
+				foreach (Player lvCurrentPlayer in lvCurrentInitPlayers) {
+					mSpool [lvArrayCount] = lvCurrentPlayer;
+					Debug.Log ("Initiative " + lvKey + " player " + lvCurrentPlayer.playerName);
+					lvArrayCount++;
+				}
+			}
+		}
+
 	}
 
 	private void UpdateImage()
