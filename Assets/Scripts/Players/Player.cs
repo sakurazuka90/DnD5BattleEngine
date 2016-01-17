@@ -17,6 +17,9 @@ public class Player {
 
 	private Dictionary<TestsNames,AbilityNames> mTestAbilities;
 
+	private int mSpeed;
+	public int movesLeft;
+
 	public Player ()
 	{
 		mAbilities = new Dictionary<AbilityNames, Ability> ();
@@ -36,5 +39,39 @@ public class Player {
 		Debug.Log (playerName + " rolled ");
 		return DiceRoller.RollDice (20, 1) + mAbilities [mTestAbilities [pmName]].getModifier ();
 	}
+
+	public int getSpeed()
+	{
+		return mSpeed;
+	}
+
+	public void setSpeed(int pmSpeed)
+	{
+		mSpeed = pmSpeed;
+	}
+
+	public void ResetMovesLeft()
+	{
+		movesLeft = mSpeed;
+		FigurineStatus lvStatus = Figurine.GetComponent<FigurineStatus> ();
+		lvStatus.movesLeft = movesLeft;
+
+	}
+
+	public void DecreaseMovesLeft(int pmValue)
+	{
+		if (pmValue >= movesLeft)
+			movesLeft = 0;
+		else
+			movesLeft -= pmValue;
+
+		FigurineStatus lvStatus = Figurine.GetComponent<FigurineStatus> ();
+		lvStatus.movesLeft = movesLeft;
+
+		GameObject lvSpoolerObj = GameObject.Find ("PlayerSpooler");
+		PlayerSpooler lvSpooler = lvSpoolerObj.GetComponent<PlayerSpooler> ();
+	}
+
+
 
 }

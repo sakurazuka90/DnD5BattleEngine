@@ -1,19 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Players\PlayerSpooler.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\FigurineMover.cs">
     <Files>
-      <File FileName="Assets\Scripts\Players\PlayerSpooler.cs" Line="96" Column="21" />
-      <File FileName="Assets\Scripts\Players\Player.cs" Line="22" Column="57" />
+      <File FileName="Assets\Scripts\Players\PlayerSpooler.cs" Line="220" Column="17" />
+      <File FileName="Assets\Scripts\Players\Player.cs" Line="73" Column="1" />
       <File FileName="Assets\Scripts\Players\Stats\Ability.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Players\Stats\DiceRoller.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Players\Stats\AbilityNames.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Players\Stats\BonusConditionNames.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\FigurineStatus.cs" Line="14" Column="23" />
+      <File FileName="Assets\Scripts\FigurineMover.cs" Line="112" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="C:\Users\sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Players\Player.cs" line="16" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

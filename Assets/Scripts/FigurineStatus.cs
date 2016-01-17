@@ -11,15 +11,14 @@ public class FigurineStatus : MonoBehaviour {
 	public int gridX;
 	public int gridZ;
 
+	public int movesLeft;
 
-
-
-	public void pick()
+	public void pick(int pmMoves)
 	{
 		//picked = true;
 		GameObject lvSelector = GameObject.Find ("GridSelector");
 		SelectFromGrid lvSelect = lvSelector.GetComponent<SelectFromGrid>();
-		lvSelect.ShowWalkableDistance (gridX, gridZ, 4);
+		lvSelect.ShowWalkableDistance (gridX, gridZ, pmMoves);
 
 	}
 

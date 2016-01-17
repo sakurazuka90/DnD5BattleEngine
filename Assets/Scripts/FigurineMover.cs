@@ -15,6 +15,8 @@ public class FigurineMover : MonoBehaviour {
 
 	public float moveSpeed;
 
+	private int mStepsMoved = 0;
+
 	// Use this for initialization
 	void Start () {
 
@@ -50,6 +52,9 @@ public class FigurineMover : MonoBehaviour {
 				steps = path.Split ('_');
 
 				path = "";
+
+				// path containt current cell
+				mStepsMoved = steps.Length - 1;
 			} else if(steps.Length > 0)
 			{
 				GameObject lvMoveButtonGameObject = GameObject.Find ("MoveButton");
@@ -98,7 +103,13 @@ public class FigurineMover : MonoBehaviour {
 						lvMoveButtonGameObject.GetComponent<Button>().interactable = true;
 
 						GameObject lvSpoolerObject = GameObject.Find ("PlayerSpooler");
-						lvSpoolerObject.GetComponent<PlayerSpooler>().spool();
+						PlayerSpooler lvSpooler = lvSpoolerObject.GetComponent<PlayerSpooler> ();
+
+						lvSpooler.DecreaseMoves (mStepsMoved);
+						mStepsMoved = 0;
+
+						if(lvStatus.movesLeft == 0)
+							lvSpoolerObject.GetComponent<PlayerSpooler>().spool();
 					}
 				}
 			}

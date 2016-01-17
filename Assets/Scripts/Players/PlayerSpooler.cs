@@ -27,6 +27,7 @@ public class PlayerSpooler : MonoBehaviour {
 		pl1.PlayerSprite = spr1;
 		pl1.playerName = "Kurrdar the Mighty";
 		pl1.setAbility (AbilityNames.DEXTERITY, 10);
+		pl1.setSpeed (4);
 
 		GameObject fig2 = GameObject.Find ("Figurine2");
 		Player pl2 = new Player ();
@@ -35,11 +36,10 @@ public class PlayerSpooler : MonoBehaviour {
 		pl2.PlayerSprite = spr2;
 		pl2.playerName = "Goblin 1";
 		pl2.setAbility (AbilityNames.DEXTERITY, 14);
+		pl2.setSpeed (4);
 
 		mPool.Add (pl1);
 		mPool.Add (pl2);
-		//mSpool [0] = pl1;
-		//mSpool [1] = pl2;
 
 		prepareSpool ();
 
@@ -57,6 +57,7 @@ public class PlayerSpooler : MonoBehaviour {
 		setSpooler ();
 		UpdateImage ();
 		UpdateName ();
+		UpdateMove ();
 
 		GameObject lvGridSelectorObject = GameObject.Find("GridSelector");
 		SelectFromGrid lvSelector = lvGridSelectorObject.GetComponent<SelectFromGrid> ();
@@ -126,6 +127,14 @@ public class PlayerSpooler : MonoBehaviour {
 
 	}
 
+	private void UpdateMove()
+	{
+		GameObject lvMoveObject = GameObject.Find("MovesLeftText");
+		Text lvMoveText = lvMoveObject.GetComponent<Text> ();
+
+		lvMoveText.text = mSpool [mSpooledId].movesLeft.ToString();
+	}
+
 	private void UpdateName()
 	{
 		GameObject lvNameObject = GameObject.Find ("NameValue");
@@ -146,11 +155,15 @@ public class PlayerSpooler : MonoBehaviour {
 			}
 			mSpooledObject = mSpool[mSpooledId].Figurine;
 		}
+
+		//at start turn reset move of set figurine
+		mSpool[mSpooledId].ResetMovesLeft();
 	}
 
 	public void pick()
 	{
-		mSpooledObject.GetComponent<FigurineStatus> ().pick ();
+		int lvMovesLeft = mSpool [mSpooledId].movesLeft;
+		mSpooledObject.GetComponent<FigurineStatus> ().pick (lvMovesLeft);
 	}
 
 	public void spool()
@@ -159,6 +172,7 @@ public class PlayerSpooler : MonoBehaviour {
 		setSpooler ();
 		UpdateImage ();
 		UpdateName ();
+		UpdateMove ();
 
 		GameObject lvGridSelectorObject = GameObject.Find("GridSelector");
 		SelectFromGrid lvSelector = lvGridSelectorObject.GetComponent<SelectFromGrid> ();
@@ -169,11 +183,6 @@ public class PlayerSpooler : MonoBehaviour {
 			lvSelector.playersTurn = true;
 		else
 			lvSelector.playersTurn = false;
-
-	}
-
-	private void setupSpooler()
-	{
 
 	}
 
@@ -203,6 +212,12 @@ public class PlayerSpooler : MonoBehaviour {
 			}
 
 		}
+	}
+
+	public void DecreaseMoves(int pmValue)
+	{
+		mSpool [mSpooledId].DecreaseMovesLeft (pmValue);
+		UpdateMove ();
 	}
 
 
