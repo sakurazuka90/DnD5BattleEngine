@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Actions\Attack.cs" />
      <Compile Include="Assets\Scripts\CellStatus.cs" />
      <Compile Include="Assets\Scripts\FigurineMover.cs" />
      <Compile Include="Assets\Scripts\FigurineStatus.cs" />

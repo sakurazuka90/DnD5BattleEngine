@@ -1,10 +1,8 @@
 ﻿using System;
 
-namespace AssemblyCSharp
+public enum WeaponType
 {
-	public enum WeaponType
-	{
-		MELEE, RANGED
-	}
+	MELEE, RANGED
 }
+
 
