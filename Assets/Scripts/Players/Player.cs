@@ -20,6 +20,8 @@ public class Player {
 	private int mSpeed;
 	public int movesLeft;
 
+	public int hp;
+
 	public Player ()
 	{
 		mAbilities = new Dictionary<AbilityNames, Ability> ();

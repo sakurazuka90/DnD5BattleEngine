@@ -127,21 +127,6 @@ public class PlayerSpooler : MonoBehaviour {
 
 	}
 
-	private void UpdateMove()
-	{
-		GameObject lvMoveObject = GameObject.Find("MovesLeftText");
-		Text lvMoveText = lvMoveObject.GetComponent<Text> ();
-
-		lvMoveText.text = mSpool [mSpooledId].movesLeft.ToString();
-	}
-
-	private void UpdateName()
-	{
-		GameObject lvNameObject = GameObject.Find ("NameValue");
-		Text lvNameText = lvNameObject.GetComponent<Text> ();
-		lvNameText.text = mSpool [mSpooledId].playerName;
-	}
-
 	private void updateFigurine()
 	{
 		if (mSpooledObject == null) {
@@ -220,6 +205,27 @@ public class PlayerSpooler : MonoBehaviour {
 		UpdateMove ();
 	}
 
+	private void UpdateMove()
+	{
+		UpdateTextField (mSpool [mSpooledId].movesLeft.ToString(),"MovesLeftText");
+	}
+
+	private void UpdateName()
+	{
+		UpdateTextField (mSpool [mSpooledId].playerName,"NameValue");
+	}
+
+	public void UpdateHP()
+	{
+		UpdateTextField (mSpool [mSpooledId].hp.ToString(),"HPText");
+	}
+
+	public void UpdateTextField(string pmValue, string pmName)
+	{
+		GameObject lvObject = GameObject.Find (pmName);
+		Text lvText = lvObject.GetComponent<Text> ();
+		lvText.text = pmValue;
+	}
 
 
 

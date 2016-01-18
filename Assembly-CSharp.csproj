@@ -50,6 +50,9 @@
      <Compile Include="Assets\Scripts\FigurineStatus.cs" />
      <Compile Include="Assets\Scripts\GridDrawer.cs" />
      <Compile Include="Assets\Scripts\Hider.cs" />
+     <Compile Include="Assets\Scripts\Items\Item.cs" />
+     <Compile Include="Assets\Scripts\Items\Weapon.cs" />
+     <Compile Include="Assets\Scripts\Items\WeaponType.cs" />
      <Compile Include="Assets\Scripts\Players\Player.cs" />
      <Compile Include="Assets\Scripts\Players\PlayerSpooler.cs" />
      <Compile Include="Assets\Scripts\Players\Stats\Ability.cs" />
