@@ -94,6 +94,11 @@ public class GridDrawer : MonoBehaviour {
 		return (pmGridId - gridX) / gridWidth;
 	}
 
+	public int GetGridId(int pmGridX, int pmGridZ)
+	{
+		return (gridWidth * pmGridZ) + pmGridX;
+	}
+
 	public Vector3 getCellPosition(int id)
 	{
 		float gridX = getGridX (id);

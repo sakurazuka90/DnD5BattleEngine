@@ -68,7 +68,9 @@ public class PlayerSpooler : MonoBehaviour {
 		else
 			lvSelector.playersTurn = false;
 
+		int lvId = GameObject.Find ("GridDrawer").GetComponent<GridDrawer> ().GetGridId (lvStatus.gridX, lvStatus.gridZ);
 
+		lvSelector.SetActivePlayerStartField (lvId);
 	}
 	
 	// Update is called once per frame
@@ -169,6 +171,9 @@ public class PlayerSpooler : MonoBehaviour {
 		else
 			lvSelector.playersTurn = false;
 
+		int lvId = GameObject.Find ("GridDrawer").GetComponent<GridDrawer> ().GetGridId (lvStatus.gridX, lvStatus.gridZ);
+
+		lvSelector.SetActivePlayerStartField (lvId);
 	}
 
 	private void setSpooler()

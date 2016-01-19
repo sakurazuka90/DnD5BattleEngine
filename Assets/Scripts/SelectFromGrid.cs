@@ -21,6 +21,7 @@ public class SelectFromGrid : MonoBehaviour {
 	private List<int> mPlayersFields;
 	private List<int> mMonsterFields;
 	private List<int> mOpportunityFields;
+	private int mActivePlayerStartField;
 
 	public bool playersTurn;
 
@@ -77,21 +78,30 @@ public class SelectFromGrid : MonoBehaviour {
 
 				if(mMoveMode)
 				{
-					if(Input.GetMouseButtonDown (0))
-					{
-						FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover>();
+					if (Input.GetMouseButtonDown (0)) {
+						FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover> ();
 								
-						string lvId = "" + (mGridDrawer.gridWidth * (int)vertices[0].z + (int)vertices[0].x);
+						string lvId = "" + (mGridDrawer.gridWidth * (int)vertices [0].z + (int)vertices [0].x);
 
-						lvMover.path = mPaths[lvId];
+						lvMover.path = mPaths [lvId];
 						lvMover.isMoving = true;
 
-						mGridDrawer.ClearGridStatus();
+						mGridDrawer.ClearGridStatus ();
 
 						mMoveMode = false;
-						ClearWalkableLine();
+						ClearWalkableLine ();
 						mPaths = new Dictionary<string, string> ();
+					} else if (Input.GetMouseButtonDown (1)) {
+						mMoveMode = false;
+						mGridDrawer.ClearGridStatus ();
+
+						mMoveMode = false;
+						ClearWalkableLine ();
+						mPaths = new Dictionary<string, string> ();
+						FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover> ();
+						lvMover.AbortMovement ();
 					}
+
 				} else if(lvStatus.picked){
 					FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover>();
 					lvMover.gridX = (int)vertices[0].x;
@@ -156,7 +166,7 @@ public class SelectFromGrid : MonoBehaviour {
 
 		string lvStartCellId = (lvDrawer.gridWidth * gridZ + gridX).ToString ();
 
-		mPaths.Add (lvStartCellId, "");
+		mPaths.Add (lvStartCellId, lvStartCellId);
 
 		Dictionary<string,Dictionary<string,string>> lvNextLevel = resolveForCell (mPaths, gridX, gridZ, "", moveDist);
 
@@ -202,32 +212,35 @@ public class SelectFromGrid : MonoBehaviour {
 
 		string lvParentId = "" + (mGridDrawer.gridWidth * pmGridZ + pmGridX);
 
-		CellStatus lvStatus = lvCell.GetComponent<CellStatus> ();
-		lvStatus.movable = true;
-
-		if (mOpportunityFields.Contains (int.Parse (lvParentId))) {
-			lvStatus.lvOportunity = true;
-		}
-
-
 		string lvCellPath = "";
 
 		if (pmPath.Length > 0)
 			lvCellPath += pmPath + "_" + lvParentId;
 		else
 			lvCellPath = lvParentId;
+		
+		if (!IsAllyField (int.Parse (lvParentId)) || mActivePlayerStartField == int.Parse(lvParentId)) {
 
-		if (pmPaths.ContainsKey (lvParentId)) {
+			CellStatus lvStatus = lvCell.GetComponent<CellStatus> ();
+			
+			// na polu sojusznika nie stajemy. Ale możemy przez nie przejść
+			lvStatus.movable = true;
 
-			string [] lvItemsOn = pmPaths[lvParentId].Split('_');
-			string [] lvItemsNew = lvCellPath.Split('_');
-
-			if(lvItemsNew.Length < lvItemsOn.Length)
-			{
-				pmPaths.Add(lvParentId,lvCellPath);
+			if (mOpportunityFields.Contains (int.Parse (lvParentId))) {
+				lvStatus.lvOportunity = true;
 			}
-		} else {
-			pmPaths.Add(lvParentId,lvCellPath);
+
+			if (pmPaths.ContainsKey (lvParentId)) {
+
+				string[] lvItemsOn = pmPaths [lvParentId].Split ('_');
+				string[] lvItemsNew = lvCellPath.Split ('_');
+
+				if (lvItemsNew.Length < lvItemsOn.Length) {
+					pmPaths.Add (lvParentId, lvCellPath);
+				}
+			} else {
+				pmPaths.Add (lvParentId, lvCellPath);
+			}
 		}
 
 		Dictionary<string,Dictionary<string,string>> lvMainDictionary = new Dictionary<string,Dictionary<string,string>> ();
@@ -482,6 +495,23 @@ public class SelectFromGrid : MonoBehaviour {
 		return lvResult;
 	}
 
+	public bool IsAllyField(int pmFieldId)
+	{
+		bool lvResult = false;
+
+		if (playersTurn) {
+
+			if(mPlayersFields.Contains(pmFieldId))
+				lvResult = true;
+
+		} else {
+			if(mMonsterFields.Contains(pmFieldId))
+				lvResult = true;
+		}
+
+		return lvResult;
+	}
+
 	private List<int> findOpportunityFields(List<int> pmFields)
 	{
 		List<int> lvReturnList = new List<int>();
@@ -538,6 +568,11 @@ public class SelectFromGrid : MonoBehaviour {
 	private int findBottomLeftFieldId(int pmField)
 	{
 		return pmField - mGridDrawer.gridWidth -1;
+	}
+
+	public void SetActivePlayerStartField(int pmField)
+	{
+		mActivePlayerStartField = pmField;
 	}
 
 }

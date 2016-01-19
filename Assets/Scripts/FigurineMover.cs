@@ -97,10 +97,8 @@ public class FigurineMover : MonoBehaviour {
 						
 						gridZ = lvDrawer.getGridZ(int.Parse(lvCurrentStep));
 						lvStatus.gridZ = gridZ;
-						steps = new string[0];
-						currentStep = 0;
-						isMoving = false;
-						lvMoveButtonGameObject.GetComponent<Button>().interactable = true;
+
+						AbortMovement ();
 
 						GameObject lvSpoolerObject = GameObject.Find ("PlayerSpooler");
 						PlayerSpooler lvSpooler = lvSpoolerObject.GetComponent<PlayerSpooler> ();
@@ -114,6 +112,15 @@ public class FigurineMover : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	public void AbortMovement()
+	{
+		GameObject lvMoveButtonGameObject = GameObject.Find ("MoveButton");
+		steps = new string[0];
+		currentStep = 0;
+		isMoving = false;
+		lvMoveButtonGameObject.GetComponent<Button>().interactable = true;
 	}
 
 
