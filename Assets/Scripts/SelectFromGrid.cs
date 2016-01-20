@@ -82,15 +82,16 @@ public class SelectFromGrid : MonoBehaviour {
 						FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover> ();
 								
 						string lvId = "" + (mGridDrawer.gridWidth * (int)vertices [0].z + (int)vertices [0].x);
+						if(mPaths.ContainsKey(lvId)) {
+							lvMover.path = mPaths [lvId];
+							lvMover.isMoving = true;
 
-						lvMover.path = mPaths [lvId];
-						lvMover.isMoving = true;
+							mGridDrawer.ClearGridStatus ();
 
-						mGridDrawer.ClearGridStatus ();
-
-						mMoveMode = false;
-						ClearWalkableLine ();
-						mPaths = new Dictionary<string, string> ();
+							mMoveMode = false;
+							ClearWalkableLine ();
+							mPaths = new Dictionary<string, string> ();
+						}
 					} else if (Input.GetMouseButtonDown (1)) {
 						mMoveMode = false;
 						mGridDrawer.ClearGridStatus ();

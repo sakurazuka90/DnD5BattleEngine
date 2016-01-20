@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class Weapon : Item {
 
 	private WeaponType mType;
+	private WeaponCategory mCategory;
 
 	private int mDieceType;
 	private int mDieceNumber;
@@ -17,6 +18,10 @@ public class Weapon : Item {
 		mType = pmType;
 		mDieceType = pmDieceType;
 		mDieceNumber = pmDieceNumber;
+	}
+
+	public WeaponCategory Category{
+		get { return this.mCategory; }
 	}
 
 

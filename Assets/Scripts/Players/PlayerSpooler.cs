@@ -26,8 +26,12 @@ public class PlayerSpooler : MonoBehaviour {
 		Sprite spr1 = Resources.Load<Sprite>("001");
 		pl1.PlayerSprite = spr1;
 		pl1.playerName = "Kurrdar the Mighty";
-		pl1.setAbility (AbilityNames.DEXTERITY, 10);
-		pl1.setSpeed (4);
+		pl1.SetAbility (AbilityNames.DEXTERITY, 10);
+		pl1.SetSpeed (4);
+		Attack lvAxe = new Attack ("Battleaxe");
+		pl1.equippedWeaponAttack = lvAxe;
+
+
 
 		GameObject fig2 = GameObject.Find ("Figurine2");
 		Player pl2 = new Player ();
@@ -35,8 +39,10 @@ public class PlayerSpooler : MonoBehaviour {
 		Sprite spr2 = Resources.Load<Sprite>("002");
 		pl2.PlayerSprite = spr2;
 		pl2.playerName = "Goblin 1";
-		pl2.setAbility (AbilityNames.DEXTERITY, 14);
-		pl2.setSpeed (4);
+		pl2.SetAbility (AbilityNames.DEXTERITY, 14);
+		pl2.SetSpeed (4);
+		Attack lvScimitar = new Attack ("Scimitar");
+		pl2.equippedWeaponAttack = lvScimitar;
 
 		mPool.Add (pl1);
 		mPool.Add (pl2);
@@ -44,7 +50,7 @@ public class PlayerSpooler : MonoBehaviour {
 		prepareSpool ();
 
 		mSpooledId = 0;
-		updateFigurine ();
+		UpdateFigurine ();
 
 		mSpoolerPics = new GameObject[5];
 
@@ -58,6 +64,7 @@ public class PlayerSpooler : MonoBehaviour {
 		UpdateImage ();
 		UpdateName ();
 		UpdateMove ();
+		UpdateWeapon ();
 
 		GameObject lvGridSelectorObject = GameObject.Find("GridSelector");
 		SelectFromGrid lvSelector = lvGridSelectorObject.GetComponent<SelectFromGrid> ();
@@ -72,11 +79,6 @@ public class PlayerSpooler : MonoBehaviour {
 
 		lvSelector.SetActivePlayerStartField (lvId);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	private void prepareSpool()
 	{
@@ -84,7 +86,7 @@ public class PlayerSpooler : MonoBehaviour {
 
 		Dictionary<int,List<Player>> lvInitDict = new Dictionary<int, List<Player>> ();
 		foreach (Player lvPlayer in mPool) {
-			int lvInit = lvPlayer.rollTest(TestsNames.INITIATIVE);
+			int lvInit = lvPlayer.RollTest(TestsNames.INITIATIVE);
 			if (lvInitDict.ContainsKey (lvInit)) {
 				lvInitDict [lvInit].Add (lvPlayer);
 			} else {
@@ -129,7 +131,7 @@ public class PlayerSpooler : MonoBehaviour {
 
 	}
 
-	private void updateFigurine()
+	private void UpdateFigurine()
 	{
 		if (mSpooledObject == null) {
 			mSpooledObject = mSpool [0].Figurine;
@@ -155,11 +157,12 @@ public class PlayerSpooler : MonoBehaviour {
 
 	public void spool()
 	{
-		updateFigurine ();
+		UpdateFigurine ();
 		setSpooler ();
 		UpdateImage ();
 		UpdateName ();
 		UpdateMove ();
+		UpdateWeapon ();
 
 		GameObject lvGridSelectorObject = GameObject.Find("GridSelector");
 		SelectFromGrid lvSelector = lvGridSelectorObject.GetComponent<SelectFromGrid> ();
@@ -223,6 +226,11 @@ public class PlayerSpooler : MonoBehaviour {
 	public void UpdateHP()
 	{
 		UpdateTextField (mSpool [mSpooledId].hp.ToString(),"HPText");
+	}
+
+	public void UpdateWeapon()
+	{
+		UpdateTextField (mSpool [mSpooledId].equippedWeaponAttack.Name,"WeaponText");
 	}
 
 	public void UpdateTextField(string pmValue, string pmName)

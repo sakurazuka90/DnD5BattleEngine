@@ -14,6 +14,10 @@ public class DiceRoller{
 		return lvResult;
 	}
 
+	public static int D20{
+		get{ return RollDice (20,1); }
+	}
+
 
 
 }

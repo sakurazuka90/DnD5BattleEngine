@@ -45,6 +45,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Actions\AbstractAction.cs" />
+     <Compile Include="Assets\Scripts\Actions\ActiveAttackDefenceTypes.cs" />
      <Compile Include="Assets\Scripts\Actions\Attack.cs" />
      <Compile Include="Assets\Scripts\CellStatus.cs" />
      <Compile Include="Assets\Scripts\FigurineMover.cs" />
@@ -53,6 +55,7 @@
      <Compile Include="Assets\Scripts\Hider.cs" />
      <Compile Include="Assets\Scripts\Items\Item.cs" />
      <Compile Include="Assets\Scripts\Items\Weapon.cs" />
+     <Compile Include="Assets\Scripts\Items\WeaponCategory.cs" />
      <Compile Include="Assets\Scripts\Items\WeaponType.cs" />
      <Compile Include="Assets\Scripts\Players\Player.cs" />
      <Compile Include="Assets\Scripts\Players\PlayerSpooler.cs" />

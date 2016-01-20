@@ -21,6 +21,13 @@ public class Player {
 	public int movesLeft;
 
 	public int hp;
+	private int mProficiencyBonus;
+
+	public Attack equippedWeaponAttack;
+
+
+
+	private List<WeaponCategory> mWeaponCategoryProficiency;
 
 	public Player ()
 	{
@@ -30,24 +37,29 @@ public class Player {
 		mTestAbilities.Add(TestsNames.INITIATIVE,AbilityNames.DEXTERITY);
 	}
 
-	public void setAbility(AbilityNames pmName, int pmScore)
+	public void SetAbility(AbilityNames pmName, int pmScore)
 	{
 		mAbilities.Remove (pmName);
 		mAbilities.Add (pmName, new Ability(pmScore));
 	}
 
-	public int rollTest(TestsNames pmName)
+	public int GetAbilityModifier(AbilityNames pmName)
 	{
-		Debug.Log (playerName + " rolled ");
-		return DiceRoller.RollDice (20, 1) + mAbilities [mTestAbilities [pmName]].getModifier ();
+		return mAbilities [pmName].Modifier;
 	}
 
-	public int getSpeed()
+	public int RollTest(TestsNames pmName)
+	{
+		//Debug.Log (playerName + " rolled ");
+		return DiceRoller.RollDice (20, 1) + mAbilities [mTestAbilities [pmName]].Modifier;
+	}
+
+	public int GetSpeed()
 	{
 		return mSpeed;
 	}
 
-	public void setSpeed(int pmSpeed)
+	public void SetSpeed(int pmSpeed)
 	{
 		mSpeed = pmSpeed;
 	}
@@ -72,6 +84,22 @@ public class Player {
 
 		GameObject lvSpoolerObj = GameObject.Find ("PlayerSpooler");
 		PlayerSpooler lvSpooler = lvSpoolerObj.GetComponent<PlayerSpooler> ();
+	}
+
+	public int GetActiveDefence(ActiveAttackDefenceTypes pmType)
+	{
+		return 0;
+	}
+
+	public int GetWeaponProficiency(WeaponCategory pmTestedCategory)
+	{
+		if (mProficiencyBonus == 0)
+			return 0;
+		
+		if (mWeaponCategoryProficiency.Contains (pmTestedCategory))
+			return mProficiencyBonus;
+		else
+			return 0;
 	}
 
 

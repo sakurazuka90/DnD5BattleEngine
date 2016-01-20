@@ -1,15 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Attack : MonoBehaviour {
+public class Attack : AbstractAction{
 
-	// Use this for initialization
-	void Start () {
-	
+	private bool mIsActive;
+	private string mName;
+
+	public Attack(string pmName)
+	{
+		mName = pmName;
+		mIsActive = true;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public string Name{
+		get{ return mName; }
 	}
+
+
+	public bool resolveHit (Player pmAttacker, Player pmDefender)
+	{
+		if (mIsActive)
+			return ResolveActiveHit (pmAttacker, pmDefender);
+		else
+			return ResolvePassiveHit (pmAttacker, pmDefender);
+	}
+
 }
