@@ -3,11 +3,6 @@ using System.Collections.Generic;
 
 public class SelectFromGrid : MonoBehaviour {
 
-	public Material lvSelectedMaterial;
-	public Material lvDeselectedMaterial;
-	public Material lvMovableMaterial;
-	public Material lvOpportunityMaterial;
-
 	private CellStatus lastStatus;
 
 	private static string XPOSITION = "XPOSITION";
@@ -518,17 +513,32 @@ public class SelectFromGrid : MonoBehaviour {
 		List<int> lvReturnList = new List<int>();
 
 		foreach (int lvField in pmFields) {
-			lvReturnList.Add (findTopFieldId (lvField));
-			lvReturnList.Add (findTopRightFieldId (lvField));
-			lvReturnList.Add (findTopLeftFieldId (lvField));
-			lvReturnList.Add (findRightFieldId (lvField));
-			lvReturnList.Add (findLeftFieldId (lvField));
-			lvReturnList.Add (findBottomFieldId (lvField));
-			lvReturnList.Add (findBottomLeftFieldId (lvField));
-			lvReturnList.Add (findBottomRightFieldId (lvField));
+			lvReturnList.AddRange (GetAdjacentFields (lvField));
 		}
 
 		return lvReturnList;
+	}
+
+	public List<int> GetAdjacentFields(int pmCellId)
+	{
+		List<int> lvReturnList = new List<int>();
+
+		lvReturnList.Add (findTopFieldId (pmCellId));
+		lvReturnList.Add (findTopRightFieldId (pmCellId));
+		lvReturnList.Add (findTopLeftFieldId (pmCellId));
+		lvReturnList.Add (findRightFieldId (pmCellId));
+		lvReturnList.Add (findLeftFieldId (pmCellId));
+		lvReturnList.Add (findBottomFieldId (pmCellId));
+		lvReturnList.Add (findBottomLeftFieldId (pmCellId));
+		lvReturnList.Add (findBottomRightFieldId (pmCellId));
+
+		return lvReturnList;
+
+	}
+
+	public void SetStateToCells(List<int> pmCellsList)
+	{
+		
 	}
 
 	private int findTopFieldId(int pmField)

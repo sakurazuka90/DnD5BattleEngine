@@ -48,6 +48,7 @@
      <Compile Include="Assets\Scripts\Actions\AbstractAction.cs" />
      <Compile Include="Assets\Scripts\Actions\ActiveAttackDefenceTypes.cs" />
      <Compile Include="Assets\Scripts\Actions\Attack.cs" />
+     <Compile Include="Assets\Scripts\CellStates.cs" />
      <Compile Include="Assets\Scripts\CellStatus.cs" />
      <Compile Include="Assets\Scripts\FigurineMover.cs" />
      <Compile Include="Assets\Scripts\FigurineStatus.cs" />

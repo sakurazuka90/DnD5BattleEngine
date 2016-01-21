@@ -110,7 +110,7 @@ public class PlayerSpooler : MonoBehaviour {
 				mSpool [lvArrayCount] = lvCurrentPlayer;
 
 				lvArrayCount++;
-				Debug.Log ("Initiative " + lvKey + " player " + lvCurrentPlayer.playerName);
+				//Debug.Log ("Initiative " + lvKey + " player " + lvCurrentPlayer.playerName);
 			} else {
 				foreach (Player lvCurrentPlayer in lvCurrentInitPlayers) {
 					mSpool [lvArrayCount] = lvCurrentPlayer;

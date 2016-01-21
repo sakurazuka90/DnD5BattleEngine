@@ -1,4 +1,7 @@
 ﻿using System;
+using UnityEngine;
+
+using System.Collections.Generic;
 
 public abstract class AbstractAction
 {
@@ -35,5 +38,19 @@ public abstract class AbstractAction
 		return false; //TODO
 	}
 
+	public void DisplayTargets(Player pmAttacker)
+	{
+		GameObject lvSelectorObject = GameObject.Find ("SelectFromGrid");
+		SelectFromGrid lvSelector = lvSelectorObject.GetComponent<SelectFromGrid> ();
+
+		GameObject lvDrawerObject = GameObject.Find ("GridDrawer");
+		GridDrawer lvDrawer = lvDrawerObject.GetComponent<GridDrawer> ();
+
+		FigurineStatus lvStatus = pmAttacker.Figurine.GetComponent<FigurineStatus> ();
+
+		int lvCellId = lvDrawer.GetGridId (lvStatus.gridX,lvStatus.gridZ);
+		List<int> lvFields = lvSelector.GetAdjacentFields (lvCellId);
+
+	}
 }
 

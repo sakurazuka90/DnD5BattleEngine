@@ -9,6 +9,7 @@ public class CellStatus : MonoBehaviour {
 	public Material lvDeselectedMaterial;
 	public Material lvMovableMaterial;
 	public Material lvOpportunityMaterial;
+	public Material lvTargetMaterial;
 
 	public bool movable = false;
 	public bool lvOportunity = false;
