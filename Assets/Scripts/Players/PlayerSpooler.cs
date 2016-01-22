@@ -155,6 +155,16 @@ public class PlayerSpooler : MonoBehaviour {
 		mSpooledObject.GetComponent<FigurineStatus> ().pick (lvMovesLeft);
 	}
 
+	public void ShowDefaultWeaponTargets()
+	{
+		mSpool [mSpooledId].equippedWeaponAttack.DisplayTargets (mSpool [mSpooledId]);
+	}
+
+	public void HitWithDefaultWeapon(Player pmTarget)
+	{
+		mSpool [mSpooledId].equippedWeaponAttack.resolveHit (mSpool [mSpooledId], pmTarget);
+	}
+
 	public void spool()
 	{
 		UpdateFigurine ();
@@ -240,6 +250,24 @@ public class PlayerSpooler : MonoBehaviour {
 		lvText.text = pmValue;
 	}
 
+	public Player GetPlayerOnField(int pmCell)
+	{
+		GridDrawer lvDrawer = GameObject.Find ("GridDrawer").GetComponent<GridDrawer> ();
+
+		int lvGridX = lvDrawer.getGridX (pmCell);
+		int lvGridZ = lvDrawer.getGridZ (pmCell);
+
+		foreach(Player lvPlayer in mPool)
+		{
+			FigurineStatus lvStatus = lvPlayer.Figurine.GetComponent<FigurineStatus> ();
+
+			if (lvGridX == lvStatus.gridX && lvGridZ == lvStatus.gridZ)
+				return lvPlayer;
+		}
+
+		return null;
+		
+	}
 
 
 

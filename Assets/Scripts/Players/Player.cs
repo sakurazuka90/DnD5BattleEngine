@@ -81,9 +81,6 @@ public class Player {
 
 		FigurineStatus lvStatus = Figurine.GetComponent<FigurineStatus> ();
 		lvStatus.movesLeft = movesLeft;
-
-		GameObject lvSpoolerObj = GameObject.Find ("PlayerSpooler");
-		PlayerSpooler lvSpooler = lvSpoolerObj.GetComponent<PlayerSpooler> ();
 	}
 
 	public int GetActiveDefence(ActiveAttackDefenceTypes pmType)

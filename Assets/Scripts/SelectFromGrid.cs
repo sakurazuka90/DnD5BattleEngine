@@ -11,6 +11,7 @@ public class SelectFromGrid : MonoBehaviour {
 	private static string STRAIGHT_LINE = "STRAIGHT_LINE";
 
 	private bool mMoveMode = false;
+	private bool mTargetMode = false;
 	private Dictionary<string, string> mPaths;
 
 	private List<int> mPlayersFields;
@@ -49,9 +50,12 @@ public class SelectFromGrid : MonoBehaviour {
 			{
 				CellStatus lvCellStatus = hit.collider.gameObject.GetComponent<CellStatus>();
 
-				if(!mMoveMode)
-				{
+				//TODO FIX!!!!
+				if (!mMoveMode && !mTargetMode) {
 					lvCellStatus.selected = true;
+				} else if (mTargetMode) {
+					if (lvCellStatus.target)
+						lvCellStatus.selected = true;
 				} else {
 					if(lvCellStatus.movable)
 						lvCellStatus.selected = true;
@@ -67,17 +71,19 @@ public class SelectFromGrid : MonoBehaviour {
 					DrawWalkableLine(mPaths[lvId]);
 				}
 
-				GameObject lvSpooler = GameObject.Find ("PlayerSpooler");
-				GameObject lvFigurine = lvSpooler.GetComponent<PlayerSpooler>().mSpooledObject;
+				PlayerSpooler lvSpooler = GameObject.Find ("PlayerSpooler").GetComponent<PlayerSpooler>();
+
+				GameObject lvFigurine = lvSpooler.mSpooledObject;
 				FigurineStatus lvStatus = lvFigurine.GetComponent<FigurineStatus>();
 
-				if(mMoveMode)
-				{
+				int lvCellId = mGridDrawer.GetGridId ((int)vertices [0].x, (int)vertices [0].z);
+
+				if (mMoveMode) {
 					if (Input.GetMouseButtonDown (0)) {
 						FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover> ();
 								
-						string lvId = "" + (mGridDrawer.gridWidth * (int)vertices [0].z + (int)vertices [0].x);
-						if(mPaths.ContainsKey(lvId)) {
+						string lvId = lvCellId.ToString ();
+						if (mPaths.ContainsKey (lvId)) {
 							lvMover.path = mPaths [lvId];
 							lvMover.isMoving = true;
 
@@ -96,6 +102,12 @@ public class SelectFromGrid : MonoBehaviour {
 						mPaths = new Dictionary<string, string> ();
 						FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover> ();
 						lvMover.AbortMovement ();
+					}
+
+				} else if (mTargetMode) {
+					if (Input.GetMouseButtonDown (0)) {
+						Player lvTarget = lvSpooler.GetPlayerOnField (lvCellId);
+						//Debug.Log ("AAAA" + lvTarget.playerName);
 					}
 
 				} else if(lvStatus.picked){
@@ -536,9 +548,27 @@ public class SelectFromGrid : MonoBehaviour {
 
 	}
 
-	public void SetStateToCells(List<int> pmCellsList)
+	public void SetStateToCells(List<int> pmCellsList, CellStates pmStatus)
 	{
-		
+		foreach (int lvField in pmCellsList) {
+			CellStatus lvStatus = mGridDrawer._cells [lvField].GetComponent<CellStatus> ();
+
+			switch (pmStatus) {
+			case CellStates.TARGET:
+				mTargetMode = true;
+				lvStatus.target = true;
+				break;
+			case CellStates.OPPORTUNITY:
+				lvStatus.lvOportunity = true;
+				break;
+			case CellStates.MOVABLE:
+				lvStatus.movable = true;
+				break;
+			default:
+				break;
+			}
+
+		}
 	}
 
 	private int findTopFieldId(int pmField)

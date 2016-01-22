@@ -40,7 +40,7 @@ public abstract class AbstractAction
 
 	public void DisplayTargets(Player pmAttacker)
 	{
-		GameObject lvSelectorObject = GameObject.Find ("SelectFromGrid");
+		GameObject lvSelectorObject = GameObject.Find ("GridSelector");
 		SelectFromGrid lvSelector = lvSelectorObject.GetComponent<SelectFromGrid> ();
 
 		GameObject lvDrawerObject = GameObject.Find ("GridDrawer");
@@ -50,6 +50,16 @@ public abstract class AbstractAction
 
 		int lvCellId = lvDrawer.GetGridId (lvStatus.gridX,lvStatus.gridZ);
 		List<int> lvFields = lvSelector.GetAdjacentFields (lvCellId);
+
+		List<int> lvTargetFields = new List<int> ();
+
+		foreach (int lvField in lvFields) {
+			if (lvSelector.IsEnemyField (lvField))
+				lvTargetFields.Add (lvField);
+		}
+
+		lvDrawer.ClearGridStatus ();
+		lvSelector.SetStateToCells (lvTargetFields, CellStates.TARGET);
 
 	}
 }
