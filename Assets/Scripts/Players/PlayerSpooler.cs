@@ -27,8 +27,16 @@ public class PlayerSpooler : MonoBehaviour {
 		pl1.PlayerSprite = spr1;
 		pl1.playerName = "Kurrdar the Mighty";
 		pl1.SetAbility (AbilityNames.DEXTERITY, 10);
+		pl1.SetAbility (AbilityNames.STRENGTH, 16);
 		pl1.SetSpeed (4);
-		Attack lvAxe = new Attack ("Battleaxe");
+		pl1.ac = 16;
+
+		Weapon lvBattleaxe = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 1, 10);
+
+		Attack lvAxe = new Attack ("Battleaxe", lvBattleaxe);
+
+
+
 		pl1.equippedWeaponAttack = lvAxe;
 
 
@@ -39,9 +47,14 @@ public class PlayerSpooler : MonoBehaviour {
 		Sprite spr2 = Resources.Load<Sprite>("002");
 		pl2.PlayerSprite = spr2;
 		pl2.playerName = "Goblin 1";
+		pl2.SetAbility (AbilityNames.STRENGTH, 9);
 		pl2.SetAbility (AbilityNames.DEXTERITY, 14);
 		pl2.SetSpeed (4);
-		Attack lvScimitar = new Attack ("Scimitar");
+		pl2.ac = 14;
+
+		Weapon lvScimitarWep = new Weapon ("Scimitar", WeaponType.MELEE, WeaponCategory.MARTIAL, 1, 6);
+
+		Attack lvScimitar = new Attack ("Scimitar",lvScimitarWep);
 		pl2.equippedWeaponAttack = lvScimitar;
 
 		mPool.Add (pl1);
@@ -267,6 +280,11 @@ public class PlayerSpooler : MonoBehaviour {
 
 		return null;
 		
+	}
+
+	public void ResolveSpooledAttack(Player pmTarget)
+	{
+		mSpool [mSpooledId].equippedWeaponAttack.resolveHit (mSpool [mSpooledId], pmTarget);
 	}
 
 

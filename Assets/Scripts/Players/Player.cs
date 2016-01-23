@@ -24,7 +24,7 @@ public class Player {
 	private int mProficiencyBonus;
 
 	public Attack equippedWeaponAttack;
-
+	public int ac;
 
 
 	private List<WeaponCategory> mWeaponCategoryProficiency;

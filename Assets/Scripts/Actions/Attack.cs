@@ -6,10 +6,11 @@ public class Attack : AbstractAction{
 	private bool mIsActive;
 	private string mName;
 
-	public Attack(string pmName)
+	public Attack(string pmName, Weapon pmWeapon)
 	{
 		mName = pmName;
 		mIsActive = true;
+		mWeapon = pmWeapon;
 	}
 
 	public string Name{

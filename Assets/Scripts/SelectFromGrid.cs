@@ -107,7 +107,8 @@ public class SelectFromGrid : MonoBehaviour {
 				} else if (mTargetMode) {
 					if (Input.GetMouseButtonDown (0)) {
 						Player lvTarget = lvSpooler.GetPlayerOnField (lvCellId);
-						//Debug.Log ("AAAA" + lvTarget.playerName);
+						Debug.Log ("AAAA" + lvTarget.playerName);
+						lvSpooler.ResolveSpooledAttack (lvTarget);
 					}
 
 				} else if(lvStatus.picked){
