@@ -45,6 +45,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\FT_FreeSample\Script\AnimationScrollTexture.js" />
+     <Compile Include="Assets\FT_FreeSample\Script\AnimationSpriteSheet.js" />
+     <Compile Include="Assets\FT_FreeSample\Script\DeadTime.js" />
      <Compile Include="Assets\goblin\fbx\textures\Point light.js" />
      <Compile Include="Assets\goblin\script\camera.js" />
      <Compile Include="Assets\goblin\script\move.js" />

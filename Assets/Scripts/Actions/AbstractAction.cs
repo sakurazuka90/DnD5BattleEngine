@@ -15,7 +15,8 @@ public abstract class AbstractAction
 
 	protected void ResolveActiveHit(Player pmAttacker, Player pmTarget, bool pmIsAdvantage)
 	{
-		
+		pmAttacker.Figurine.GetComponent<AnimationPlayer> ().play = true;
+
 		int lvDefValue = pmTarget.GetActiveDefence (mDefenceType);
 
 		int lvAttackBonus = 0;

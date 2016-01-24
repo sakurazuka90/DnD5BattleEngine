@@ -11,6 +11,8 @@ public class Attack : AbstractAction{
 		mName = pmName;
 		mIsActive = true;
 		mWeapon = pmWeapon;
+
+
 	}
 
 	public string Name{
