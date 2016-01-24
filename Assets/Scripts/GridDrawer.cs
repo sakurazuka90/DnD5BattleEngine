@@ -116,6 +116,7 @@ public class GridDrawer : MonoBehaviour {
 			CellStatus lvStatus = lvCell.GetComponent<CellStatus>();
 			lvStatus.movable = false;
 			lvStatus.lvOportunity = false;
+			lvStatus.target = false;
 		}
 	}
 

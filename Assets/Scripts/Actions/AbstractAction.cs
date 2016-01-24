@@ -13,7 +13,7 @@ public abstract class AbstractAction
 	{
 	}
 
-	protected bool ResolveActiveHit(Player pmAttacker, Player pmTarget)
+	protected void ResolveActiveHit(Player pmAttacker, Player pmTarget, bool pmIsAdvantage)
 	{
 		
 		int lvDefValue = pmTarget.GetActiveDefence (mDefenceType);
@@ -27,15 +27,37 @@ public abstract class AbstractAction
 
 		lvAttackBonus += pmAttacker.GetAbilityModifier (mAbility);
 
-		int lvAttack = DiceRoller.D20 + lvAttackBonus;
+		int lvDice = DiceRoller.D20;
 
-		return lvAttack >= lvDefValue;
+		int lvAttack = lvDice + lvAttackBonus;
+
+		if (lvAttack >= lvDefValue || lvDice == 20)
+			ResolveDamage (pmAttacker, pmTarget, lvDice==20, pmIsAdvantage);
 
 	}
 
 	protected bool ResolvePassiveHit(Player pmAttacker, Player pmTarget)
 	{
 		return false; //TODO
+	}
+
+	protected void ResolveDamage(Player pmAttacker, Player pmTarget, bool pmIsCritical, bool pmIsAdvantage)
+	{
+		int lvWeaponAmount = mWeapon.DieceNumber;
+
+		if (pmIsCritical)
+			lvWeaponAmount = lvWeaponAmount * 2;
+
+		int lvWeaponDamage = DiceRoller.RollDice (mWeapon.DieceType, lvWeaponAmount);
+
+		lvWeaponDamage += pmAttacker.GetAbilityModifier (mAbility);
+
+		pmTarget.GetDamage (lvWeaponDamage);
+
+		GameObject lvDrawerObject = GameObject.Find ("GridDrawer");
+		GridDrawer lvDrawer = lvDrawerObject.GetComponent<GridDrawer> ();
+
+		lvDrawer.ClearGridStatus ();
 	}
 
 	public void DisplayTargets(Player pmAttacker)

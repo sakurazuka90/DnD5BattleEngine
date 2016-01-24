@@ -47,6 +47,11 @@ public class CellStatus : MonoBehaviour {
 		}
 	}
 
+	public void ClearStatus()
+	{
+		
+	}
+
 	/*void OnMouseEnter() {
 		if(this.target)
 			Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);

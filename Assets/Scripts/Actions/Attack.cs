@@ -18,12 +18,12 @@ public class Attack : AbstractAction{
 	}
 
 
-	public bool resolveHit (Player pmAttacker, Player pmDefender)
+	public void resolveHit (Player pmAttacker, Player pmDefender)
 	{
 		if (mIsActive)
-			return ResolveActiveHit (pmAttacker, pmDefender);
+			ResolveActiveHit (pmAttacker, pmDefender, false);
 		else
-			return ResolvePassiveHit (pmAttacker, pmDefender);
+			ResolvePassiveHit (pmAttacker, pmDefender);
 	}
 
 }

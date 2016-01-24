@@ -20,6 +20,7 @@ public class Player {
 	private int mSpeed;
 	public int movesLeft;
 
+	private int mTotalHp;
 	public int hp;
 	private int mProficiencyBonus;
 
@@ -35,6 +36,7 @@ public class Player {
 
 		mTestAbilities = new Dictionary<TestsNames, AbilityNames> ();
 		mTestAbilities.Add(TestsNames.INITIATIVE,AbilityNames.DEXTERITY);
+		mWeaponCategoryProficiency = new List<WeaponCategory> ();
 	}
 
 	public void SetAbility(AbilityNames pmName, int pmScore)
@@ -85,7 +87,12 @@ public class Player {
 
 	public int GetActiveDefence(ActiveAttackDefenceTypes pmType)
 	{
-		return 0;
+		switch (pmType) {
+		case ActiveAttackDefenceTypes.AC:
+			return this.ac;
+		default:
+			return 0;
+		}
 	}
 
 	public int GetWeaponProficiency(WeaponCategory pmTestedCategory)
@@ -97,6 +104,32 @@ public class Player {
 			return mProficiencyBonus;
 		else
 			return 0;
+	}
+
+	public void AddWeaponProficiency(WeaponCategory pmCategory)
+	{
+		if (!mWeaponCategoryProficiency.Contains (pmCategory))
+			mWeaponCategoryProficiency.Add (pmCategory);
+	}
+
+	public int HpTotal
+	{
+		get{ return mTotalHp;}
+		set{ this.mTotalHp = value;}
+	}
+
+	public int Proficiency
+	{
+		get{ return mProficiencyBonus;}
+		set{ this.mProficiencyBonus = value;}
+	}
+
+	public void GetDamage(int pmDamage)
+	{
+		if (hp > pmDamage)
+			hp = -pmDamage;
+		else
+			hp = 0;
 	}
 
 

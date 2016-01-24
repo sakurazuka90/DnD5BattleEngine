@@ -30,6 +30,9 @@ public class PlayerSpooler : MonoBehaviour {
 		pl1.SetAbility (AbilityNames.STRENGTH, 16);
 		pl1.SetSpeed (4);
 		pl1.ac = 16;
+		pl1.HpTotal = 22;
+		pl1.hp = 22;
+		pl1.Proficiency = 2;
 
 		Weapon lvBattleaxe = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 1, 10);
 
@@ -51,6 +54,8 @@ public class PlayerSpooler : MonoBehaviour {
 		pl2.SetAbility (AbilityNames.DEXTERITY, 14);
 		pl2.SetSpeed (4);
 		pl2.ac = 14;
+		pl2.HpTotal = 9;
+		pl2.hp = 9;
 
 		Weapon lvScimitarWep = new Weapon ("Scimitar", WeaponType.MELEE, WeaponCategory.MARTIAL, 1, 6);
 
@@ -78,6 +83,7 @@ public class PlayerSpooler : MonoBehaviour {
 		UpdateName ();
 		UpdateMove ();
 		UpdateWeapon ();
+		UpdateHP ();
 
 		GameObject lvGridSelectorObject = GameObject.Find("GridSelector");
 		SelectFromGrid lvSelector = lvGridSelectorObject.GetComponent<SelectFromGrid> ();
@@ -186,6 +192,7 @@ public class PlayerSpooler : MonoBehaviour {
 		UpdateName ();
 		UpdateMove ();
 		UpdateWeapon ();
+		UpdateHP ();
 
 		GameObject lvGridSelectorObject = GameObject.Find("GridSelector");
 		SelectFromGrid lvSelector = lvGridSelectorObject.GetComponent<SelectFromGrid> ();
