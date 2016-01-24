@@ -35,6 +35,16 @@ public abstract class AbstractAction
 		if (lvAttack >= lvDefValue || lvDice == 20)
 			ResolveDamage (pmAttacker, pmTarget, lvDice==20, pmIsAdvantage);
 
+		GameObject lvDrawerObject = GameObject.Find ("GridDrawer");
+		GridDrawer lvDrawer = lvDrawerObject.GetComponent<GridDrawer> ();
+
+		lvDrawer.ClearGridStatus ();
+
+		GameObject lvSpoolerObject = GameObject.Find ("PlayerSpooler");
+		PlayerSpooler lvSpooler = lvSpoolerObject.GetComponent<PlayerSpooler> ();
+		lvSpooler.spool ();
+
+
 	}
 
 	protected bool ResolvePassiveHit(Player pmAttacker, Player pmTarget)
@@ -55,10 +65,6 @@ public abstract class AbstractAction
 
 		pmTarget.GetDamage (lvWeaponDamage);
 
-		GameObject lvDrawerObject = GameObject.Find ("GridDrawer");
-		GridDrawer lvDrawer = lvDrawerObject.GetComponent<GridDrawer> ();
-
-		lvDrawer.ClearGridStatus ();
 	}
 
 	public void DisplayTargets(Player pmAttacker)

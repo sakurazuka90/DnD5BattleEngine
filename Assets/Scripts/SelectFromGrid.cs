@@ -109,6 +109,7 @@ public class SelectFromGrid : MonoBehaviour {
 						Player lvTarget = lvSpooler.GetPlayerOnField (lvCellId);
 						Debug.Log ("AAAA" + lvTarget.playerName);
 						lvSpooler.ResolveSpooledAttack (lvTarget);
+						mTargetMode = false;
 					}
 
 				} else if(lvStatus.picked){
