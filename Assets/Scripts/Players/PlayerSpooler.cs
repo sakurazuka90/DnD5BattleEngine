@@ -34,7 +34,7 @@ public class PlayerSpooler : MonoBehaviour {
 		pl1.hp = 22;
 		pl1.Proficiency = 2;
 
-		Weapon lvBattleaxe = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 1, 10);
+		Weapon lvBattleaxe = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 10, 1);
 
 		Attack lvAxe = new Attack ("Battleaxe", lvBattleaxe);
 
@@ -57,7 +57,7 @@ public class PlayerSpooler : MonoBehaviour {
 		pl2.HpTotal = 9;
 		pl2.hp = 9;
 
-		Weapon lvScimitarWep = new Weapon ("Scimitar", WeaponType.MELEE, WeaponCategory.MARTIAL, 1, 6);
+		Weapon lvScimitarWep = new Weapon ("Scimitar", WeaponType.MELEE, WeaponCategory.MARTIAL, 6, 1);
 
 		Attack lvScimitar = new Attack ("Scimitar",lvScimitarWep);
 		pl2.equippedWeaponAttack = lvScimitar;

@@ -8,7 +8,7 @@ public class DiceRoller{
 		int lvResult = 0;
 
 		for (int i = 0; i < pmDiceAmount; i++) {
-			lvResult += Random.Range(1,pmSides);
+			lvResult += Random.Range(1,pmSides + 1);
 		}
 
 		return lvResult;

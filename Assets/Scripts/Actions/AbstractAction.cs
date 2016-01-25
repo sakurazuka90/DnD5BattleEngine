@@ -32,8 +32,11 @@ public abstract class AbstractAction
 
 		int lvAttack = lvDice + lvAttackBonus;
 
-		if (lvAttack >= lvDefValue || lvDice == 20)
-			ResolveDamage (pmAttacker, pmTarget, lvDice==20, pmIsAdvantage);
+		if (lvAttack >= lvDefValue || lvDice == 20) {
+			ResolveDamage (pmAttacker, pmTarget, lvDice == 20, pmIsAdvantage);
+		} else {
+			pmTarget.Figurine.GetComponent<MessageDisplayer>().message = "MISS!";
+		}
 
 		GameObject lvDrawerObject = GameObject.Find ("GridDrawer");
 		GridDrawer lvDrawer = lvDrawerObject.GetComponent<GridDrawer> ();
@@ -56,12 +59,17 @@ public abstract class AbstractAction
 	{
 		int lvWeaponAmount = mWeapon.DieceNumber;
 
-		if (pmIsCritical)
-			lvWeaponAmount = lvWeaponAmount * 2;
+		MessageDisplayer lvMessageDisplayer = pmTarget.Figurine.GetComponent<MessageDisplayer> ();
 
+		if (pmIsCritical) {
+			lvMessageDisplayer.message = "CRITICAL HIT!";
+			lvWeaponAmount = lvWeaponAmount * 2;
+		}
 		int lvWeaponDamage = DiceRoller.RollDice (mWeapon.DieceType, lvWeaponAmount);
 
 		lvWeaponDamage += pmAttacker.GetAbilityModifier (mAbility);
+
+		lvMessageDisplayer.message = lvWeaponDamage.ToString();
 
 		pmTarget.GetDamage (lvWeaponDamage);
 

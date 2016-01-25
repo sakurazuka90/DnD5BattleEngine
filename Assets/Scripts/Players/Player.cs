@@ -127,9 +127,12 @@ public class Player {
 	public void GetDamage(int pmDamage)
 	{
 		if (hp > pmDamage)
-			hp = -pmDamage;
+			hp -= pmDamage;
 		else
 			hp = 0;
+
+		//if (hp == 0)
+		//	this.Figurine.SetActive (false);
 	}
 
 

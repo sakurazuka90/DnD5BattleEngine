@@ -49,6 +49,8 @@
      <Compile Include="Assets\FT_FreeSample\Script\FTEM_AnimationScrollTexture.cs" />
      <Compile Include="Assets\FT_FreeSample\Script\FTEM_AnimationSpriteSheet.cs" />
      <Compile Include="Assets\FT_FreeSample\Script\FTEM_DeadTime.cs" />
+     <Compile Include="Assets\MessageDisplayer.cs" />
+     <Compile Include="Assets\MessagePool.cs" />
      <Compile Include="Assets\Scripts\Actions\AbstractAction.cs" />
      <Compile Include="Assets\Scripts\Actions\ActiveAttackDefenceTypes.cs" />
      <Compile Include="Assets\Scripts\Actions\Attack.cs" />
@@ -71,6 +73,7 @@
      <Compile Include="Assets\Scripts\Players\Stats\BonusConditionNames.cs" />
      <Compile Include="Assets\Scripts\Players\Stats\DiceRoller.cs" />
      <Compile Include="Assets\Scripts\Players\Stats\TestsNames.cs" />
+     <Compile Include="Assets\Scripts\ScoreTextScript.cs" />
      <Compile Include="Assets\Scripts\SelectFromGrid.cs" />
      <None Include="Assets\Shaders\WarpJump.shader" />
      <None Include="Assets\Shaders\Billboard.shader" />
