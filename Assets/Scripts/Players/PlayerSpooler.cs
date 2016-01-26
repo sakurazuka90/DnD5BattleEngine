@@ -84,6 +84,7 @@ public class PlayerSpooler : MonoBehaviour {
 		UpdateMove ();
 		UpdateWeapon ();
 		UpdateHP ();
+		UpdateAc ();
 
 		GameObject lvGridSelectorObject = GameObject.Find("GridSelector");
 		SelectFromGrid lvSelector = lvGridSelectorObject.GetComponent<SelectFromGrid> ();
@@ -193,6 +194,7 @@ public class PlayerSpooler : MonoBehaviour {
 		UpdateMove ();
 		UpdateWeapon ();
 		UpdateHP ();
+		UpdateAc ();
 
 		GameObject lvGridSelectorObject = GameObject.Find("GridSelector");
 		SelectFromGrid lvSelector = lvGridSelectorObject.GetComponent<SelectFromGrid> ();
@@ -261,6 +263,11 @@ public class PlayerSpooler : MonoBehaviour {
 	public void UpdateWeapon()
 	{
 		UpdateTextField (mSpool [mSpooledId].equippedWeaponAttack.Name,"WeaponText");
+	}
+
+	public void UpdateAc()
+	{
+		UpdateTextField (mSpool [mSpooledId].ac.ToString(),"ACText");
 	}
 
 	public void UpdateTextField(string pmValue, string pmName)
