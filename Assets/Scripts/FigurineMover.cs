@@ -17,9 +17,11 @@ public class FigurineMover : MonoBehaviour {
 
 	private int mStepsMoved = 0;
 
+	Animator _figurineAnimator;
+
 	// Use this for initialization
 	void Start () {
-
+		_figurineAnimator = this.gameObject.GetComponentInChildren<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -55,6 +57,9 @@ public class FigurineMover : MonoBehaviour {
 
 				// path containt current cell
 				mStepsMoved = steps.Length - 1;
+
+				_figurineAnimator.SetBool ("isWalking",true);
+
 			} else if(steps.Length > 0)
 			{
 				GameObject lvMoveButtonGameObject = GameObject.Find ("MoveButton");
@@ -105,6 +110,8 @@ public class FigurineMover : MonoBehaviour {
 
 						lvSpooler.DecreaseMoves (mStepsMoved);
 						mStepsMoved = 0;
+
+						_figurineAnimator.SetBool ("isWalking",false);
 
 						if(lvStatus.movesLeft == 0)
 							lvSpoolerObject.GetComponent<PlayerSpooler>().spool();

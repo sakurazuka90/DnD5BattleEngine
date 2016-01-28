@@ -36,6 +36,7 @@ public abstract class AbstractAction
 			ResolveDamage (pmAttacker, pmTarget, lvDice == 20, pmIsAdvantage);
 		} else {
 			pmTarget.Figurine.GetComponent<MessageDisplayer>().message = "MISS!";
+			pmTarget.Figurine.GetComponentInChildren<Animator> ().SetBool("isEvading",true);
 		}
 
 		GameObject lvDrawerObject = GameObject.Find ("GridDrawer");
