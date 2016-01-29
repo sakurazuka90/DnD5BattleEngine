@@ -149,6 +149,12 @@ public class PlayerSpooler : MonoBehaviour {
 
 		lvImage.sprite = mSpool [mSpooledId].PlayerSprite;
 
+		if (mSpool [mSpooledId].hp == 0) {
+			lvImage.color = new Color (152.0F / 255.0F, 2.0F / 255.0F, 2.0F / 255.0F);
+		} else {
+			lvImage.color = new Color (1.0F, 1.0F, 1.0F);
+		}
+
 	}
 
 	private void UpdateFigurine()
@@ -226,6 +232,12 @@ public class PlayerSpooler : MonoBehaviour {
 				Image lvImage = mSpoolerPics[imgCounter].GetComponent<Image>();
 				lvImage.sprite = mSpool[playerCounter].PlayerSprite;
 
+				if (mSpool [playerCounter].hp == 0) {
+					lvImage.color = new Color(152.0F/255.0F,2.0F/255.0F,2.0F/255.0F);
+				} else {
+					lvImage.color = new Color (1.0F, 1.0F, 1.0F);
+				}
+
 				if(playerCounter < mSpool.Length -1)
 				{
 					playerCounter ++;
@@ -299,6 +311,11 @@ public class PlayerSpooler : MonoBehaviour {
 	public void ResolveSpooledAttack(Player pmTarget)
 	{
 		mSpool [mSpooledId].equippedWeaponAttack.resolveHit (mSpool [mSpooledId], pmTarget);
+	}
+
+	private void SpoolUnconciousPlayer()
+	{
+		
 	}
 
 

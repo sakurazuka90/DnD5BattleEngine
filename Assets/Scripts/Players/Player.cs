@@ -27,6 +27,12 @@ public class Player {
 	public Attack equippedWeaponAttack;
 	public int ac;
 
+	public bool isDead = false;
+	public bool isStable = false;
+
+	private int mSurvivalSucceded = 0;
+	private int mSurvivalFailed = 0;
+
 
 	private List<WeaponCategory> mWeaponCategoryProficiency;
 
@@ -131,8 +137,47 @@ public class Player {
 		else
 			hp = 0;
 
+		if (hp == 0) {
+			this.Figurine.GetComponentInChildren<Animator> ().SetBool ("isDead", true);
+		}
+
 		//if (hp == 0)
 		//	this.Figurine.SetActive (false);
+	}
+
+	public void MakeSurvivalCheck()
+	{
+		int lvRoll = DiceRoller.D20;
+
+		if (lvRoll >= 10) {
+			mSurvivalSucceded += 1;
+
+			if (lvRoll == 20) {
+				mSurvivalFailed = 0;
+				mSurvivalSucceded = 0;
+				hp = 1;
+			}
+		}  else {
+			mSurvivalFailed += 1;
+			if (lvRoll == 1) {
+				mSurvivalFailed = 0;
+				mSurvivalSucceded = 0;
+				isDead = true;
+			}
+		}
+
+		if (hp == 0 && !isDead) {
+			if (mSurvivalSucceded >= 3) {
+				mSurvivalFailed = 0;
+				mSurvivalSucceded = 0;
+				isStable = true;
+			} else if (mSurvivalFailed >= 3) {
+				mSurvivalFailed = 0;
+				mSurvivalSucceded = 0;
+				isDead = true;
+			}
+		}
+
 	}
 
 
