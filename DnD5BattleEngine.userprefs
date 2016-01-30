@@ -1,19 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Players\Player.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DisableDead.cs">
     <Files>
+      <File FileName="Assets\Scripts\FigurineMover.cs" Line="61" Column="5" />
       <File FileName="Assets\Scripts\Players\Player.cs" Line="177" Column="11" />
-      <File FileName="Assets\Scripts\FigurineMover.cs" Line="1" Column="1" />
-      <File FileName="Assets\DisableDead.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Actions\AbstractAction.cs" Line="1" Column="1" />
+      <File FileName="Assets\DisableDead.cs" Line="18" Column="1" />
+      <File FileName="Assets\Scripts\Actions\AbstractAction.cs" Line="61" Column="1" />
       <File FileName="Assets\DisableEvasion.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Players\Stats\DiceRoller.cs" Line="18" Column="27" />
-      <File FileName="Assets\Scripts\Players\PlayerSpooler.cs" Line="318" Column="3" />
+      <File FileName="Assets\Scripts\Players\Stats\DiceRoller.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Players\PlayerSpooler.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GridDrawer.cs" Line="156" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="C:\Users\sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Actions\AbstractAction.cs" line="60" column="1" />
       <Breakpoint file="C:\Users\sakurazuka\Documents\DnD5BattleEngine\Assets\DisableDead.cs" line="18" column="35" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

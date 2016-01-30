@@ -120,5 +120,46 @@ public class GridDrawer : MonoBehaviour {
 		}
 	}
 
+	public Vector3 GetFigurineFacingRotation(int pmFigurineCell, int pmTargetCell)
+	{
+		float lvYRot = 0.0F;
+
+		if (pmFigurineCell == pmTargetCell)
+			return new Vector3 (0.0F, 0.0F, 0.0F);
+		
+		int lvFigX = getGridX (pmFigurineCell);
+		int lvFigZ = getGridZ (pmFigurineCell);
+
+		int lvTargetX = getGridX (pmTargetCell);
+		int lvTargetZ = getGridZ (pmTargetCell);
+
+		if (lvFigX == lvTargetX) {
+			if (lvFigZ > lvTargetZ)
+				lvYRot = 0.0F;
+			else
+				lvYRot = 180.0F;
+		} else if (lvFigZ == lvTargetZ) {
+			if (lvFigX > lvTargetX)
+				lvYRot = 90.0F;
+			else
+				lvYRot = 270.0F;
+		} else {
+			if (lvFigX > lvTargetX) {
+				if (lvFigZ > lvTargetZ)
+					lvYRot = 45.0F;
+				else
+					lvYRot = 315.0F;
+			} else {
+				if (lvFigZ > lvTargetZ)
+					lvYRot = 135.0F;
+				else
+					lvYRot = 225.0F;
+			}
+		}
+
+
+		return new Vector3 (0.0F, lvYRot, 0.0F);
+	}
+
 
 }

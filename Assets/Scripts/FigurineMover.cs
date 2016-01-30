@@ -90,8 +90,12 @@ public class FigurineMover : MonoBehaviour {
 						lvStatus.gridZ = gridZ;
 
 						currentStep ++;
-						lvTarget = lvDrawer.getCellPosition(int.Parse(lvCurrentStep));
-						//transform.LookAt(lvTarget);
+
+						Vector3 lvRotation = lvDrawer.GetFigurineFacingRotation (int.Parse(lvCurrentStep), int.Parse(steps [currentStep]));
+						this.gameObject.transform.eulerAngles = lvRotation;
+						//lvTarget = lvDrawer.getCellPosition(int.Parse(lvCurrentStep));
+
+
 						//transform.Rotate(new Vector3(0,180,0));
 
 					} else {
@@ -129,6 +133,5 @@ public class FigurineMover : MonoBehaviour {
 		isMoving = false;
 		lvMoveButtonGameObject.GetComponent<Button>().interactable = true;
 	}
-
 
 }
