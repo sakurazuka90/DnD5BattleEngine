@@ -132,15 +132,27 @@ public class Player {
 
 	public void GetDamage(int pmDamage)
 	{
-		if (hp > pmDamage)
-			hp -= pmDamage;
-		else
-			hp = 0;
+		if (hp == 0 && !isDead) {
+			mSurvivalFailed += 2;
 
-		if (hp == 0) {
-			this.Figurine.GetComponentInChildren<Animator> ().SetBool ("isDead", true);
+			if (mSurvivalFailed >= 3) {
+				mSurvivalFailed = 0;
+				mSurvivalSucceded = 0;
+				isDead = true;
+				Figurine.GetComponent<MessageDisplayer>().message = "DEAD!";
+			}
+
+		} else {
+
+			if (hp > pmDamage)
+				hp -= pmDamage;
+			else
+				hp = 0;
+
+			if (hp == 0) {
+				this.Figurine.GetComponentInChildren<Animator> ().SetBool ("isDead", true);
+			}
 		}
-
 		//if (hp == 0)
 		//	this.Figurine.SetActive (false);
 	}
@@ -152,14 +164,20 @@ public class Player {
 		if (lvRoll >= 10) {
 			mSurvivalSucceded += 1;
 
+			Figurine.GetComponent<MessageDisplayer>().message = "SURVIVAL SUCCES!";
+
 			if (lvRoll == 20) {
+				Figurine.GetComponent<MessageDisplayer>().message = "CRITICAL SUCCES - STABLE!";
 				mSurvivalFailed = 0;
 				mSurvivalSucceded = 0;
 				hp = 1;
 			}
 		}  else {
 			mSurvivalFailed += 1;
+
+			Figurine.GetComponent<MessageDisplayer>().message = "SURVIVAL FAILURE!";
 			if (lvRoll == 1) {
+				Figurine.GetComponent<MessageDisplayer>().message = "CRITICAL FAILURE - DEAD!";
 				mSurvivalFailed = 0;
 				mSurvivalSucceded = 0;
 				isDead = true;
@@ -171,10 +189,12 @@ public class Player {
 				mSurvivalFailed = 0;
 				mSurvivalSucceded = 0;
 				isStable = true;
+				Figurine.GetComponent<MessageDisplayer>().message = "STABLE!";
 			} else if (mSurvivalFailed >= 3) {
 				mSurvivalFailed = 0;
 				mSurvivalSucceded = 0;
 				isDead = true;
+				Figurine.GetComponent<MessageDisplayer>().message = "DEAD!";
 			}
 		}
 

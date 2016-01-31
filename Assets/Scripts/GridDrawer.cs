@@ -148,10 +148,10 @@ public class GridDrawer : MonoBehaviour {
 				if (lvFigZ > lvTargetZ)
 					lvYRot = 45.0F;
 				else
-					lvYRot = 315.0F;
+					lvYRot = 135.0F;
 			} else {
 				if (lvFigZ > lvTargetZ)
-					lvYRot = 135.0F;
+					lvYRot = 315.0F;
 				else
 					lvYRot = 225.0F;
 			}

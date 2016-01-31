@@ -194,27 +194,38 @@ public class PlayerSpooler : MonoBehaviour {
 	public void spool()
 	{
 		UpdateFigurine ();
-		setSpooler ();
-		UpdateImage ();
-		UpdateName ();
-		UpdateMove ();
-		UpdateWeapon ();
-		UpdateHP ();
-		UpdateAc ();
 
-		GameObject lvGridSelectorObject = GameObject.Find("GridSelector");
-		SelectFromGrid lvSelector = lvGridSelectorObject.GetComponent<SelectFromGrid> ();
-		lvSelector.updateFields ();
+		//we do survival check first cause it can restore 1 hp and so second if will also be true
+		if(mSpool [mSpooledId].hp == 0 && ! mSpool [mSpooledId].isDead )
+			mSpool [mSpooledId].MakeSurvivalCheck ();
 
-		FigurineStatus lvStatus = mSpooledObject.GetComponent<FigurineStatus> ();
-		if (!lvStatus.enemy)
-			lvSelector.playersTurn = true;
-		else
-			lvSelector.playersTurn = false;
+		if (mSpool [mSpooledId].hp > 0) {
+			setSpooler ();
+			UpdateImage ();
+			UpdateName ();
+			UpdateMove ();
+			UpdateWeapon ();
+			UpdateHP ();
+			UpdateAc ();
 
-		int lvId = GameObject.Find ("GridDrawer").GetComponent<GridDrawer> ().GetGridId (lvStatus.gridX, lvStatus.gridZ);
+			GameObject lvGridSelectorObject = GameObject.Find ("GridSelector");
+			SelectFromGrid lvSelector = lvGridSelectorObject.GetComponent<SelectFromGrid> ();
+			lvSelector.updateFields ();
 
-		lvSelector.SetActivePlayerStartField (lvId);
+			FigurineStatus lvStatus = mSpooledObject.GetComponent<FigurineStatus> ();
+			if (!lvStatus.enemy)
+				lvSelector.playersTurn = true;
+			else
+				lvSelector.playersTurn = false;
+
+			int lvId = GameObject.Find ("GridDrawer").GetComponent<GridDrawer> ().GetGridId (lvStatus.gridX, lvStatus.gridZ);
+
+			lvSelector.SetActivePlayerStartField (lvId);
+		} else {
+
+			//if player is dead we move to next one
+			spool ();
+		}
 	}
 
 	private void setSpooler()
@@ -232,9 +243,12 @@ public class PlayerSpooler : MonoBehaviour {
 				Image lvImage = mSpoolerPics[imgCounter].GetComponent<Image>();
 				lvImage.sprite = mSpool[playerCounter].PlayerSprite;
 
-				if (mSpool [playerCounter].hp == 0) {
-					lvImage.color = new Color(152.0F/255.0F,2.0F/255.0F,2.0F/255.0F);
-				} else {
+				if (mSpool [playerCounter].hp == 0 && !mSpool [playerCounter].isDead) {
+					lvImage.color = new Color (152.0F / 255.0F, 2.0F / 255.0F, 2.0F / 255.0F);
+				} else if (mSpool [playerCounter].hp == 0 && mSpool [playerCounter].isDead) { 
+					lvImage.color = new Color (53.0F / 255.0F, 48.0F / 255.0F, 48.0F / 255.0F);
+				}
+				else {
 					lvImage.color = new Color (1.0F, 1.0F, 1.0F);
 				}
 
