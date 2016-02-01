@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\DisableDead.cs" />
      <Compile Include="Assets\DisableEvasion.cs" />
+     <Compile Include="Assets\DisplayWindow.cs" />
      <Compile Include="Assets\FT_FreeSample\Scene\SampleSceneData\FTsample_ClickToSpawn.cs" />
      <Compile Include="Assets\FT_FreeSample\Script\FTEM_AnimationScrollTexture.cs" />
      <Compile Include="Assets\FT_FreeSample\Script\FTEM_AnimationSpriteSheet.cs" />
