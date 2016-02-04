@@ -9,6 +9,8 @@ public class DisplayWindow : MonoBehaviour {
 	public bool displayExpWindow;
 	public bool displayEditor;
 
+	public GameObject InventoryPanel;
+
 	public Image lvImage;
 	void OnGUI() {
 		if(displayExpWindow)
@@ -23,5 +25,10 @@ public class DisplayWindow : MonoBehaviour {
 
 
 
+	}
+
+	public void ToggleInventoryPanel()
+	{
+		InventoryPanel.SetActive (!InventoryPanel.activeSelf);
 	}
 }
