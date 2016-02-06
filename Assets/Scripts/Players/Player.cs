@@ -6,35 +6,25 @@ using System.Collections.Generic;
 public class Player {
 
 	private int mInitiativeBonus;
-
-	public GameObject Figurine;
-
-	public Sprite PlayerSprite;
-
-	public string playerName;
-
 	private Dictionary<AbilityNames,Ability> mAbilities;
-
 	private Dictionary<TestsNames,AbilityNames> mTestAbilities;
-
 	private int mSpeed;
-	public int movesLeft;
-
 	private int mTotalHp;
-	public int hp;
 	private int mProficiencyBonus;
-
-	public Attack equippedWeaponAttack;
-	public int ac;
-
-	public bool isDead = false;
-	public bool isStable = false;
-
 	private int mSurvivalSucceded = 0;
 	private int mSurvivalFailed = 0;
-
-
 	private List<WeaponCategory> mWeaponCategoryProficiency;
+	private List<Item> inventoryList;
+
+	public GameObject Figurine;
+	public Sprite PlayerSprite;
+	public string playerName;
+	public int movesLeft;
+	public int hp;
+	public Attack equippedWeaponAttack;
+	public int ac;
+	public bool isDead = false;
+	public bool isStable = false;
 
 	public Player ()
 	{
@@ -58,7 +48,6 @@ public class Player {
 
 	public int RollTest(TestsNames pmName)
 	{
-		//Debug.Log (playerName + " rolled ");
 		return DiceRoller.RollDice (20, 1) + mAbilities [mTestAbilities [pmName]].Modifier;
 	}
 
@@ -153,8 +142,6 @@ public class Player {
 				this.Figurine.GetComponentInChildren<Animator> ().SetBool ("isDead", true);
 			}
 		}
-		//if (hp == 0)
-		//	this.Figurine.SetActive (false);
 	}
 
 	public void MakeSurvivalCheck()
