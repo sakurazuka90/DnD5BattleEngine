@@ -24,8 +24,7 @@ public class FigurineMover : MonoBehaviour {
 		_figurineAnimator = this.gameObject.GetComponentInChildren<Animator> ();
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
 		if (!isMoving) {
 			Transform lvTransform = this.gameObject.transform;

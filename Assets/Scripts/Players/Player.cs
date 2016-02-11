@@ -14,7 +14,7 @@ public class Player {
 	private int mSurvivalSucceded = 0;
 	private int mSurvivalFailed = 0;
 	private List<WeaponCategory> mWeaponCategoryProficiency;
-	private List<Item> inventoryList;
+
 
 	public GameObject Figurine;
 	public Sprite PlayerSprite;
@@ -25,6 +25,24 @@ public class Player {
 	public int ac;
 	public bool isDead = false;
 	public bool isStable = false;
+	private Dictionary<string,Item> mInventory;
+
+	public int HpTotal
+	{
+		get{ return mTotalHp;}
+		set{ this.mTotalHp = value;}
+	}
+
+	public int Proficiency
+	{
+		get{ return mProficiencyBonus;}
+		set{ this.mProficiencyBonus = value;}
+	}
+
+	public Dictionary<string,Item> Inventory{
+		get{ return mInventory;}
+		set{ this.mInventory = value;}
+	}
 
 	public Player ()
 	{
@@ -107,17 +125,7 @@ public class Player {
 			mWeaponCategoryProficiency.Add (pmCategory);
 	}
 
-	public int HpTotal
-	{
-		get{ return mTotalHp;}
-		set{ this.mTotalHp = value;}
-	}
 
-	public int Proficiency
-	{
-		get{ return mProficiencyBonus;}
-		set{ this.mProficiencyBonus = value;}
-	}
 
 	public void GetDamage(int pmDamage)
 	{

@@ -45,31 +45,34 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\DisableDead.cs" />
-     <Compile Include="Assets\DisableEvasion.cs" />
-     <Compile Include="Assets\DisplayWindow.cs" />
-     <Compile Include="Assets\DragDropHandler.cs" />
      <Compile Include="Assets\FT_FreeSample\Scene\SampleSceneData\FTsample_ClickToSpawn.cs" />
      <Compile Include="Assets\FT_FreeSample\Script\FTEM_AnimationScrollTexture.cs" />
      <Compile Include="Assets\FT_FreeSample\Script\FTEM_AnimationSpriteSheet.cs" />
      <Compile Include="Assets\FT_FreeSample\Script\FTEM_DeadTime.cs" />
-     <Compile Include="Assets\MessageDisplayer.cs" />
-     <Compile Include="Assets\MessagePool.cs" />
      <Compile Include="Assets\Scripts\Actions\AbstractAction.cs" />
      <Compile Include="Assets\Scripts\Actions\ActiveAttackDefenceTypes.cs" />
      <Compile Include="Assets\Scripts\Actions\Attack.cs" />
-     <Compile Include="Assets\Scripts\AnimationPlayer.cs" />
-     <Compile Include="Assets\Scripts\CellStates.cs" />
-     <Compile Include="Assets\Scripts\CellStatus.cs" />
-     <Compile Include="Assets\Scripts\FigurineMover.cs" />
-     <Compile Include="Assets\Scripts\FigurineStatus.cs" />
-     <Compile Include="Assets\Scripts\GridDrawer.cs" />
-     <Compile Include="Assets\Scripts\Hider.cs" />
+     <Compile Include="Assets\Scripts\AnimationScripts\AnimationPlayer.cs" />
+     <Compile Include="Assets\Scripts\AnimationScripts\DisableDead.cs" />
+     <Compile Include="Assets\Scripts\AnimationScripts\DisableEvasion.cs" />
+     <Compile Include="Assets\Scripts\GUI\DisplayWindow.cs" />
+     <Compile Include="Assets\Scripts\GUI\DragDropHandler.cs" />
+     <Compile Include="Assets\Scripts\GUI\Hider.cs" />
+     <Compile Include="Assets\Scripts\GUI\MessageDisplayer.cs" />
+     <Compile Include="Assets\Scripts\GUI\MessagePool.cs" />
+     <Compile Include="Assets\Scripts\GUI\ScoreTextScript.cs" />
+     <Compile Include="Assets\Scripts\GUI\Slot.cs" />
+     <Compile Include="Assets\Scripts\GridScripts\CellStates.cs" />
+     <Compile Include="Assets\Scripts\GridScripts\CellStatus.cs" />
+     <Compile Include="Assets\Scripts\GridScripts\GridDrawer.cs" />
+     <Compile Include="Assets\Scripts\GridScripts\SelectFromGrid.cs" />
      <Compile Include="Assets\Scripts\Items\Item.cs" />
      <Compile Include="Assets\Scripts\Items\Weapon.cs" />
      <Compile Include="Assets\Scripts\Items\WeaponCategory.cs" />
      <Compile Include="Assets\Scripts\Items\WeaponFactory.cs" />
      <Compile Include="Assets\Scripts\Items\WeaponType.cs" />
+     <Compile Include="Assets\Scripts\Players\FigurineMover.cs" />
+     <Compile Include="Assets\Scripts\Players\FigurineStatus.cs" />
      <Compile Include="Assets\Scripts\Players\Player.cs" />
      <Compile Include="Assets\Scripts\Players\PlayerSpooler.cs" />
      <Compile Include="Assets\Scripts\Players\Stats\Ability.cs" />
@@ -77,9 +80,6 @@
      <Compile Include="Assets\Scripts\Players\Stats\BonusConditionNames.cs" />
      <Compile Include="Assets\Scripts\Players\Stats\DiceRoller.cs" />
      <Compile Include="Assets\Scripts\Players\Stats\TestsNames.cs" />
-     <Compile Include="Assets\Scripts\ScoreTextScript.cs" />
-     <Compile Include="Assets\Scripts\SelectFromGrid.cs" />
-     <Compile Include="Assets\Slot.cs" />
      <None Include="Assets\Shaders\WarpJump.shader" />
      <None Include="Assets\Shaders\Billboard.shader" />
      <None Include="Assets\Shaders\Burnout.shader" />
