@@ -36,6 +36,13 @@ public class PlayerSpooler : MonoBehaviour {
 
 		Weapon lvBattleaxe = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 10, 1);
 
+		Item lvMagicAxe = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 10, 1);
+		lvMagicAxe.resourceImageName = "Battleaxe";
+
+		Dictionary<string,Item> inventory1 = new Dictionary<string,Item> ();
+		inventory1.Add ("INV4",lvMagicAxe);
+		pl1.Inventory = inventory1;
+
 		Attack lvAxe = new Attack ("Battleaxe", lvBattleaxe);
 
 
@@ -61,6 +68,10 @@ public class PlayerSpooler : MonoBehaviour {
 
 		Attack lvScimitar = new Attack ("Scimitar",lvScimitarWep);
 		pl2.equippedWeaponAttack = lvScimitar;
+
+		Dictionary<string,Item> inventory2 = new Dictionary<string,Item> ();
+		inventory2.Add ("INV24",lvMagicAxe);
+		pl2.Inventory = inventory2;
 
 		mPool.Add (pl1);
 		mPool.Add (pl2);
@@ -325,6 +336,11 @@ public class PlayerSpooler : MonoBehaviour {
 	public void ResolveSpooledAttack(Player pmTarget)
 	{
 		mSpool [mSpooledId].equippedWeaponAttack.resolveHit (mSpool [mSpooledId], pmTarget);
+	}
+
+	public Player GetSpooledPlayer()
+	{
+		return mSpool [mSpooledId];
 	}
 
 	private void SpoolUnconciousPlayer()
