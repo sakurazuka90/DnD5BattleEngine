@@ -24,7 +24,7 @@ public class FigurineMover : MonoBehaviour {
 		_figurineAnimator = this.gameObject.GetComponentInChildren<Animator> ();
 	}
 	
-	void FixedUpdate () {
+	void Update () {
 
 		if (!isMoving) {
 			Transform lvTransform = this.gameObject.transform;

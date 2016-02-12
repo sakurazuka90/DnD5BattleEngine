@@ -23,6 +23,9 @@ public class Item{
 		Image lvItemImage = lvItem.GetComponent<Image> ();
 		Sprite lvItemSprite = (Sprite)Resources.Load(resourceImageName, typeof(Sprite));
 
+		InventoryObjectStatus lvInvStatus = lvItem.GetComponent<InventoryObjectStatus>();
+		lvInvStatus.InventorySlotId = inventoryFieldId;
+
 		lvItemImage.sprite = lvItemSprite;
 		lvItem.name = mName;
 

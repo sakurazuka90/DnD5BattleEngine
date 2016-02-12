@@ -38,6 +38,7 @@ public class PlayerSpooler : MonoBehaviour {
 
 		Item lvMagicAxe = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 10, 1);
 		lvMagicAxe.resourceImageName = "Battleaxe";
+		lvMagicAxe.inventoryFieldId = "INV4";
 
 		Dictionary<string,Item> inventory1 = new Dictionary<string,Item> ();
 		inventory1.Add ("INV4",lvMagicAxe);
@@ -70,7 +71,11 @@ public class PlayerSpooler : MonoBehaviour {
 		pl2.equippedWeaponAttack = lvScimitar;
 
 		Dictionary<string,Item> inventory2 = new Dictionary<string,Item> ();
-		inventory2.Add ("INV24",lvMagicAxe);
+		Item lvMagicAxe2 = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 10, 1);
+		lvMagicAxe2.resourceImageName = "Battleaxe";
+		lvMagicAxe2.inventoryFieldId = "INV24";
+
+		inventory2.Add ("INV24",lvMagicAxe2);
 		pl2.Inventory = inventory2;
 
 		mPool.Add (pl1);
