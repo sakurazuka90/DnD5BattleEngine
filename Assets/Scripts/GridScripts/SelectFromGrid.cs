@@ -23,6 +23,8 @@ public class SelectFromGrid : MonoBehaviour {
 
 	private GridDrawer mGridDrawer;
 
+	public bool inventoryOpen = false;
+
 
 	// Use this for initialization
 	void Start () {
@@ -43,84 +45,85 @@ public class SelectFromGrid : MonoBehaviour {
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit[] hits = Physics.RaycastAll (ray);
 
-		foreach(RaycastHit hit in hits){
+		if (!inventoryOpen) {
 
-			// podswietlanie klatek, przesylanie koordynatow do figurki
-			if(hit.collider.tag.Equals("GridCell") && hit.collider.gameObject.GetComponent<CellStatus>().avaiable)
-			{
-				CellStatus lvCellStatus = hit.collider.gameObject.GetComponent<CellStatus>();
+			foreach (RaycastHit hit in hits) {
 
-				//TODO FIX!!!!
-				if (!mMoveMode && !mTargetMode) {
-					lvCellStatus.selected = true;
-				} else if (mTargetMode) {
-					if (lvCellStatus.target)
+				// podswietlanie klatek, przesylanie koordynatow do figurki
+				if (hit.collider.tag.Equals ("GridCell") && hit.collider.gameObject.GetComponent<CellStatus> ().avaiable) {
+					CellStatus lvCellStatus = hit.collider.gameObject.GetComponent<CellStatus> ();
+
+					//TODO FIX!!!!
+					if (!mMoveMode && !mTargetMode) {
 						lvCellStatus.selected = true;
-				} else {
-					if(lvCellStatus.movable)
-						lvCellStatus.selected = true;
-				}
-				lastStatus = lvCellStatus;
+					} else if (mTargetMode) {
+						if (lvCellStatus.target)
+							lvCellStatus.selected = true;
+					} else {
+						if (lvCellStatus.movable)
+							lvCellStatus.selected = true;
+					}
+					lastStatus = lvCellStatus;
 
-				MeshFilter lvFilter = hit.collider.gameObject.GetComponent<MeshFilter>();
-				Vector3[] vertices = lvFilter.mesh.vertices;
+					MeshFilter lvFilter = hit.collider.gameObject.GetComponent<MeshFilter> ();
+					Vector3[] vertices = lvFilter.mesh.vertices;
 
-				if(mMoveMode && lvCellStatus.movable)
-				{
-					string lvId = "" + (mGridDrawer.gridWidth * (int)vertices[0].z + (int)vertices[0].x);
-					DrawWalkableLine(mPaths[lvId]);
-				}
+					if (mMoveMode && lvCellStatus.movable) {
+						string lvId = "" + (mGridDrawer.gridWidth * (int)vertices [0].z + (int)vertices [0].x);
+						DrawWalkableLine (mPaths [lvId]);
+					}
 
-				PlayerSpooler lvSpooler = GameObject.Find ("PlayerSpooler").GetComponent<PlayerSpooler>();
+					PlayerSpooler lvSpooler = GameObject.Find ("PlayerSpooler").GetComponent<PlayerSpooler> ();
 
-				GameObject lvFigurine = lvSpooler.mSpooledObject;
-				FigurineStatus lvStatus = lvFigurine.GetComponent<FigurineStatus>();
+					GameObject lvFigurine = lvSpooler.mSpooledObject;
+					FigurineStatus lvStatus = lvFigurine.GetComponent<FigurineStatus> ();
 
-				int lvCellId = mGridDrawer.GetGridId ((int)vertices [0].x, (int)vertices [0].z);
+					int lvCellId = mGridDrawer.GetGridId ((int)vertices [0].x, (int)vertices [0].z);
 
-				if (mMoveMode) {
-					if (Input.GetMouseButtonDown (0)) {
-						FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover> ();
+					if (mMoveMode) {
+						if (Input.GetMouseButtonDown (0)) {
+							FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover> ();
 								
-						string lvId = lvCellId.ToString ();
-						if (mPaths.ContainsKey (lvId)) {
-							lvMover.path = mPaths [lvId];
-							lvMover.isMoving = true;
+							string lvId = lvCellId.ToString ();
+							if (mPaths.ContainsKey (lvId)) {
+								lvMover.path = mPaths [lvId];
+								lvMover.isMoving = true;
 
+								mGridDrawer.ClearGridStatus ();
+
+								mMoveMode = false;
+								ClearWalkableLine ();
+								mPaths = new Dictionary<string, string> ();
+							}
+						} else if (Input.GetMouseButtonDown (1)) {
+							mMoveMode = false;
 							mGridDrawer.ClearGridStatus ();
 
 							mMoveMode = false;
 							ClearWalkableLine ();
 							mPaths = new Dictionary<string, string> ();
+							FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover> ();
+							lvMover.AbortMovement ();
 						}
-					} else if (Input.GetMouseButtonDown (1)) {
-						mMoveMode = false;
-						mGridDrawer.ClearGridStatus ();
 
-						mMoveMode = false;
-						ClearWalkableLine ();
-						mPaths = new Dictionary<string, string> ();
+					} else if (mTargetMode) {
+						if (Input.GetMouseButtonDown (0)) {
+							Player lvTarget = lvSpooler.GetPlayerOnField (lvCellId);
+							Debug.Log ("AAAA" + lvTarget.playerName);
+							lvSpooler.ResolveSpooledAttack (lvTarget);
+							mTargetMode = false;
+						}
+
+					} else if (lvStatus.picked) {
 						FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover> ();
-						lvMover.AbortMovement ();
-					}
+						lvMover.gridX = (int)vertices [0].x;
+						lvMover.gridZ = (int)vertices [0].z;
 
-				} else if (mTargetMode) {
-					if (Input.GetMouseButtonDown (0)) {
-						Player lvTarget = lvSpooler.GetPlayerOnField (lvCellId);
-						Debug.Log ("AAAA" + lvTarget.playerName);
-						lvSpooler.ResolveSpooledAttack (lvTarget);
-						mTargetMode = false;
-					}
-
-				} else if(lvStatus.picked){
-					FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover>();
-					lvMover.gridX = (int)vertices[0].x;
-					lvMover.gridZ = (int)vertices[0].z;
-
-					if (Input.GetMouseButtonDown (0)) {
-						lvStatus.picked = false;
-						lvStatus.gridX = (int)vertices[0].x;
-						lvStatus.gridZ = (int)vertices[0].z;
+						if (Input.GetMouseButtonDown (0)) {
+							lvStatus.picked = false;
+							lvStatus.gridX = (int)vertices [0].x;
+							lvStatus.gridZ = (int)vertices [0].z;
+						}
 					}
 				}
 			}

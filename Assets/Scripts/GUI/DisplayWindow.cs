@@ -30,5 +30,10 @@ public class DisplayWindow : MonoBehaviour {
 	public void ToggleInventoryPanel()
 	{
 		InventoryPanel.SetActive (!InventoryPanel.activeSelf);
+
+		SelectFromGrid lvSelector = GameObject.Find ("GridSelector").GetComponent<SelectFromGrid> ();
+
+		lvSelector.inventoryOpen = !lvSelector.inventoryOpen;
+		lvSelector.ClearWalkableLine ();
 	}
 }
