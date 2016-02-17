@@ -20,13 +20,14 @@ public class Weapon : Item {
 
 	private List<AbilityNames> mUsableAbilities;
 
-	public Weapon(string pmName, WeaponType pmType, WeaponCategory pmCategory, int pmDieceType, int pmDieceNumber)
+	public Weapon(string pmName, WeaponType pmType, WeaponCategory pmCategory, int pmDieceType, int pmDieceNumber, List<EquipementTypes> pmTypes)
 	{
 		mName = pmName;
 		mType = pmType;
 		mDieceType = pmDieceType;
 		mDieceNumber = pmDieceNumber;
 		mCategory = pmCategory;
+		mEquipementTypes = pmTypes;
 	}
 
 	public WeaponCategory Category{

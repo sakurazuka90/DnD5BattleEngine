@@ -34,9 +34,13 @@ public class PlayerSpooler : MonoBehaviour {
 		pl1.hp = 22;
 		pl1.Proficiency = 2;
 
-		Weapon lvBattleaxe = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 10, 1);
+		List<EquipementTypes> p1ListEq = new List<EquipementTypes> ();
+		p1ListEq.Add (EquipementTypes.MAIN_HAND);
+		p1ListEq.Add (EquipementTypes.OFF_HAND);
 
-		Item lvMagicAxe = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 10, 1);
+		Weapon lvBattleaxe = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 10, 1, p1ListEq);
+
+		Item lvMagicAxe = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 10, 1, p1ListEq);
 		lvMagicAxe.resourceImageName = "Battleaxe";
 		lvMagicAxe.inventoryFieldId = "INV4";
 
@@ -65,13 +69,13 @@ public class PlayerSpooler : MonoBehaviour {
 		pl2.HpTotal = 9;
 		pl2.hp = 9;
 
-		Weapon lvScimitarWep = new Weapon ("Scimitar", WeaponType.MELEE, WeaponCategory.MARTIAL, 6, 1);
+		Weapon lvScimitarWep = new Weapon ("Scimitar", WeaponType.MELEE, WeaponCategory.MARTIAL, 6, 1, p1ListEq);
 
 		Attack lvScimitar = new Attack ("Scimitar",lvScimitarWep);
 		pl2.equippedWeaponAttack = lvScimitar;
 
 		Dictionary<string,Item> inventory2 = new Dictionary<string,Item> ();
-		Item lvMagicAxe2 = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 10, 1);
+		Item lvMagicAxe2 = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 10, 1, p1ListEq);
 		lvMagicAxe2.resourceImageName = "Battleaxe";
 		lvMagicAxe2.inventoryFieldId = "INV24";
 

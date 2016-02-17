@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class Item{
@@ -12,6 +13,12 @@ public class Item{
 	public string resourceImageName;
 
 	public Color resourceImageColor;
+
+	protected List<EquipementTypes> mEquipementTypes;
+
+	public List<EquipementTypes> EquipementTypes{
+		get{ return mEquipementTypes; }
+	}
 
 	public GameObject createInventoryObject()
 	{

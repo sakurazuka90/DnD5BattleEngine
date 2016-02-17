@@ -68,6 +68,7 @@
      <Compile Include="Assets\Scripts\GridScripts\CellStatus.cs" />
      <Compile Include="Assets\Scripts\GridScripts\GridDrawer.cs" />
      <Compile Include="Assets\Scripts\GridScripts\SelectFromGrid.cs" />
+     <Compile Include="Assets\Scripts\Items\EquipementTypes.cs" />
      <Compile Include="Assets\Scripts\Items\Item.cs" />
      <Compile Include="Assets\Scripts\Items\Weapon.cs" />
      <Compile Include="Assets\Scripts\Items\WeaponCategory.cs" />
