@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.EventSystems;
 
 public class DragDropHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
@@ -14,6 +15,14 @@ public class DragDropHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 		startPosition = gameObject.transform.position;
 		startParent = transform.parent;
 		GetComponent<CanvasGroup> ().blocksRaycasts = false;
+
+		GameObject lvInventoryPanelObject = GameObject.Find ("InventoryPanel");
+		EquipementFieldsLighter lvLighter = lvInventoryPanelObject.GetComponent<EquipementFieldsLighter> ();
+		List<EquipementTypes> lvItems =  gameObject.GetComponent<InventoryObjectStatus> ().EquipementTypes;
+
+		foreach (EquipementTypes lvType in lvItems) {
+			lvLighter.LightFields (lvType);
+		}
 	}
 
 	

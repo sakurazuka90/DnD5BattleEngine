@@ -32,6 +32,7 @@ public class Item{
 
 		InventoryObjectStatus lvInvStatus = lvItem.GetComponent<InventoryObjectStatus>();
 		lvInvStatus.InventorySlotId = inventoryFieldId;
+		lvInvStatus.EquipementTypes = this.mEquipementTypes;
 
 		lvItemImage.sprite = lvItemSprite;
 		lvItem.name = mName;
