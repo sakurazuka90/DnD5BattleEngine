@@ -39,6 +39,10 @@ public class DragDropHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
 		if(transform.parent == startParent)
 			transform.position = startPosition;
+
+		GameObject lvInventoryPanelObject = GameObject.Find ("InventoryPanel");
+		EquipementFieldsLighter lvLighter = lvInventoryPanelObject.GetComponent<EquipementFieldsLighter> ();
+		lvLighter.FadeFields ();
 	}
 
 }

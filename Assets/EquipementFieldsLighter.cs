@@ -27,6 +27,20 @@ public class EquipementFieldsLighter : MonoBehaviour {
 		
 	}
 
+	public void FadeFields()
+	{
+		foreach (EquipementTypes lvType in mEquipementFieldsNames.Keys) {
+			List<string> lvItemList = mEquipementFieldsNames [lvType];
+			foreach(string lvName in lvItemList)
+			{
+				GameObject lvSlot = GameObject.Find (lvName);
+				Image lvImage = lvSlot.GetComponent<Image> ();
+				lvImage.color = new Color (1.0f, 1.0f, 1.0f, 100.0f / 255.0f);
+			}
+		}
+	}
+
+
 	private void InitializeNamesMap()
 	{
 		mEquipementFieldsNames = new Dictionary<EquipementTypes, List<string>> ();
