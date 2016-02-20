@@ -38,14 +38,22 @@ public class PlayerSpooler : MonoBehaviour {
 		p1ListEq.Add (EquipementTypes.MAIN_HAND);
 		p1ListEq.Add (EquipementTypes.OFF_HAND);
 
+		List<EquipementTypes> p2ListEq = new List<EquipementTypes> ();
+		p2ListEq.Add (EquipementTypes.ARMOR);
+
 		Weapon lvBattleaxe = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 10, 1, p1ListEq);
 
 		Item lvMagicAxe = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 10, 1, p1ListEq);
 		lvMagicAxe.resourceImageName = "Battleaxe";
 		lvMagicAxe.inventoryFieldId = "INV4";
 
+		Item lvArmor = new Armor ("Breastplate", p2ListEq);
+		lvArmor.resourceImageName = "ArmorColor";
+		lvArmor.inventoryFieldId = "INV1";
+
 		Dictionary<string,Item> inventory1 = new Dictionary<string,Item> ();
 		inventory1.Add ("INV4",lvMagicAxe);
+		inventory1.Add ("INV1", lvArmor);
 		pl1.Inventory = inventory1;
 
 		Attack lvAxe = new Attack ("Battleaxe", lvBattleaxe);

@@ -83,6 +83,10 @@ public class EquipementFieldsLighter : MonoBehaviour {
 		mEquipementFieldsNames.Add (EquipementTypes.BELT, lvNamesList);
 
 		lvNamesList = new List<string> ();
+		lvNamesList.Add ("INV_ARMOR_PANEL");
+		mEquipementFieldsNames.Add (EquipementTypes.ARMOR, lvNamesList);
+
+		lvNamesList = new List<string> ();
 		lvNamesList.Add ("INV_OH1");
 		lvNamesList.Add ("INV_OH2");
 		lvNamesList.Add ("INV_OH3");
