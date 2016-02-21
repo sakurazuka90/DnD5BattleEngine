@@ -44,4 +44,8 @@ public class Item{
 	{
 	}
 
+	public virtual void UnEquip(Player pmPlayer)
+	{
+	}
+
 }

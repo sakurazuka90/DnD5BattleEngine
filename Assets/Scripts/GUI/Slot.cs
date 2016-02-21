@@ -37,6 +37,10 @@ public class Slot : MonoBehaviour, IDropHandler {
 
 				if (EquipementType != EquipementTypes.ANY)
 					lvItem.Equip (lvSpooler.GetSpooledPlayer ());
+				else
+					lvItem.UnEquip (lvSpooler.GetSpooledPlayer ());
+			} else {
+				lvItem.UnEquip (lvSpooler.GetSpooledPlayer ());
 			}
 
 		}

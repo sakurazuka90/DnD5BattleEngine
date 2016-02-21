@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class Armor : Item
 {
@@ -21,6 +22,18 @@ public class Armor : Item
 		pmPlayer.mMaxDexMod = mMaxDex;
 
 		pmPlayer.UpdateAc ();
+		GameObject.Find ("PlayerSpooler").GetComponent<PlayerSpooler> ().UpdateAc ();
+
+	}
+
+	public override void UnEquip(Player pmPlayer)
+	{
+		pmPlayer.mBasicAc = 10;
+		pmPlayer.mMaxDexMod = 6;
+
+		pmPlayer.UpdateAc ();
+		GameObject.Find ("PlayerSpooler").GetComponent<PlayerSpooler> ().UpdateAc ();
+
 	}
 }
 
