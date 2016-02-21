@@ -34,6 +34,11 @@ public class DisplayWindow : MonoBehaviour {
 		SelectFromGrid lvSelector = GameObject.Find ("GridSelector").GetComponent<SelectFromGrid> ();
 
 		lvSelector.inventoryOpen = !lvSelector.inventoryOpen;
-		//lvSelector.ClearWalkableLine ();
+
+		if (lvSelector.inventoryOpen)
+			ButtonToggler.ToggleButtonOff ("MoveButton");
+		else
+			ButtonToggler.ToggleButtonOn ("MoveButton");
+
 	}
 }

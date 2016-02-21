@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\ButtonToggler.cs" />
      <Compile Include="Assets\EquipementFieldsLighter.cs" />
      <Compile Include="Assets\FT_FreeSample\Scene\SampleSceneData\FTsample_ClickToSpawn.cs" />
      <Compile Include="Assets\FT_FreeSample\Script\FTEM_AnimationScrollTexture.cs" />
@@ -60,7 +61,6 @@
      <Compile Include="Assets\Scripts\AnimationScripts\DisableEvasion.cs" />
      <Compile Include="Assets\Scripts\GUI\DisplayWindow.cs" />
      <Compile Include="Assets\Scripts\GUI\DragDropHandler.cs" />
-     <Compile Include="Assets\Scripts\GUI\Hider.cs" />
      <Compile Include="Assets\Scripts\GUI\MessageDisplayer.cs" />
      <Compile Include="Assets\Scripts\GUI\MessagePool.cs" />
      <Compile Include="Assets\Scripts\GUI\ScoreTextScript.cs" />
