@@ -6,10 +6,10 @@ using System.Linq;
 
 public class PlayerSpooler : MonoBehaviour {
 
-	Player [] mSpool;
+	static Player [] mSpool;
 	private List<Player> mPool;
 	public GameObject mSpooledObject;
-	private int mSpooledId;
+	private static int mSpooledId;
 
 	private GameObject [] mSpoolerPics;
 
@@ -205,8 +205,12 @@ public class PlayerSpooler : MonoBehaviour {
 
 	public void pick()
 	{
-		int lvMovesLeft = mSpool [mSpooledId].movesLeft;
-		mSpooledObject.GetComponent<FigurineStatus> ().pick (lvMovesLeft);
+		if (!GameObject.Find ("GridSelector").GetComponent<SelectFromGrid> ().mMoveMode) {
+			int lvMovesLeft = mSpool [mSpooledId].movesLeft;
+			mSpooledObject.GetComponent<FigurineStatus> ().pick (lvMovesLeft);
+		} else {
+			GameObject.Find ("GridSelector").GetComponent<SelectFromGrid> ().DeactivateWalking ();
+		}
 	}
 
 	public void ShowDefaultWeaponTargets()
@@ -293,42 +297,40 @@ public class PlayerSpooler : MonoBehaviour {
 		}
 	}
 
-	public void DecreaseMoves(int pmValue)
+	public static void DecreaseMoves(int pmValue)
 	{
 		mSpool [mSpooledId].DecreaseMovesLeft (pmValue);
 		UpdateMove ();
 	}
 
-	private void UpdateMove()
+	private static void UpdateMove()
 	{
 		UpdateTextField (mSpool [mSpooledId].movesLeft.ToString(),"MovesLeftText");
 	}
 
-	private void UpdateName()
+	private static void UpdateName()
 	{
 		UpdateTextField (mSpool [mSpooledId].playerName,"NameValue");
 	}
 
-	public void UpdateHP()
+	public static void UpdateHP()
 	{
 		UpdateTextField (mSpool [mSpooledId].hp.ToString(),"HPText");
 	}
 
-	public void UpdateWeapon()
+	public static void UpdateWeapon()
 	{
 		UpdateTextField (mSpool [mSpooledId].equippedWeaponAttack.Name,"WeaponText");
 	}
 
-	public void UpdateAc()
+	public static void UpdateAc()
 	{
 		UpdateTextField (mSpool [mSpooledId].ac.ToString(),"ACText");
 	}
 
-	public void UpdateTextField(string pmValue, string pmName)
+	public static void UpdateTextField(string pmValue, string pmName)
 	{
-		GameObject lvObject = GameObject.Find (pmName);
-		Text lvText = lvObject.GetComponent<Text> ();
-		lvText.text = pmValue;
+		GameObject.Find (pmName).GetComponent<Text> ().text = pmValue;
 	}
 
 	public Player GetPlayerOnField(int pmCell)

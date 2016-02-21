@@ -10,7 +10,7 @@ public class SelectFromGrid : MonoBehaviour {
 	private static string PARENT_PATH = "PARENT_PATH";
 	private static string STRAIGHT_LINE = "STRAIGHT_LINE";
 
-	private bool mMoveMode = false;
+	public bool mMoveMode = false;
 	private bool mTargetMode = false;
 	private Dictionary<string, string> mPaths;
 
@@ -109,7 +109,6 @@ public class SelectFromGrid : MonoBehaviour {
 					} else if (mTargetMode) {
 						if (Input.GetMouseButtonDown (0)) {
 							Player lvTarget = lvSpooler.GetPlayerOnField (lvCellId);
-							Debug.Log ("AAAA" + lvTarget.playerName);
 							lvSpooler.ResolveSpooledAttack (lvTarget);
 							mTargetMode = false;
 						}
@@ -128,6 +127,21 @@ public class SelectFromGrid : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	public void DeactivateWalking()
+	{
+		PlayerSpooler lvSpooler = GameObject.Find ("PlayerSpooler").GetComponent<PlayerSpooler> ();
+
+		GameObject lvFigurine = lvSpooler.mSpooledObject;
+		mMoveMode = false;
+		mGridDrawer.ClearGridStatus ();
+
+		mMoveMode = false;
+		ClearWalkableLine ();
+		mPaths = new Dictionary<string, string> ();
+		FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover> ();
+		lvMover.AbortMovement ();
 	}
 
 	public void DrawWalkableLine(string pmPath)

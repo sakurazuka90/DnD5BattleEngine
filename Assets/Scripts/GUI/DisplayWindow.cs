@@ -34,6 +34,7 @@ public class DisplayWindow : MonoBehaviour {
 		SelectFromGrid lvSelector = GameObject.Find ("GridSelector").GetComponent<SelectFromGrid> ();
 
 		lvSelector.inventoryOpen = !lvSelector.inventoryOpen;
+		lvSelector.DeactivateWalking ();
 
 		if (lvSelector.inventoryOpen)
 			ButtonToggler.ToggleButtonOff ("MoveButton");

@@ -22,7 +22,7 @@ public class Armor : Item
 		pmPlayer.mMaxDexMod = mMaxDex;
 
 		pmPlayer.UpdateAc ();
-		GameObject.Find ("PlayerSpooler").GetComponent<PlayerSpooler> ().UpdateAc ();
+		PlayerSpooler.UpdateAc ();
 
 	}
 
@@ -32,7 +32,7 @@ public class Armor : Item
 		pmPlayer.mMaxDexMod = 6;
 
 		pmPlayer.UpdateAc ();
-		GameObject.Find ("PlayerSpooler").GetComponent<PlayerSpooler> ().UpdateAc ();
+		PlayerSpooler.UpdateAc ();
 
 	}
 }

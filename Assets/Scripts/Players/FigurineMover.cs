@@ -61,9 +61,8 @@ public class FigurineMover : MonoBehaviour {
 
 			} else if(steps.Length > 0)
 			{
-				GameObject lvMoveButtonGameObject = GameObject.Find ("MoveButton");
-				lvMoveButtonGameObject.GetComponent<Button>().interactable = false;
-
+				ButtonToggler.ToggleButtonOff ("MoveButton");
+				ButtonToggler.ToggleButtonOff ("InventoryButton");
 
 				string lvCurrentStep = steps[currentStep];
 
@@ -111,7 +110,7 @@ public class FigurineMover : MonoBehaviour {
 						GameObject lvSpoolerObject = GameObject.Find ("PlayerSpooler");
 						PlayerSpooler lvSpooler = lvSpoolerObject.GetComponent<PlayerSpooler> ();
 
-						lvSpooler.DecreaseMoves (mStepsMoved);
+						PlayerSpooler.DecreaseMoves (mStepsMoved);
 						mStepsMoved = 0;
 
 						_figurineAnimator.SetBool ("isWalking",false);
@@ -126,11 +125,11 @@ public class FigurineMover : MonoBehaviour {
 
 	public void AbortMovement()
 	{
-		GameObject lvMoveButtonGameObject = GameObject.Find ("MoveButton");
 		steps = new string[0];
 		currentStep = 0;
 		isMoving = false;
-		lvMoveButtonGameObject.GetComponent<Button>().interactable = true;
+		ButtonToggler.ToggleButtonOn ("MoveButton");
+		ButtonToggler.ToggleButtonOn ("InventoryButton");
 	}
 
 }
