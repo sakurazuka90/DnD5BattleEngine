@@ -29,7 +29,7 @@ public class PlayerSpooler : MonoBehaviour {
 		pl1.SetAbility (AbilityNames.DEXTERITY, 10);
 		pl1.SetAbility (AbilityNames.STRENGTH, 16);
 		pl1.SetSpeed (4);
-		pl1.ac = 16;
+		pl1.UpdateAc ();
 		pl1.HpTotal = 22;
 		pl1.hp = 22;
 		pl1.Proficiency = 2;
@@ -47,7 +47,7 @@ public class PlayerSpooler : MonoBehaviour {
 		lvMagicAxe.resourceImageName = "Battleaxe";
 		lvMagicAxe.inventoryFieldId = "INV4";
 
-		Item lvArmor = new Armor ("Breastplate", p2ListEq);
+		Item lvArmor = new Armor ("Breastplate", p2ListEq,16,0);
 		lvArmor.resourceImageName = "ArmorColor";
 		lvArmor.inventoryFieldId = "INV1";
 
@@ -73,7 +73,7 @@ public class PlayerSpooler : MonoBehaviour {
 		pl2.SetAbility (AbilityNames.STRENGTH, 9);
 		pl2.SetAbility (AbilityNames.DEXTERITY, 14);
 		pl2.SetSpeed (4);
-		pl2.ac = 14;
+		pl2.UpdateAc ();
 		pl2.HpTotal = 9;
 		pl2.hp = 9;
 

@@ -40,4 +40,8 @@ public class Item{
 		return lvItem;
 	}
 
+	public virtual void Equip(Player pmPlayer)
+	{
+	}
+
 }

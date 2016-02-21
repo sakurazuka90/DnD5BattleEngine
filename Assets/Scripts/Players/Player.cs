@@ -27,6 +27,11 @@ public class Player {
 	public bool isStable = false;
 	private Dictionary<string,Item> mInventory;
 
+
+	public int mBasicAc = 10;
+	public int mMaxDexMod = 6;
+
+
 	public int HpTotal
 	{
 		get{ return mTotalHp;}
@@ -193,6 +198,18 @@ public class Player {
 			}
 		}
 
+	}
+
+	public void UpdateAc()
+	{
+		int lvAc = mBasicAc;
+
+		if (mAbilities [AbilityNames.DEXTERITY].Modifier > mMaxDexMod)
+			lvAc += mMaxDexMod;
+		else
+			lvAc += mAbilities [AbilityNames.DEXTERITY].Modifier;
+
+		ac = lvAc;
 	}
 
 

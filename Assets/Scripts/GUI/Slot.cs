@@ -34,6 +34,9 @@ public class Slot : MonoBehaviour, IDropHandler {
 				lvItem.inventoryFieldId = this.gameObject.name;
 				lvInventory.Add (this.gameObject.name, lvItem);
 				lvStatus.InventorySlotId = this.gameObject.name;
+
+				if (EquipementType != EquipementTypes.ANY)
+					lvItem.Equip (lvSpooler.GetSpooledPlayer ());
 			}
 
 		}
@@ -50,5 +53,7 @@ public class Slot : MonoBehaviour, IDropHandler {
 
 
 	}
+
+
 
 }
