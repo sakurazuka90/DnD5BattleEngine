@@ -41,7 +41,8 @@ public class PlayerSpooler : MonoBehaviour {
 		List<EquipementTypes> p2ListEq = new List<EquipementTypes> ();
 		p2ListEq.Add (EquipementTypes.ARMOR);
 
-		Weapon lvBattleaxe = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 10, 1, p1ListEq);
+		List<EquipementTypes> crossbowListEq = new List<EquipementTypes> ();
+		crossbowListEq.Add (EquipementTypes.MAIN_HAND);
 
 		Item lvMagicAxe = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 10, 1, p1ListEq);
 		lvMagicAxe.resourceImageName = "Battleaxe";
@@ -51,12 +52,17 @@ public class PlayerSpooler : MonoBehaviour {
 		lvArmor.resourceImageName = "ArmorColor";
 		lvArmor.inventoryFieldId = "INV1";
 
+		Item lvCrossbow = new Weapon ("Crossbow", WeaponType.RANGED, WeaponCategory.SIMPLE, 10, 1, crossbowListEq,1,2);
+		lvCrossbow.resourceImageName = "Crossbow";
+		lvCrossbow.inventoryFieldId = "INV7";
+
 		Dictionary<string,Item> inventory1 = new Dictionary<string,Item> ();
 		inventory1.Add ("INV4",lvMagicAxe);
 		inventory1.Add ("INV1", lvArmor);
+		inventory1.Add ("INV7", lvCrossbow);
 		pl1.Inventory = inventory1;
 
-		Attack lvAxe = new Attack ("Battleaxe", lvBattleaxe);
+		Attack lvAxe = new Attack ("Unarmed", Weapon.unarmed);
 
 
 
@@ -77,9 +83,9 @@ public class PlayerSpooler : MonoBehaviour {
 		pl2.HpTotal = 9;
 		pl2.hp = 9;
 
-		Weapon lvScimitarWep = new Weapon ("Scimitar", WeaponType.MELEE, WeaponCategory.MARTIAL, 6, 1, p1ListEq);
+		//Weapon lvScimitarWep = new Weapon ("Scimitar", WeaponType.MELEE, WeaponCategory.MARTIAL, 6, 1, p1ListEq);
 
-		Attack lvScimitar = new Attack ("Scimitar",lvScimitarWep);
+		Attack lvScimitar = new Attack ("Unarmed",Weapon.unarmed);
 		pl2.equippedWeaponAttack = lvScimitar;
 
 		Dictionary<string,Item> inventory2 = new Dictionary<string,Item> ();

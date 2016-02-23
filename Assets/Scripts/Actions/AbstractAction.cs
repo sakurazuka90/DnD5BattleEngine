@@ -86,18 +86,24 @@ public abstract class AbstractAction
 
 		FigurineStatus lvStatus = pmAttacker.Figurine.GetComponent<FigurineStatus> ();
 
-		int lvCellId = lvDrawer.GetGridId (lvStatus.gridX,lvStatus.gridZ);
-		List<int> lvFields = lvSelector.GetAdjacentFields (lvCellId);
+		int lvCellId = lvDrawer.GetGridId (lvStatus.gridX, lvStatus.gridZ);
 
-		List<int> lvTargetFields = new List<int> ();
+		if (mWeapon != null && mWeapon.Type != WeaponType.RANGED) {
+			List<int> lvFields = lvSelector.GetAdjacentFields (lvCellId);
 
-		foreach (int lvField in lvFields) {
-			if (lvSelector.IsEnemyField (lvField))
-				lvTargetFields.Add (lvField);
+			List<int> lvTargetFields = new List<int> ();
+
+			foreach (int lvField in lvFields) {
+				if (lvSelector.IsEnemyField (lvField))
+					lvTargetFields.Add (lvField);
+			}
+
+			lvDrawer.ClearGridStatus ();
+			lvSelector.SetStateToCells (lvTargetFields, CellStates.TARGET);
+		} else {
+			lvSelector.DisplaySimpleRangeMoore (lvCellId,mWeapon.rangeNormal,mWeapon.rangeLong);
+
 		}
-
-		lvDrawer.ClearGridStatus ();
-		lvSelector.SetStateToCells (lvTargetFields, CellStates.TARGET);
 
 	}
 }

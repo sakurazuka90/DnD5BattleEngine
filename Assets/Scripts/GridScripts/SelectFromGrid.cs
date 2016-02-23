@@ -550,21 +550,62 @@ public class SelectFromGrid : MonoBehaviour {
 		return lvReturnList;
 	}
 
+	//Gets adjacent fields of one cell
 	public List<int> GetAdjacentFields(int pmCellId)
 	{
 		List<int> lvReturnList = new List<int>();
 
-		lvReturnList.Add (findTopFieldId (pmCellId));
-		lvReturnList.Add (findTopRightFieldId (pmCellId));
-		lvReturnList.Add (findTopLeftFieldId (pmCellId));
-		lvReturnList.Add (findRightFieldId (pmCellId));
-		lvReturnList.Add (findLeftFieldId (pmCellId));
-		lvReturnList.Add (findBottomFieldId (pmCellId));
-		lvReturnList.Add (findBottomLeftFieldId (pmCellId));
-		lvReturnList.Add (findBottomRightFieldId (pmCellId));
+
+		//lvReturnList.Add (findTopFieldId (pmCellId));
+		AddAdjacentFieldToListIfGood(findTopFieldId (pmCellId), lvReturnList);
+
+		//lvReturnList.Add (findTopRightFieldId (pmCellId));
+		AddAdjacentFieldToListIfGood(findTopRightFieldId (pmCellId), lvReturnList);
+
+		//lvReturnList.Add (findTopLeftFieldId (pmCellId));
+		AddAdjacentFieldToListIfGood(findTopLeftFieldId (pmCellId), lvReturnList);
+
+		//lvReturnList.Add (findRightFieldId (pmCellId));
+		AddAdjacentFieldToListIfGood(findRightFieldId (pmCellId), lvReturnList);
+
+		//lvReturnList.Add (findLeftFieldId (pmCellId));
+		AddAdjacentFieldToListIfGood(findLeftFieldId (pmCellId), lvReturnList);
+
+		//lvReturnList.Add (findBottomFieldId (pmCellId));
+		AddAdjacentFieldToListIfGood(findBottomFieldId (pmCellId), lvReturnList);
+
+		//lvReturnList.Add (findBottomLeftFieldId (pmCellId));
+		AddAdjacentFieldToListIfGood(findBottomLeftFieldId (pmCellId), lvReturnList);
+
+		//lvReturnList.Add (findBottomRightFieldId (pmCellId));
+		AddAdjacentFieldToListIfGood(findBottomRightFieldId (pmCellId), lvReturnList);
+
 
 		return lvReturnList;
 
+	}
+
+	private void AddAdjacentFieldToListIfGood(int pmCell, List<int> pmAdjacentList)
+	{
+		if (IsCellGood (pmCell))
+			pmAdjacentList.Add (pmCell);
+	}
+
+	public List<int> GetAdjacentFields(List<int> pmCells)
+	{
+		List<int> lvResultList = new List<int> ();
+		List<int> lvTempList;
+
+		foreach (int lvCell in pmCells) {
+			lvTempList = GetAdjacentFields (lvCell);
+
+			foreach (int lvAdjacent in lvTempList) {
+				if (!lvResultList.Contains (lvAdjacent))
+					lvResultList.Add (lvAdjacent);
+			}
+		}
+
+		return lvResultList;
 	}
 
 	public void SetStateToCells(List<int> pmCellsList, CellStates pmStatus)
@@ -588,6 +629,44 @@ public class SelectFromGrid : MonoBehaviour {
 			}
 
 		}
+	}
+
+	public void DisplaySimpleRangeMoore(int pmInitialCell, int pmNormalRange, int pmLongRange)
+	{
+		List<int> lvLastLevel = new List<int> ();
+		List<int> lvNormalRangeCells = new List<int> ();
+		List<int> lvLongRangeCells = new List<int> ();
+
+		lvLastLevel.Add (pmInitialCell);
+
+
+		for (int i = 0; i < pmNormalRange; i++) {
+			List<int> lvAdjacentCells = GetAdjacentFields (lvLastLevel);
+			lvNormalRangeCells.AddRange (lvLastLevel);
+			lvLastLevel = lvAdjacentCells;
+		}
+
+		for (int j = pmNormalRange; j < pmLongRange; j++) {
+			List<int> lvAdjacentCells = GetAdjacentFields (lvLastLevel);
+			if (pmNormalRange != j)
+				lvLongRangeCells.AddRange (lvLastLevel);
+			else
+				lvNormalRangeCells.AddRange (lvLastLevel);
+
+			lvLastLevel = new List<int>();
+
+			foreach (int lvLongRangeCell in lvAdjacentCells) {
+				if (!lvNormalRangeCells.Contains (lvLongRangeCell))
+					lvLastLevel.Add (lvLongRangeCell);
+			}
+
+		}
+
+		lvLongRangeCells.AddRange (lvLastLevel);
+
+		SetStateToCells (lvNormalRangeCells, CellStates.MOVABLE);
+		SetStateToCells (lvLongRangeCells, CellStates.TARGET);
+
 	}
 
 	private int findTopFieldId(int pmField)
@@ -633,6 +712,31 @@ public class SelectFromGrid : MonoBehaviour {
 	public void SetActivePlayerStartField(int pmField)
 	{
 		mActivePlayerStartField = pmField;
+	}
+
+	public bool IsTopGood(int pmCellId)
+	{
+		return (mGridDrawer.getGridZ(pmCellId) + 1) < mGridDrawer.gridHeight;
+	}
+
+	public bool IsBottomGood(int pmCellId)
+	{
+		return (mGridDrawer.getGridZ(pmCellId) - 1) > -1;
+	}
+
+	public bool IsRightGood(int pmCellId)
+	{
+		return (mGridDrawer.getGridX(pmCellId) + 1) < mGridDrawer.gridWidth;
+	}
+
+	public bool IsLeftGood(int pmCellId)
+	{
+		return (mGridDrawer.getGridX(pmCellId) - 1) > -1;
+	}
+
+	public bool IsCellGood(int pmCellId)
+	{
+		return pmCellId >= 0 && pmCellId < (mGridDrawer.gridWidth * mGridDrawer.gridHeight);
 	}
 
 }
