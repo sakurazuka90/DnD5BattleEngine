@@ -52,7 +52,7 @@ public class PlayerSpooler : MonoBehaviour {
 		lvArmor.resourceImageName = "ArmorColor";
 		lvArmor.inventoryFieldId = "INV1";
 
-		Item lvCrossbow = new Weapon ("Crossbow", WeaponType.RANGED, WeaponCategory.SIMPLE, 10, 1, crossbowListEq,1,2);
+		Item lvCrossbow = new Weapon ("Crossbow", WeaponType.RANGED, WeaponCategory.SIMPLE, 10, 1, crossbowListEq,6,24);
 		lvCrossbow.resourceImageName = "Crossbow";
 		lvCrossbow.inventoryFieldId = "INV7";
 

@@ -681,31 +681,49 @@ public class SelectFromGrid : MonoBehaviour {
 
 	private int findRightFieldId(int pmField)
 	{
+		if((pmField+1) % mGridDrawer.gridWidth == 0)
+			return -1;
+
 		return pmField + 1;
 	}
 	
 	private int findLeftFieldId(int pmField)
 	{
+		if (pmField % mGridDrawer.gridWidth == 0)
+			return -1;
+
 		return pmField -1;
 	}
 
 	private int findTopRightFieldId(int pmField)
 	{
+		if((pmField+1) % mGridDrawer.gridWidth == 0)
+			return -1;
+
 		return pmField + mGridDrawer.gridWidth + 1;
 	}
 	
 	private int findTopLeftFieldId(int pmField)
 	{
+		if (pmField % mGridDrawer.gridWidth == 0)
+			return -1;
+
 		return pmField + mGridDrawer.gridWidth - 1;
 	}
 	
 	private int findBottomRightFieldId(int pmField)
 	{
+		if((pmField+1) % mGridDrawer.gridWidth == 0)
+			return -1;
+
 		return pmField - mGridDrawer.gridWidth + 1;
 	}
 	
 	private int findBottomLeftFieldId(int pmField)
 	{
+		if (pmField % mGridDrawer.gridWidth == 0)
+			return -1;
+
 		return pmField - mGridDrawer.gridWidth -1;
 	}
 
