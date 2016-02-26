@@ -53,6 +53,7 @@
      <Compile Include="Assets\FT_FreeSample\Script\FTEM_DeadTime.cs" />
      <Compile Include="Assets\InventoryFiller.cs" />
      <Compile Include="Assets\InventoryObjectStatus.cs" />
+     <Compile Include="Assets\ObstacleStatus.cs" />
      <Compile Include="Assets\Scripts\Actions\AbstractAction.cs" />
      <Compile Include="Assets\Scripts\Actions\ActiveAttackDefenceTypes.cs" />
      <Compile Include="Assets\Scripts\Actions\Attack.cs" />

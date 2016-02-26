@@ -664,8 +664,46 @@ public class SelectFromGrid : MonoBehaviour {
 
 		lvLongRangeCells.AddRange (lvLastLevel);
 
+		lvNormalRangeCells = RemoveCellsWithBlockedLoS (pmInitialCell, lvNormalRangeCells);
+		lvLongRangeCells = RemoveCellsWithBlockedLoS (pmInitialCell, lvLongRangeCells);
+
 		SetStateToCells (lvNormalRangeCells, CellStates.MOVABLE);
 		SetStateToCells (lvLongRangeCells, CellStates.TARGET);
+
+	}
+
+	private List<int> RemoveCellsWithBlockedLoS(int pmInitialCell, List<int> pmRangeCells)
+	{
+		Vector3 lvStartPos = mGridDrawer.getCellPosition (pmInitialCell,1.0f);
+		List<int> lvResult = new List<int> ();
+
+		foreach (int lvCellId in pmRangeCells) {
+			Vector3 lvNewVec = mGridDrawer.getCellPosition (lvCellId, 1.0f);
+			Vector3 lvDirection = lvNewVec - lvStartPos;
+
+			float lvLength = lvDirection.magnitude;
+
+			RaycastHit[] lvHits = Physics.RaycastAll (lvStartPos, lvDirection, lvLength);
+
+			if (lvHits.Length > 0) {
+
+				bool lvIsAdd = true;
+
+				foreach (RaycastHit lvHit in lvHits) {
+					if (lvHit.collider.gameObject.tag.Equals ("Obstacle"))
+						lvIsAdd = false;
+				}
+
+				if(lvIsAdd)
+					lvResult.Add (lvCellId);
+
+			} else {
+				lvResult.Add (lvCellId);
+			}
+		}
+
+		return lvResult;
+
 
 	}
 

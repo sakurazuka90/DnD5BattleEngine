@@ -12,6 +12,7 @@ public class GridDrawer : MonoBehaviour {
 
 	public GameObject[] _cells;
 
+	public GameObject obstacleBase;
 	public GameObject[] obstacles;
 
 	void Start() {
@@ -43,10 +44,12 @@ public class GridDrawer : MonoBehaviour {
 			go.GetComponent<MeshRenderer> ().material = noMaterial;
 			go.AddComponent<CellStatus> ().avaiable = false;
 
+			GameObject lvBase = Instantiate (obstacleBase);
 			GameObject lvObstacle = Instantiate(obstacles[0]);
 
-			lvObstacle.transform.parent = go.transform;
-			lvObstacle.transform.Translate(new Vector3(x + 0.5f,0,z + 0.5f));
+			lvObstacle.transform.parent = lvBase.transform;
+			lvBase.transform.parent = go.transform;
+			lvBase.transform.Translate(new Vector3(x + 0.5f,0,z + 0.5f));
 		}
 
 		///go.AddComponent<CellStatus> ().avaiable = true;
@@ -99,12 +102,12 @@ public class GridDrawer : MonoBehaviour {
 		return (gridWidth * pmGridZ) + pmGridX;
 	}
 
-	public Vector3 getCellPosition(int id)
+	public Vector3 getCellPosition(int id, float pmY = 0.0f)
 	{
 		float gridX = getGridX (id);
 		float gridZ = getGridZ (id);
 
-		return new Vector3(gridX + 0.5f,0.0f,gridZ + 0.5f);
+		return new Vector3(gridX + 0.5f,pmY,gridZ + 0.5f);
 	}
 	/*
 	 * Czysci statusy wszystkich pol grida 
