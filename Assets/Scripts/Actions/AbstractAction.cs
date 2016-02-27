@@ -15,38 +15,42 @@ public abstract class AbstractAction
 
 	protected void ResolveActiveHit(Player pmAttacker, Player pmTarget, bool pmIsAdvantage)
 	{
-		pmAttacker.Figurine.GetComponent<AnimationPlayer> ().play = true;
+		if (mWeapon.Type == WeaponType.MELEE) {
+			pmAttacker.Figurine.GetComponent<AnimationPlayer> ().play = true;
 
-		int lvDefValue = pmTarget.GetActiveDefence (mDefenceType);
+			int lvDefValue = pmTarget.GetActiveDefence (mDefenceType);
 
-		int lvAttackBonus = 0;
+			int lvAttackBonus = 0;
 
-		if (mWeapon != null) {
+			if (mWeapon != null) {
 
-			lvAttackBonus += pmAttacker.GetWeaponProficiency (mWeapon.Category);
-		}
+				lvAttackBonus += pmAttacker.GetWeaponProficiency (mWeapon.Category);
+			}
 
-		lvAttackBonus += pmAttacker.GetAbilityModifier (mAbility);
+			lvAttackBonus += pmAttacker.GetAbilityModifier (mAbility);
 
-		int lvDice = DiceRoller.D20;
+			int lvDice = DiceRoller.D20;
 
-		int lvAttack = lvDice + lvAttackBonus;
+			int lvAttack = lvDice + lvAttackBonus;
 
-		if (lvAttack >= lvDefValue || lvDice == 20) {
-			ResolveDamage (pmAttacker, pmTarget, lvDice == 20, pmIsAdvantage);
+			if (lvAttack >= lvDefValue || lvDice == 20) {
+				ResolveDamage (pmAttacker, pmTarget, lvDice == 20, pmIsAdvantage);
+			} else {
+				pmTarget.Figurine.GetComponent<MessageDisplayer> ().message = "MISS!";
+				pmTarget.Figurine.GetComponentInChildren<Animator> ().SetBool ("isEvading", true);
+			}
+
+			GameObject lvDrawerObject = GameObject.Find ("GridDrawer");
+			GridDrawer lvDrawer = lvDrawerObject.GetComponent<GridDrawer> ();
+
+			lvDrawer.ClearGridStatus ();
+
+			GameObject lvSpoolerObject = GameObject.Find ("PlayerSpooler");
+			PlayerSpooler lvSpooler = lvSpoolerObject.GetComponent<PlayerSpooler> ();
+			lvSpooler.spool ();
 		} else {
-			pmTarget.Figurine.GetComponent<MessageDisplayer>().message = "MISS!";
-			pmTarget.Figurine.GetComponentInChildren<Animator> ().SetBool("isEvading",true);
+			pmAttacker.Figurine.GetComponent<AttackInstantiator> ().shoot = true;
 		}
-
-		GameObject lvDrawerObject = GameObject.Find ("GridDrawer");
-		GridDrawer lvDrawer = lvDrawerObject.GetComponent<GridDrawer> ();
-
-		lvDrawer.ClearGridStatus ();
-
-		GameObject lvSpoolerObject = GameObject.Find ("PlayerSpooler");
-		PlayerSpooler lvSpooler = lvSpoolerObject.GetComponent<PlayerSpooler> ();
-		lvSpooler.spool ();
 
 
 	}
