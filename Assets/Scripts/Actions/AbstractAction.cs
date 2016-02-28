@@ -49,7 +49,12 @@ public abstract class AbstractAction
 			PlayerSpooler lvSpooler = lvSpoolerObject.GetComponent<PlayerSpooler> ();
 			lvSpooler.spool ();
 		} else {
-			pmAttacker.Figurine.GetComponent<AttackInstantiator> ().shoot = true;
+			AttackInstantiator lvInstantiator = pmAttacker.Figurine.GetComponent<AttackInstantiator> ();
+
+			lvInstantiator.targetPosition = pmTarget.Figurine.transform.position;
+			lvInstantiator.playerPosition = pmAttacker.Figurine.transform.position;
+			lvInstantiator.speed = 15.0f;
+			lvInstantiator.shoot = true;
 		}
 
 
