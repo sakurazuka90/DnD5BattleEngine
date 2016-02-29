@@ -10,11 +10,16 @@ public class CellStatus : MonoBehaviour {
 	public Material lvMovableMaterial;
 	public Material lvOpportunityMaterial;
 	public Material lvTargetMaterial;
+	public Material lvCloseRangedMaterial;
+	public Material lvFarRangedMaterial;
+
 
 	public bool movable = false;
 	public bool lvOportunity = false;
 	public bool selected = false;
 	public bool target = false;
+	public bool closeRange = false;
+	public bool farRange = false;
 
 	private Texture2D cursorTexture;
 
@@ -25,6 +30,8 @@ public class CellStatus : MonoBehaviour {
 		lvMovableMaterial = (Material)Resources.Load("Grid3", typeof(Material));
 		lvOpportunityMaterial = (Material)Resources.Load("Grid4", typeof(Material));
 		lvTargetMaterial = (Material)Resources.Load("Grid5", typeof(Material));
+		lvCloseRangedMaterial = (Material)Resources.Load("Grid6", typeof(Material));
+		lvFarRangedMaterial = (Material)Resources.Load("Grid7", typeof(Material));
 
 		cursorTexture = (Texture2D)Resources.Load("SWORD", typeof(Texture));
 
@@ -38,6 +45,10 @@ public class CellStatus : MonoBehaviour {
 				lvRenderer.material = lvSelectedMaterial;
 			else if (this.target)
 				lvRenderer.material = lvTargetMaterial;
+			else if (this.farRange)
+				lvRenderer.material = lvFarRangedMaterial;
+			else if (this.closeRange)
+				lvRenderer.material = lvCloseRangedMaterial;
 			else if (this.lvOportunity)
 				lvRenderer.material = lvOpportunityMaterial;
 			else if (this.movable)
@@ -49,7 +60,11 @@ public class CellStatus : MonoBehaviour {
 
 	public void ClearStatus()
 	{
-		
+		this.movable = false;
+		this.lvOportunity = false;
+		this.target = false;
+		this.closeRange = false;
+		this.farRange = false;
 	}
 
 	/*void OnMouseEnter() {

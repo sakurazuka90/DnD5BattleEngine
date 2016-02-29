@@ -113,13 +113,8 @@ public class GridDrawer : MonoBehaviour {
 	 * Czysci statusy wszystkich pol grida 
 	 */
 	public void ClearGridStatus(){
-
 		for (int i = 0; i < _cells.Length; i++) {
-			GameObject lvCell = _cells[i];
-			CellStatus lvStatus = lvCell.GetComponent<CellStatus>();
-			lvStatus.movable = false;
-			lvStatus.lvOportunity = false;
-			lvStatus.target = false;
+			_cells [i].GetComponent<CellStatus> ().ClearStatus ();
 		}
 	}
 

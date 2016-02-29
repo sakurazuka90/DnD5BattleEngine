@@ -107,7 +107,7 @@ public class SelectFromGrid : MonoBehaviour {
 						}
 
 					} else if (mTargetMode) {
-						if (Input.GetMouseButtonDown (0)) {
+						if (Input.GetMouseButtonDown (0) && lvCellStatus.target) {
 							Player lvTarget = lvSpooler.GetPlayerOnField (lvCellId);
 							lvSpooler.ResolveSpooledAttack (lvTarget);
 							mTargetMode = false;
@@ -624,6 +624,12 @@ public class SelectFromGrid : MonoBehaviour {
 			case CellStates.MOVABLE:
 				lvStatus.movable = true;
 				break;
+			case CellStates.CLOSE_RANGE:
+				lvStatus.closeRange = true;
+				break;
+			case CellStates.FAR_RANGE:
+				lvStatus.farRange = true;
+				break;	
 			default:
 				break;
 			}
@@ -636,6 +642,7 @@ public class SelectFromGrid : MonoBehaviour {
 		List<int> lvLastLevel = new List<int> ();
 		List<int> lvNormalRangeCells = new List<int> ();
 		List<int> lvLongRangeCells = new List<int> ();
+		List<int> lvEnemyCells = new List<int> ();
 
 		lvLastLevel.Add (pmInitialCell);
 
@@ -644,6 +651,11 @@ public class SelectFromGrid : MonoBehaviour {
 			List<int> lvAdjacentCells = GetAdjacentFields (lvLastLevel);
 			lvNormalRangeCells.AddRange (lvLastLevel);
 			lvLastLevel = lvAdjacentCells;
+
+			foreach (int lvLastLevelCell in lvLastLevel) {
+				if(IsEnemyField(lvLastLevelCell))
+					lvEnemyCells.Add(lvLastLevelCell);
+			}
 		}
 
 		for (int j = pmNormalRange; j < pmLongRange; j++) {
@@ -660,6 +672,11 @@ public class SelectFromGrid : MonoBehaviour {
 					lvLastLevel.Add (lvLongRangeCell);
 			}
 
+			foreach (int lvLastLevelCell in lvLastLevel) {
+				if(IsEnemyField(lvLastLevelCell))
+					lvEnemyCells.Add(lvLastLevelCell);
+			}
+
 		}
 
 		lvLongRangeCells.AddRange (lvLastLevel);
@@ -667,8 +684,9 @@ public class SelectFromGrid : MonoBehaviour {
 		lvNormalRangeCells = RemoveCellsWithBlockedLoS (pmInitialCell, lvNormalRangeCells);
 		lvLongRangeCells = RemoveCellsWithBlockedLoS (pmInitialCell, lvLongRangeCells);
 
-		SetStateToCells (lvNormalRangeCells, CellStates.MOVABLE);
-		SetStateToCells (lvLongRangeCells, CellStates.TARGET);
+		SetStateToCells (lvNormalRangeCells, CellStates.CLOSE_RANGE);
+		SetStateToCells (lvLongRangeCells, CellStates.FAR_RANGE);
+		SetStateToCells (lvEnemyCells, CellStates.TARGET);
 
 	}
 
