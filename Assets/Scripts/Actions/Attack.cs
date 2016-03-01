@@ -20,10 +20,10 @@ public class Attack : AbstractAction{
 	}
 
 
-	public void resolveHit (Player pmAttacker, Player pmDefender)
+	public void resolveHit (Player pmAttacker, Player pmDefender, bool pmIsMissleShoot = false)
 	{
 		if (mIsActive)
-			ResolveActiveHit (pmAttacker, pmDefender, false);
+			ResolveActiveHit (pmAttacker, pmDefender, false, pmIsMissleShoot);
 		else
 			ResolvePassiveHit (pmAttacker, pmDefender);
 	}
