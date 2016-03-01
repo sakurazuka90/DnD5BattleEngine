@@ -42,4 +42,9 @@ public class DisplayWindow : MonoBehaviour {
 			ButtonToggler.ToggleButtonOn ("MoveButton");
 
 	}
+
+	public void CloseInventoryPanel()
+	{
+		InventoryPanel.SetActive (false);
+	}
 }

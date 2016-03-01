@@ -10,6 +10,9 @@ public class Player {
 	private Dictionary<TestsNames,AbilityNames> mTestAbilities;
 	private int mSpeed;
 	private int mTotalHp;
+	private int mTotalMoveActions;
+	private int mTotalStandardActions;
+	private int mTotalBonusActions;
 	private int mProficiencyBonus;
 	private int mSurvivalSucceded = 0;
 	private int mSurvivalFailed = 0;
