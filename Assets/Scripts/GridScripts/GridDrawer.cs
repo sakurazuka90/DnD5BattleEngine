@@ -16,6 +16,13 @@ public class GridDrawer : MonoBehaviour {
 	public GameObject[] obstacles;
 
 	void Start() {
+		Create ();
+	}
+
+	public void Create()
+	{
+		RemoveCells ();
+
 		_cells = new GameObject[gridHeight * gridWidth];
 
 		for (int z = 0; z < gridHeight; z++) {
@@ -24,10 +31,23 @@ public class GridDrawer : MonoBehaviour {
 			}
 		}
 	}
-	
-	void Update () {
+
+	private void RemoveCells()
+	{
+		List<GameObject> lvChildren = new List<GameObject> ();
+		foreach (Transform lvCell in transform)
+			lvChildren.Add (lvCell.gameObject);
+
+		lvChildren.ForEach (child => Destroy(child));
 	}
-	
+
+	public void Create(int pmX, int pmZ)
+	{
+		gridWidth = pmX;
+		gridHeight = pmZ;
+		Create ();
+	}
+
 	GameObject CreateChild(int x, int z) {
 		GameObject go = new GameObject();
 		

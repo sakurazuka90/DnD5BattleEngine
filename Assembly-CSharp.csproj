@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\AttackInstantiator.cs" />
      <Compile Include="Assets\ButtonToggler.cs" />
+     <Compile Include="Assets\CreateNewBattlefield.cs" />
      <Compile Include="Assets\EquipementFieldsLighter.cs" />
      <Compile Include="Assets\FT_FreeSample\Scene\SampleSceneData\FTsample_ClickToSpawn.cs" />
      <Compile Include="Assets\FT_FreeSample\Script\FTEM_AnimationScrollTexture.cs" />
@@ -56,6 +57,7 @@
      <Compile Include="Assets\InventoryObjectStatus.cs" />
      <Compile Include="Assets\MissleStats.cs" />
      <Compile Include="Assets\ObstacleStatus.cs" />
+     <Compile Include="Assets\OnlyNumbersField.cs" />
      <Compile Include="Assets\Scripts\Actions\AbstractAction.cs" />
      <Compile Include="Assets\Scripts\Actions\ActiveAttackDefenceTypes.cs" />
      <Compile Include="Assets\Scripts\Actions\Attack.cs" />
