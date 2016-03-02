@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public abstract class AbstractAction
 {
-	protected ActiveAttackDefenceTypes mDefenceType; 
+	protected ActiveAttackDefenceTypes mDefenceType;
 	protected Weapon mWeapon;
 	protected AbilityNames mAbility;
 
@@ -13,11 +13,13 @@ public abstract class AbstractAction
 	{
 	}
 
-	protected void ResolveActiveHit(Player pmAttacker, Player pmTarget, bool pmIsAdvantage)
+	protected void ResolveActiveHit (Player pmAttacker, Player pmTarget, bool pmIsAdvantage, bool pmIsMissleShoot = false)
 	{
-		if (mWeapon.Type == WeaponType.MELEE) {
-			pmAttacker.Figurine.GetComponent<AnimationPlayer> ().play = true;
+		if (mWeapon.Type == WeaponType.MELEE ||(pmIsMissleShoot && mWeapon.Type == WeaponType.RANGED)) {
 
+			if(mWeapon.Type == WeaponType.MELEE)
+				pmAttacker.Figurine.GetComponent<AnimationPlayer> ().play = true;
+		
 			int lvDefValue = pmTarget.GetActiveDefence (mDefenceType);
 
 			int lvAttackBonus = 0;
@@ -49,23 +51,16 @@ public abstract class AbstractAction
 			PlayerSpooler lvSpooler = lvSpoolerObject.GetComponent<PlayerSpooler> ();
 			lvSpooler.spool ();
 		} else {
-			AttackInstantiator lvInstantiator = pmAttacker.Figurine.GetComponent<AttackInstantiator> ();
-
-			lvInstantiator.targetPosition = pmTarget.Figurine.transform.position;
-			lvInstantiator.playerPosition = pmAttacker.Figurine.transform.position;
-			lvInstantiator.speed = 15.0f;
-			lvInstantiator.shoot = true;
+			FireProjectile (pmAttacker, pmTarget, pmIsAdvantage);
 		}
-
-
 	}
 
-	protected bool ResolvePassiveHit(Player pmAttacker, Player pmTarget)
+	protected bool ResolvePassiveHit (Player pmAttacker, Player pmTarget)
 	{
 		return false; //TODO
 	}
 
-	protected void ResolveDamage(Player pmAttacker, Player pmTarget, bool pmIsCritical, bool pmIsAdvantage)
+	public void ResolveDamage (Player pmAttacker, Player pmTarget, bool pmIsCritical, bool pmIsAdvantage)
 	{
 		int lvWeaponAmount = mWeapon.DieceNumber;
 
@@ -79,13 +74,24 @@ public abstract class AbstractAction
 
 		lvWeaponDamage += pmAttacker.GetAbilityModifier (mAbility);
 
-		lvMessageDisplayer.message = lvWeaponDamage.ToString();
+		lvMessageDisplayer.message = lvWeaponDamage.ToString ();
 
 		pmTarget.GetDamage (lvWeaponDamage);
 
 	}
 
-	public void DisplayTargets(Player pmAttacker)
+	public void FireProjectile(Player pmAttacker, Player pmTarget, bool pmIsAdvantage)
+	{
+		AttackInstantiator lvInstantiator = pmAttacker.Figurine.GetComponent<AttackInstantiator> ();
+
+		lvInstantiator.lvAttacker = pmAttacker;
+		lvInstantiator.lvTarget = pmTarget;
+		lvInstantiator.speed = 15.0f;
+		lvInstantiator.shoot = true;
+		lvInstantiator.isAdvantage = pmIsAdvantage;
+	}
+
+	public void DisplayTargets (Player pmAttacker)
 	{
 		GameObject lvSelectorObject = GameObject.Find ("GridSelector");
 		SelectFromGrid lvSelector = lvSelectorObject.GetComponent<SelectFromGrid> ();
@@ -110,7 +116,7 @@ public abstract class AbstractAction
 			lvDrawer.ClearGridStatus ();
 			lvSelector.SetStateToCells (lvTargetFields, CellStates.TARGET);
 		} else {
-			lvSelector.DisplaySimpleRangeMoore (lvCellId,mWeapon.rangeNormal,mWeapon.rangeLong);
+			lvSelector.DisplaySimpleRangeMoore (lvCellId, mWeapon.rangeNormal, mWeapon.rangeLong);
 
 		}
 

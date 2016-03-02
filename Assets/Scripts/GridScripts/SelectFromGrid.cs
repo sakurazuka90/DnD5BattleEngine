@@ -555,34 +555,16 @@ public class SelectFromGrid : MonoBehaviour {
 	{
 		List<int> lvReturnList = new List<int>();
 
-
-		//lvReturnList.Add (findTopFieldId (pmCellId));
 		AddAdjacentFieldToListIfGood(findTopFieldId (pmCellId), lvReturnList);
-
-		//lvReturnList.Add (findTopRightFieldId (pmCellId));
 		AddAdjacentFieldToListIfGood(findTopRightFieldId (pmCellId), lvReturnList);
-
-		//lvReturnList.Add (findTopLeftFieldId (pmCellId));
 		AddAdjacentFieldToListIfGood(findTopLeftFieldId (pmCellId), lvReturnList);
-
-		//lvReturnList.Add (findRightFieldId (pmCellId));
 		AddAdjacentFieldToListIfGood(findRightFieldId (pmCellId), lvReturnList);
-
-		//lvReturnList.Add (findLeftFieldId (pmCellId));
 		AddAdjacentFieldToListIfGood(findLeftFieldId (pmCellId), lvReturnList);
-
-		//lvReturnList.Add (findBottomFieldId (pmCellId));
 		AddAdjacentFieldToListIfGood(findBottomFieldId (pmCellId), lvReturnList);
-
-		//lvReturnList.Add (findBottomLeftFieldId (pmCellId));
 		AddAdjacentFieldToListIfGood(findBottomLeftFieldId (pmCellId), lvReturnList);
-
-		//lvReturnList.Add (findBottomRightFieldId (pmCellId));
 		AddAdjacentFieldToListIfGood(findBottomRightFieldId (pmCellId), lvReturnList);
 
-
 		return lvReturnList;
-
 	}
 
 	private void AddAdjacentFieldToListIfGood(int pmCell, List<int> pmAdjacentList)
@@ -608,6 +590,9 @@ public class SelectFromGrid : MonoBehaviour {
 		return lvResultList;
 	}
 
+	/*
+	 * Sets selected state to each List from pmCellsList
+	 */
 	public void SetStateToCells(List<int> pmCellsList, CellStates pmStatus)
 	{
 		foreach (int lvField in pmCellsList) {
@@ -625,9 +610,11 @@ public class SelectFromGrid : MonoBehaviour {
 				lvStatus.movable = true;
 				break;
 			case CellStates.CLOSE_RANGE:
+				mTargetMode = true;
 				lvStatus.closeRange = true;
 				break;
 			case CellStates.FAR_RANGE:
+				mTargetMode = true;
 				lvStatus.farRange = true;
 				break;	
 			default:
@@ -651,11 +638,6 @@ public class SelectFromGrid : MonoBehaviour {
 			List<int> lvAdjacentCells = GetAdjacentFields (lvLastLevel);
 			lvNormalRangeCells.AddRange (lvLastLevel);
 			lvLastLevel = lvAdjacentCells;
-
-			foreach (int lvLastLevelCell in lvLastLevel) {
-				if(IsEnemyField(lvLastLevelCell))
-					lvEnemyCells.Add(lvLastLevelCell);
-			}
 		}
 
 		for (int j = pmNormalRange; j < pmLongRange; j++) {
@@ -671,18 +653,24 @@ public class SelectFromGrid : MonoBehaviour {
 				if (!lvNormalRangeCells.Contains (lvLongRangeCell))
 					lvLastLevel.Add (lvLongRangeCell);
 			}
-
-			foreach (int lvLastLevelCell in lvLastLevel) {
-				if(IsEnemyField(lvLastLevelCell))
-					lvEnemyCells.Add(lvLastLevelCell);
-			}
-
 		}
 
 		lvLongRangeCells.AddRange (lvLastLevel);
 
 		lvNormalRangeCells = RemoveCellsWithBlockedLoS (pmInitialCell, lvNormalRangeCells);
 		lvLongRangeCells = RemoveCellsWithBlockedLoS (pmInitialCell, lvLongRangeCells);
+
+		foreach(int lvEnemyCell in lvNormalRangeCells)
+		{
+			if (IsEnemyField (lvEnemyCell))
+				lvEnemyCells.Add (lvEnemyCell);
+		}
+
+		foreach(int lvEnemyCell in lvLongRangeCells)
+		{
+			if (IsEnemyField (lvEnemyCell))
+				lvEnemyCells.Add (lvEnemyCell);
+		}
 
 		SetStateToCells (lvNormalRangeCells, CellStates.CLOSE_RANGE);
 		SetStateToCells (lvLongRangeCells, CellStates.FAR_RANGE);

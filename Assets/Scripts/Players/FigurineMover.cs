@@ -114,9 +114,6 @@ public class FigurineMover : MonoBehaviour {
 						mStepsMoved = 0;
 
 						_figurineAnimator.SetBool ("isWalking",false);
-
-						if(lvStatus.movesLeft == 0)
-							lvSpoolerObject.GetComponent<PlayerSpooler>().spool();
 					}
 				}
 			}

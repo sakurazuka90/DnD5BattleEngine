@@ -16,8 +16,6 @@ public class DisableDead : StateMachineBehaviour {
 	// OnStateExit is called when a transition ends and the state machine finishes evaluating this state
 	override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 		animator.SetBool ("isDead",false);
-		animator.gameObject.transform.rotation = animator.bodyRotation;
-		animator.gameObject.transform.position = animator.bodyPosition;
 	}
 
 	// OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here
