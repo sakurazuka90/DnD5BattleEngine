@@ -30,6 +30,10 @@ public class GridDrawer : MonoBehaviour {
 				_cells[z * gridWidth + x] = CreateChild(x,z);
 			}
 		}
+
+		GameObject lvCreator = GameObject.Find ("FloorCreator");
+		if (lvCreator != null)
+			lvCreator.GetComponent<FloorCreator>().CreateFloor (gridWidth, gridHeight);
 	}
 
 	private void RemoveCells()
