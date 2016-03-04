@@ -57,6 +57,7 @@
      <Compile Include="Assets\InventoryFiller.cs" />
      <Compile Include="Assets\InventoryObjectStatus.cs" />
      <Compile Include="Assets\MissleStats.cs" />
+     <Compile Include="Assets\MoveCamera.cs" />
      <Compile Include="Assets\ObstacleStatus.cs" />
      <Compile Include="Assets\OnlyNumbersField.cs" />
      <Compile Include="Assets\Scripts\Actions\AbstractAction.cs" />
