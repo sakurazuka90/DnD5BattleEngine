@@ -91,6 +91,7 @@
      <Compile Include="Assets\Scripts\Players\Stats\BonusConditionNames.cs" />
      <Compile Include="Assets\Scripts\Players\Stats\DiceRoller.cs" />
      <Compile Include="Assets\Scripts\Players\Stats\TestsNames.cs" />
+     <Compile Include="Assets\Scripts\Utils\GameObjectUtils.cs" />
      <None Include="Assets\Shaders\WarpJump.shader" />
      <None Include="Assets\Shaders\Billboard.shader" />
      <None Include="Assets\Shaders\Burnout.shader" />

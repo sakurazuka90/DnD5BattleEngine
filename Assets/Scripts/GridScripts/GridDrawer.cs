@@ -32,17 +32,15 @@ public class GridDrawer : MonoBehaviour {
 		}
 
 		GameObject lvCreator = GameObject.Find ("FloorCreator");
-		if (lvCreator != null)
-			lvCreator.GetComponent<FloorCreator>().CreateFloor (gridWidth, gridHeight);
+		if (lvCreator != null) {
+			GameObjectUtils.RemoveAllChildren (lvCreator);
+			lvCreator.GetComponent<FloorCreator> ().CreateFloor (gridWidth, gridHeight);
+		}
 	}
 
 	private void RemoveCells()
 	{
-		List<GameObject> lvChildren = new List<GameObject> ();
-		foreach (Transform lvCell in transform)
-			lvChildren.Add (lvCell.gameObject);
-
-		lvChildren.ForEach (child => Destroy(child));
+		GameObjectUtils.RemoveAllChildren (this.gameObject);
 	}
 
 	public void Create(int pmX, int pmZ)
