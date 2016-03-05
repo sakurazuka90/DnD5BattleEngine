@@ -65,11 +65,11 @@ public class SelectFromGrid : MonoBehaviour {
 					}
 					lastStatus = lvCellStatus;
 
-					MeshFilter lvFilter = hit.collider.gameObject.GetComponent<MeshFilter> ();
-					Vector3[] vertices = lvFilter.mesh.vertices;
+					Vector3 lvPosition = hit.collider.transform.position;
+					int lvCellId = mGridDrawer.GetGridId ((int)lvPosition.x, (int)lvPosition.z);
 
 					if (mMoveMode && lvCellStatus.movable) {
-						string lvId = "" + (mGridDrawer.gridWidth * (int)vertices [0].z + (int)vertices [0].x);
+						string lvId = lvCellId.ToString ();
 						DrawWalkableLine (mPaths [lvId]);
 					}
 
@@ -77,8 +77,6 @@ public class SelectFromGrid : MonoBehaviour {
 
 					GameObject lvFigurine = lvSpooler.mSpooledObject;
 					FigurineStatus lvStatus = lvFigurine.GetComponent<FigurineStatus> ();
-
-					int lvCellId = mGridDrawer.GetGridId ((int)vertices [0].x, (int)vertices [0].z);
 
 					if (mMoveMode) {
 						if (Input.GetMouseButtonDown (0)) {
@@ -115,13 +113,13 @@ public class SelectFromGrid : MonoBehaviour {
 
 					} else if (lvStatus.picked) {
 						FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover> ();
-						lvMover.gridX = (int)vertices [0].x;
-						lvMover.gridZ = (int)vertices [0].z;
+						lvMover.gridX = (int)lvPosition.x;
+						lvMover.gridZ = (int)lvPosition.z;
 
 						if (Input.GetMouseButtonDown (0)) {
 							lvStatus.picked = false;
-							lvStatus.gridX = (int)vertices [0].x;
-							lvStatus.gridZ = (int)vertices [0].z;
+							lvStatus.gridX = (int)lvPosition.x;
+							lvStatus.gridZ = (int)lvPosition.z;
 						}
 					}
 				}
@@ -235,7 +233,7 @@ public class SelectFromGrid : MonoBehaviour {
 	 */
 	private Dictionary<string,Dictionary<string,string>> resolveForCell(Dictionary<string,string> pmPaths, int pmGridX, int pmGridZ, string pmPath, int pmMoveDist)
 	{
-		GameObject lvCell = mGridDrawer._cells[mGridDrawer.gridWidth * pmGridZ + pmGridX];
+		GameObject lvCell = mGridDrawer.mCells[mGridDrawer.gridWidth * pmGridZ + pmGridX];
 
 		string lvParentId = "" + (mGridDrawer.gridWidth * pmGridZ + pmGridX);
 
@@ -291,7 +289,7 @@ public class SelectFromGrid : MonoBehaviour {
 
 				int cellZ = pmGridZ + 1;
 
-				GameObject lvCellUpp = mGridDrawer._cells [mGridDrawer.gridWidth * cellZ + pmGridX];
+				GameObject lvCellUpp = mGridDrawer.mCells [mGridDrawer.gridWidth * cellZ + pmGridX];
 				CellStatus lvStatusUpp = lvCellUpp.GetComponent<CellStatus> ();
 				string lvCellId = "" + (mGridDrawer.gridWidth * cellZ + pmGridX);
 
@@ -315,7 +313,7 @@ public class SelectFromGrid : MonoBehaviour {
 			if (lvBottomGood) {
 				int cellZ = pmGridZ -1;
 				
-				GameObject lvCellBott = mGridDrawer._cells [mGridDrawer.gridWidth * cellZ + pmGridX];
+				GameObject lvCellBott = mGridDrawer.mCells [mGridDrawer.gridWidth * cellZ + pmGridX];
 				CellStatus lvStatusBott = lvCellBott.GetComponent<CellStatus> ();
 				string lvCellId = "" + (mGridDrawer.gridWidth * cellZ + pmGridX);
 				
@@ -339,7 +337,7 @@ public class SelectFromGrid : MonoBehaviour {
 			if (lvRightGood) {
 				int cellX = pmGridX +1;
 				
-				GameObject lvCellRight = mGridDrawer._cells [mGridDrawer.gridWidth * pmGridZ + cellX];
+				GameObject lvCellRight = mGridDrawer.mCells [mGridDrawer.gridWidth * pmGridZ + cellX];
 				CellStatus lvStatusRight = lvCellRight.GetComponent<CellStatus> ();
 				string lvCellId = "" + (mGridDrawer.gridWidth * pmGridZ + cellX);
 				
@@ -363,7 +361,7 @@ public class SelectFromGrid : MonoBehaviour {
 			if (lvLeftGood) {
 				int cellX = pmGridX -1;
 				
-				GameObject lvCellLeft = mGridDrawer._cells [mGridDrawer.gridWidth * pmGridZ + cellX];
+				GameObject lvCellLeft = mGridDrawer.mCells [mGridDrawer.gridWidth * pmGridZ + cellX];
 				CellStatus lvStatusLeft = lvCellLeft.GetComponent<CellStatus> ();
 				string lvCellId = "" + (mGridDrawer.gridWidth * pmGridZ + cellX);
 				
@@ -388,7 +386,7 @@ public class SelectFromGrid : MonoBehaviour {
 				int cellX = pmGridX + 1;
 				int cellZ = pmGridZ + 1;
 				
-				GameObject lvCellTopRight = mGridDrawer._cells [mGridDrawer.gridWidth * cellZ + cellX];
+				GameObject lvCellTopRight = mGridDrawer.mCells [mGridDrawer.gridWidth * cellZ + cellX];
 				CellStatus lvStatusTopRight = lvCellTopRight.GetComponent<CellStatus> ();
 				string lvCellId = "" + (mGridDrawer.gridWidth * cellZ + cellX);
 				
@@ -411,7 +409,7 @@ public class SelectFromGrid : MonoBehaviour {
 				int cellX = pmGridX - 1;
 				int cellZ = pmGridZ + 1;
 				
-				GameObject lvCellTopLeft = mGridDrawer._cells [mGridDrawer.gridWidth * cellZ + cellX];
+				GameObject lvCellTopLeft = mGridDrawer.mCells [mGridDrawer.gridWidth * cellZ + cellX];
 				CellStatus lvStatusTopLeft = lvCellTopLeft.GetComponent<CellStatus> ();
 				string lvCellId = "" + (mGridDrawer.gridWidth * cellZ + cellX);
 				
@@ -434,7 +432,7 @@ public class SelectFromGrid : MonoBehaviour {
 				int cellX = pmGridX + 1;
 				int cellZ = pmGridZ - 1;
 				
-				GameObject lvCellBotRight = mGridDrawer._cells [mGridDrawer.gridWidth * cellZ + cellX];
+				GameObject lvCellBotRight = mGridDrawer.mCells [mGridDrawer.gridWidth * cellZ + cellX];
 				CellStatus lvStatusBotRight = lvCellBotRight.GetComponent<CellStatus> ();
 				string lvCellId = "" + (mGridDrawer.gridWidth * cellZ + cellX);
 				
@@ -457,7 +455,7 @@ public class SelectFromGrid : MonoBehaviour {
 				int cellX = pmGridX - 1;
 				int cellZ = pmGridZ - 1;
 				
-				GameObject lvCellBotLeft = mGridDrawer._cells [mGridDrawer.gridWidth * cellZ + cellX];
+				GameObject lvCellBotLeft = mGridDrawer.mCells [mGridDrawer.gridWidth * cellZ + cellX];
 				CellStatus lvStatusBotLeft = lvCellBotLeft.GetComponent<CellStatus> ();
 				string lvCellId = "" + (mGridDrawer.gridWidth * cellZ + cellX);
 				
@@ -596,7 +594,7 @@ public class SelectFromGrid : MonoBehaviour {
 	public void SetStateToCells(List<int> pmCellsList, CellStates pmStatus)
 	{
 		foreach (int lvField in pmCellsList) {
-			CellStatus lvStatus = mGridDrawer._cells [lvField].GetComponent<CellStatus> ();
+			CellStatus lvStatus = mGridDrawer.mCells [lvField].GetComponent<CellStatus> ();
 
 			switch (pmStatus) {
 			case CellStates.TARGET:

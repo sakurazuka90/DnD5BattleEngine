@@ -11,6 +11,7 @@ public class CreateNewBattlefield : MonoBehaviour {
 
 		if (lvX.Length > 0 && lvY.Length > 0) {
 			GameObject.Find ("GridDrawer").GetComponent<GridDrawer> ().Create (int.Parse (lvX), int.Parse (lvY));
+			GameObject.Find ("CameraMover").GetComponent<MoveCamera> ().isMovable = true;
 			this.gameObject.SetActive (false);
 		}
 	}

@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 public class GridDrawer : MonoBehaviour {
 	public float cellSize = 1;
-	public int gridWidth = 10;
-	public int gridHeight = 10;
+	public int gridWidth = 0;
+	public int gridHeight = 0;
 	public float yOffset = 0.5f;
 	public Material cellMaterialValid;
 	public Material noMaterial;
 
-	public GameObject[] _cells;
+	public GameObject[] mCells;
 
 	public GameObject obstacleBase;
 	public GameObject[] obstacles;
@@ -23,11 +23,11 @@ public class GridDrawer : MonoBehaviour {
 	{
 		RemoveCells ();
 
-		_cells = new GameObject[gridHeight * gridWidth];
+		mCells = new GameObject[gridHeight * gridWidth];
 
 		for (int z = 0; z < gridHeight; z++) {
 			for (int x = 0; x < gridWidth; x++) {
-				_cells[z * gridWidth + x] = CreateChild(x,z);
+				mCells[z * gridWidth + x] = CreateChild(x,z);
 			}
 		}
 
@@ -53,44 +53,44 @@ public class GridDrawer : MonoBehaviour {
 	}
 
 	GameObject CreateChild(int x, int z) {
-		GameObject go = new GameObject();
+		GameObject lvObject = new GameObject();
 		
-		go.name = "Grid Cell";
-		go.transform.parent = transform;
-		go.transform.localPosition = Vector3.zero;
+		lvObject.name = "Grid Cell";
+		lvObject.transform.parent = transform;
+		lvObject.transform.localPosition = new Vector3((float) x, 0.0f, (float) z);
 
-		go.AddComponent<MeshRenderer> ();
+		lvObject.AddComponent<MeshRenderer> ();
 
-		if (!(x == 3 && z == 2)) {
-			go.GetComponent<MeshRenderer> ().material = cellMaterialValid;
-			go.AddComponent<CellStatus> ().avaiable = true;
-		} else {
-			go.GetComponent<MeshRenderer> ().material = noMaterial;
-			go.AddComponent<CellStatus> ().avaiable = false;
+		//if (!(x == 3 && z == 2)) {
+			lvObject.GetComponent<MeshRenderer> ().material = cellMaterialValid;
+			lvObject.AddComponent<CellStatus> ().avaiable = true;
+		//} else {
+			/*lvObject.GetComponent<MeshRenderer> ().material = noMaterial;
+			lvObject.AddComponent<CellStatus> ().avaiable = false;
 
 			GameObject lvBase = Instantiate (obstacleBase);
 			GameObject lvObstacle = Instantiate(obstacles[0]);
 
 			lvObstacle.transform.parent = lvBase.transform;
 			lvBase.transform.parent = go.transform;
-			lvBase.transform.Translate(new Vector3(x + 0.5f,0,z + 0.5f));
-		}
+			lvBase.transform.Translate(new Vector3(x + 0.5f,0,z + 0.5f));*/
+		//}
 
 		///go.AddComponent<CellStatus> ().avaiable = true;
 
 		Mesh lvMesh = CreateMesh ();
 		lvMesh.vertices = new Vector3[] {
-			MeshVertex(x, z),
-			MeshVertex(x, z + 1),
-			MeshVertex(x + 1, z),
-			MeshVertex(x + 1, z + 1),
+			MeshVertex(0, 0),
+			MeshVertex(0, 1),
+			MeshVertex(1, 0),
+			MeshVertex(1, 1),
 		};
 
-		go.AddComponent<MeshFilter> ().mesh = lvMesh;
-		go.tag = "GridCell";
-		go.AddComponent<MeshCollider> ();
+		lvObject.AddComponent<MeshFilter> ().mesh = lvMesh;
+		lvObject.tag = "GridCell";
+		lvObject.AddComponent<MeshCollider> ();
 		
-		return go;
+		return lvObject;
 	}
 	
 
@@ -137,8 +137,8 @@ public class GridDrawer : MonoBehaviour {
 	 * Czysci statusy wszystkich pol grida 
 	 */
 	public void ClearGridStatus(){
-		for (int i = 0; i < _cells.Length; i++) {
-			_cells [i].GetComponent<CellStatus> ().ClearStatus ();
+		for (int i = 0; i < mCells.Length; i++) {
+			mCells [i].GetComponent<CellStatus> ().ClearStatus ();
 		}
 	}
 
