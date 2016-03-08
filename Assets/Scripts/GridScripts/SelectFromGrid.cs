@@ -12,7 +12,10 @@ public class SelectFromGrid : MonoBehaviour {
 
 	public bool mMoveMode = false;
 	private bool mTargetMode = false;
+	public bool mCreatorMode = false;
 	private Dictionary<string, string> mPaths;
+
+	public GameObject creatorObstacle;
 
 	private List<int> mPlayersFields;
 	private List<int> mMonsterFields;
@@ -73,9 +76,16 @@ public class SelectFromGrid : MonoBehaviour {
 						DrawWalkableLine (mPaths [lvId]);
 					}
 
-					PlayerSpooler lvSpooler = GameObject.Find ("PlayerSpooler").GetComponent<PlayerSpooler> ();
+					GameObject lvFigurine;
+					PlayerSpooler lvSpooler = null;
 
-					GameObject lvFigurine = lvSpooler.mSpooledObject;
+					if (!mCreatorMode) {
+						lvSpooler = GameObject.Find ("PlayerSpooler").GetComponent<PlayerSpooler> ();
+						lvFigurine = lvSpooler.mSpooledObject;
+					} else {
+						lvFigurine = creatorObstacle;
+					}
+						
 					FigurineStatus lvStatus = lvFigurine.GetComponent<FigurineStatus> ();
 
 					if (mMoveMode) {
