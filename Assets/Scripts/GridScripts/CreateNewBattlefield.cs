@@ -2,7 +2,10 @@
 using UnityEngine.UI;
 using System.Collections;
 
+
 public class CreateNewBattlefield : MonoBehaviour {
+
+	public GameObject lvObstacleWindow;
 
 	public void Create()
 	{
@@ -16,6 +19,7 @@ public class CreateNewBattlefield : MonoBehaviour {
 			lvMover.isMovable = true;
 			lvMover.maxX = float.Parse (lvX);
 			lvMover.maxZ = float.Parse (lvY);
+			lvObstacleWindow.SetActive (true);
 			this.gameObject.SetActive (false);
 		}
 	}
