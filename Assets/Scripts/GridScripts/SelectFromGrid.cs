@@ -78,6 +78,7 @@ public class SelectFromGrid : MonoBehaviour {
 
 					GameObject lvFigurine;
 					PlayerSpooler lvSpooler = null;
+					FigurineStatus lvStatus = null;
 
 					if (!mCreatorMode) {
 						lvSpooler = GameObject.Find ("PlayerSpooler").GetComponent<PlayerSpooler> ();
@@ -85,8 +86,10 @@ public class SelectFromGrid : MonoBehaviour {
 					} else {
 						lvFigurine = creatorObstacle;
 					}
-						
-					FigurineStatus lvStatus = lvFigurine.GetComponent<FigurineStatus> ();
+
+					if(lvFigurine != null)
+						lvStatus = lvFigurine.GetComponent<FigurineStatus> ();
+					
 
 					if (mMoveMode) {
 						if (Input.GetMouseButtonDown (0)) {
@@ -121,7 +124,7 @@ public class SelectFromGrid : MonoBehaviour {
 							mTargetMode = false;
 						}
 
-					} else if (lvStatus.picked) {
+					} else if (lvStatus != null && lvStatus.picked) {
 						FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover> ();
 						lvMover.gridX = (int)lvPosition.x;
 						lvMover.gridZ = (int)lvPosition.z;
