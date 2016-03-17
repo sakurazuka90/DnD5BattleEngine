@@ -5,7 +5,8 @@ using System.Collections;
 
 public class CreateNewBattlefield : MonoBehaviour {
 
-	public GameObject lvObstacleWindow;
+	public GameObject obstacleWindow;
+	public GameObject obstacleStatusWindow;
 
 	public void Create()
 	{
@@ -19,7 +20,8 @@ public class CreateNewBattlefield : MonoBehaviour {
 			lvMover.isMovable = true;
 			lvMover.maxX = float.Parse (lvX);
 			lvMover.maxZ = float.Parse (lvY);
-			lvObstacleWindow.SetActive (true);
+			obstacleWindow.SetActive (true);
+			obstacleStatusWindow.SetActive (true);
 			this.gameObject.SetActive (false);
 		}
 	}
