@@ -134,6 +134,10 @@ public class SelectFromGrid : MonoBehaviour {
 							lvStatus.gridX = (int)lvPosition.x;
 							lvStatus.gridZ = (int)lvPosition.z;
 						}
+
+						if (Input.GetMouseButtonDown (1)) {
+							lvFigurine.GetComponent<ObstacleRotator> ().Rotate (90.0f);
+						}
 					}
 				}
 			}

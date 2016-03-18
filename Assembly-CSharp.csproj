@@ -49,6 +49,7 @@
      <Compile Include="Assets\FT_FreeSample\Script\FTEM_AnimationScrollTexture.cs" />
      <Compile Include="Assets\FT_FreeSample\Script\FTEM_AnimationSpriteSheet.cs" />
      <Compile Include="Assets\FT_FreeSample\Script\FTEM_DeadTime.cs" />
+     <Compile Include="Assets\ObstacleRotator.cs" />
      <Compile Include="Assets\PlaceNewObstacle.cs" />
      <Compile Include="Assets\Scripts\Actions\AbstractAction.cs" />
      <Compile Include="Assets\Scripts\Actions\ActiveAttackDefenceTypes.cs" />
