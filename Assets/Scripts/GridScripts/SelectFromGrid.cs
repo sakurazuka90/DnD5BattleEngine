@@ -28,6 +28,8 @@ public class SelectFromGrid : MonoBehaviour {
 
 	public bool inventoryOpen = false;
 
+	private List<int> constructorFilledSquares;
+
 
 	// Use this for initialization
 	void Start () {
@@ -37,6 +39,8 @@ public class SelectFromGrid : MonoBehaviour {
 		
 		mPaths = new Dictionary<string, string> ();
 		updateFields ();
+
+		constructorFilledSquares = new List<int> ();
 
 	}
 	
@@ -85,6 +89,7 @@ public class SelectFromGrid : MonoBehaviour {
 						lvFigurine = lvSpooler.mSpooledObject;
 					} else {
 						lvFigurine = creatorObstacle;
+						SetStateToCells (constructorFilledSquares, CellStates.ENABLED);
 					}
 
 					if(lvFigurine != null)
@@ -125,6 +130,7 @@ public class SelectFromGrid : MonoBehaviour {
 						}
 
 					} else if (lvStatus != null && lvStatus.picked) {
+						SetStateToCells (this.constructorFilledSquares, CellStates.DISABLED);
 						FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover> ();
 						lvMover.gridX = (int)lvPosition.x;
 						lvMover.gridZ = (int)lvPosition.z;
@@ -133,6 +139,7 @@ public class SelectFromGrid : MonoBehaviour {
 							lvStatus.picked = false;
 							lvStatus.gridX = (int)lvPosition.x;
 							lvStatus.gridZ = (int)lvPosition.z;
+							putObstacleOnField (mGridDrawer.GetGridId ((int)lvPosition.x, (int)lvPosition.z), new List<int> ());
 						}
 
 						if (Input.GetMouseButtonDown (1)) {
@@ -614,6 +621,12 @@ public class SelectFromGrid : MonoBehaviour {
 			CellStatus lvStatus = mGridDrawer.mCells [lvField].GetComponent<CellStatus> ();
 
 			switch (pmStatus) {
+			case CellStates.DISABLED:
+				lvStatus.avaiable = false;
+				break;
+			case CellStates.ENABLED:
+				lvStatus.avaiable = true;
+				break;
 			case CellStates.TARGET:
 				mTargetMode = true;
 				lvStatus.target = true;
@@ -814,6 +827,10 @@ public class SelectFromGrid : MonoBehaviour {
 	public bool IsCellGood(int pmCellId)
 	{
 		return pmCellId >= 0 && pmCellId < (mGridDrawer.gridWidth * mGridDrawer.gridHeight);
+	}
+
+	public void putObstacleOnField(int pmCellId, List<int> pmAdjacentCells){
+		this.constructorFilledSquares.Add (pmCellId);
 	}
 
 }

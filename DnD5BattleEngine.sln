@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{F9F7598F-47C0-4BC8-3A74-AD92FC620D63}") = "DnD5BattleEngine", "Assembly-CSharp.csproj", "{D76A72C6-98F3-E9B0-BACB-83DEA4349EA3}"
 EndProject
-Project("{F9F7598F-47C0-4BC8-3A74-AD92FC620D63}") = "DnD5BattleEngine", "Assembly-UnityScript.unityproj", "{1D720237-5F3A-7B57-6937-78A263BEEE93}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,10 +13,6 @@ Global
 		{D76A72C6-98F3-E9B0-BACB-83DEA4349EA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D76A72C6-98F3-E9B0-BACB-83DEA4349EA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D76A72C6-98F3-E9B0-BACB-83DEA4349EA3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1D720237-5F3A-7B57-6937-78A263BEEE93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D720237-5F3A-7B57-6937-78A263BEEE93}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D720237-5F3A-7B57-6937-78A263BEEE93}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D720237-5F3A-7B57-6937-78A263BEEE93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
