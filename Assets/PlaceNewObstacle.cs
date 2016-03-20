@@ -12,6 +12,12 @@ public class PlaceNewObstacle : MonoBehaviour {
 		lvStatus.active = true;
 		lvStatus.picked = true;
 
+		ObstacleStatus lvObstacleStatus = lvObstacle.GetComponent<ObstacleStatus> ();
+		lvObstacleStatus.name = lvObstacle.name;
+		AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
+		lvStatusEditor.obstacleStatus = lvObstacleStatus;
+		lvStatusEditor.populate ();
+
 		GameObject.Find ("GridSelector").GetComponent<SelectFromGrid> ().creatorObstacle = lvObstacle;
 	}
 }
