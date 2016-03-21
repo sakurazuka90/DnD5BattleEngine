@@ -57,6 +57,7 @@
      <None Include="Assets\Shaders\Heat.shader" />
      <None Include="Assets\Shaders\WarpTunnelDistortion.shader" />
      <None Include="Assets\Shaders\Trail.shader" />
+     <None Include="Assets\Shaders\NewSurfaceShader.shader" />
      <None Include="Assets\Shaders\AlphaBlended.shader" />
      <None Include="Assets\Shaders\Surface.shader" />
      <None Include="Assets\Shaders\Debris.shader" />

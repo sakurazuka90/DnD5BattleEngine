@@ -141,9 +141,12 @@ public class SelectFromGrid : MonoBehaviour {
 							lvStatus.gridZ = (int)lvPosition.z;
 							putObstacleOnField (mGridDrawer.GetGridId ((int)lvPosition.x, (int)lvPosition.z), new List<int> ());
 
+							lvFigurine.GetComponent<ShaderSwitcher> ().SwitchOutlineOff ();
+
 							GameObject lvAssetEditPanel = GameObject.Find ("AssetEditPanel");
 							if (lvAssetEditPanel != null) {
 								lvAssetEditPanel.GetComponent<AssetStatsEditor> ().clear ();
+
 							}
 						}
 

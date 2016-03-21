@@ -18,6 +18,8 @@ public class PlaceNewObstacle : MonoBehaviour {
 		lvStatusEditor.obstacleStatus = lvObstacleStatus;
 		lvStatusEditor.populate ();
 
+		lvObstacle.GetComponent<ShaderSwitcher> ().SwitchOutlineOn();
+
 		GameObject.Find ("GridSelector").GetComponent<SelectFromGrid> ().creatorObstacle = lvObstacle;
 	}
 }
