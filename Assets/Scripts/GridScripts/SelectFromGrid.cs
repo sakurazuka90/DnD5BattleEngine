@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
 public class SelectFromGrid : MonoBehaviour {
@@ -52,7 +53,7 @@ public class SelectFromGrid : MonoBehaviour {
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit[] hits = Physics.RaycastAll (ray);
 
-		if (!inventoryOpen) {
+		if (!inventoryOpen && !EventSystem.current.IsPointerOverGameObject()) {
 
 			foreach (RaycastHit hit in hits) {
 
@@ -164,16 +165,25 @@ public class SelectFromGrid : MonoBehaviour {
 									ObstacleStatus lvObstacleStatus = hit.collider.gameObject.transform.GetChild (0).GetComponent<ObstacleStatus> ();
 									AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
 
-									if(!"".Equals(lvStatusEditor.obstacleStatus.name))
-									{
+									if (lvStatusEditor.obstacleStatus != null && !"".Equals (lvStatusEditor.obstacleStatus.name)) {
 										GameObject lvOldObstacle = GameObject.Find (lvStatusEditor.obstacleStatus.name);
-										lvOldObstacle.GetComponent<ShaderSwitcher> ().SwitchOutlineOff();
+										lvOldObstacle.GetComponent<ShaderSwitcher> ().SwitchOutlineOff ();
 									}
 
 									lvStatusEditor.obstacleStatus = lvObstacleStatus;
 									lvStatusEditor.populate ();
 
-									hit.collider.gameObject.transform.GetChild (0).GetComponent<ShaderSwitcher> ().SwitchOutlineOn();
+									hit.collider.gameObject.transform.GetChild (0).GetComponent<ShaderSwitcher> ().SwitchOutlineOn ();
+								} else {
+
+									AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
+
+									if (lvStatusEditor.obstacleStatus != null && !"".Equals (lvStatusEditor.obstacleStatus.name)) {
+										GameObject lvOldObstacle = GameObject.Find (lvStatusEditor.obstacleStatus.name);
+										lvOldObstacle.GetComponent<ShaderSwitcher> ().SwitchOutlineOff ();
+									}
+
+									lvStatusEditor.clear ();
 								}
 							}
 						}

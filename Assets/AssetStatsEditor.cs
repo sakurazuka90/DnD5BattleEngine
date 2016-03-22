@@ -17,6 +17,7 @@ public class AssetStatsEditor : MonoBehaviour {
 
 	public void clear()
 	{
+		obstacleStatus = null;
 		GameObject.Find ("AssetEditNameInput").GetComponent<InputField> ().text = "";
 		GameObject.Find ("DifficultTerrainToggle").GetComponent<Toggle> ().isOn = false;
 		GameObject.Find ("BlocksMovementToggle").GetComponent<Toggle> ().isOn = false;
@@ -26,16 +27,19 @@ public class AssetStatsEditor : MonoBehaviour {
 
 	public void setDifficultTerrain(bool pmState)
 	{
+		if(obstacleStatus != null)
 		obstacleStatus.isDifficultTerrain = pmState;
 	}
 
 	public void setBlocksMovement(bool pmState)
 	{
+		if(obstacleStatus != null)
 		obstacleStatus.isBlockingMovement = pmState;
 	}
 
 	public void setBlocksLoS(bool pmState)
 	{
+		if(obstacleStatus != null)
 		obstacleStatus.isBlockingLoS = pmState;
 	}
 }
