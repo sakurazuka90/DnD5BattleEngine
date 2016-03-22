@@ -80,6 +80,7 @@ public class SelectFromGrid : MonoBehaviour {
 						DrawWalkableLine (mPaths [lvId]);
 					}
 
+
 					GameObject lvFigurine;
 					PlayerSpooler lvSpooler = null;
 					FigurineStatus lvStatus = null;
@@ -129,29 +130,52 @@ public class SelectFromGrid : MonoBehaviour {
 							mTargetMode = false;
 						}
 
-					} else if (lvStatus != null && lvStatus.picked) {
-						SetStateToCells (this.constructorFilledSquares, CellStates.DISABLED);
-						FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover> ();
-						lvMover.gridX = (int)lvPosition.x;
-						lvMover.gridZ = (int)lvPosition.z;
+					} else if (mCreatorMode) {
+					
+						if (lvStatus != null && lvStatus.picked) {
+							SetStateToCells (this.constructorFilledSquares, CellStates.DISABLED);
+							FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover> ();
+							lvMover.gridX = (int)lvPosition.x;
+							lvMover.gridZ = (int)lvPosition.z;
 
-						if (Input.GetMouseButtonDown (0)) {
-							lvStatus.picked = false;
-							lvStatus.gridX = (int)lvPosition.x;
-							lvStatus.gridZ = (int)lvPosition.z;
-							putObstacleOnField (mGridDrawer.GetGridId ((int)lvPosition.x, (int)lvPosition.z), new List<int> ());
+							if (Input.GetMouseButtonDown (0)) {
+								lvStatus.picked = false;
+								lvStatus.gridX = (int)lvPosition.x;
+								lvStatus.gridZ = (int)lvPosition.z;
+								putObstacleOnField (lvCellId, new List<int> ());
 
-							lvFigurine.GetComponent<ShaderSwitcher> ().SwitchOutlineOff ();
+								lvFigurine.transform.parent = mGridDrawer.mCells [lvCellId].transform;
 
-							GameObject lvAssetEditPanel = GameObject.Find ("AssetEditPanel");
-							if (lvAssetEditPanel != null) {
-								lvAssetEditPanel.GetComponent<AssetStatsEditor> ().clear ();
+								//lvFigurine.GetComponent<ShaderSwitcher> ().SwitchOutlineOff ();
 
+								//GameObject lvAssetEditPanel = GameObject.Find ("AssetEditPanel");
+								//if (lvAssetEditPanel != null) {
+								//	lvAssetEditPanel.GetComponent<AssetStatsEditor> ().clear ();
+
+								//}
 							}
-						}
 
-						if (Input.GetMouseButtonDown (1)) {
-							lvFigurine.GetComponent<ObstacleRotator> ().Rotate (90.0f);
+							if (Input.GetMouseButtonDown (1)) {
+								lvFigurine.GetComponent<ObstacleRotator> ().Rotate (90.0f);
+							}
+						} else {
+							if (Input.GetMouseButtonDown (0)) {
+								if (hit.collider.gameObject.transform.childCount > 0) {
+									ObstacleStatus lvObstacleStatus = hit.collider.gameObject.transform.GetChild (0).GetComponent<ObstacleStatus> ();
+									AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
+
+									if(!"".Equals(lvStatusEditor.obstacleStatus.name))
+									{
+										GameObject lvOldObstacle = GameObject.Find (lvStatusEditor.obstacleStatus.name);
+										lvOldObstacle.GetComponent<ShaderSwitcher> ().SwitchOutlineOff();
+									}
+
+									lvStatusEditor.obstacleStatus = lvObstacleStatus;
+									lvStatusEditor.populate ();
+
+									hit.collider.gameObject.transform.GetChild (0).GetComponent<ShaderSwitcher> ().SwitchOutlineOn();
+								}
+							}
 						}
 					}
 				}

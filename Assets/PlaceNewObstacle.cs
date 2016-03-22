@@ -8,6 +8,9 @@ public class PlaceNewObstacle : MonoBehaviour {
 	public void Place()
 	{
 		GameObject lvObstacle = GameObject.Instantiate (obstacle);
+
+		lvObstacle.name = GameObject.Find ("CreatorUniqueController").GetComponent<CreatorNameController> ().CreateUniqueName (lvObstacle.name);
+
 		FigurineStatus lvStatus = lvObstacle.GetComponent<FigurineStatus> ();
 		lvStatus.active = true;
 		lvStatus.picked = true;
@@ -15,6 +18,14 @@ public class PlaceNewObstacle : MonoBehaviour {
 		ObstacleStatus lvObstacleStatus = lvObstacle.GetComponent<ObstacleStatus> ();
 		lvObstacleStatus.name = lvObstacle.name;
 		AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
+
+		if(lvStatusEditor.obstacleStatus != null && !"".Equals(lvStatusEditor.obstacleStatus.name))
+		{
+			GameObject lvOldObstacle = GameObject.Find (lvStatusEditor.obstacleStatus.name);
+			lvOldObstacle.GetComponent<ShaderSwitcher> ().SwitchOutlineOff();
+		}
+
+
 		lvStatusEditor.obstacleStatus = lvObstacleStatus;
 		lvStatusEditor.populate ();
 

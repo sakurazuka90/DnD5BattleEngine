@@ -31,11 +31,11 @@ public class AssetStatsEditor : MonoBehaviour {
 
 	public void setBlocksMovement(bool pmState)
 	{
-		obstacleStatus.isDifficultTerrain = pmState;
+		obstacleStatus.isBlockingMovement = pmState;
 	}
 
 	public void setBlocksLoS(bool pmState)
 	{
-		obstacleStatus.isDifficultTerrain = pmState;
+		obstacleStatus.isBlockingLoS = pmState;
 	}
 }
