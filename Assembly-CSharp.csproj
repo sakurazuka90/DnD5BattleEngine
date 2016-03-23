@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\AssetStatsEditor.cs" />
+     <Compile Include="Assets\BattleFieldSaver.cs" />
      <Compile Include="Assets\CreatorNameController.cs" />
      <Compile Include="Assets\FT_FreeSample\Scene\SampleSceneData\FTsample_ClickToSpawn.cs" />
      <Compile Include="Assets\FT_FreeSample\Script\FTEM_AnimationScrollTexture.cs" />

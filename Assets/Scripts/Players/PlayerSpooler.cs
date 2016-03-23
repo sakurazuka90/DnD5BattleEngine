@@ -129,7 +129,7 @@ public class PlayerSpooler : MonoBehaviour {
 		else
 			lvSelector.playersTurn = false;
 
-		int lvId = GameObject.Find ("GridDrawer").GetComponent<GridDrawer> ().GetGridId (lvStatus.gridX, lvStatus.gridZ);
+		int lvId = GridDrawer.instance.GetGridId (lvStatus.gridX, lvStatus.gridZ);
 
 		lvSelector.SetActivePlayerStartField (lvId);
 	}
@@ -341,10 +341,8 @@ public class PlayerSpooler : MonoBehaviour {
 
 	public Player GetPlayerOnField(int pmCell)
 	{
-		GridDrawer lvDrawer = GameObject.Find ("GridDrawer").GetComponent<GridDrawer> ();
-
-		int lvGridX = lvDrawer.getGridX (pmCell);
-		int lvGridZ = lvDrawer.getGridZ (pmCell);
+		int lvGridX = GridDrawer.instance.getGridX (pmCell);
+		int lvGridZ = GridDrawer.instance.getGridZ (pmCell);
 
 		foreach(Player lvPlayer in mPool)
 		{

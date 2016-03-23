@@ -66,10 +66,7 @@ public class FigurineMover : MonoBehaviour {
 
 				string lvCurrentStep = steps[currentStep];
 
-				GameObject lvCanvas = GameObject.Find ("GridDrawer");
-				GridDrawer lvDrawer = lvCanvas.GetComponent<GridDrawer> ();
-
-				Vector3 lvTarget = lvDrawer.getCellPosition(int.Parse(lvCurrentStep));
+				Vector3 lvTarget = GridDrawer.instance.getCellPosition(int.Parse(lvCurrentStep));
 
 				Vector3 lvPosition = transform.position;
 
@@ -81,28 +78,24 @@ public class FigurineMover : MonoBehaviour {
 					{
 						FigurineStatus lvStatus = this.gameObject.GetComponent<FigurineStatus>();
 
-						gridX = lvDrawer.getGridX(int.Parse(lvCurrentStep));
+						gridX = GridDrawer.instance.getGridX(int.Parse(lvCurrentStep));
 						lvStatus.gridX = gridX;
 
-						gridZ = lvDrawer.getGridZ(int.Parse(lvCurrentStep));
+						gridZ = GridDrawer.instance.getGridZ(int.Parse(lvCurrentStep));
 						lvStatus.gridZ = gridZ;
 
 						currentStep ++;
 
-						Vector3 lvRotation = lvDrawer.GetFigurineFacingRotation (int.Parse(lvCurrentStep), int.Parse(steps [currentStep]));
+						Vector3 lvRotation = GridDrawer.instance.GetFigurineFacingRotation (int.Parse(lvCurrentStep), int.Parse(steps [currentStep]));
 						this.gameObject.transform.eulerAngles = lvRotation;
-						//lvTarget = lvDrawer.getCellPosition(int.Parse(lvCurrentStep));
-
-
-						//transform.Rotate(new Vector3(0,180,0));
 
 					} else {
 						FigurineStatus lvStatus = this.gameObject.GetComponent<FigurineStatus>();
 						
-						gridX = lvDrawer.getGridX(int.Parse(lvCurrentStep));
+						gridX = GridDrawer.instance.getGridX(int.Parse(lvCurrentStep));
 						lvStatus.gridX = gridX;
 						
-						gridZ = lvDrawer.getGridZ(int.Parse(lvCurrentStep));
+						gridZ = GridDrawer.instance.getGridZ(int.Parse(lvCurrentStep));
 						lvStatus.gridZ = gridZ;
 
 						AbortMovement ();

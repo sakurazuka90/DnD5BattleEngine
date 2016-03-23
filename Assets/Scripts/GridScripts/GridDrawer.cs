@@ -1,9 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
+
 
 public class GridDrawer : MonoBehaviour {
 	public float cellSize = 1;
@@ -17,6 +15,16 @@ public class GridDrawer : MonoBehaviour {
 
 	public GameObject obstacleBase;
 	public GameObject[] obstacles;
+
+	public static GridDrawer instance;
+
+	void Awake()
+	{
+		if (instance == null)
+			instance = this;
+		else if (instance != this)
+			Destroy (this);
+	}
 
 	void Start() {
 		Create ();
@@ -184,24 +192,4 @@ public class GridDrawer : MonoBehaviour {
 		return new Vector3 (0.0F, lvYRot, 0.0F);
 	}
 
-	public void Save()
-	{
-		BinaryFormatter lvFormater = new BinaryFormatter ();
-		FileStream lvFile = File.Open (Application.persistentDataPath + "/testsave.dat", FileMode.Open);
-
-		GridData lvData = new GridData ();
-		lvData.x = this.gridWidth;
-		lvData.z = this.gridHeight;
-
-		lvFormater.Serialize (lvFile, lvData);
-		lvFile.Close ();
-	}
-
-
-}
-
-[Serializable]
-class GridData{
-	public int x;
-	public int z;
 }
