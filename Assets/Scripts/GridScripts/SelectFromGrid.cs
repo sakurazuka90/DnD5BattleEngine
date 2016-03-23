@@ -31,9 +31,12 @@ public class SelectFromGrid : MonoBehaviour {
 
 	private List<int> constructorFilledSquares;
 
+	private static SelectFromGrid mInstance;
+
 
 	// Use this for initialization
 	void Start () {
+		Debug.Log ("Start");
 
 		GameObject lvCanvas = GameObject.Find ("GridDrawer");
 		mGridDrawer = lvCanvas.GetComponent<GridDrawer> ();
