@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 
 public class GridDrawer : MonoBehaviour {
@@ -15,6 +17,8 @@ public class GridDrawer : MonoBehaviour {
 
 	public GameObject obstacleBase;
 	public GameObject[] obstacles;
+
+	public bool isGameplay = true;
 
 	public static GridDrawer instance;
 
@@ -32,6 +36,18 @@ public class GridDrawer : MonoBehaviour {
 
 	public void Create()
 	{
+		if (isGameplay) {
+			if (File.Exists (Application.persistentDataPath + "/testsave.dat")) {
+				BinaryFormatter lvFormater = new BinaryFormatter ();
+				FileStream lvFile = File.Open (Application.persistentDataPath + "/testsave.dat",FileMode.Open);
+				GridData lvData = (GridData)lvFormater.Deserialize (lvFile);
+				gridWidth = lvData.x;
+				gridHeight = lvData.z;
+
+			}
+		}
+
+
 		RemoveCells ();
 
 		mCells = new GameObject[gridHeight * gridWidth];
