@@ -14,12 +14,9 @@ public class CreateNewBattlefield : MonoBehaviour {
 		string lvY = GameObject.Find ("YInputText").GetComponent<Text> ().text;
 
 		if (lvX.Length > 0 && lvY.Length > 0) {
-			GridDrawer.instance.Create (int.Parse (lvX), int.Parse (lvY));
+			BattlefieldConstructor.instance.GenerateGrid (int.Parse(lvX), int.Parse(lvY));
+			BattlefieldConstructor.instance.SetupCameraMover (float.Parse (lvX), float.Parse (lvY));
 
-			MoveCamera lvMover = GameObject.Find ("CameraMover").GetComponent<MoveCamera> ();
-			lvMover.isMovable = true;
-			lvMover.maxX = float.Parse (lvX);
-			lvMover.maxZ = float.Parse (lvY);
 			obstacleWindow.SetActive (true);
 			obstacleStatusWindow.SetActive (true);
 			this.gameObject.SetActive (false);

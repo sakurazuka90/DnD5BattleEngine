@@ -12,6 +12,16 @@ public class MoveCamera : MonoBehaviour {
 	public float maxX;
 	public float maxZ;
 
+	public static MoveCamera instance;
+
+	void Awake()
+	{
+		if (instance == null)
+			instance = this;
+		else if (instance != this)
+			Destroy (this);
+	}
+
 	void Update () {
 
 		if (isMovable) {

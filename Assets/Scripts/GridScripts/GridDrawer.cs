@@ -1,9 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
-
 
 public class GridDrawer : MonoBehaviour {
 	public float cellSize = 1;
@@ -31,22 +28,11 @@ public class GridDrawer : MonoBehaviour {
 	}
 
 	void Start() {
-		Create ();
+		//Create ();
 	}
 
 	public void Create()
 	{
-		if (isGameplay) {
-			if (File.Exists (Application.persistentDataPath + "/testsave.dat")) {
-				BinaryFormatter lvFormater = new BinaryFormatter ();
-				FileStream lvFile = File.Open (Application.persistentDataPath + "/testsave.dat",FileMode.Open);
-				GridData lvData = (GridData)lvFormater.Deserialize (lvFile);
-				gridWidth = lvData.x;
-				gridHeight = lvData.z;
-
-			}
-		}
-
 
 		RemoveCells ();
 
