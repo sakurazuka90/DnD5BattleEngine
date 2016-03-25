@@ -5,6 +5,8 @@ public class BattlefieldConstructor : MonoBehaviour {
 
 	public static BattlefieldConstructor instance;
 
+	public bool isGameplay = false;
+
 	void Awake()
 	{
 		if (instance == null)
@@ -15,7 +17,10 @@ public class BattlefieldConstructor : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		if(isGameplay){
+			BattlefieldStateReader.instance.ParseBattlefieldFile ();
+			GenerateGridFromFile ();
+		}
 	}
 
 	public void GenerateGrid(int pmGridWidth, int pmGridHeight)

@@ -1,13 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GridScripts/CreateNewBattlefield.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/BattlefieldStateReader.cs">
     <Files>
-      <File FileName="Assets/Scripts/Engine/MoveCamera.cs" Line="7" Column="24" />
-      <File FileName="Assets/Scripts/GridScripts/GridDrawer.cs" Line="45" Column="27" />
+      <File FileName="Assets/Scripts/GridScripts/GridDrawer.cs" Line="20" Column="1" />
+      <File FileName="Assets/Scripts/Engine/MoveCamera.cs" Line="15" Column="26" />
       <File FileName="Assets/ObstacleStatus.cs" Line="1" Column="1" />
       <File FileName="Assets/BattleFieldSaver.cs" Line="1" Column="1" />
       <File FileName="Assets/GridData.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GridScripts/CreateNewBattlefield.cs" Line="19" Column="85" />
+      <File FileName="Assets/Scripts/GridScripts/CreateNewBattlefield.cs" Line="18" Column="92" />
+      <File FileName="Assets/BattlefieldConstructor.cs" Line="28" Column="104" />
+      <File FileName="Assets/BattlefieldStateReader.cs" Line="20" Column="38" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
