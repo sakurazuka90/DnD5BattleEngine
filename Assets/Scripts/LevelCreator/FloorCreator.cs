@@ -11,13 +11,20 @@ public class FloorCreator : MonoBehaviour {
 	private float nextTileX;
 	private float nextTileZ;
 
-	void Start() {
-		
+	public static FloorCreator instance;
 
+	void Awake()
+	{
+		if (instance == null)
+			instance = this;
+		else if (instance != this)
+			Destroy (this);
 	}
 
 	public void CreateFloor(int x, int y)
 	{
+		GameObjectUtils.RemoveAllChildren (this.gameObject);
+
 		lvTileSize = floorTile.GetComponent<MeshRenderer> ().bounds.size;
 		nextTileX = -lvTileSize.x / 2;
 		nextTileZ = -lvTileSize.z / 2;
@@ -34,13 +41,12 @@ public class FloorCreator : MonoBehaviour {
 			nextTileZ += lvTileSize.z;
 
 		}
-
-		CreateTopWall(x, y);
-		CreateSideWalls (x, y);
 	}
 		
 	public void CreateWalls(int x, int y)
 	{
+		CreateTopWall(x, y);
+		CreateSideWalls (x, y);
 	}
 
 	private void CreateTopWall(int x, int y)
@@ -79,4 +85,6 @@ public class FloorCreator : MonoBehaviour {
 		}
 
 	}
+
+
 }

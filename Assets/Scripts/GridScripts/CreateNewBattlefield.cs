@@ -16,6 +16,8 @@ public class CreateNewBattlefield : MonoBehaviour {
 		if (lvX.Length > 0 && lvY.Length > 0) {
 			BattlefieldConstructor.instance.GenerateGrid (int.Parse(lvX), int.Parse(lvY));
 			BattlefieldConstructor.instance.SetupCameraMover (float.Parse (lvX), float.Parse (lvY));
+			BattlefieldConstructor.instance.CreateFloor (int.Parse (lvX), int.Parse (lvY));
+			BattlefieldConstructor.instance.CreateWalls (int.Parse (lvX), int.Parse (lvY));
 
 			obstacleWindow.SetActive (true);
 			obstacleStatusWindow.SetActive (true);

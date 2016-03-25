@@ -20,6 +20,9 @@ public class BattlefieldConstructor : MonoBehaviour {
 		if(isGameplay){
 			BattlefieldStateReader.instance.ParseBattlefieldFile ();
 			GenerateGridFromFile ();
+			SetupCameraMover ((float)BattlefieldStateReader.instance.GridWidth, (float)BattlefieldStateReader.instance.GridHeight);
+			CreateFloor (BattlefieldStateReader.instance.GridWidth, BattlefieldStateReader.instance.GridHeight);
+			CreateWalls (BattlefieldStateReader.instance.GridWidth, BattlefieldStateReader.instance.GridHeight);
 		}
 	}
 
@@ -38,6 +41,16 @@ public class BattlefieldConstructor : MonoBehaviour {
 		MoveCamera.instance.isMovable = true;
 		MoveCamera.instance.maxX = pmX;
 		MoveCamera.instance.maxZ = pmY;
+	}
+
+	public void CreateFloor(int pmGridWidth, int pmGridHeight)
+	{
+		FloorCreator.instance.CreateFloor (pmGridWidth,pmGridHeight);
+	}
+
+	public void CreateWalls(int pmGridWidth, int pmGridHeight)
+	{
+		FloorCreator.instance.CreateWalls (pmGridWidth, pmGridHeight);
 	}
 	
 

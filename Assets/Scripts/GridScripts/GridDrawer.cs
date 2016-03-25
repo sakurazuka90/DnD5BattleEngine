@@ -43,12 +43,6 @@ public class GridDrawer : MonoBehaviour {
 				mCells[z * gridWidth + x] = CreateChild(x,z);
 			}
 		}
-
-		GameObject lvCreator = GameObject.Find ("FloorCreator");
-		if (lvCreator != null) {
-			GameObjectUtils.RemoveAllChildren (lvCreator);
-			lvCreator.GetComponent<FloorCreator> ().CreateFloor (gridWidth, gridHeight);
-		}
 	}
 
 	private void RemoveCells()
