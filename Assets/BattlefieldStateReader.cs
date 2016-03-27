@@ -30,7 +30,7 @@ public class BattlefieldStateReader : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-	
+		ListFiles();
 	}
 
 	public void ParseBattlefieldFile ()
@@ -44,6 +44,17 @@ public class BattlefieldStateReader : MonoBehaviour
 
 		}
 
+	}
+
+	private void ListFiles()
+	{
+		DirectoryInfo lvInfo = new DirectoryInfo(Application.persistentDataPath);
+		FileInfo[] lvFiles = lvInfo.GetFiles ();
+		foreach (FileInfo file in lvFiles) 
+		{
+			
+			Debug.Log (file.Name);
+		}
 	}
 
 
