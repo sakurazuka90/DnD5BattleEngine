@@ -1,10 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\BattlefieldStateReader.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GenericyesNoPanelControler.cs">
     <Files>
-      <File FileName="Assets\BattlefieldStateReader.cs" Line="55" Column="1" />
-      <File FileName="Assets\BattleFieldSaver.cs" Line="30" Column="11" />
-      <File FileName="Assets\Scripts\GridScripts\CreateNewBattlefield.cs" Line="23" Column="19" />
+      <File FileName="Assets/BattleFieldSaver.cs" Line="32" Column="12" />
+      <File FileName="Assets/GenericyesNoPanelControler.cs" Line="20" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

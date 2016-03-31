@@ -17,17 +17,22 @@ public class BattleFieldSaver : MonoBehaviour {
 		GameObject lvObject = saveNamePanel.transform.FindChild ("SaveFileName").gameObject;
 		string lvFileName = lvObject.GetComponent<InputField>().text;
 
-		BinaryFormatter lvFormater = new BinaryFormatter ();
-		FileStream lvFile = File.Open (Application.persistentDataPath + "/"+ lvFileName +".dat", FileMode.OpenOrCreate);
+		if (File.Exists (Application.persistentDataPath + "/" + lvFileName + ".dat")) {
+		} else {
+			BinaryFormatter lvFormater = new BinaryFormatter ();
+			FileStream lvFile = File.Open (Application.persistentDataPath + "/"+ lvFileName +".dat", FileMode.OpenOrCreate);
 
-		GridData lvData = new GridData ();
-		lvData.x = GridDrawer.instance.gridWidth;
-		lvData.z = GridDrawer.instance.gridHeight;
+			GridData lvData = new GridData ();
+			lvData.x = GridDrawer.instance.gridWidth;
+			lvData.z = GridDrawer.instance.gridHeight;
 
-		lvFormater.Serialize (lvFile, lvData);
-		lvFile.Close ();
+			lvFormater.Serialize (lvFile, lvData);
+			lvFile.Close ();
 
-		Hide ();
+			Hide ();
+		}
+
+
 	}
 
 	public void Show()
