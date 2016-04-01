@@ -56,6 +56,7 @@
      <Compile Include="Assets\FT_FreeSample\Script\FTEM_DeadTime.cs" />
      <Compile Include="Assets\GenericyesNoPanelControler.cs" />
      <Compile Include="Assets\GridData.cs" />
+     <Compile Include="Assets\ObstacleData.cs" />
      <Compile Include="Assets\ObstacleRotator.cs" />
      <Compile Include="Assets\ObstacleStatus.cs" />
      <Compile Include="Assets\PlaceNewObstacle.cs" />

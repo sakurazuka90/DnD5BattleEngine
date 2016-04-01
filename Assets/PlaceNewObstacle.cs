@@ -17,6 +17,7 @@ public class PlaceNewObstacle : MonoBehaviour {
 
 		ObstacleStatus lvObstacleStatus = lvObstacle.GetComponent<ObstacleStatus> ();
 		lvObstacleStatus.name = lvObstacle.name;
+		lvObstacleStatus.prefabName = obstacle.name;
 		AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
 
 		if(lvStatusEditor.obstacleStatus != null && !"".Equals(lvStatusEditor.obstacleStatus.name))

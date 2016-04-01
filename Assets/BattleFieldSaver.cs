@@ -43,6 +43,7 @@ public class BattleFieldSaver : MonoBehaviour
 		GameObject lvObject = saveNamePanel.transform.FindChild ("SaveFileName").gameObject;
 		string lvFileName = lvObject.GetComponent<InputField> ().text;
 		SaveMapToFile (lvFileName);
+		this.Hide ();
 	}
 
 	public void SaveMapToFile (string pmFileName)
@@ -53,6 +54,7 @@ public class BattleFieldSaver : MonoBehaviour
 		GridData lvData = new GridData ();
 		lvData.x = GridDrawer.instance.gridWidth;
 		lvData.z = GridDrawer.instance.gridHeight;
+		lvData.obstacles = CollectObstacleData ();
 
 		lvFormater.Serialize (lvFile, lvData);
 		lvFile.Close ();
@@ -66,6 +68,8 @@ public class BattleFieldSaver : MonoBehaviour
 		saveNamePanel.SetActive (true);
 		GameObject lvObject = saveNamePanel.transform.FindChild ("SaveFileName").gameObject;
 		lvObject.GetComponent<InputField> ().text = "NewMap";
+
+		MoveCamera.instance.isMovable = false;
 	}
 
 	public void Hide ()
@@ -74,6 +78,24 @@ public class BattleFieldSaver : MonoBehaviour
 		assetPanel.SetActive (true);
 		assetStatsPanel.SetActive (true);
 		saveNamePanel.SetActive (false);
+
+		MoveCamera.instance.isMovable = true;
+	}
+
+	private ObstacleData[] CollectObstacleData()
+	{
+		GameObject[] lvCells = GridDrawer.instance.mCells;
+		ObstacleData [] lvData = new ObstacleData[lvCells.Length];
+
+		for (int i = 0; i < lvCells.Length; i++) {
+			if (lvCells [i].transform.childCount > 0) {
+				lvData [i] = lvCells [i].transform.GetChild (0).gameObject.GetComponent<ObstacleStatus> ().getData();
+			} else {
+				lvData [i] = null;
+			}
+		}
+
+		return lvData;
 	}
 
 
