@@ -68,7 +68,7 @@ public class BattlefieldConstructor : MonoBehaviour {
 
 				FigurineMover lvMover = lvInstance.GetComponent<FigurineMover> ();
 				lvMover.gridX = GridDrawer.instance.getGridX (i);
-				lvMover.gridZ = GridDrawer.instance.getGridX (i);
+				lvMover.gridZ = GridDrawer.instance.getGridZ (i);
 
 				ObstacleStatus lvStatus = lvInstance.GetComponent<ObstacleStatus> ();
 				lvStatus.isBlockingLoS = lvData.isBlockingLineOfSight;

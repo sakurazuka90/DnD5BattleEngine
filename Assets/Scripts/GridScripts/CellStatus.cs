@@ -67,11 +67,12 @@ public class CellStatus : MonoBehaviour {
 		this.farRange = false;
 	}
 
-	/*void OnMouseEnter() {
-		if(this.target)
-			Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
+	public bool Blocked{
+		get{
+			if (this.gameObject.transform.childCount > 0) {
+				return this.gameObject.transform.GetChild (0).gameObject.GetComponent<ObstacleStatus> ().isBlockingMovement;
+			} else
+				return false;
+		}
 	}
-	void OnMouseExit() {
-		Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-	}*/
 }

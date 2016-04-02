@@ -344,7 +344,7 @@ public class SelectFromGrid : MonoBehaviour {
 				CellStatus lvStatusUpp = lvCellUpp.GetComponent<CellStatus> ();
 				string lvCellId = "" + (GridDrawer.instance.gridWidth * cellZ + pmGridX);
 
-				if(lvStatusUpp.avaiable && !IsEnemyField(int.Parse(lvCellId)))
+				if(!lvStatusUpp.Blocked && !IsEnemyField(int.Parse(lvCellId)))
 				{
 					string cellGridZ = cellZ.ToString();
 					string cellGridX = pmGridX.ToString();
@@ -368,7 +368,7 @@ public class SelectFromGrid : MonoBehaviour {
 				CellStatus lvStatusBott = lvCellBott.GetComponent<CellStatus> ();
 				string lvCellId = "" + (GridDrawer.instance.gridWidth * cellZ + pmGridX);
 				
-				if(lvStatusBott.avaiable && !IsEnemyField(int.Parse(lvCellId)))
+				if(!lvStatusBott.Blocked && !IsEnemyField(int.Parse(lvCellId)))
 				{
 					string cellGridZ = cellZ.ToString();
 					string cellGridX = pmGridX.ToString();
@@ -392,7 +392,7 @@ public class SelectFromGrid : MonoBehaviour {
 				CellStatus lvStatusRight = lvCellRight.GetComponent<CellStatus> ();
 				string lvCellId = "" + (GridDrawer.instance.gridWidth * pmGridZ + cellX);
 				
-				if(lvStatusRight.avaiable && !IsEnemyField(int.Parse(lvCellId)))
+				if(!lvStatusRight.Blocked && !IsEnemyField(int.Parse(lvCellId)))
 				{
 					string cellGridX = cellX.ToString();
 					string cellGridZ = pmGridZ.ToString();
@@ -416,7 +416,7 @@ public class SelectFromGrid : MonoBehaviour {
 				CellStatus lvStatusLeft = lvCellLeft.GetComponent<CellStatus> ();
 				string lvCellId = "" + (GridDrawer.instance.gridWidth * pmGridZ + cellX);
 				
-				if(lvStatusLeft.avaiable && !IsEnemyField(int.Parse(lvCellId)))
+				if(!lvStatusLeft.Blocked && !IsEnemyField(int.Parse(lvCellId)))
 				{
 					string cellGridX = cellX.ToString();
 					string cellGridZ = pmGridZ.ToString();
@@ -441,7 +441,7 @@ public class SelectFromGrid : MonoBehaviour {
 				CellStatus lvStatusTopRight = lvCellTopRight.GetComponent<CellStatus> ();
 				string lvCellId = "" + (GridDrawer.instance.gridWidth * cellZ + cellX);
 				
-				if(lvStatusTopRight.avaiable && !IsEnemyField(int.Parse(lvCellId)))
+				if(!lvStatusTopRight.Blocked && !IsEnemyField(int.Parse(lvCellId)))
 				{
 					string cellGridX = cellX.ToString();
 					string cellGridZ = cellZ.ToString();
@@ -464,7 +464,7 @@ public class SelectFromGrid : MonoBehaviour {
 				CellStatus lvStatusTopLeft = lvCellTopLeft.GetComponent<CellStatus> ();
 				string lvCellId = "" + (GridDrawer.instance.gridWidth * cellZ + cellX);
 				
-				if(lvStatusTopLeft.avaiable && !IsEnemyField(int.Parse(lvCellId)))
+				if(!lvStatusTopLeft.Blocked && !IsEnemyField(int.Parse(lvCellId)))
 				{
 					string cellGridX = cellX.ToString();
 					string cellGridZ = cellZ.ToString();
@@ -487,7 +487,7 @@ public class SelectFromGrid : MonoBehaviour {
 				CellStatus lvStatusBotRight = lvCellBotRight.GetComponent<CellStatus> ();
 				string lvCellId = "" + (GridDrawer.instance.gridWidth * cellZ + cellX);
 				
-				if(lvStatusBotRight.avaiable && !IsEnemyField(int.Parse(lvCellId)))
+				if(!lvStatusBotRight.Blocked && !IsEnemyField(int.Parse(lvCellId)))
 				{
 					string cellGridX = cellX.ToString();
 					string cellGridZ = cellZ.ToString();
@@ -510,7 +510,7 @@ public class SelectFromGrid : MonoBehaviour {
 				CellStatus lvStatusBotLeft = lvCellBotLeft.GetComponent<CellStatus> ();
 				string lvCellId = "" + (GridDrawer.instance.gridWidth * cellZ + cellX);
 				
-				if(lvStatusBotLeft.avaiable && !IsEnemyField(int.Parse(lvCellId)))
+				if(!lvStatusBotLeft.Blocked && !IsEnemyField(int.Parse(lvCellId)))
 				{
 					string cellGridX = cellX.ToString();
 					string cellGridZ = cellZ.ToString();
