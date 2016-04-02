@@ -8,6 +8,7 @@ public class BattlefieldStateReader : MonoBehaviour
 
 	private int _gridWidth = 0;
 	private int _gridHeight = 0;
+	private ObstacleData[] _obstacleData;
 
 	public int GridWidth{
 		get{return _gridWidth;}
@@ -15,6 +16,10 @@ public class BattlefieldStateReader : MonoBehaviour
 
 	public int GridHeight{
 		get{return _gridHeight;}
+	}
+
+	public ObstacleData[] Obstacles{
+		get{return _obstacleData; }
 	}
 
 	public static BattlefieldStateReader instance;
@@ -41,7 +46,7 @@ public class BattlefieldStateReader : MonoBehaviour
 			GridData lvData = (GridData)lvFormater.Deserialize (lvFile);
 			_gridWidth = lvData.x;
 			_gridHeight = lvData.z;
-
+			_obstacleData = lvData.obstacles;
 		}
 
 	}

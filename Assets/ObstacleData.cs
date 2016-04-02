@@ -9,4 +9,5 @@ public class ObstacleData{
 	public bool isBlockingMovement;
 	public bool isBlockingLineOfSight;
 	public float providedCover;
+	public float rotation;
 }

@@ -20,6 +20,7 @@ public class ObstacleStatus : MonoBehaviour {
 		lvData.isDifficultTerrain = isDifficultTerrain;
 		lvData.providedCover = 0.0f;
 		lvData.obstaclePrefabName = this.prefabName;
+		lvData.rotation = this.gameObject.transform.rotation.y;
 
 		return lvData;
 	}

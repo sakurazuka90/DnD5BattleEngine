@@ -1,9 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GenericyesNoPanelControler.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\BattleFieldSaver.cs">
     <Files>
-      <File FileName="Assets/BattleFieldSaver.cs" Line="32" Column="12" />
-      <File FileName="Assets/GenericyesNoPanelControler.cs" Line="20" Column="3" />
+      <File FileName="Assets\BattleFieldSaver.cs" Line="98" Column="1" />
+      <File FileName="Assets\GenericyesNoPanelControler.cs" Line="20" Column="3" />
+      <File FileName="Assets\GridData.cs" Line="11" Column="1" />
+      <File FileName="Assets\ObstacleData.cs" Line="6" Column="8" />
+      <File FileName="Assets\ObstacleStatus.cs" Line="22" Column="47" />
+      <File FileName="Assets\PlaceNewObstacle.cs" Line="26" Column="69" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -20,6 +24,9 @@
       <Breakpoint file="C:\Users\sakurazuka\Documents\DnD5BattleEngine\Assets\ObstacleRotator.cs" line="8" column="1" />
       <Breakpoint file="C:\Users\sakurazuka90\Documents\DnD5BattleEngine\Assets\AssetStatsEditor.cs" line="31" column="1" />
       <Breakpoint file="C:\Users\sakurazuka90\Documents\DnD5BattleEngine\Assets\BattleFieldSaver.cs" line="40" column="1" />
+      <Breakpoint file="C:\Users\sakurazuka\Documents\DnD5BattleEngine\Assets\BattleFieldSaver.cs" line="87" column="1" />
+      <Breakpoint file="C:\Users\sakurazuka\Documents\DnD5BattleEngine\Assets\BattleFieldSaver.cs" line="98" column="1" />
+      <Breakpoint file="C:\Users\sakurazuka\Documents\DnD5BattleEngine\Assets\BattleFieldSaver.cs" line="92" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
