@@ -56,6 +56,7 @@
      <Compile Include="Assets\FT_FreeSample\Script\FTEM_DeadTime.cs" />
      <Compile Include="Assets\GenericyesNoPanelControler.cs" />
      <Compile Include="Assets\GridData.cs" />
+     <Compile Include="Assets\LoadPanelController.cs" />
      <Compile Include="Assets\ObstacleData.cs" />
      <Compile Include="Assets\ObstacleRotator.cs" />
      <Compile Include="Assets\ObstacleStatus.cs" />
@@ -104,6 +105,7 @@
      <Compile Include="Assets\Scripts\Players\Stats\DiceRoller.cs" />
      <Compile Include="Assets\Scripts\Players\Stats\TestsNames.cs" />
      <Compile Include="Assets\Scripts\Utils\GameObjectUtils.cs" />
+     <Compile Include="Assets\SelectOptionController.cs" />
      <Compile Include="Assets\ShaderSwitcher.cs" />
      <None Include="Assets\Shaders\WarpJump.shader" />
      <None Include="Assets\Shaders\Billboard.shader" />

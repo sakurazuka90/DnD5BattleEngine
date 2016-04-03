@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
@@ -35,7 +36,7 @@ public class BattlefieldStateReader : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		ListFiles();
+		//ListFiles();
 	}
 
 	public void ParseBattlefieldFile ()
@@ -51,15 +52,21 @@ public class BattlefieldStateReader : MonoBehaviour
 
 	}
 
-	private void ListFiles()
+	private List<string> ListFiles()
 	{
 		DirectoryInfo lvInfo = new DirectoryInfo(Application.persistentDataPath);
 		FileInfo[] lvFiles = lvInfo.GetFiles ();
+
+		List<string> lvFilenames = new List<string> ();
+
 		foreach (FileInfo file in lvFiles) 
 		{
-			
-			Debug.Log (file.Name);
+			if ("dat".Equals (file.Extension)) {
+				lvFilenames.Add (file.Name);
+			}
 		}
+
+		return lvFilenames;
 	}
 
 
