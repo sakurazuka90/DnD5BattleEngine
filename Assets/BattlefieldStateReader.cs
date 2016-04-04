@@ -52,7 +52,7 @@ public class BattlefieldStateReader : MonoBehaviour
 
 	}
 
-	private List<string> ListFiles()
+	public List<string> ListFiles()
 	{
 		DirectoryInfo lvInfo = new DirectoryInfo(Application.persistentDataPath);
 		FileInfo[] lvFiles = lvInfo.GetFiles ();
@@ -61,7 +61,7 @@ public class BattlefieldStateReader : MonoBehaviour
 
 		foreach (FileInfo file in lvFiles) 
 		{
-			if ("dat".Equals (file.Extension)) {
+			if (".dat".Equals (file.Extension)) {
 				lvFilenames.Add (file.Name);
 			}
 		}

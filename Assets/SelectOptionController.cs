@@ -8,11 +8,30 @@ public class SelectOptionController : MonoBehaviour {
 	void Start () {
 		this.gameObject.GetComponent<Button> ().onClick.AddListener (this.Select);
 	}
-	
+
+	public void SetName(string pmName)
+	{
+		this.gameObject.transform.FindChild ("Text").GetComponent<Text> ().text = pmName;
+	}
+		
 	private void Select()
 	{
-		this.gameObject.GetComponent<Image>().color = new Color (103.0F / 255.0F, 103.0F / 255.0F, 103.0F / 255.0F);
+		LoadPanelController lvController = GameObject.Find ("FileLoadPanel").GetComponent<LoadPanelController> ();
+		lvController.DeselectAll ();
 
-		this.gameObject.transform.FindChild("Text").GetComponent<Text>().color = new Color (193.0F / 255.0F, 193.0F / 255.0F, 193.0F / 255.0F);
+		this.SetBackgroundColor(new Color (103.0F / 255.0F, 103.0F / 255.0F, 103.0F / 255.0F));
+		this.SetTextColor (new Color (193.0F / 255.0F, 193.0F / 255.0F, 193.0F / 255.0F));
+
+		lvController.Select (this.gameObject);
+	}
+
+	public void SetBackgroundColor(Color pmColor)
+	{
+		this.gameObject.GetComponent<Image> ().color = pmColor;
+	}
+
+	public void SetTextColor(Color pmColor)
+	{
+		this.gameObject.transform.FindChild ("Text").GetComponent<Text> ().color = pmColor;
 	}
 }
