@@ -22,7 +22,7 @@ public class SelectOptionController : MonoBehaviour {
 		this.SetBackgroundColor(new Color (103.0F / 255.0F, 103.0F / 255.0F, 103.0F / 255.0F));
 		this.SetTextColor (new Color (193.0F / 255.0F, 193.0F / 255.0F, 193.0F / 255.0F));
 
-		lvController.Select (this.gameObject);
+		lvController.Select (this.GetValue());
 	}
 
 	public void SetBackgroundColor(Color pmColor)
@@ -34,4 +34,10 @@ public class SelectOptionController : MonoBehaviour {
 	{
 		this.gameObject.transform.FindChild ("Text").GetComponent<Text> ().color = pmColor;
 	}
+
+	public string GetValue()
+	{
+		return this.gameObject.transform.FindChild ("Text").GetComponent<Text> ().text;
+	}
+
 }

@@ -39,11 +39,11 @@ public class BattlefieldStateReader : MonoBehaviour
 		//ListFiles();
 	}
 
-	public void ParseBattlefieldFile ()
+	public void ParseBattlefieldFile (string pmFilename)
 	{
-		if (File.Exists (Application.persistentDataPath + "/testsave.dat")) {
+		if (File.Exists (Application.persistentDataPath + "/" + pmFilename)) {
 			BinaryFormatter lvFormater = new BinaryFormatter ();
-			FileStream lvFile = File.Open (Application.persistentDataPath + "/testsave.dat", FileMode.Open);
+			FileStream lvFile = File.Open (Application.persistentDataPath + "/" + pmFilename, FileMode.Open);
 			GridData lvData = (GridData)lvFormater.Deserialize (lvFile);
 			_gridWidth = lvData.x;
 			_gridHeight = lvData.z;

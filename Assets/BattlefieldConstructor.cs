@@ -17,14 +17,16 @@ public class BattlefieldConstructor : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if(isGameplay){
-			BattlefieldStateReader.instance.ParseBattlefieldFile ();
-			GenerateGridFromFile ();
-			SetupCameraMover ((float)BattlefieldStateReader.instance.GridWidth, (float)BattlefieldStateReader.instance.GridHeight);
-			CreateFloor (BattlefieldStateReader.instance.GridWidth, BattlefieldStateReader.instance.GridHeight);
-			CreateWalls (BattlefieldStateReader.instance.GridWidth, BattlefieldStateReader.instance.GridHeight);
-			SetupObstacles(BattlefieldStateReader.instance.Obstacles);
-		}
+	}
+
+	public void GenerateGameplay(string pmFilename)
+	{
+		BattlefieldStateReader.instance.ParseBattlefieldFile (pmFilename);
+		GenerateGridFromFile ();
+		SetupCameraMover ((float)BattlefieldStateReader.instance.GridWidth, (float)BattlefieldStateReader.instance.GridHeight);
+		CreateFloor (BattlefieldStateReader.instance.GridWidth, BattlefieldStateReader.instance.GridHeight);
+		CreateWalls (BattlefieldStateReader.instance.GridWidth, BattlefieldStateReader.instance.GridHeight);
+		SetupObstacles(BattlefieldStateReader.instance.Obstacles);
 	}
 
 	public void GenerateGrid(int pmGridWidth, int pmGridHeight)

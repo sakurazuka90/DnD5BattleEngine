@@ -107,6 +107,7 @@
      <Compile Include="Assets\Scripts\Utils\GameObjectUtils.cs" />
      <Compile Include="Assets\SelectOptionController.cs" />
      <Compile Include="Assets\ShaderSwitcher.cs" />
+     <Compile Include="Assets\UiItemLibrary.cs" />
      <None Include="Assets\Shaders\WarpJump.shader" />
      <None Include="Assets\Shaders\Billboard.shader" />
      <None Include="Assets\Shaders\Burnout.shader" />

@@ -8,7 +8,7 @@ public class LoadPanelController : MonoBehaviour {
 	public GameObject content;
 	public GameObject optionPrefab;
 
-	private GameObject _selected;
+	private string _selected;
 
 
 	// Use this for initialization
@@ -34,9 +34,10 @@ public class LoadPanelController : MonoBehaviour {
 		}
 	}
 
-	public void Select(GameObject pmGameObject)
+	public void Select(string pmFilename)
 	{
-		_selected = pmGameObject;
+		_selected = pmFilename;
+		GameObject.Find ("LoadBattlefieldButton").GetComponent<Button>().interactable = true;
 	}
 
 	public void DeselectAll()
@@ -47,6 +48,21 @@ public class LoadPanelController : MonoBehaviour {
 			this._selected = null;
 		}
 			
+	}
+
+	public void Load()
+	{
+		BattlefieldConstructor.instance.GenerateGameplay(_selected);
+
+		UiItemLibrary.instance.spoolerPanel.SetActive (true);
+		UiItemLibrary.instance.inventoryButton.SetActive (true);
+		UiItemLibrary.instance.playerInfoPanel.SetActive (true);
+		UiItemLibrary.instance.shortcutPanel.SetActive (true);
+		UiItemLibrary.instance.skillsButton.SetActive (true);
+
+		PlayerSpooler.instance.Run ();
+
+		this.gameObject.SetActive (false);
 	}
 
 

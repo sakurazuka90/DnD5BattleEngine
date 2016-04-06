@@ -13,8 +13,23 @@ public class PlayerSpooler : MonoBehaviour {
 
 	private GameObject [] mSpoolerPics;
 
+	public static PlayerSpooler instance;
+
+	void Awake()
+	{
+		if (instance == null)
+			instance = this;
+		else if (instance != this)
+			Destroy (this);
+	}
+
 	// Use this for initialization
 	void Start () {
+
+	}
+
+	public void Run()
+	{
 
 		mPool = new List<Player> ();
 
