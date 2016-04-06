@@ -83,7 +83,7 @@ public class SelectFromGrid : MonoBehaviour {
 					FigurineStatus lvStatus = null;
 
 					if (!mCreatorMode) {
-						lvSpooler = GameObject.Find ("PlayerSpooler").GetComponent<PlayerSpooler> ();
+						lvSpooler = PlayerSpooler.instance;
 						lvFigurine = lvSpooler.mSpooledObject;
 					} else {
 						lvFigurine = creatorObstacle;
