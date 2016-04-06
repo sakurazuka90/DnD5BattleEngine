@@ -20,7 +20,7 @@ public class ObstacleStatus : MonoBehaviour {
 		lvData.isDifficultTerrain = isDifficultTerrain;
 		lvData.providedCover = 0.0f;
 		lvData.obstaclePrefabName = this.prefabName;
-		lvData.rotation = this.gameObject.transform.rotation.y;
+		lvData.rotation = this.gameObject.transform.GetChild (0).eulerAngles.y;
 
 		return lvData;
 	}

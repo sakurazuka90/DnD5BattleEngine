@@ -77,7 +77,9 @@ public class BattlefieldConstructor : MonoBehaviour {
 				lvStatus.isDifficultTerrain = lvData.isDifficultTerrain;
 				lvStatus.isBlockingMovement = lvData.isBlockingMovement;
 
-				lvInstance.transform.eulerAngles = new Vector3 (0.0f, lvData.rotation, 0.0f);
+				lvInstance.GetComponent<ObstacleRotator> ().Rotate (lvData.rotation);
+
+				//lvInstance.transform.eulerAngles = new Vector3 (0.0f, lvData.rotation, 0.0f);
 
 			}
 		}
