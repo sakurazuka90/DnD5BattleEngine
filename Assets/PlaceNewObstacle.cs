@@ -1,9 +1,30 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlaceNewObstacle : MonoBehaviour {
 
 	public GameObject obstacle;
+	public GameObject content;
+	public GameObject genericButtonPrefab;
+
+	void Start () {
+		GenerateContent ("Dungeon");
+	}
+
+	public void GenerateContent(string pmCategoryName)
+	{
+		Sprite[] lvItems = Resources.LoadAll<Sprite> ("ObstaclesImages/" + pmCategoryName); 
+
+		foreach(Sprite lvImage in lvItems)
+		{
+			GameObject lvInstance = Instantiate (genericButtonPrefab);
+			lvInstance.GetComponent<Image> ().sprite = lvImage;
+
+			lvInstance.transform.parent = content.transform;
+		}
+	}
+
 
 	public void Place()
 	{
