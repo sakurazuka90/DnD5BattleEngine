@@ -21,13 +21,17 @@ public class PlaceNewObstacle : MonoBehaviour {
 			GameObject lvInstance = Instantiate (genericButtonPrefab);
 			lvInstance.GetComponent<Image> ().sprite = lvImage;
 
+			lvInstance.GetComponent<GenericItemButton> ().InitializeButton (() => { Place(lvImage.name);});
+
 			lvInstance.transform.parent = content.transform;
 		}
 	}
 
 
-	public void Place()
+	public void Place(string pmPrefabName)
 	{
+		obstacle = Resources.Load<GameObject> ("ObstaclePrefabs/"+pmPrefabName);
+
 		GameObject lvObstacle = GameObject.Instantiate (obstacle);
 
 		lvObstacle.name = GameObject.Find ("CreatorUniqueController").GetComponent<CreatorNameController> ().CreateUniqueName (lvObstacle.name);

@@ -63,7 +63,7 @@ public class BattlefieldConstructor : MonoBehaviour {
 		for (int i = 0; i < pmObstacleData.Length; i++) {
 			if (pmObstacleData [i] != null) {
 				ObstacleData lvData = pmObstacleData [i];
-				GameObject lvPrefab = (GameObject)Resources.Load(lvData.obstaclePrefabName, typeof(GameObject));
+				GameObject lvPrefab = Resources.Load<GameObject> ("ObstaclePrefabs/"+lvData.obstaclePrefabName);
 
 				GameObject lvInstance = Instantiate (lvPrefab);
 				lvInstance.transform.parent = lvCells [i].transform;
