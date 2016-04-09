@@ -21,7 +21,9 @@ public class PlaceNewObstacle : MonoBehaviour {
 			GameObject lvInstance = Instantiate (genericButtonPrefab);
 			lvInstance.GetComponent<Image> ().sprite = lvImage;
 
-			lvInstance.GetComponent<GenericItemButton> ().InitializeButton (() => { Place(lvImage.name);});
+			string name = lvImage.name;
+
+			lvInstance.GetComponent<GenericItemButton> ().GetComponent<Button> ().onClick.AddListener (() => { Place(name);});
 
 			lvInstance.transform.parent = content.transform;
 		}
