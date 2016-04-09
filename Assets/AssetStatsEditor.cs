@@ -5,6 +5,8 @@ using System.Collections;
 public class AssetStatsEditor : MonoBehaviour {
 
 	public ObstacleStatus obstacleStatus;
+	public GameObject removeButton;
+	public GameObject rotateButton;
 
 	public void populate()
 	{
@@ -12,6 +14,10 @@ public class AssetStatsEditor : MonoBehaviour {
 		GameObject.Find ("DifficultTerrainToggle").GetComponent<Toggle> ().isOn = obstacleStatus.isDifficultTerrain;
 		GameObject.Find ("BlocksMovementToggle").GetComponent<Toggle> ().isOn = obstacleStatus.isBlockingMovement;
 		GameObject.Find ("BlocksLoSToggle").GetComponent<Toggle> ().isOn = obstacleStatus.isBlockingLoS;
+
+		removeButton.GetComponent<Button> ().interactable = true;
+		rotateButton.GetComponent<Button> ().interactable = true;
+
 		//GameObject.Find ("AssetEditNameInput").GetComponent<InputField> ().text = obstacleStatus.name;
 	}
 
@@ -22,6 +28,10 @@ public class AssetStatsEditor : MonoBehaviour {
 		GameObject.Find ("DifficultTerrainToggle").GetComponent<Toggle> ().isOn = false;
 		GameObject.Find ("BlocksMovementToggle").GetComponent<Toggle> ().isOn = false;
 		GameObject.Find ("BlocksLoSToggle").GetComponent<Toggle> ().isOn = false;
+
+		removeButton.GetComponent<Button> ().interactable = false;
+		rotateButton.GetComponent<Button> ().interactable = false;
+
 		//GameObject.Find ("AssetEditNameInput").GetComponent<InputField> ().text = obstacleStatus.name;
 	}
 
@@ -41,5 +51,16 @@ public class AssetStatsEditor : MonoBehaviour {
 	{
 		if(obstacleStatus != null)
 		obstacleStatus.isBlockingLoS = pmState;
+	}
+
+	public void rotateObstacle()
+	{
+		GameObject.Find (obstacleStatus.name).GetComponent<ObstacleRotator> ().Rotate (90.0f);
+	}
+
+	public void removeObstacle()
+	{
+		Destroy (GameObject.Find (obstacleStatus.name));
+		this.clear ();
 	}
 }
