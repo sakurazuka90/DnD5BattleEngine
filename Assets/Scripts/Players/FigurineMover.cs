@@ -56,6 +56,7 @@ public class FigurineMover : MonoBehaviour {
 
 				// path containt current cell
 				mStepsMoved = steps.Length - 1;
+				mStepsMoved += SelectFromGrid.instance.CountDifficultTerrainFieldsInPath (steps);
 
 				_figurineAnimator.SetBool ("isWalking",true);
 
