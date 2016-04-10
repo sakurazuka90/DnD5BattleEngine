@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -18,14 +19,16 @@ public class LoadPanelController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
-	private void GenerateContent()
+	public void GenerateContent()
 	{
 		List<string> lvNames = BattlefieldStateReader.instance.ListFiles ();
 
-		content.GetComponent<RectTransform> ().sizeDelta = new Vector2 (0, lvNames.Capacity * 25);
+
+
+		content.GetComponent<RectTransform> ().sizeDelta = new Vector2 (0, lvNames.Count * 25);
 
 		foreach (string lvName in lvNames) {
 			GameObject lvInstance = Instantiate (optionPrefab);
@@ -38,6 +41,7 @@ public class LoadPanelController : MonoBehaviour {
 	{
 		_selected = pmFilename;
 		GameObject.Find ("LoadBattlefieldButton").GetComponent<Button>().interactable = true;
+		GameObject.Find ("DeleteFileButton").GetComponent<Button>().interactable = true;
 	}
 
 	public void DeselectAll()
@@ -63,6 +67,18 @@ public class LoadPanelController : MonoBehaviour {
 		PlayerSpooler.instance.Run ();
 
 		this.gameObject.SetActive (false);
+	}
+
+	public void Delete()
+	{
+		if (File.Exists (Application.persistentDataPath + "/" + _selected)) {
+			File.Delete (Application.persistentDataPath + "/" + _selected);
+			DeselectAll ();
+			GameObject.Find ("LoadBattlefieldButton").GetComponent<Button>().interactable = false;
+			GameObject.Find ("DeleteFileButton").GetComponent<Button>().interactable = false;
+			GameObjectUtils.RemoveAllChildren (content);
+			this.GenerateContent ();
+		}
 	}
 
 
