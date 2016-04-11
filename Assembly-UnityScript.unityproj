@@ -48,6 +48,11 @@
      <Compile Include="Assets\FT_FreeSample\Script\AnimationScrollTexture.js" />
      <Compile Include="Assets\FT_FreeSample\Script\AnimationSpriteSheet.js" />
      <Compile Include="Assets\FT_FreeSample\Script\DeadTime.js" />
+     <Compile Include="Assets\Free_Rocks\Standard Assets\Character Controllers\Sources\Scripts\CharacterMotor.js" />
+     <Compile Include="Assets\Free_Rocks\Standard Assets\Character Controllers\Sources\Scripts\FPSInputController.js" />
+     <Compile Include="Assets\Free_Rocks\Standard Assets\Character Controllers\Sources\Scripts\PlatformInputController.js" />
+     <Compile Include="Assets\Free_Rocks\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonCamera.js" />
+     <Compile Include="Assets\Free_Rocks\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonController.js" />
      <Compile Include="Assets\goblin\fbx\textures\Point light.js" />
      <Compile Include="Assets\goblin\script\camera.js" />
      <Compile Include="Assets\goblin\script\move.js" />
@@ -59,6 +64,7 @@
      <None Include="Assets\Shaders\Trail.shader" />
      <None Include="Assets\Shaders\NewSurfaceShader.shader" />
      <None Include="Assets\Shaders\AlphaBlended.shader" />
+     <None Include="Assets\Free_Rocks\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Shaders\Surface.shader" />
      <None Include="Assets\Shaders\Debris.shader" />
      <None Include="Assets\Shaders\WarpJumpDistortion.shader" />
