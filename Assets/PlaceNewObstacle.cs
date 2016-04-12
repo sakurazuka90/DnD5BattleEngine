@@ -79,6 +79,8 @@ public class PlaceNewObstacle : MonoBehaviour
 			lvObstacle.GetComponent<ShaderSwitcher> ().SwitchOutlineOn ();
 
 			GameObject.Find ("GridSelector").GetComponent<SelectFromGrid> ().creatorObstacle = lvObstacle;
+		} else {
+			SelectFromGrid.instance.functionalPlaceMode = true;
 		}
 	}
 }

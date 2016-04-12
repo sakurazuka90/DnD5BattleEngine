@@ -12,6 +12,8 @@ public class CellStatus : MonoBehaviour {
 	public Material lvTargetMaterial;
 	public Material lvCloseRangedMaterial;
 	public Material lvFarRangedMaterial;
+	public Material lvSpawnPlayerMaterial;
+	public Material lvSpawnEnemyMaterial;
 
 
 	public bool movable = false;
@@ -20,21 +22,22 @@ public class CellStatus : MonoBehaviour {
 	public bool target = false;
 	public bool closeRange = false;
 	public bool farRange = false;
+	public bool spawnPlayer = false;
+	public bool spawnEnemy = false;
 
 	private Texture2D cursorTexture;
 
 	// Use this for initialization
 	void Start () {
-		lvSelectedMaterial = (Material)Resources.Load("Grid2", typeof(Material));
-		lvDeselectedMaterial = (Material)Resources.Load("Grid1", typeof(Material));
-		lvMovableMaterial = (Material)Resources.Load("Grid3", typeof(Material));
-		lvOpportunityMaterial = (Material)Resources.Load("Grid4", typeof(Material));
-		lvTargetMaterial = (Material)Resources.Load("Grid5", typeof(Material));
-		lvCloseRangedMaterial = (Material)Resources.Load("Grid6", typeof(Material));
-		lvFarRangedMaterial = (Material)Resources.Load("Grid7", typeof(Material));
-
-		cursorTexture = (Texture2D)Resources.Load("SWORD", typeof(Texture));
-
+		lvSelectedMaterial = Resources.Load<Material>("Grid2");
+		lvDeselectedMaterial = Resources.Load<Material>("Grid1");
+		lvMovableMaterial = Resources.Load<Material>("Grid3");
+		lvOpportunityMaterial = Resources.Load<Material>("Grid4");
+		lvTargetMaterial = Resources.Load<Material>("Grid5");
+		lvCloseRangedMaterial = Resources.Load<Material>("Grid6");
+		lvFarRangedMaterial = Resources.Load<Material>("Grid7");
+		lvSpawnPlayerMaterial = Resources.Load<Material> ("SpawnPlayerMaterial");
+		lvSpawnEnemyMaterial = Resources.Load<Material> ("SpawnEnemyMaterial");
 	}
 	
 	// Update is called once per frame
@@ -53,6 +56,10 @@ public class CellStatus : MonoBehaviour {
 				lvRenderer.material = lvOpportunityMaterial;
 			else if (this.movable)
 				lvRenderer.material = lvMovableMaterial;
+			else if (this.spawnPlayer)
+				lvRenderer.material = lvSpawnPlayerMaterial;
+			else if (this.spawnEnemy)
+				lvRenderer.material = lvSpawnEnemyMaterial;
 			else
 				lvRenderer.material = lvDeselectedMaterial;
 		}

@@ -2,7 +2,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
-public class SelectFromGrid : MonoBehaviour {
+public class SelectFromGrid : MonoBehaviour
+{
 
 	private CellStatus lastStatus;
 
@@ -15,6 +16,8 @@ public class SelectFromGrid : MonoBehaviour {
 	public bool mMoveMode = false;
 	private bool mTargetMode = false;
 	public bool mCreatorMode = false;
+	public bool functionalPlaceMode = false;
+
 	private Dictionary<string, string> mPaths;
 
 	public GameObject creatorObstacle;
@@ -32,7 +35,7 @@ public class SelectFromGrid : MonoBehaviour {
 
 	public static SelectFromGrid instance;
 
-	void Awake()
+	void Awake ()
 	{
 		if (instance == null)
 			instance = this;
@@ -42,23 +45,29 @@ public class SelectFromGrid : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		mPaths = new Dictionary<string, string> ();
 		updateFields ();
 
 		constructorFilledSquares = new List<int> ();
 
 	}
-	
 
-	void Update(){
-		if (lastStatus != null)
+
+	void Update ()
+	{
+		if (lastStatus != null) {
 			lastStatus.selected = false;
+			//if()
+		}
+			
+		
 
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit[] hits = Physics.RaycastAll (ray);
 
-		if (!inventoryOpen && !EventSystem.current.IsPointerOverGameObject()) {
+		if (!inventoryOpen && !EventSystem.current.IsPointerOverGameObject ()) {
 
 			foreach (RaycastHit hit in hits) {
 
@@ -99,7 +108,7 @@ public class SelectFromGrid : MonoBehaviour {
 						SetStateToCells (constructorFilledSquares, CellStates.ENABLED);
 					}
 
-					if(lvFigurine != null)
+					if (lvFigurine != null)
 						lvStatus = lvFigurine.GetComponent<FigurineStatus> ();
 					
 
@@ -137,8 +146,11 @@ public class SelectFromGrid : MonoBehaviour {
 						}
 
 					} else if (mCreatorMode) {
-					
-						if (lvStatus != null && lvStatus.picked) {
+
+						if (functionalPlaceMode) {
+							lvCellStatus.spawnPlayer = true;
+
+						} else if (lvStatus != null && lvStatus.picked) {
 							SetStateToCells (this.constructorFilledSquares, CellStates.DISABLED);
 							FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover> ();
 							lvMover.gridX = (int)lvPosition.x;
@@ -190,7 +202,7 @@ public class SelectFromGrid : MonoBehaviour {
 		}
 	}
 
-	public void DeactivateWalking()
+	public void DeactivateWalking ()
 	{
 		PlayerSpooler lvSpooler = GameObject.Find ("PlayerSpooler").GetComponent<PlayerSpooler> ();
 
@@ -205,9 +217,9 @@ public class SelectFromGrid : MonoBehaviour {
 		lvMover.AbortMovement ();
 	}
 
-	public void DrawWalkableLine(string pmPath)
+	public void DrawWalkableLine (string pmPath)
 	{
-		string [] lvPathSteps = pmPath.Split ('_');
+		string[] lvPathSteps = pmPath.Split ('_');
 
 		GameObject lvLineRendererObject = GameObject.Find ("MovementLineDrawer");
 		LineRenderer lvRenderer = lvLineRendererObject.GetComponent<LineRenderer> ();
@@ -225,53 +237,52 @@ public class SelectFromGrid : MonoBehaviour {
 			}
 
 		} else {
-			lvRenderer.SetVertexCount(0);
+			lvRenderer.SetVertexCount (0);
 		}
 
 	}
 
-	public void ClearWalkableLine()
+	public void ClearWalkableLine ()
 	{
 		GameObject lvLineRendererObject = GameObject.Find ("MovementLineDrawer");
-		LineRenderer lvRenderer = lvLineRendererObject.GetComponent<LineRenderer>();
+		LineRenderer lvRenderer = lvLineRendererObject.GetComponent<LineRenderer> ();
 
-		lvRenderer.SetVertexCount(0);
+		lvRenderer.SetVertexCount (0);
 
 	}
 
-	// Funkcja wyswietla na gridzie zasieg ruchu postaci 
-	public void ShowWalkableDistance(int gridX, int gridZ, int moveDist)
+	// Funkcja wyswietla na gridzie zasieg ruchu postaci
+	public void ShowWalkableDistance (int gridX, int gridZ, int moveDist)
 	{
 		mMoveMode = true;
 
-		if(playersTurn)
-			mOpportunityFields = findOpportunityFields(mMonsterFields);
+		if (playersTurn)
+			mOpportunityFields = findOpportunityFields (mMonsterFields);
 		else
-			mOpportunityFields = findOpportunityFields(mPlayersFields);
+			mOpportunityFields = findOpportunityFields (mPlayersFields);
 
 		string lvStartCellId = (GridDrawer.instance.gridWidth * gridZ + gridX).ToString ();
 
 		mPaths.Add (lvStartCellId, lvStartCellId);
 
-		Dictionary<string,string> lvCellData = new Dictionary<string,string>();
-		lvCellData.Add(XPOSITION,gridX.ToString());
-		lvCellData.Add(ZPOSITION,gridZ.ToString());
-		lvCellData.Add(PARENT_PATH,"");
-		lvCellData.Add(STRAIGHT_LINE,"Y");
+		Dictionary<string,string> lvCellData = new Dictionary<string,string> ();
+		lvCellData.Add (XPOSITION, gridX.ToString ());
+		lvCellData.Add (ZPOSITION, gridZ.ToString ());
+		lvCellData.Add (PARENT_PATH, "");
+		lvCellData.Add (STRAIGHT_LINE, "Y");
 
 
 		Dictionary<string,Dictionary<string,string>> lvNextLevel = new Dictionary<string, Dictionary<string, string>> ();
 
-		lvNextLevel.Add (GridDrawer.instance.GetGridId(gridX,gridZ).ToString(),lvCellData);
+		lvNextLevel.Add (GridDrawer.instance.GetGridId (gridX, gridZ).ToString (), lvCellData);
 
 		Dictionary<string,Dictionary<string,string>> lastHardTerrain = new Dictionary<string, Dictionary<string, string>> ();
 		Dictionary<string,Dictionary<string,string>> currentHardTerrain = new Dictionary<string, Dictionary<string, string>> ();
 
-		while (moveDist >= 0)
-		{
+		while (moveDist >= 0) {
 			foreach (string lvCurrentHardTerrainKey in currentHardTerrain.Keys) {
 				if (!lvNextLevel.ContainsKey (lvCurrentHardTerrainKey))
-					lvNextLevel.Add (lvCurrentHardTerrainKey,currentHardTerrain[lvCurrentHardTerrainKey]);
+					lvNextLevel.Add (lvCurrentHardTerrainKey, currentHardTerrain [lvCurrentHardTerrainKey]);
 			}
 
 			currentHardTerrain.Clear ();
@@ -279,34 +290,33 @@ public class SelectFromGrid : MonoBehaviour {
 			currentHardTerrain = lastHardTerrain;
 
 			lastHardTerrain = new Dictionary<string, Dictionary<string, string>> ();
-			lvNextLevel = returnLevel (lvNextLevel,lastHardTerrain,mPaths,moveDist);
-			moveDist --;
+			lvNextLevel = returnLevel (lvNextLevel, lastHardTerrain, mPaths, moveDist);
+			moveDist--;
 		}
 
 	}
 
 
 
-	private Dictionary<string,Dictionary<string,string>> returnLevel(Dictionary<string,Dictionary<string,string>> pmNextLevel, Dictionary<string,Dictionary<string,string>> pmLastDiffTerrain, Dictionary<string,string> pmPaths, int pmMoveDist)
+	private Dictionary<string,Dictionary<string,string>> returnLevel (Dictionary<string,Dictionary<string,string>> pmNextLevel, Dictionary<string,Dictionary<string,string>> pmLastDiffTerrain, Dictionary<string,string> pmPaths, int pmMoveDist)
 	{
 
 		Dictionary<string,Dictionary<string,string>> lvNextLevel = new Dictionary<string, Dictionary<string, string>> ();
 		Dictionary<string,Dictionary<string,string>> lvTempLevel = new Dictionary<string, Dictionary<string, string>> ();
 
 		foreach (string lvKey in pmNextLevel.Keys) {
-			Dictionary<string,string> lvValue = pmNextLevel[lvKey];
+			Dictionary<string,string> lvValue = pmNextLevel [lvKey];
 
-			lvTempLevel = resolveForCell(pmPaths,int.Parse(lvValue[XPOSITION]),int.Parse(lvValue[ZPOSITION]),lvValue[PARENT_PATH],pmMoveDist);
+			lvTempLevel = resolveForCell (pmPaths, int.Parse (lvValue [XPOSITION]), int.Parse (lvValue [ZPOSITION]), lvValue [PARENT_PATH], pmMoveDist);
 
-			foreach(string lvKeyTemp in lvTempLevel.Keys)
-			{
+			foreach (string lvKeyTemp in lvTempLevel.Keys) {
 				if (!lvNextLevel.ContainsKey (lvKeyTemp)) {
 
 					Dictionary<string,string> lvData = lvTempLevel [lvKeyTemp];
 
-					if ("Y".Equals (lvData [IS_DIFFICULT]) && !pmLastDiffTerrain.ContainsKey(lvKeyTemp))
+					if ("Y".Equals (lvData [IS_DIFFICULT]) && !pmLastDiffTerrain.ContainsKey (lvKeyTemp))
 						pmLastDiffTerrain.Add (lvKeyTemp, lvData);
-					else if("N".Equals (lvData [IS_DIFFICULT]))
+					else if ("N".Equals (lvData [IS_DIFFICULT]))
 						lvNextLevel.Add (lvKeyTemp, lvData);
 				}
 			}
@@ -319,9 +329,9 @@ public class SelectFromGrid : MonoBehaviour {
 	/*
 	 *  
 	 */
-	private Dictionary<string,Dictionary<string,string>> resolveForCell(Dictionary<string,string> pmPaths, int pmGridX, int pmGridZ, string pmPath, int pmMoveDist)
+	private Dictionary<string,Dictionary<string,string>> resolveForCell (Dictionary<string,string> pmPaths, int pmGridX, int pmGridZ, string pmPath, int pmMoveDist)
 	{
-		GameObject lvCell = GridDrawer.instance.mCells[GridDrawer.instance.gridWidth * pmGridZ + pmGridX];
+		GameObject lvCell = GridDrawer.instance.mCells [GridDrawer.instance.gridWidth * pmGridZ + pmGridX];
 
 		string lvParentId = "" + (GridDrawer.instance.gridWidth * pmGridZ + pmGridX);
 
@@ -337,7 +347,7 @@ public class SelectFromGrid : MonoBehaviour {
 		//}
 
 		
-		if (!IsAllyField (int.Parse (lvParentId)) || mActivePlayerStartField == int.Parse(lvParentId)) {
+		if (!IsAllyField (int.Parse (lvParentId)) || mActivePlayerStartField == int.Parse (lvParentId)) {
 
 			CellStatus lvStatus = lvCell.GetComponent<CellStatus> ();
 			
@@ -386,16 +396,15 @@ public class SelectFromGrid : MonoBehaviour {
 				CellStatus lvStatusUpp = lvCellUpp.GetComponent<CellStatus> ();
 				string lvCellId = "" + (GridDrawer.instance.gridWidth * cellZ + pmGridX);
 
-				if(!lvStatusUpp.Blocked && !IsEnemyField(int.Parse(lvCellId)))
-				{
-					string cellGridZ = cellZ.ToString();
-					string cellGridX = pmGridX.ToString();
+				if (!lvStatusUpp.Blocked && !IsEnemyField (int.Parse (lvCellId))) {
+					string cellGridZ = cellZ.ToString ();
+					string cellGridX = pmGridX.ToString ();
 
-					Dictionary<string,string> lvCellData = new Dictionary<string,string>();
-					lvCellData.Add(XPOSITION,cellGridX);
-					lvCellData.Add(ZPOSITION,cellGridZ);
-					lvCellData.Add(PARENT_PATH,lvCellPath);
-					lvCellData.Add(STRAIGHT_LINE,"Y");
+					Dictionary<string,string> lvCellData = new Dictionary<string,string> ();
+					lvCellData.Add (XPOSITION, cellGridX);
+					lvCellData.Add (ZPOSITION, cellGridZ);
+					lvCellData.Add (PARENT_PATH, lvCellPath);
+					lvCellData.Add (STRAIGHT_LINE, "Y");
 
 					if (isCellDifficultTerrain (lvCellUpp)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
@@ -403,29 +412,28 @@ public class SelectFromGrid : MonoBehaviour {
 						lvCellData.Add (IS_DIFFICULT, "N");
 					}
 
-					lvMainDictionary.Add(lvCellId,lvCellData);
+					lvMainDictionary.Add (lvCellId, lvCellData);
 
 					lvTopMovable = true;
 				}
 			}
 			
 			if (lvBottomGood) {
-				int cellZ = pmGridZ -1;
+				int cellZ = pmGridZ - 1;
 				
 				GameObject lvCellBott = GridDrawer.instance.mCells [GridDrawer.instance.gridWidth * cellZ + pmGridX];
 				CellStatus lvStatusBott = lvCellBott.GetComponent<CellStatus> ();
 				string lvCellId = "" + (GridDrawer.instance.gridWidth * cellZ + pmGridX);
 				
-				if(!lvStatusBott.Blocked && !IsEnemyField(int.Parse(lvCellId)))
-				{
-					string cellGridZ = cellZ.ToString();
-					string cellGridX = pmGridX.ToString();
+				if (!lvStatusBott.Blocked && !IsEnemyField (int.Parse (lvCellId))) {
+					string cellGridZ = cellZ.ToString ();
+					string cellGridX = pmGridX.ToString ();
 					
-					Dictionary<string,string> lvCellData = new Dictionary<string,string>();
-					lvCellData.Add(XPOSITION,cellGridX);
-					lvCellData.Add(ZPOSITION,cellGridZ);
-					lvCellData.Add(PARENT_PATH,lvCellPath);
-					lvCellData.Add(STRAIGHT_LINE,"Y");
+					Dictionary<string,string> lvCellData = new Dictionary<string,string> ();
+					lvCellData.Add (XPOSITION, cellGridX);
+					lvCellData.Add (ZPOSITION, cellGridZ);
+					lvCellData.Add (PARENT_PATH, lvCellPath);
+					lvCellData.Add (STRAIGHT_LINE, "Y");
 
 					if (isCellDifficultTerrain (lvCellBott)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
@@ -433,29 +441,28 @@ public class SelectFromGrid : MonoBehaviour {
 						lvCellData.Add (IS_DIFFICULT, "N");
 					}
 					
-					lvMainDictionary.Add(lvCellId,lvCellData);
+					lvMainDictionary.Add (lvCellId, lvCellData);
 					
 					lvBotMovable = true;
 				}
 			}
 			
 			if (lvRightGood) {
-				int cellX = pmGridX +1;
+				int cellX = pmGridX + 1;
 				
 				GameObject lvCellRight = GridDrawer.instance.mCells [GridDrawer.instance.gridWidth * pmGridZ + cellX];
 				CellStatus lvStatusRight = lvCellRight.GetComponent<CellStatus> ();
 				string lvCellId = "" + (GridDrawer.instance.gridWidth * pmGridZ + cellX);
 				
-				if(!lvStatusRight.Blocked && !IsEnemyField(int.Parse(lvCellId)))
-				{
-					string cellGridX = cellX.ToString();
-					string cellGridZ = pmGridZ.ToString();
+				if (!lvStatusRight.Blocked && !IsEnemyField (int.Parse (lvCellId))) {
+					string cellGridX = cellX.ToString ();
+					string cellGridZ = pmGridZ.ToString ();
 					
-					Dictionary<string,string> lvCellData = new Dictionary<string,string>();
-					lvCellData.Add(XPOSITION,cellGridX);
-					lvCellData.Add(ZPOSITION,cellGridZ);
-					lvCellData.Add(PARENT_PATH,lvCellPath);
-					lvCellData.Add(STRAIGHT_LINE,"Y");
+					Dictionary<string,string> lvCellData = new Dictionary<string,string> ();
+					lvCellData.Add (XPOSITION, cellGridX);
+					lvCellData.Add (ZPOSITION, cellGridZ);
+					lvCellData.Add (PARENT_PATH, lvCellPath);
+					lvCellData.Add (STRAIGHT_LINE, "Y");
 
 					if (isCellDifficultTerrain (lvCellRight)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
@@ -463,29 +470,28 @@ public class SelectFromGrid : MonoBehaviour {
 						lvCellData.Add (IS_DIFFICULT, "N");
 					}
 					
-					lvMainDictionary.Add(lvCellId,lvCellData);
+					lvMainDictionary.Add (lvCellId, lvCellData);
 					
 					lvRightMovable = true;
 				}
 			}
 			
 			if (lvLeftGood) {
-				int cellX = pmGridX -1;
+				int cellX = pmGridX - 1;
 				
 				GameObject lvCellLeft = GridDrawer.instance.mCells [GridDrawer.instance.gridWidth * pmGridZ + cellX];
 				CellStatus lvStatusLeft = lvCellLeft.GetComponent<CellStatus> ();
 				string lvCellId = "" + (GridDrawer.instance.gridWidth * pmGridZ + cellX);
 				
-				if(!lvStatusLeft.Blocked && !IsEnemyField(int.Parse(lvCellId)))
-				{
-					string cellGridX = cellX.ToString();
-					string cellGridZ = pmGridZ.ToString();
+				if (!lvStatusLeft.Blocked && !IsEnemyField (int.Parse (lvCellId))) {
+					string cellGridX = cellX.ToString ();
+					string cellGridZ = pmGridZ.ToString ();
 					
-					Dictionary<string,string> lvCellData = new Dictionary<string,string>();
-					lvCellData.Add(XPOSITION,cellGridX);
-					lvCellData.Add(ZPOSITION,cellGridZ);
-					lvCellData.Add(PARENT_PATH,lvCellPath);
-					lvCellData.Add(STRAIGHT_LINE,"Y");
+					Dictionary<string,string> lvCellData = new Dictionary<string,string> ();
+					lvCellData.Add (XPOSITION, cellGridX);
+					lvCellData.Add (ZPOSITION, cellGridZ);
+					lvCellData.Add (PARENT_PATH, lvCellPath);
+					lvCellData.Add (STRAIGHT_LINE, "Y");
 
 					if (isCellDifficultTerrain (lvCellLeft)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
@@ -493,7 +499,7 @@ public class SelectFromGrid : MonoBehaviour {
 						lvCellData.Add (IS_DIFFICULT, "N");
 					}
 					
-					lvMainDictionary.Add(lvCellId,lvCellData);
+					lvMainDictionary.Add (lvCellId, lvCellData);
 					
 					lvLeftMovable = true;
 				}
@@ -507,16 +513,15 @@ public class SelectFromGrid : MonoBehaviour {
 				CellStatus lvStatusTopRight = lvCellTopRight.GetComponent<CellStatus> ();
 				string lvCellId = "" + (GridDrawer.instance.gridWidth * cellZ + cellX);
 				
-				if(!lvStatusTopRight.Blocked && !IsEnemyField(int.Parse(lvCellId)))
-				{
-					string cellGridX = cellX.ToString();
-					string cellGridZ = cellZ.ToString();
+				if (!lvStatusTopRight.Blocked && !IsEnemyField (int.Parse (lvCellId))) {
+					string cellGridX = cellX.ToString ();
+					string cellGridZ = cellZ.ToString ();
 					
-					Dictionary<string,string> lvCellData = new Dictionary<string,string>();
-					lvCellData.Add(XPOSITION,cellGridX);
-					lvCellData.Add(ZPOSITION,cellGridZ);
-					lvCellData.Add(PARENT_PATH,lvCellPath);
-					lvCellData.Add(STRAIGHT_LINE,"N");
+					Dictionary<string,string> lvCellData = new Dictionary<string,string> ();
+					lvCellData.Add (XPOSITION, cellGridX);
+					lvCellData.Add (ZPOSITION, cellGridZ);
+					lvCellData.Add (PARENT_PATH, lvCellPath);
+					lvCellData.Add (STRAIGHT_LINE, "N");
 
 					if (isCellDifficultTerrain (lvCellTopRight)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
@@ -524,7 +529,7 @@ public class SelectFromGrid : MonoBehaviour {
 						lvCellData.Add (IS_DIFFICULT, "N");
 					}
 					
-					lvMainDictionary.Add(lvCellId,lvCellData);
+					lvMainDictionary.Add (lvCellId, lvCellData);
 				}
 			}
 			
@@ -536,16 +541,15 @@ public class SelectFromGrid : MonoBehaviour {
 				CellStatus lvStatusTopLeft = lvCellTopLeft.GetComponent<CellStatus> ();
 				string lvCellId = "" + (GridDrawer.instance.gridWidth * cellZ + cellX);
 				
-				if(!lvStatusTopLeft.Blocked && !IsEnemyField(int.Parse(lvCellId)))
-				{
-					string cellGridX = cellX.ToString();
-					string cellGridZ = cellZ.ToString();
+				if (!lvStatusTopLeft.Blocked && !IsEnemyField (int.Parse (lvCellId))) {
+					string cellGridX = cellX.ToString ();
+					string cellGridZ = cellZ.ToString ();
 					
-					Dictionary<string,string> lvCellData = new Dictionary<string,string>();
-					lvCellData.Add(XPOSITION,cellGridX);
-					lvCellData.Add(ZPOSITION,cellGridZ);
-					lvCellData.Add(PARENT_PATH,lvCellPath);
-					lvCellData.Add(STRAIGHT_LINE,"N");
+					Dictionary<string,string> lvCellData = new Dictionary<string,string> ();
+					lvCellData.Add (XPOSITION, cellGridX);
+					lvCellData.Add (ZPOSITION, cellGridZ);
+					lvCellData.Add (PARENT_PATH, lvCellPath);
+					lvCellData.Add (STRAIGHT_LINE, "N");
 
 					if (isCellDifficultTerrain (lvCellTopLeft)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
@@ -553,7 +557,7 @@ public class SelectFromGrid : MonoBehaviour {
 						lvCellData.Add (IS_DIFFICULT, "N");
 					}
 					
-					lvMainDictionary.Add(lvCellId,lvCellData);
+					lvMainDictionary.Add (lvCellId, lvCellData);
 				}
 			}
 			
@@ -565,16 +569,15 @@ public class SelectFromGrid : MonoBehaviour {
 				CellStatus lvStatusBotRight = lvCellBotRight.GetComponent<CellStatus> ();
 				string lvCellId = "" + (GridDrawer.instance.gridWidth * cellZ + cellX);
 				
-				if(!lvStatusBotRight.Blocked && !IsEnemyField(int.Parse(lvCellId)))
-				{
-					string cellGridX = cellX.ToString();
-					string cellGridZ = cellZ.ToString();
+				if (!lvStatusBotRight.Blocked && !IsEnemyField (int.Parse (lvCellId))) {
+					string cellGridX = cellX.ToString ();
+					string cellGridZ = cellZ.ToString ();
 					
-					Dictionary<string,string> lvCellData = new Dictionary<string,string>();
-					lvCellData.Add(XPOSITION,cellGridX);
-					lvCellData.Add(ZPOSITION,cellGridZ);
-					lvCellData.Add(PARENT_PATH,lvCellPath);
-					lvCellData.Add(STRAIGHT_LINE,"N");
+					Dictionary<string,string> lvCellData = new Dictionary<string,string> ();
+					lvCellData.Add (XPOSITION, cellGridX);
+					lvCellData.Add (ZPOSITION, cellGridZ);
+					lvCellData.Add (PARENT_PATH, lvCellPath);
+					lvCellData.Add (STRAIGHT_LINE, "N");
 
 					if (isCellDifficultTerrain (lvCellBotRight)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
@@ -582,7 +585,7 @@ public class SelectFromGrid : MonoBehaviour {
 						lvCellData.Add (IS_DIFFICULT, "N");
 					}
 					
-					lvMainDictionary.Add(lvCellId,lvCellData);
+					lvMainDictionary.Add (lvCellId, lvCellData);
 				}
 			}
 			
@@ -594,16 +597,15 @@ public class SelectFromGrid : MonoBehaviour {
 				CellStatus lvStatusBotLeft = lvCellBotLeft.GetComponent<CellStatus> ();
 				string lvCellId = "" + (GridDrawer.instance.gridWidth * cellZ + cellX);
 				
-				if(!lvStatusBotLeft.Blocked && !IsEnemyField(int.Parse(lvCellId)))
-				{
-					string cellGridX = cellX.ToString();
-					string cellGridZ = cellZ.ToString();
+				if (!lvStatusBotLeft.Blocked && !IsEnemyField (int.Parse (lvCellId))) {
+					string cellGridX = cellX.ToString ();
+					string cellGridZ = cellZ.ToString ();
 					
-					Dictionary<string,string> lvCellData = new Dictionary<string,string>();
-					lvCellData.Add(XPOSITION,cellGridX);
-					lvCellData.Add(ZPOSITION,cellGridZ);
-					lvCellData.Add(PARENT_PATH,lvCellPath);
-					lvCellData.Add(STRAIGHT_LINE,"N");
+					Dictionary<string,string> lvCellData = new Dictionary<string,string> ();
+					lvCellData.Add (XPOSITION, cellGridX);
+					lvCellData.Add (ZPOSITION, cellGridZ);
+					lvCellData.Add (PARENT_PATH, lvCellPath);
+					lvCellData.Add (STRAIGHT_LINE, "N");
 
 					if (isCellDifficultTerrain (lvCellBotLeft)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
@@ -611,7 +613,7 @@ public class SelectFromGrid : MonoBehaviour {
 						lvCellData.Add (IS_DIFFICULT, "N");
 					}
 					
-					lvMainDictionary.Add(lvCellId,lvCellData);
+					lvMainDictionary.Add (lvCellId, lvCellData);
 				}
 			}
 		}
@@ -620,67 +622,66 @@ public class SelectFromGrid : MonoBehaviour {
 
 	}
 
-	public void updateFields()
+	public void updateFields ()
 	{
-		GameObject [] lvFigurines = GameObject.FindGameObjectsWithTag ("Figurine");
+		GameObject[] lvFigurines = GameObject.FindGameObjectsWithTag ("Figurine");
 
 		mPlayersFields = new List<int> ();
 		mMonsterFields = new List<int> ();
 
 		foreach (GameObject lvFigurine in lvFigurines) {
 
-			FigurineStatus lvStatus = lvFigurine.GetComponent<FigurineStatus>();
+			FigurineStatus lvStatus = lvFigurine.GetComponent<FigurineStatus> ();
 
 			int lvCellId = GridDrawer.instance.gridWidth * lvStatus.gridZ + lvStatus.gridX;
 
-			if(lvStatus.enemy)
-			{
-				mMonsterFields.Add(lvCellId);
+			if (lvStatus.enemy) {
+				mMonsterFields.Add (lvCellId);
 			} else {
-				mPlayersFields.Add(lvCellId);
+				mPlayersFields.Add (lvCellId);
 			}
 
 		}
 
 	}
 
-	public bool IsEnemyField(int pmFieldId)
+	public bool IsEnemyField (int pmFieldId)
 	{
 		bool lvResult = false;
 
 		if (playersTurn) {
 
-			if(mMonsterFields.Contains(pmFieldId))
+			if (mMonsterFields.Contains (pmFieldId))
 				lvResult = true;
 
 		} else {
-			if(mPlayersFields.Contains(pmFieldId))
+			if (mPlayersFields.Contains (pmFieldId))
 				lvResult = true;
 		}
 
 		return lvResult;
 	}
 
-	public bool IsAllyField(int pmFieldId)
+	public bool IsAllyField (int pmFieldId)
 	{
 		bool lvResult = false;
 
 		if (playersTurn) {
 
-			if(mPlayersFields.Contains(pmFieldId))
+			if (mPlayersFields.Contains (pmFieldId))
 				lvResult = true;
 
 		} else {
-			if(mMonsterFields.Contains(pmFieldId))
+			if (mMonsterFields.Contains (pmFieldId))
 				lvResult = true;
 		}
 
 		return lvResult;
 	}
 
-	private List<int> findOpportunityFields(List<int> pmFields)
+	private List<int> findOpportunityFields (List<int> pmFields)
 	{
-		List<int> lvReturnList = new List<int>();
+		List<int> lvReturnList = new List<int> ();
 
 		foreach (int lvField in pmFields) {
 			lvReturnList.AddRange (GetAdjacentFields (lvField));
@@ -690,29 +691,29 @@ public class SelectFromGrid : MonoBehaviour {
 	}
 
 	//Gets adjacent fields of one cell
-	public List<int> GetAdjacentFields(int pmCellId)
+	public List<int> GetAdjacentFields (int pmCellId)
 	{
-		List<int> lvReturnList = new List<int>();
+		List<int> lvReturnList = new List<int> ();
 
-		AddAdjacentFieldToListIfGood(findTopFieldId (pmCellId), lvReturnList);
-		AddAdjacentFieldToListIfGood(findTopRightFieldId (pmCellId), lvReturnList);
-		AddAdjacentFieldToListIfGood(findTopLeftFieldId (pmCellId), lvReturnList);
-		AddAdjacentFieldToListIfGood(findRightFieldId (pmCellId), lvReturnList);
-		AddAdjacentFieldToListIfGood(findLeftFieldId (pmCellId), lvReturnList);
-		AddAdjacentFieldToListIfGood(findBottomFieldId (pmCellId), lvReturnList);
-		AddAdjacentFieldToListIfGood(findBottomLeftFieldId (pmCellId), lvReturnList);
-		AddAdjacentFieldToListIfGood(findBottomRightFieldId (pmCellId), lvReturnList);
+		AddAdjacentFieldToListIfGood (findTopFieldId (pmCellId), lvReturnList);
+		AddAdjacentFieldToListIfGood (findTopRightFieldId (pmCellId), lvReturnList);
+		AddAdjacentFieldToListIfGood (findTopLeftFieldId (pmCellId), lvReturnList);
+		AddAdjacentFieldToListIfGood (findRightFieldId (pmCellId), lvReturnList);
+		AddAdjacentFieldToListIfGood (findLeftFieldId (pmCellId), lvReturnList);
+		AddAdjacentFieldToListIfGood (findBottomFieldId (pmCellId), lvReturnList);
+		AddAdjacentFieldToListIfGood (findBottomLeftFieldId (pmCellId), lvReturnList);
+		AddAdjacentFieldToListIfGood (findBottomRightFieldId (pmCellId), lvReturnList);
 
 		return lvReturnList;
 	}
 
-	private void AddAdjacentFieldToListIfGood(int pmCell, List<int> pmAdjacentList)
+	private void AddAdjacentFieldToListIfGood (int pmCell, List<int> pmAdjacentList)
 	{
 		if (IsCellGood (pmCell))
 			pmAdjacentList.Add (pmCell);
 	}
 
-	public List<int> GetAdjacentFields(List<int> pmCells)
+	public List<int> GetAdjacentFields (List<int> pmCells)
 	{
 		List<int> lvResultList = new List<int> ();
 		List<int> lvTempList;
@@ -732,7 +733,7 @@ public class SelectFromGrid : MonoBehaviour {
 	/*
 	 * Sets selected state to each List from pmCellsList
 	 */
-	public void SetStateToCells(List<int> pmCellsList, CellStates pmStatus)
+	public void SetStateToCells (List<int> pmCellsList, CellStates pmStatus)
 	{
 		foreach (int lvField in pmCellsList) {
 			CellStatus lvStatus = GridDrawer.instance.mCells [lvField].GetComponent<CellStatus> ();
@@ -769,7 +770,7 @@ public class SelectFromGrid : MonoBehaviour {
 		}
 	}
 
-	public void DisplaySimpleRangeMoore(int pmInitialCell, int pmNormalRange, int pmLongRange)
+	public void DisplaySimpleRangeMoore (int pmInitialCell, int pmNormalRange, int pmLongRange)
 	{
 		List<int> lvLastLevel = new List<int> ();
 		List<int> lvNormalRangeCells = new List<int> ();
@@ -792,7 +793,7 @@ public class SelectFromGrid : MonoBehaviour {
 			else
 				lvNormalRangeCells.AddRange (lvLastLevel);
 
-			lvLastLevel = new List<int>();
+			lvLastLevel = new List<int> ();
 
 			foreach (int lvLongRangeCell in lvAdjacentCells) {
 				if (!lvNormalRangeCells.Contains (lvLongRangeCell))
@@ -805,14 +806,12 @@ public class SelectFromGrid : MonoBehaviour {
 		lvNormalRangeCells = RemoveCellsWithBlockedLoS (pmInitialCell, lvNormalRangeCells);
 		lvLongRangeCells = RemoveCellsWithBlockedLoS (pmInitialCell, lvLongRangeCells);
 
-		foreach(int lvEnemyCell in lvNormalRangeCells)
-		{
+		foreach (int lvEnemyCell in lvNormalRangeCells) {
 			if (IsEnemyField (lvEnemyCell))
 				lvEnemyCells.Add (lvEnemyCell);
 		}
 
-		foreach(int lvEnemyCell in lvLongRangeCells)
-		{
+		foreach (int lvEnemyCell in lvLongRangeCells) {
 			if (IsEnemyField (lvEnemyCell))
 				lvEnemyCells.Add (lvEnemyCell);
 		}
@@ -823,9 +822,9 @@ public class SelectFromGrid : MonoBehaviour {
 
 	}
 
-	private List<int> RemoveCellsWithBlockedLoS(int pmInitialCell, List<int> pmRangeCells)
+	private List<int> RemoveCellsWithBlockedLoS (int pmInitialCell, List<int> pmRangeCells)
 	{
-		Vector3 lvStartPos = GridDrawer.instance.getCellPosition (pmInitialCell,1.0f);
+		Vector3 lvStartPos = GridDrawer.instance.getCellPosition (pmInitialCell, 1.0f);
 		List<int> lvResult = new List<int> ();
 
 		foreach (int lvCellId in pmRangeCells) {
@@ -845,7 +844,7 @@ public class SelectFromGrid : MonoBehaviour {
 						lvIsAdd = false;
 				}
 
-				if(lvIsAdd)
+				if (lvIsAdd)
 					lvResult.Add (lvCellId);
 
 			} else {
@@ -858,103 +857,104 @@ public class SelectFromGrid : MonoBehaviour {
 
 	}
 
-	private int findTopFieldId(int pmField)
+	private int findTopFieldId (int pmField)
 	{
 		return pmField + GridDrawer.instance.gridWidth;
 	}
 
-	private int findBottomFieldId(int pmField)
+	private int findBottomFieldId (int pmField)
 	{
 		return pmField - GridDrawer.instance.gridWidth;
 	}
 
-	private int findRightFieldId(int pmField)
+	private int findRightFieldId (int pmField)
 	{
-		if((pmField+1) % GridDrawer.instance.gridWidth == 0)
+		if ((pmField + 1) % GridDrawer.instance.gridWidth == 0)
 			return -1;
 
 		return pmField + 1;
 	}
-	
-	private int findLeftFieldId(int pmField)
+
+	private int findLeftFieldId (int pmField)
 	{
 		if (pmField % GridDrawer.instance.gridWidth == 0)
 			return -1;
 
-		return pmField -1;
+		return pmField - 1;
 	}
 
-	private int findTopRightFieldId(int pmField)
+	private int findTopRightFieldId (int pmField)
 	{
-		if((pmField+1) % GridDrawer.instance.gridWidth == 0)
+		if ((pmField + 1) % GridDrawer.instance.gridWidth == 0)
 			return -1;
 
 		return pmField + GridDrawer.instance.gridWidth + 1;
 	}
-	
-	private int findTopLeftFieldId(int pmField)
+
+	private int findTopLeftFieldId (int pmField)
 	{
 		if (pmField % GridDrawer.instance.gridWidth == 0)
 			return -1;
 
 		return pmField + GridDrawer.instance.gridWidth - 1;
 	}
-	
-	private int findBottomRightFieldId(int pmField)
+
+	private int findBottomRightFieldId (int pmField)
 	{
-		if((pmField+1) % GridDrawer.instance.gridWidth == 0)
+		if ((pmField + 1) % GridDrawer.instance.gridWidth == 0)
 			return -1;
 
 		return pmField - GridDrawer.instance.gridWidth + 1;
 	}
-	
-	private int findBottomLeftFieldId(int pmField)
+
+	private int findBottomLeftFieldId (int pmField)
 	{
 		if (pmField % GridDrawer.instance.gridWidth == 0)
 			return -1;
 
-		return pmField - GridDrawer.instance.gridWidth -1;
+		return pmField - GridDrawer.instance.gridWidth - 1;
 	}
 
-	public void SetActivePlayerStartField(int pmField)
+	public void SetActivePlayerStartField (int pmField)
 	{
 		mActivePlayerStartField = pmField;
 	}
 
-	public bool IsTopGood(int pmCellId)
+	public bool IsTopGood (int pmCellId)
 	{
-		return (GridDrawer.instance.getGridZ(pmCellId) + 1) < GridDrawer.instance.gridHeight;
+		return (GridDrawer.instance.getGridZ (pmCellId) + 1) < GridDrawer.instance.gridHeight;
 	}
 
-	public bool IsBottomGood(int pmCellId)
+	public bool IsBottomGood (int pmCellId)
 	{
-		return (GridDrawer.instance.getGridZ(pmCellId) - 1) > -1;
+		return (GridDrawer.instance.getGridZ (pmCellId) - 1) > -1;
 	}
 
-	public bool IsRightGood(int pmCellId)
+	public bool IsRightGood (int pmCellId)
 	{
-		return (GridDrawer.instance.getGridX(pmCellId) + 1) < GridDrawer.instance.gridWidth;
+		return (GridDrawer.instance.getGridX (pmCellId) + 1) < GridDrawer.instance.gridWidth;
 	}
 
-	public bool IsLeftGood(int pmCellId)
+	public bool IsLeftGood (int pmCellId)
 	{
-		return (GridDrawer.instance.getGridX(pmCellId) - 1) > -1;
+		return (GridDrawer.instance.getGridX (pmCellId) - 1) > -1;
 	}
 
-	public bool IsCellGood(int pmCellId)
+	public bool IsCellGood (int pmCellId)
 	{
 		return pmCellId >= 0 && pmCellId < (GridDrawer.instance.gridWidth * GridDrawer.instance.gridHeight);
 	}
 
-	public void putObstacleOnField(int pmCellId, List<int> pmAdjacentCells){
+	public void putObstacleOnField (int pmCellId, List<int> pmAdjacentCells)
+	{
 		this.constructorFilledSquares.Add (pmCellId);
 	}
 
-	private bool isCellDifficultTerrain(GameObject pmCell)
+	private bool isCellDifficultTerrain (GameObject pmCell)
 	{
 		if (pmCell.transform.childCount > 0) {
 
-			ObstacleStatus lvStatus = pmCell.transform.GetChild (0).GetComponent<ObstacleStatus>();
+			ObstacleStatus lvStatus = pmCell.transform.GetChild (0).GetComponent<ObstacleStatus> ();
 			if (lvStatus.isDifficultTerrain)
 				return true;
 
@@ -963,7 +963,7 @@ public class SelectFromGrid : MonoBehaviour {
 		return false;
 	}
 
-	public int CountDifficultTerrainFieldsInPath(string [] pmPath)
+	public int CountDifficultTerrainFieldsInPath (string[] pmPath)
 	{
 		int count = 0;
 
