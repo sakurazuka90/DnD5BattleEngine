@@ -59,7 +59,10 @@ public class SelectFromGrid : MonoBehaviour
 	{
 		if (lastStatus != null) {
 			lastStatus.selected = false;
-			//if()
+			if (functionalPlaceMode) {
+				lastStatus.spawnEnemy = false;
+				lastStatus.spawnPlayer = false;
+			}
 		}
 			
 		
@@ -76,11 +79,13 @@ public class SelectFromGrid : MonoBehaviour
 					CellStatus lvCellStatus = hit.collider.gameObject.GetComponent<CellStatus> ();
 
 					//TODO FIX!!!!
-					if (!mMoveMode && !mTargetMode) {
+					if (!mMoveMode && !mTargetMode && !functionalPlaceMode) {
 						lvCellStatus.selected = true;
 					} else if (mTargetMode) {
 						if (lvCellStatus.target)
 							lvCellStatus.selected = true;
+					} else if(functionalPlaceMode){
+						lvCellStatus.spawnPlayer = true;
 					} else {
 						if (lvCellStatus.movable)
 							lvCellStatus.selected = true;
@@ -148,7 +153,7 @@ public class SelectFromGrid : MonoBehaviour
 					} else if (mCreatorMode) {
 
 						if (functionalPlaceMode) {
-							lvCellStatus.spawnPlayer = true;
+							//lvCellStatus.spawnPlayer = true;
 
 						} else if (lvStatus != null && lvStatus.picked) {
 							SetStateToCells (this.constructorFilledSquares, CellStates.DISABLED);

@@ -1,20 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CellStatus : MonoBehaviour {
+public class CellStatus : MonoBehaviour
+{
 
 	public bool avaiable;
 
-	public Material lvSelectedMaterial;
-	public Material lvDeselectedMaterial;
-	public Material lvMovableMaterial;
-	public Material lvOpportunityMaterial;
-	public Material lvTargetMaterial;
-	public Material lvCloseRangedMaterial;
-	public Material lvFarRangedMaterial;
-	public Material lvSpawnPlayerMaterial;
-	public Material lvSpawnEnemyMaterial;
+	private Material lvSelectedMaterial;
+	private Material lvDeselectedMaterial;
+	private Material lvMovableMaterial;
+	private Material lvOpportunityMaterial;
+	private Material lvTargetMaterial;
+	private Material lvCloseRangedMaterial;
+	private Material lvFarRangedMaterial;
+	private Material lvSpawnPlayerMaterial;
+	private Material lvSpawnEnemyMaterial;
 
+	public FunctionalStates functionalState;
 
 	public bool movable = false;
 	public bool lvOportunity = false;
@@ -28,22 +30,38 @@ public class CellStatus : MonoBehaviour {
 	private Texture2D cursorTexture;
 
 	// Use this for initialization
-	void Start () {
-		lvSelectedMaterial = Resources.Load<Material>("Grid2");
-		lvDeselectedMaterial = Resources.Load<Material>("Grid1");
-		lvMovableMaterial = Resources.Load<Material>("Grid3");
-		lvOpportunityMaterial = Resources.Load<Material>("Grid4");
-		lvTargetMaterial = Resources.Load<Material>("Grid5");
-		lvCloseRangedMaterial = Resources.Load<Material>("Grid6");
-		lvFarRangedMaterial = Resources.Load<Material>("Grid7");
+	void Start ()
+	{
+		lvSelectedMaterial = Resources.Load<Material> ("Grid2");
+		lvDeselectedMaterial = Resources.Load<Material> ("Grid1");
+		lvMovableMaterial = Resources.Load<Material> ("Grid3");
+		lvOpportunityMaterial = Resources.Load<Material> ("Grid4");
+		lvTargetMaterial = Resources.Load<Material> ("Grid5");
+		lvCloseRangedMaterial = Resources.Load<Material> ("Grid6");
+		lvFarRangedMaterial = Resources.Load<Material> ("Grid7");
 		lvSpawnPlayerMaterial = Resources.Load<Material> ("SpawnPlayerMaterial");
 		lvSpawnEnemyMaterial = Resources.Load<Material> ("SpawnEnemyMaterial");
+		functionalState = FunctionalStates.NONE;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		MeshRenderer lvRenderer = this.gameObject.GetComponent<MeshRenderer>();
-		if (avaiable) {
+	void Update ()
+	{
+		MeshRenderer lvRenderer = this.gameObject.GetComponent<MeshRenderer> ();
+
+		if (FunctionalStates.NONE != functionalState) {
+
+			switch (functionalState) {
+			case FunctionalStates.PLAYER_SPAWN:
+				lvRenderer.material = lvSpawnPlayerMaterial;
+				break;
+			case FunctionalStates.ENEMY_SPAWN:
+				lvRenderer.material = lvSpawnEnemyMaterial;
+				break;
+				
+			}
+
+		} else if (avaiable) {
 			if (this.selected)
 				lvRenderer.material = lvSelectedMaterial;
 			else if (this.target)
@@ -65,7 +83,7 @@ public class CellStatus : MonoBehaviour {
 		}
 	}
 
-	public void ClearStatus()
+	public void ClearStatus ()
 	{
 		this.movable = false;
 		this.lvOportunity = false;
@@ -74,8 +92,8 @@ public class CellStatus : MonoBehaviour {
 		this.farRange = false;
 	}
 
-	public bool Blocked{
-		get{
+	public bool Blocked {
+		get {
 			if (this.gameObject.transform.childCount > 0) {
 				return this.gameObject.transform.GetChild (0).gameObject.GetComponent<ObstacleStatus> ().isBlockingMovement;
 			} else
