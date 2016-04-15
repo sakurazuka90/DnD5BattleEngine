@@ -35,6 +35,8 @@ public class SelectFromGrid : MonoBehaviour
 
 	public static SelectFromGrid instance;
 
+	public FunctionalStates currentFunctionalState;
+
 	void Awake ()
 	{
 		if (instance == null)
@@ -51,6 +53,8 @@ public class SelectFromGrid : MonoBehaviour
 		updateFields ();
 
 		constructorFilledSquares = new List<int> ();
+
+		currentFunctionalState = FunctionalStates.NONE;
 
 	}
 
@@ -85,7 +89,15 @@ public class SelectFromGrid : MonoBehaviour
 						if (lvCellStatus.target)
 							lvCellStatus.selected = true;
 					} else if(functionalPlaceMode){
-						lvCellStatus.spawnPlayer = true;
+						switch (currentFunctionalState) {
+						case FunctionalStates.PLAYER_SPAWN:
+							lvCellStatus.spawnPlayer = true;
+							break;
+						case FunctionalStates.ENEMY_SPAWN:
+							lvCellStatus.spawnEnemy = true;
+							break;
+						}
+
 					} else {
 						if (lvCellStatus.movable)
 							lvCellStatus.selected = true;

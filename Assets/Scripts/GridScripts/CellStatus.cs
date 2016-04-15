@@ -90,7 +90,12 @@ public class CellStatus : MonoBehaviour
 		this.target = false;
 		this.closeRange = false;
 		this.farRange = false;
+		this.functionalState = FunctionalStates.NONE;
+		this.spawnEnemy = false;
+		this.spawnPlayer = false;
 	}
+
+
 
 	public bool Blocked {
 		get {

@@ -52,6 +52,8 @@ public class PlaceNewObstacle : MonoBehaviour
 	public void Place (string pmPrefabName)
 	{
 		if (_selectedOption != 1) {
+			SelectFromGrid.instance.functionalPlaceMode = false;
+
 			obstacle = Resources.Load<GameObject> ("ObstaclePrefabs/" + pmPrefabName);
 
 			GameObject lvObstacle = GameObject.Instantiate (obstacle);
@@ -81,6 +83,15 @@ public class PlaceNewObstacle : MonoBehaviour
 			GameObject.Find ("GridSelector").GetComponent<SelectFromGrid> ().creatorObstacle = lvObstacle;
 		} else {
 			SelectFromGrid.instance.functionalPlaceMode = true;
+
+			switch (pmPrefabName) {
+			case "SpawnPlayersSprite":
+				SelectFromGrid.instance.currentFunctionalState = FunctionalStates.PLAYER_SPAWN;
+				break;
+			case "SpawnPlayersSprite2":
+				SelectFromGrid.instance.currentFunctionalState = FunctionalStates.ENEMY_SPAWN;
+				break;
+			}
 		}
 	}
 }
