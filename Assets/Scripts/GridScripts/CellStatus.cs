@@ -15,6 +15,8 @@ public class CellStatus : MonoBehaviour
 	private Material lvFarRangedMaterial;
 	private Material lvSpawnPlayerMaterial;
 	private Material lvSpawnEnemyMaterial;
+	private Material lvSpawnPlayerMaterialSelected;
+	private Material lvSpawnEnemyMaterialSelected;
 
 	public FunctionalStates functionalState;
 
@@ -28,6 +30,7 @@ public class CellStatus : MonoBehaviour
 	public bool spawnEnemy = false;
 
 	private Texture2D cursorTexture;
+	private MeshRenderer cellMeshRenderer;
 
 	// Use this for initialization
 	void Start ()
@@ -41,45 +44,71 @@ public class CellStatus : MonoBehaviour
 		lvFarRangedMaterial = Resources.Load<Material> ("Grid7");
 		lvSpawnPlayerMaterial = Resources.Load<Material> ("SpawnPlayerMaterial");
 		lvSpawnEnemyMaterial = Resources.Load<Material> ("SpawnEnemyMaterial");
+		lvSpawnPlayerMaterialSelected = Resources.Load<Material> ("SpawnPlayerMaterialSelected");
+		lvSpawnEnemyMaterialSelected = Resources.Load<Material> ("SpawnEnemyMaterialSelected");
+
+
 		functionalState = FunctionalStates.NONE;
+
+		cellMeshRenderer = this.gameObject.GetComponent<MeshRenderer> ();
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		MeshRenderer lvRenderer = this.gameObject.GetComponent<MeshRenderer> ();
+		 if (avaiable) {
+			if (this.selected)
+				renderSelected ();
+			else if (this.target)
+				cellMeshRenderer.material = lvTargetMaterial;
+			else if (this.farRange)
+				cellMeshRenderer.material = lvFarRangedMaterial;
+			else if (this.closeRange)
+				cellMeshRenderer.material = lvCloseRangedMaterial;
+			else if (this.lvOportunity)
+				cellMeshRenderer.material = lvOpportunityMaterial;
+			else if (this.movable)
+				cellMeshRenderer.material = lvMovableMaterial;
+			else if (this.spawnPlayer)
+				cellMeshRenderer.material = lvSpawnPlayerMaterial;
+			else if (this.spawnEnemy)
+				cellMeshRenderer.material = lvSpawnEnemyMaterial;
+			else if (FunctionalStates.NONE != functionalState)
+				renderFunctional (false);
+			else
+				cellMeshRenderer.material = lvDeselectedMaterial;
+		}
+	}
 
+	private void renderSelected()
+	{
 		if (FunctionalStates.NONE != functionalState) {
+			renderFunctional(true);
+		} else {
+			cellMeshRenderer.material = lvSelectedMaterial;
+		}
+	}
 
+	private void renderFunctional(bool pmSelected)
+	{
+		if (!pmSelected) {
 			switch (functionalState) {
 			case FunctionalStates.PLAYER_SPAWN:
-				lvRenderer.material = lvSpawnPlayerMaterial;
+				cellMeshRenderer.material = lvSpawnPlayerMaterial;
 				break;
 			case FunctionalStates.ENEMY_SPAWN:
-				lvRenderer.material = lvSpawnEnemyMaterial;
+				cellMeshRenderer.material = lvSpawnEnemyMaterial;
 				break;
-				
 			}
-
-		} else if (avaiable) {
-			if (this.selected)
-				lvRenderer.material = lvSelectedMaterial;
-			else if (this.target)
-				lvRenderer.material = lvTargetMaterial;
-			else if (this.farRange)
-				lvRenderer.material = lvFarRangedMaterial;
-			else if (this.closeRange)
-				lvRenderer.material = lvCloseRangedMaterial;
-			else if (this.lvOportunity)
-				lvRenderer.material = lvOpportunityMaterial;
-			else if (this.movable)
-				lvRenderer.material = lvMovableMaterial;
-			else if (this.spawnPlayer)
-				lvRenderer.material = lvSpawnPlayerMaterial;
-			else if (this.spawnEnemy)
-				lvRenderer.material = lvSpawnEnemyMaterial;
-			else
-				lvRenderer.material = lvDeselectedMaterial;
+		} else {
+			switch (functionalState) {
+			case FunctionalStates.PLAYER_SPAWN:
+				cellMeshRenderer.material = lvSpawnPlayerMaterialSelected;
+				break;
+			case FunctionalStates.ENEMY_SPAWN:
+				cellMeshRenderer.material = lvSpawnEnemyMaterialSelected;
+				break;
+			}
 		}
 	}
 

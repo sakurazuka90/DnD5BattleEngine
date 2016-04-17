@@ -165,7 +165,11 @@ public class SelectFromGrid : MonoBehaviour
 					} else if (mCreatorMode) {
 
 						if (functionalPlaceMode) {
-							//lvCellStatus.spawnPlayer = true;
+							if (Input.GetMouseButtonDown (0)) {
+								lvCellStatus.functionalState = currentFunctionalState;
+								functionalPlaceMode = false;
+								currentFunctionalState = FunctionalStates.NONE;
+							}
 
 						} else if (lvStatus != null && lvStatus.picked) {
 							SetStateToCells (this.constructorFilledSquares, CellStates.DISABLED);
