@@ -62,6 +62,7 @@
      <Compile Include="Assets\ObstacleData.cs" />
      <Compile Include="Assets\ObstacleRotator.cs" />
      <Compile Include="Assets\ObstacleStatus.cs" />
+     <Compile Include="Assets\PanelShrinker.cs" />
      <Compile Include="Assets\PlaceNewObstacle.cs" />
      <Compile Include="Assets\SceneLoader.cs" />
      <Compile Include="Assets\Scripts\Actions\AbstractAction.cs" />

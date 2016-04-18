@@ -1,14 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PlaceNewObstacle.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PanelShrinker.cs">
     <Files>
+      <File FileName="Assets\PanelShrinker.cs" Line="27" Column="3" />
+      <File FileName="Assets\Scripts\GridScripts\SelectFromGrid.cs" Line="171" Column="56" />
       <File FileName="Assets\Scripts\GridScripts\GridDrawer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GridScripts\CellStatus.cs" Line="95" Column="28" />
+      <File FileName="Assets\Scripts\GridScripts\CellStatus.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GridScripts\CellStates.cs" Line="1" Column="1" />
-      <File FileName="Assets\PlaceNewObstacle.cs" Line="55" Column="55" />
-      <File FileName="Assets\Scripts\GridScripts\SelectFromGrid.cs" Line="168" Column="10" />
+      <File FileName="Assets\PlaceNewObstacle.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Players\FigurineMover.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GridScripts\FunctionalStates.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Utils\GameObjectUtils.cs" Line="13" Column="16" />
+      <File FileName="Assets\AssetStatsEditor.cs" Line="35" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -20,14 +23,13 @@
       <Breakpoint file="C:\Users\sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\GridDrawer.cs" line="154" column="1" />
       <Breakpoint file="C:\Users\sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\GridDrawer.cs" line="156" column="1" />
       <Breakpoint file="C:\Users\sakurazuka\Documents\DnD5BattleEngine\Assets\DisplayWindow.cs" line="31" column="1" />
-      <Breakpoint file="C:\Users\sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\GridScripts\SelectFromGrid.cs" line="613" column="1" />
+      <Breakpoint file="C:\Users\sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\GridScripts\SelectFromGrid.cs" line="617" column="1" />
       <Breakpoint file="C:\Users\sakurazuka90\Documents\DnD5BattleEngine\Assets\BattleFieldSaver.cs" line="40" column="1" />
       <Breakpoint file="C:\Users\sakurazuka\Documents\DnD5BattleEngine\Assets\BattlefieldConstructor.cs" line="80" column="72" />
       <Breakpoint file="C:\Users\sakurazuka\Documents\DnD5BattleEngine\Assets\ObstacleStatus.cs" line="25" column="1" />
       <Breakpoint file="C:\Users\sakurazuka90\Documents\DnD5BattleEngine\Assets\GenericItemButton.cs" line="10" column="1" />
       <Breakpoint file="C:\Users\sakurazuka90\Documents\DnD5BattleEngine\Assets\PlaceNewObstacle.cs" line="83" column="55" />
       <Breakpoint file="C:\Users\sakurazuka90\Documents\DnD5BattleEngine\Assets\Scripts\GridScripts\SelectFromGrid.cs" line="151" column="40" />
-      <Breakpoint file="C:\Users\sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\GridScripts\CellStatus.cs" line="54" column="1" />
       <Breakpoint file="C:\Users\sakurazuka\Documents\DnD5BattleEngine\Assets\PlaceNewObstacle.cs" line="85" column="1" />
       <Breakpoint file="C:\Users\sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\GridScripts\SelectFromGrid.cs" line="97" column="1" />
     </BreakpointStore>
