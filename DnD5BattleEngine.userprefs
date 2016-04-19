@@ -2,16 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PanelShrinker.cs">
     <Files>
-      <File FileName="Assets\PanelShrinker.cs" Line="27" Column="3" />
-      <File FileName="Assets\Scripts\GridScripts\SelectFromGrid.cs" Line="171" Column="56" />
-      <File FileName="Assets\Scripts\GridScripts\GridDrawer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GridScripts\CellStatus.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GridScripts\CellStates.cs" Line="1" Column="1" />
-      <File FileName="Assets\PlaceNewObstacle.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Players\FigurineMover.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GridScripts\FunctionalStates.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Utils\GameObjectUtils.cs" Line="13" Column="16" />
-      <File FileName="Assets\AssetStatsEditor.cs" Line="35" Column="18" />
+      <File FileName="Assets\PanelShrinker.cs" Line="41" Column="2" />
+      <File FileName="Assets\Scripts\GUI\DisplayWindow.cs" Line="7" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
