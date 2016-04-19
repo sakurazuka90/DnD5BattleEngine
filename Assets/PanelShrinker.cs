@@ -9,16 +9,13 @@ public class PanelShrinker : MonoBehaviour {
 	private float _savedHeight; 
 	private RectTransform _transform;
 
+	public GameObject parentPanel;
+
 	// Use this for initialization
 	void Start () {
 		_childrenObjects = new List<GameObject> ();
 		_transform = this.gameObject.GetComponent<RectTransform> ();
 		_savedHeight = _transform.sizeDelta.y;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 
 	public void ToggleShrink()
@@ -38,5 +35,7 @@ public class PanelShrinker : MonoBehaviour {
 		}
 
 		_transform.sizeDelta = new Vector2 (_transform.sizeDelta.x,lvHeightTemp);
+
+		parentPanel.GetComponent<AccordionPanelAdjuster> ().Adjust ();
 	}
 }
