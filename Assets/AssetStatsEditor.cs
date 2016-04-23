@@ -13,6 +13,9 @@ public class AssetStatsEditor : MonoBehaviour {
 	public GameObject blocksMovementToggle;
 	public GameObject blocksLoSToggle;
 
+	public GameObject functionalNameInput;
+	public GameObject functionalImage;
+
 	public void populate()
 	{
 		nameInput.GetComponent<InputField> ().text = obstacleStatus.name;
@@ -24,6 +27,20 @@ public class AssetStatsEditor : MonoBehaviour {
 		rotateButton.GetComponent<Button> ().interactable = true;
 
 		//GameObject.Find ("AssetEditNameInput").GetComponent<InputField> ().text = obstacleStatus.name;
+	}
+
+	public void populateFunctional(string pmFunctionalName, string pmFunctionalButtonName)
+	{
+		functionalNameInput.GetComponent<InputField> ().text = pmFunctionalName;
+		Sprite lvButtonSprite = Resources.Load<Sprite> ("ObstaclesImages/Functional/"+pmFunctionalButtonName);
+
+		functionalImage.GetComponent<Image> ().sprite = lvButtonSprite;
+	}
+
+	public void clearFunctional()
+	{
+		functionalNameInput.GetComponent<InputField> ().text = "";
+		functionalImage.GetComponent<Image> ().sprite = null;
 	}
 
 	public void clear()

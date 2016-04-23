@@ -215,6 +215,33 @@ public class SelectFromGrid : MonoBehaviour
 
 									lvStatusEditor.clear ();
 								}
+
+								FunctionalStates lvState = hit.collider.gameObject.transform.GetComponent<CellStatus> ().functionalState;
+
+								if (lvState != FunctionalStates.NONE) {
+
+									string lvFunctionalName = "";
+									string lvFunctionalButtonName = "";
+
+									switch (lvState) {
+									case FunctionalStates.PLAYER_SPAWN:
+										lvFunctionalName = "Player Spawn Point";
+										lvFunctionalButtonName = "SpawnPlayersSprite";
+										break;
+									case FunctionalStates.ENEMY_SPAWN:
+										lvFunctionalName = "Enemy Spawn Point";
+										lvFunctionalButtonName = "SpawnPlayersSprite2";
+										break;
+									}
+
+									AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
+									lvStatusEditor.populateFunctional (lvFunctionalName, lvFunctionalButtonName);
+
+								} else {
+									AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
+									lvStatusEditor.clearFunctional ();
+
+								}
 							}
 						}
 					}
