@@ -15,6 +15,7 @@ public class AssetStatsEditor : MonoBehaviour {
 
 	public GameObject functionalNameInput;
 	public GameObject functionalImage;
+	public CellStatus editedFunctionalCell;
 
 	public void populate()
 	{
@@ -25,22 +26,25 @@ public class AssetStatsEditor : MonoBehaviour {
 
 		removeButton.GetComponent<Button> ().interactable = true;
 		rotateButton.GetComponent<Button> ().interactable = true;
-
-		//GameObject.Find ("AssetEditNameInput").GetComponent<InputField> ().text = obstacleStatus.name;
 	}
 
-	public void populateFunctional(string pmFunctionalName, string pmFunctionalButtonName)
+	public void populateFunctional(string pmFunctionalName, string pmFunctionalButtonName, CellStatus pmStatus)
 	{
 		functionalNameInput.GetComponent<InputField> ().text = pmFunctionalName;
 		Sprite lvButtonSprite = Resources.Load<Sprite> ("ObstaclesImages/Functional/"+pmFunctionalButtonName);
 
 		functionalImage.GetComponent<Image> ().sprite = lvButtonSprite;
+		pmStatus.edited = true;
+		editedFunctionalCell = pmStatus;
 	}
 
 	public void clearFunctional()
 	{
 		functionalNameInput.GetComponent<InputField> ().text = "";
 		functionalImage.GetComponent<Image> ().sprite = null;
+
+		if(editedFunctionalCell != null)
+			editedFunctionalCell.edited = false;
 	}
 
 	public void clear()

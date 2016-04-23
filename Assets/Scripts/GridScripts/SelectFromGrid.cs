@@ -37,6 +37,8 @@ public class SelectFromGrid : MonoBehaviour
 
 	public FunctionalStates currentFunctionalState;
 
+
+
 	void Awake ()
 	{
 		if (instance == null)
@@ -61,15 +63,7 @@ public class SelectFromGrid : MonoBehaviour
 
 	void Update ()
 	{
-		if (lastStatus != null) {
-			lastStatus.selected = false;
-			if (functionalPlaceMode) {
-				lastStatus.spawnEnemy = false;
-				lastStatus.spawnPlayer = false;
-			}
-		}
-			
-		
+		handleLastStatus ();		
 
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit[] hits = Physics.RaycastAll (ray);
@@ -82,27 +76,7 @@ public class SelectFromGrid : MonoBehaviour
 				if (hit.collider.tag.Equals ("GridCell") && hit.collider.gameObject.GetComponent<CellStatus> ().avaiable) {
 					CellStatus lvCellStatus = hit.collider.gameObject.GetComponent<CellStatus> ();
 
-					//TODO FIX!!!!
-					if (!mMoveMode && !mTargetMode && !functionalPlaceMode) {
-						lvCellStatus.selected = true;
-					} else if (mTargetMode) {
-						if (lvCellStatus.target)
-							lvCellStatus.selected = true;
-					} else if(functionalPlaceMode){
-						switch (currentFunctionalState) {
-						case FunctionalStates.PLAYER_SPAWN:
-							lvCellStatus.spawnPlayer = true;
-							break;
-						case FunctionalStates.ENEMY_SPAWN:
-							lvCellStatus.spawnEnemy = true;
-							break;
-						}
-
-					} else {
-						if (lvCellStatus.movable)
-							lvCellStatus.selected = true;
-					}
-					lastStatus = lvCellStatus;
+					handleMouseOverCell (lvCellStatus);
 
 					Vector3 lvPosition = hit.collider.transform.position;
 					int lvCellId = GridDrawer.instance.GetGridId ((int)lvPosition.x, (int)lvPosition.z);
@@ -169,6 +143,27 @@ public class SelectFromGrid : MonoBehaviour
 								lvCellStatus.functionalState = currentFunctionalState;
 								functionalPlaceMode = false;
 								currentFunctionalState = FunctionalStates.NONE;
+
+								lvCellStatus.ClearTemporaryFunctionalStates ();
+
+								AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
+								lvStatusEditor.clearFunctional ();
+
+								string lvFunctionalName = "";
+								string lvFunctionalButtonName = "";
+
+								switch (lvCellStatus.functionalState) {
+								case FunctionalStates.PLAYER_SPAWN:
+									lvFunctionalName = "Player Spawn Point";
+									lvFunctionalButtonName = "SpawnPlayersSprite";
+									break;
+								case FunctionalStates.ENEMY_SPAWN:
+									lvFunctionalName = "Enemy Spawn Point";
+									lvFunctionalButtonName = "SpawnPlayersSprite2";
+									break;
+								}
+
+								lvStatusEditor.populateFunctional (lvFunctionalName, lvFunctionalButtonName, lvCellStatus);
 							}
 
 						} else if (lvStatus != null && lvStatus.picked) {
@@ -216,7 +211,8 @@ public class SelectFromGrid : MonoBehaviour
 									lvStatusEditor.clear ();
 								}
 
-								FunctionalStates lvState = hit.collider.gameObject.transform.GetComponent<CellStatus> ().functionalState;
+							
+								FunctionalStates lvState = lvCellStatus.functionalState;
 
 								if (lvState != FunctionalStates.NONE) {
 
@@ -235,7 +231,8 @@ public class SelectFromGrid : MonoBehaviour
 									}
 
 									AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
-									lvStatusEditor.populateFunctional (lvFunctionalName, lvFunctionalButtonName);
+									lvStatusEditor.clearFunctional ();
+									lvStatusEditor.populateFunctional (lvFunctionalName, lvFunctionalButtonName, lvCellStatus);
 
 								} else {
 									AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
@@ -248,6 +245,41 @@ public class SelectFromGrid : MonoBehaviour
 				}
 			}
 		}
+	}
+
+	private void handleLastStatus()
+	{
+		if (lastStatus != null) {
+			lastStatus.selected = false;
+			if (functionalPlaceMode) {
+				lastStatus.spawnEnemy = false;
+				lastStatus.spawnPlayer = false;
+			}
+		}
+	}
+
+	private void handleMouseOverCell(CellStatus pmCellStatus)
+	{
+		if (!mMoveMode && !mTargetMode && !functionalPlaceMode) {
+			pmCellStatus.selected = true;
+		} else if (mTargetMode) {
+			if (pmCellStatus.target)
+				pmCellStatus.selected = true;
+		} else if(functionalPlaceMode){
+			switch (currentFunctionalState) {
+			case FunctionalStates.PLAYER_SPAWN:
+				pmCellStatus.spawnPlayer = true;
+				break;
+			case FunctionalStates.ENEMY_SPAWN:
+				pmCellStatus.spawnEnemy = true;
+				break;
+			}
+
+		} else {
+			if (pmCellStatus.movable)
+				pmCellStatus.selected = true;
+		}
+		lastStatus = pmCellStatus;
 	}
 
 	public void DeactivateWalking ()

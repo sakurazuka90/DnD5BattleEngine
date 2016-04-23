@@ -29,6 +29,8 @@ public class CellStatus : MonoBehaviour
 	public bool spawnPlayer = false;
 	public bool spawnEnemy = false;
 
+	public bool edited = false;
+
 	private Texture2D cursorTexture;
 	private MeshRenderer cellMeshRenderer;
 
@@ -74,7 +76,7 @@ public class CellStatus : MonoBehaviour
 			else if (this.spawnEnemy)
 				cellMeshRenderer.material = lvSpawnEnemyMaterial;
 			else if (FunctionalStates.NONE != functionalState)
-				renderFunctional (false);
+				renderFunctional (edited);
 			else
 				cellMeshRenderer.material = lvDeselectedMaterial;
 		}
@@ -120,10 +122,14 @@ public class CellStatus : MonoBehaviour
 		this.closeRange = false;
 		this.farRange = false;
 		this.functionalState = FunctionalStates.NONE;
+		ClearTemporaryFunctionalStates ();
+	}
+
+	public void ClearTemporaryFunctionalStates()
+	{
 		this.spawnEnemy = false;
 		this.spawnPlayer = false;
 	}
-
 
 
 	public bool Blocked {
