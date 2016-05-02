@@ -4,6 +4,12 @@ using System.Collections;
 
 public class SelectOptionController : MonoBehaviour {
 
+	private GameObject _controller;
+
+	public GameObject Controller{
+		set{this._controller = value;}
+	}
+
 	// Use this for initialization
 	void Start () {
 		this.gameObject.GetComponent<Button> ().onClick.AddListener (this.Select);
@@ -16,7 +22,7 @@ public class SelectOptionController : MonoBehaviour {
 		
 	private void Select()
 	{
-		LoadPanelController lvController = GameObject.Find ("FileLoadPanel").GetComponent<LoadPanelController> ();
+		AbstractPanelController lvController = _controller.GetComponent<AbstractPanelController> ();
 		lvController.DeselectAll ();
 
 		this.SetBackgroundColor(new Color (103.0F / 255.0F, 103.0F / 255.0F, 103.0F / 255.0F));
