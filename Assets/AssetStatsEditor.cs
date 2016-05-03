@@ -41,10 +41,18 @@ public class AssetStatsEditor : MonoBehaviour {
 		editedFunctionalCell = pmStatus;
 	}
 
+	public void populateFunctional(string pmFunctionalName, string pmFunctionalButtonName, CellStatus pmStatus, string pmFunction)
+	{
+		populateFunctional (pmFunctionalName, pmFunctionalButtonName, pmStatus);
+		functionImput.GetComponent<InputField> ().text = pmFunction;
+	}
+
 	public void clearFunctional()
 	{
 		functionalNameInput.GetComponent<InputField> ().text = "";
+		functionImput.GetComponent<InputField> ().text = "";
 		functionalImage.GetComponent<Image> ().sprite = null;
+
 
 		if(editedFunctionalCell != null)
 			editedFunctionalCell.edited = false;

@@ -235,7 +235,7 @@ public class SelectFromGrid : MonoBehaviour
 
 									AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
 									lvStatusEditor.clearFunctional ();
-									lvStatusEditor.populateFunctional (lvFunctionalName, lvFunctionalButtonName, lvCellStatus);
+									lvStatusEditor.populateFunctional (lvFunctionalName, lvFunctionalButtonName, lvCellStatus, lvCellStatus.Function);
 
 								} else {
 									AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();

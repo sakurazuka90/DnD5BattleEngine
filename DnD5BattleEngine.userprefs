@@ -1,15 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AssetStatsEditor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GridScripts\SelectFromGrid.cs">
     <Files>
-      <File FileName="Assets\AssetStatsEditor.cs" Line="99" Column="43" />
-      <File FileName="Assets\SelectOptionController.cs" Line="31" Column="39" />
-      <File FileName="Assets\Scripts\GUI\SelectPanel\AbstractPanelController.cs" Line="33" Column="53" />
-      <File FileName="Assets\Scripts\GUI\SelectPanel\SelectFigurineController.cs" Line="22" Column="37" />
-      <File FileName="Assets\Scripts\GridScripts\SelectFromGrid.cs" Line="42" Column="7" />
-      <File FileName="Assets\Scripts\GridScripts\CellStatus.cs" Line="40" Column="30" />
-      <File FileName="Assets\PlaceNewObstacle.cs" Line="47" Column="53" />
-      <File FileName="Assets\ObstacleStatus.cs" Line="8" Column="1" />
+      <File FileName="Assets\Scripts\GridScripts\SelectFromGrid.cs" Line="238" Column="122" />
+      <File FileName="Assets\AssetStatsEditor.cs" Line="53" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
