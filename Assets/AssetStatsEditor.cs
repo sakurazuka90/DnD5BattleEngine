@@ -47,6 +47,14 @@ public class AssetStatsEditor : MonoBehaviour {
 		functionImput.GetComponent<InputField> ().text = pmFunction;
 	}
 
+	public void RemoveFunctional()
+	{
+		editedFunctionalCell.functionalState = FunctionalStates.NONE;
+		editedFunctionalCell.Function = "";
+
+		clearFunctional ();
+	}
+
 	public void clearFunctional()
 	{
 		functionalNameInput.GetComponent<InputField> ().text = "";
