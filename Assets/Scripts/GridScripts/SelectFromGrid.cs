@@ -37,7 +37,10 @@ public class SelectFromGrid : MonoBehaviour
 
 	public FunctionalStates currentFunctionalState;
 
-
+	public string Function {
+		get;
+		set;
+	}
 
 	void Awake ()
 	{

@@ -19,6 +19,7 @@ public class CellStatus : MonoBehaviour
 	private Material lvSpawnEnemyMaterialSelected;
 
 	public FunctionalStates functionalState;
+	private string function;
 
 	public bool movable = false;
 	public bool lvOportunity = false;
@@ -33,6 +34,11 @@ public class CellStatus : MonoBehaviour
 
 	private Texture2D cursorTexture;
 	private MeshRenderer cellMeshRenderer;
+
+	public string Function{
+		get{ return this.function; }
+		set{ this.function = value;}
+	}
 
 	// Use this for initialization
 	void Start ()
@@ -51,6 +57,7 @@ public class CellStatus : MonoBehaviour
 
 
 		functionalState = FunctionalStates.NONE;
+		function = "";
 
 		cellMeshRenderer = this.gameObject.GetComponent<MeshRenderer> ();
 	}
@@ -122,6 +129,7 @@ public class CellStatus : MonoBehaviour
 		this.closeRange = false;
 		this.farRange = false;
 		this.functionalState = FunctionalStates.NONE;
+		this.function = "";
 		ClearTemporaryFunctionalStates ();
 	}
 

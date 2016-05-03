@@ -30,7 +30,7 @@ public abstract class AbstractPanelController : MonoBehaviour
 
 		foreach (string lvName in lvNames) {
 			GameObject lvInstance = Instantiate (optionPrefab);
-			lvInstance.transform.parent = content.transform;
+			lvInstance.transform.SetParent(content.transform);
 			lvInstance.GetComponent<SelectOptionController> ().SetName (lvName);
 			lvInstance.GetComponent<SelectOptionController> ().Controller = this.gameObject;
 		}

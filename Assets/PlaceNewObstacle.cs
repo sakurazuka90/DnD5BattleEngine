@@ -44,7 +44,7 @@ public class PlaceNewObstacle : MonoBehaviour
 				Place (name);
 			});
 
-			lvInstance.transform.parent = content.transform;
+			lvInstance.transform.SetParent(content.transform);
 		}
 	}
 

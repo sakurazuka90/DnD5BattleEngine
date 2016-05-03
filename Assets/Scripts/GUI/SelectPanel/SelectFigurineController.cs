@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class SelectFigurineController : AbstractPanelController
 {
@@ -16,7 +17,9 @@ public class SelectFigurineController : AbstractPanelController
 
 	public override void Load ()
 	{
-		throw new NotImplementedException ();
+		AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
+		lvStatusEditor.SetFunction (_selected);
+		this.gameObject.SetActive (false);
 	}
 
 	#endregion

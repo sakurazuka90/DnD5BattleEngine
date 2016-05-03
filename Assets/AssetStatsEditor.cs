@@ -15,7 +15,10 @@ public class AssetStatsEditor : MonoBehaviour {
 
 	public GameObject functionalNameInput;
 	public GameObject functionalImage;
+	public GameObject functionImput;
 	public CellStatus editedFunctionalCell;
+
+	public GameObject figurineSelectPanel;
 
 	public void populate()
 	{
@@ -88,5 +91,16 @@ public class AssetStatsEditor : MonoBehaviour {
 	{
 		Destroy (GameObject.Find (obstacleStatus.name));
 		this.clear ();
+	}
+
+	public void SetFunction(string pmFunction)
+	{
+		editedFunctionalCell.Function = pmFunction;
+		functionImput.GetComponent<InputField> ().text = pmFunction;
+	}
+
+	public void ShowFigurineSelectPanel()
+	{
+		figurineSelectPanel.SetActive (true);
 	}
 }
