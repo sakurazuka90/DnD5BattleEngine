@@ -78,6 +78,7 @@
      <Compile Include="Assets\Scripts\AnimationScripts\AnimationPlayer.cs" />
      <Compile Include="Assets\Scripts\AnimationScripts\DisableDead.cs" />
      <Compile Include="Assets\Scripts\AnimationScripts\DisableEvasion.cs" />
+     <Compile Include="Assets\Scripts\Database\DatabaseController.cs" />
      <Compile Include="Assets\Scripts\Engine\MoveCamera.cs" />
      <Compile Include="Assets\Scripts\GUI\ButtonToggler.cs" />
      <Compile Include="Assets\Scripts\GUI\DisplayWindow.cs" />
@@ -145,6 +146,12 @@
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="Mono.Data.Sqlite">
+ <HintPath>C:/Users/Sakurazuka/Documents/DnD5BattleEngine/Assets/Plugins/Mono.Data.Sqlite.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Data">
+ <HintPath>C:/Users/Sakurazuka/Documents/DnD5BattleEngine/Assets/Plugins/System.Data.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

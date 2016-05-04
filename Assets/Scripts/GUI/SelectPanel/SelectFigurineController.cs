@@ -12,7 +12,7 @@ public class SelectFigurineController : AbstractPanelController
 
 	protected override List<string> GetOptions ()
 	{
-		return FigurineFileReader.instance.GetFigurineList ();
+		return DatabaseController.GetListOfValues (); //FigurineFileReader.instance.GetFigurineList ();
 	}
 
 	public override void Load ()
