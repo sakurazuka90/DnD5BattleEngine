@@ -15,7 +15,7 @@ public class DatabaseController{
 		dbconn = (IDbConnection) new SqliteConnection(conn);
 		dbconn.Open(); //Open connection to the database.
 		IDbCommand dbcmd = dbconn.CreateCommand();
-		string sqlQuery = "SELECT name " + "FROM FIGURINES";
+		string sqlQuery = "SELECT NAME " + "FROM CHARACTER_STATS";
 		dbcmd.CommandText = sqlQuery;
 		IDataReader reader = dbcmd.ExecuteReader();
 		while (reader.Read())
