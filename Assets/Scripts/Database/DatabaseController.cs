@@ -6,14 +6,32 @@ using System.Collections.Generic;
 
 public class DatabaseController{
 
+	private static string _connectionURI = "URI=file:" + Application.dataPath + "/Database/battleEngine.db";
+
+	public static IDbConnection GetConnection()
+	{
+		IDbConnection dbconn;
+		dbconn = (IDbConnection) new SqliteConnection(_connectionURI);
+		dbconn.Open();
+
+		return dbconn;
+	}
+
+	public static void CleanUp(IDataReader pmReader, IDbCommand pmCommand, IDbConnection pmConnection)
+	{
+		if (pmReader != null)
+			pmReader.Close ();
+		if (pmCommand != null)
+			pmCommand.Dispose ();
+		if (pmConnection != null)
+			pmConnection.Close ();
+	}
+
 	public static List<string> GetListOfValues()
 	{
 		List<string> names = new List<string> ();
 
-		string conn = "URI=file:" + Application.dataPath + "/Database/battleEngine.db"; //Path to database.
-		IDbConnection dbconn;
-		dbconn = (IDbConnection) new SqliteConnection(conn);
-		dbconn.Open(); //Open connection to the database.
+		IDbConnection dbconn = GetConnection ();
 		IDbCommand dbcmd = dbconn.CreateCommand();
 		string sqlQuery = "SELECT NAME " + "FROM CHARACTER_STATS";
 		dbcmd.CommandText = sqlQuery;
@@ -23,14 +41,68 @@ public class DatabaseController{
 			string name = reader.GetString (0);
 			names.Add (name);
 		}
-		reader.Close();
+
+		CleanUp (reader,dbcmd,dbconn);
 		reader = null;
-		dbcmd.Dispose();
 		dbcmd = null;
-		dbconn.Close();
 		dbconn = null;
 
 		return names;
+	}
+
+	public Player GetPlayerByID(int pmPlayerId)
+	{
+		Player lvPlayer = new Player ();
+
+		IDbConnection dbconn = GetConnection ();
+		IDbCommand dbcmd = dbconn.CreateCommand();
+		string sqlQuery = 	"SELECT ST.NAME, FI.PICTURE_NAME, ST.LEVEL, ST.STR, ST.DEX, ST.FOR, ST.INT, ST.WIS, ST.CHA, ST.HP, ST.SPEED  "
+			+ "FROM CHARACTER_STATS ST JOIN FIGURINES FI ON FI.CHARACTER_ID = ST.ID WHERE ST.ID = " + pmPlayerId;
+		dbcmd.CommandText = sqlQuery;
+
+		IDataReader reader = dbcmd.ExecuteReader();
+		if (reader.Read())
+		{
+
+			lvPlayer.playerName = reader.GetString (1);
+			Sprite spr1 = Resources.Load<Sprite>(reader.GetString(2));
+			lvPlayer.PlayerSprite = spr1;
+			lvPlayer.SetAbility (AbilityNames.STRENGTH, reader.GetInt32(4));
+			lvPlayer.SetAbility (AbilityNames.DEXTERITY, reader.GetInt32(5));
+			lvPlayer.SetAbility (AbilityNames.CONSTITUTION, reader.GetInt32(5));
+			lvPlayer.SetAbility (AbilityNames.INTELLIGENCE, reader.GetInt32(6));
+			lvPlayer.SetAbility (AbilityNames.WISDOM, reader.GetInt32(7));
+			lvPlayer.SetAbility (AbilityNames.CHARISMA, reader.GetInt32(8));
+			lvPlayer.HpTotal = reader.GetInt32 (9);
+			lvPlayer.hp = lvPlayer.HpTotal;
+
+
+		}
+
+		CleanUp (reader,dbcmd,dbconn);
+		reader = null;
+		dbcmd = null;
+		dbconn = null;
+
+
+
+		//GameObject fig1 = GameObject.Find ("Figurine1");
+		//Player pl1 = new Player ();
+		//pl1.Figurine = fig1;
+
+
+
+
+		//pl1.SetSpeed (4);
+		//pl1.UpdateAc ();
+		//pl1.HpTotal = 22;
+		//pl1.hp = 22;
+		//pl1.Proficiency = 2;
+
+
+
+
+		return lvPlayer;
 	}
 
 }
