@@ -148,11 +148,11 @@
  <Reference Include="UnityEngine.Networking">
  <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
- <Reference Include="System.Data">
- <HintPath>C:/Users/sakurazuka90/Documents/DnD5BattleEngine/Assets/Plugins/System.Data.dll</HintPath>
- </Reference>
  <Reference Include="Mono.Data.Sqlite">
  <HintPath>C:/Users/sakurazuka90/Documents/DnD5BattleEngine/Assets/Plugins/Mono.Data.Sqlite.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Data">
+ <HintPath>C:/Users/sakurazuka90/Documents/DnD5BattleEngine/Assets/Plugins/System.Data.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -75,17 +75,8 @@ public class PlayerSpooler : MonoBehaviour {
 
 
 		GameObject fig2 = GameObject.Find ("Figurine2");
-		Player pl2 = new Player ();
+		Player pl2 = DatabaseController.GetPlayerByID (1);
 		pl2.Figurine = fig2;
-		Sprite spr2 = Resources.Load<Sprite>("002");
-		pl2.PlayerSprite = spr2;
-		pl2.playerName = "Goblin 1";
-		pl2.SetAbility (AbilityNames.STRENGTH, 9);
-		pl2.SetAbility (AbilityNames.DEXTERITY, 14);
-		pl2.SetSpeed (4);
-		pl2.UpdateAc ();
-		pl2.HpTotal = 9;
-		pl2.hp = 9;
 
 		//Weapon lvScimitarWep = new Weapon ("Scimitar", WeaponType.MELEE, WeaponCategory.MARTIAL, 6, 1, p1ListEq);
 
