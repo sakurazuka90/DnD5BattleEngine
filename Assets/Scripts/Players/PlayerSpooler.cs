@@ -33,21 +33,10 @@ public class PlayerSpooler : MonoBehaviour {
 
 		mPool = new List<Player> ();
 
-		//mSpool = new Player[2];
-
 		GameObject fig1 = GameObject.Find ("Figurine1");
-		Player pl1 = new Player ();
+		Player pl1 = DatabaseController.GetPlayerByID (2);
+
 		pl1.Figurine = fig1;
-		Sprite spr1 = Resources.Load<Sprite>("001");
-		pl1.PlayerSprite = spr1;
-		pl1.playerName = "Kurrdar the Mighty";
-		pl1.SetAbility (AbilityNames.DEXTERITY, 10);
-		pl1.SetAbility (AbilityNames.STRENGTH, 16);
-		pl1.SetSpeed (4);
-		pl1.UpdateAc ();
-		pl1.HpTotal = 22;
-		pl1.hp = 22;
-		pl1.Proficiency = 2;
 
 		List<EquipementTypes> p1ListEq = new List<EquipementTypes> ();
 		p1ListEq.Add (EquipementTypes.MAIN_HAND);

@@ -50,7 +50,7 @@ public class DatabaseController{
 		return names;
 	}
 
-	public Player GetPlayerByID(int pmPlayerId)
+	public static Player GetPlayerByID(int pmPlayerId)
 	{
 		Player lvPlayer = new Player ();
 
@@ -64,43 +64,25 @@ public class DatabaseController{
 		if (reader.Read())
 		{
 
-			lvPlayer.playerName = reader.GetString (1);
-			Sprite spr1 = Resources.Load<Sprite>(reader.GetString(2));
+			lvPlayer.playerName = reader.GetString (0);
+			Sprite spr1 = Resources.Load<Sprite>(reader.GetString(1));
 			lvPlayer.PlayerSprite = spr1;
-			lvPlayer.SetAbility (AbilityNames.STRENGTH, reader.GetInt32(4));
-			lvPlayer.SetAbility (AbilityNames.DEXTERITY, reader.GetInt32(5));
+			lvPlayer.SetAbility (AbilityNames.STRENGTH, reader.GetInt32(3));
+			lvPlayer.SetAbility (AbilityNames.DEXTERITY, reader.GetInt32(4));
 			lvPlayer.SetAbility (AbilityNames.CONSTITUTION, reader.GetInt32(5));
 			lvPlayer.SetAbility (AbilityNames.INTELLIGENCE, reader.GetInt32(6));
 			lvPlayer.SetAbility (AbilityNames.WISDOM, reader.GetInt32(7));
 			lvPlayer.SetAbility (AbilityNames.CHARISMA, reader.GetInt32(8));
 			lvPlayer.HpTotal = reader.GetInt32 (9);
 			lvPlayer.hp = lvPlayer.HpTotal;
-
-
+			lvPlayer.SetSpeed (reader.GetInt32(10));
+			lvPlayer.Proficiency = Proficiency.CalculateProficiencyBonusByLevel (reader.GetInt32(2));
 		}
 
 		CleanUp (reader,dbcmd,dbconn);
 		reader = null;
 		dbcmd = null;
 		dbconn = null;
-
-
-
-		//GameObject fig1 = GameObject.Find ("Figurine1");
-		//Player pl1 = new Player ();
-		//pl1.Figurine = fig1;
-
-
-
-
-		//pl1.SetSpeed (4);
-		//pl1.UpdateAc ();
-		//pl1.HpTotal = 22;
-		//pl1.hp = 22;
-		//pl1.Proficiency = 2;
-
-
-
 
 		return lvPlayer;
 	}
