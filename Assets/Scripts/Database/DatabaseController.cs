@@ -118,7 +118,7 @@ public class DatabaseController{
 	{
 		IDbConnection dbconn = GetConnection ();
 		IDbCommand dbcmd = dbconn.CreateCommand();
-		string sqlQuery = 	"select w.ID, w.NAME, w.WEAPON_TYPE_ID, w.WEAPON_CATEGORY_ID, w.WEAPON_DAMAGE_DIE_SIDES, w.WEAPON_DAMAGE_DIE_QUANTITY, w.SHORT_RANGE, w.LONG_RANGE, es.NAME " +
+		string sqlQuery = 	"select w.ID, w.NAME, w.WEAPON_TYPE_ID, w.WEAPON_CATEGORY_ID, w.WEAPON_DAMAGE_DIE_SIDES, w.WEAPON_DAMAGE_DIE_QUANTITY, w.SHORT_RANGE, w.LONG_RANGE, w.ICON_NAME, es.NAME " +
 			"FROM WEAPONS w join CHARACTERS_ITEMS ci on ci.ITEM_ID = w.ID and ci.ITEM_TYPE = 1  JOIN EQUIPEMENT_SLOTS es on ci.FIELD_ID = es.ID  where ci.CHARACTER_ID = " + pmPlayerId;
 		dbcmd.CommandText = sqlQuery;
 
@@ -127,11 +127,11 @@ public class DatabaseController{
 
 			List<EquipementTypes> lvTypes = GetWeaponEqTypes (reader.GetInt32 (0), dbconn);
 
-			//Item lvItem = new Weapon(reader.GetString(1),
-			//lvItem.resourceImageName = reader.GetString (4);
-			//lvItem.inventoryFieldId = reader.GetString (5);
+			Item lvItem = new Weapon (reader.GetString (1), GetWeaponTypeById (reader.GetInt32 (2)), GetWeaponCategoryById (reader.GetInt32 (3)), reader.GetInt32 (4), reader.GetInt32 (5), lvTypes, reader.GetInt32 (6), reader.GetInt32 (7));
+			lvItem.resourceImageName = reader.GetString (8);
+			lvItem.inventoryFieldId = reader.GetString (9);
 
-			//pmInventory.Add (reader.GetString (5), lvItem);
+			pmInventory.Add (reader.GetString (9), lvItem);
 
 		}
 
@@ -139,6 +139,36 @@ public class DatabaseController{
 		reader = null;
 		dbcmd = null;
 		dbconn = null;
+	}
+
+	private static WeaponType GetWeaponTypeById(int pmId)
+	{
+		switch (pmId) {
+		case 1:
+			return WeaponType.MELEE;
+			break;
+		case 2:
+			return WeaponType.RANGED;
+			break;
+		default:
+			return WeaponType.MELEE;
+			break;
+		}
+	}
+
+	private static WeaponCategory GetWeaponCategoryById(int pmId)
+	{
+		switch (pmId) {
+		case 1:
+			return WeaponCategory.SIMPLE;
+			break;
+		case 2:
+			return WeaponCategory.MARTIAL;
+			break;
+		default:
+			return WeaponCategory.SIMPLE;
+			break;
+		}
 	}
 
 	private static List<EquipementTypes> GetArmorEqTypes(int pmArmorId, IDbConnection pmConnection)
@@ -168,7 +198,7 @@ public class DatabaseController{
 		List<EquipementTypes> lvList = new List<EquipementTypes> ();
 
 		IDbCommand dbcmd = pmConnection.CreateCommand();
-		string sqlQuery = "select EQUIPEMENT_SLOTS from WEAPONS_EQUIPEMENT_SLOTS where WEAPON_ID = " + pmArmorId;
+		string sqlQuery = "select EQUIPEMENT_SLOTS_ID from WEAPONS_EQUIPEMENT_SLOTS where WEAPON_ID = " + pmArmorId;
 		dbcmd.CommandText = sqlQuery;
 
 		IDataReader reader = dbcmd.ExecuteReader();

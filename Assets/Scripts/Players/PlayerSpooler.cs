@@ -48,24 +48,24 @@ public class PlayerSpooler : MonoBehaviour {
 		List<EquipementTypes> crossbowListEq = new List<EquipementTypes> ();
 		crossbowListEq.Add (EquipementTypes.MAIN_HAND);
 
-		Item lvMagicAxe = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 10, 1, p1ListEq);
-		lvMagicAxe.resourceImageName = "Battleaxe";
-		lvMagicAxe.inventoryFieldId = "INV4";
+		//Item lvMagicAxe = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 10, 1, p1ListEq);
+		//lvMagicAxe.resourceImageName = "Battleaxe";
+		//lvMagicAxe.inventoryFieldId = "INV4";
 
 		//Item lvArmor = new Armor ("Breastplate", p2ListEq,16,0);
 		//lvArmor.resourceImageName = "ArmorColor";
 		//lvArmor.inventoryFieldId = "INV1";
 
-		Item lvCrossbow = new Weapon ("Crossbow", WeaponType.RANGED, WeaponCategory.SIMPLE, 10, 1, crossbowListEq,6,24);
-		lvCrossbow.resourceImageName = "Crossbow";
-		lvCrossbow.inventoryFieldId = "INV7";
+		//Item lvCrossbow = new Weapon ("Crossbow", WeaponType.RANGED, WeaponCategory.SIMPLE, 10, 1, crossbowListEq,6,24);
+		//lvCrossbow.resourceImageName = "Crossbow";
+		//lvCrossbow.inventoryFieldId = "INV7";
 
 		Dictionary<string,Item> inventory1 = new Dictionary<string,Item> ();
-		inventory1.Add ("INV4",lvMagicAxe);
+		//inventory1.Add ("INV4",lvMagicAxe);
 		//inventory1.Add ("INV1", lvArmor);
-		inventory1.Add ("INV7", lvCrossbow);
+		//inventory1.Add ("INV7", lvCrossbow);
 
-
+		DatabaseController.AddPlayersWeaponsToInventory (2, inventory1);
 		DatabaseController.AddPlayersArmorsToInventory (2, inventory1);
 
 		pl1.Inventory = inventory1;
@@ -88,11 +88,13 @@ public class PlayerSpooler : MonoBehaviour {
 		pl2.equippedWeaponAttack = lvScimitar;
 
 		Dictionary<string,Item> inventory2 = new Dictionary<string,Item> ();
-		Item lvMagicAxe2 = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 10, 1, p1ListEq);
-		lvMagicAxe2.resourceImageName = "Battleaxe";
-		lvMagicAxe2.inventoryFieldId = "INV24";
+		//Item lvMagicAxe2 = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 10, 1, p1ListEq);
+		//lvMagicAxe2.resourceImageName = "Battleaxe";
+		//lvMagicAxe2.inventoryFieldId = "INV24";
 
-		inventory2.Add ("INV24",lvMagicAxe2);
+		//inventory2.Add ("INV24",lvMagicAxe2);
+
+		DatabaseController.AddPlayersWeaponsToInventory (1, inventory2);
 
 		DatabaseController.AddPlayersArmorsToInventory (1, inventory2);
 
