@@ -87,6 +87,123 @@ public class DatabaseController{
 		return lvPlayer;
 	}
 
+	public static void AddPlayersArmorsToInventory(int pmPlayerId, Dictionary<string,Item> pmInventory)
+	{
+		IDbConnection dbconn = GetConnection ();
+		IDbCommand dbcmd = dbconn.CreateCommand();
+		string sqlQuery = 	"select a.id, a.NAME,  a.AC, a.MAX_DEX, a.ICON_NAME, es.NAME FROM " +
+			"ARMORS a join CHARACTERS_ITEMS ci on ci.ITEM_ID = a.ID and ci.ITEM_TYPE = 2  JOIN EQUIPEMENT_SLOTS es on ci.FIELD_ID = es.ID  where ci.CHARACTER_ID =" + pmPlayerId;
+		dbcmd.CommandText = sqlQuery;
 
+		IDataReader reader = dbcmd.ExecuteReader();
+		while (reader.Read ()) {
+
+			List<EquipementTypes> lvTypes = GetArmorEqTypes (reader.GetInt32 (0), dbconn);
+
+			Item lvItem = new Armor (reader.GetString(1), lvTypes,reader.GetInt32(2),reader.GetInt32(3));
+			lvItem.resourceImageName = reader.GetString (4);
+			lvItem.inventoryFieldId = reader.GetString (5);
+
+			pmInventory.Add (reader.GetString (5), lvItem);
+
+		}
+
+		CleanUp (reader,dbcmd,dbconn);
+		reader = null;
+		dbcmd = null;
+		dbconn = null;
+	}
+
+	public static void AddPlayersWeaponsToInventory(int pmPlayerId, Dictionary<string,Item> pmInventory)
+	{
+		IDbConnection dbconn = GetConnection ();
+		IDbCommand dbcmd = dbconn.CreateCommand();
+		string sqlQuery = 	"select w.ID, w.NAME, w.WEAPON_TYPE_ID, w.WEAPON_CATEGORY_ID, w.WEAPON_DAMAGE_DIE_SIDES, w.WEAPON_DAMAGE_DIE_QUANTITY, w.SHORT_RANGE, w.LONG_RANGE, es.NAME " +
+			"FROM WEAPONS w join CHARACTERS_ITEMS ci on ci.ITEM_ID = w.ID and ci.ITEM_TYPE = 1  JOIN EQUIPEMENT_SLOTS es on ci.FIELD_ID = es.ID  where ci.CHARACTER_ID = " + pmPlayerId;
+		dbcmd.CommandText = sqlQuery;
+
+		IDataReader reader = dbcmd.ExecuteReader();
+		while (reader.Read ()) {
+
+			List<EquipementTypes> lvTypes = GetWeaponEqTypes (reader.GetInt32 (0), dbconn);
+
+			//Item lvItem = new Weapon(reader.GetString(1),
+			//lvItem.resourceImageName = reader.GetString (4);
+			//lvItem.inventoryFieldId = reader.GetString (5);
+
+			//pmInventory.Add (reader.GetString (5), lvItem);
+
+		}
+
+		CleanUp (reader,dbcmd,dbconn);
+		reader = null;
+		dbcmd = null;
+		dbconn = null;
+	}
+
+	private static List<EquipementTypes> GetArmorEqTypes(int pmArmorId, IDbConnection pmConnection)
+	{
+		List<EquipementTypes> lvList = new List<EquipementTypes> ();
+
+		IDbCommand dbcmd = pmConnection.CreateCommand();
+		string sqlQuery = "select EQUIPEMENT_SLOTS from ARMORS_EQUIPEMENT_SLOTS where ARMORS_ID = " + pmArmorId;
+		dbcmd.CommandText = sqlQuery;
+
+		IDataReader reader = dbcmd.ExecuteReader();
+		while (reader.Read ()) {
+			
+			lvList.Add (GetEqTypeById (reader.GetInt32 (0)));
+
+		}
+
+		CleanUp (reader,dbcmd,null);
+		reader = null;
+		dbcmd = null;
+
+		return lvList;
+	}
+
+	private static List<EquipementTypes> GetWeaponEqTypes(int pmArmorId, IDbConnection pmConnection)
+	{
+		List<EquipementTypes> lvList = new List<EquipementTypes> ();
+
+		IDbCommand dbcmd = pmConnection.CreateCommand();
+		string sqlQuery = "select EQUIPEMENT_SLOTS from WEAPONS_EQUIPEMENT_SLOTS where WEAPON_ID = " + pmArmorId;
+		dbcmd.CommandText = sqlQuery;
+
+		IDataReader reader = dbcmd.ExecuteReader();
+		while (reader.Read ()) {
+
+			lvList.Add (GetEqTypeById (reader.GetInt32 (0)));
+
+		}
+
+		CleanUp (reader,dbcmd,null);
+		reader = null;
+		dbcmd = null;
+
+		return lvList;
+	}
+
+	private static EquipementTypes GetEqTypeById(int pmEqTypeId)
+	{
+		EquipementTypes lvType = EquipementTypes.ANY;
+
+		switch (pmEqTypeId) {
+		case 77:
+			lvType = EquipementTypes.ARMOR;
+			break;
+		case 75:
+			lvType = EquipementTypes.MAIN_HAND;
+			break;
+		case 76:
+			lvType = EquipementTypes.OFF_HAND;
+			break;
+		}
+
+		return lvType;
+	}
+
+		
 
 }
