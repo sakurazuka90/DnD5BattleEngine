@@ -83,8 +83,11 @@ public class BattlefieldConstructor : MonoBehaviour {
 
 			}
 		}
+	}
 
-
+	public void SetupFigurines()
+	{
+		
 	}
 	
 

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
+using System.Collections.Generic;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
@@ -97,6 +97,19 @@ public class BattleFieldSaver : MonoBehaviour
 
 		return lvData;
 	}
+
+	private int [] CollectFigurinesData(int pmPlayerId)
+	{
+		List<int> lvIds = new List<int> ();
+		GameObject[] lvCells = GridDrawer.instance.mCells;
+
+
+
+
+		return lvIds.ToArray ();
+
+	}
+
 
 
 }

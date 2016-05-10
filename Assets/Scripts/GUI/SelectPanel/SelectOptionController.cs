@@ -2,23 +2,9 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class SelectOptionController : MonoBehaviour {
+public class SelectOptionController : AbstractSelectOptionController {
 
-	private GameObject _controller;
 
-	public GameObject Controller{
-		set{this._controller = value;}
-	}
-
-	// Use this for initialization
-	void Start () {
-		this.gameObject.GetComponent<Button> ().onClick.AddListener (this.Select);
-	}
-
-	public void SetName(string pmName)
-	{
-		this.gameObject.transform.FindChild ("Text").GetComponent<Text> ().text = pmName;
-	}
 		
 	private void Select()
 	{

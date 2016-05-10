@@ -6,5 +6,7 @@ class GridData{
 	public int z;
 
 	public ObstacleData [] obstacles;
+	public int [] players;
+	public int [] enemies;
 }
 

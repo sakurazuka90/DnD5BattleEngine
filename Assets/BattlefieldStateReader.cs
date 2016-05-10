@@ -30,7 +30,7 @@ public class BattlefieldStateReader : MonoBehaviour
 		if (instance == null)
 			instance = this;
 		else if (instance != this)
-			Destroy (this);
+			Destroy (this.gameObject);
 	}
 
 	// Use this for initialization
