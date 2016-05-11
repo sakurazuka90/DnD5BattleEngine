@@ -1,9 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GUI\SelectPanel\AbstractSelectOptionController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GUI\SelectPanel\SelectFigurineController.cs">
     <Files>
-      <File FileName="Assets\Scripts\GUI\SelectPanel\AbstractSelectOptionController.cs" Line="23" Column="2" />
-      <File FileName="Assets\Scripts\GUI\SelectPanel\SelectOptionController.cs" Line="7" Column="1" />
+      <File FileName="Assets\Scripts\GUI\SelectPanel\AbstractSelectOptionController.cs" Line="16" Column="3" />
+      <File FileName="Assets\Scripts\GUI\SelectPanel\SelectOptionController.cs" Line="15" Column="41" />
+      <File FileName="Assets\Scripts\GUI\SelectPanel\AbstractPanelController.cs" Line="25" Column="1" />
+      <File FileName="Assets\Scripts\GUI\SelectPanel\SelectFigurineOptionController.cs" Line="9" Column="35" />
+      <File FileName="Assets\Scripts\GUI\SelectPanel\SelectFigurineController.cs" Line="44" Column="3" />
+      <File FileName="Assets\Scripts\Database\DatabaseController.cs" Line="39" Column="24" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -29,9 +33,9 @@
       <Breakpoint file="C:\Users\sakurazuka90\Documents\DnD5BattleEngine\Assets\Scripts\Database\DatabaseController.cs" line="55" column="1" />
       <Breakpoint file="C:\Users\sakurazuka90\Documents\DnD5BattleEngine\Assets\Scripts\Database\DatabaseController.cs" line="67" column="1" />
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\GUI\InventoryFiller.cs" line="27" column="1" />
-      <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Database\DatabaseController.cs" line="111" column="1" />
+      <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Database\DatabaseController.cs" line="112" column="1" />
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\GUI\InventoryFiller.cs" line="41" column="1" />
-      <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Database\DatabaseController.cs" line="107" column="15" />
+      <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Database\DatabaseController.cs" line="108" column="15" />
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Players\PlayerSpooler.cs" line="71" column="20" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -27,19 +27,20 @@ public class DatabaseController{
 			pmConnection.Close ();
 	}
 
-	public static List<string> GetListOfValues()
+	public static Dictionary<int,string> GetListOfValues()
 	{
-		List<string> names = new List<string> ();
+		Dictionary<int,string> names = new Dictionary<int,string> ();
 
 		IDbConnection dbconn = GetConnection ();
 		IDbCommand dbcmd = dbconn.CreateCommand();
-		string sqlQuery = "SELECT NAME " + "FROM CHARACTER_STATS";
+		string sqlQuery = "SELECT NAME, ID " + "FROM CHARACTER_STATS";
 		dbcmd.CommandText = sqlQuery;
 		IDataReader reader = dbcmd.ExecuteReader();
 		while (reader.Read())
 		{
 			string name = reader.GetString (0);
-			names.Add (name);
+			int id = reader.GetInt32 (1);
+			names.Add (id,name);
 		}
 
 		CleanUp (reader,dbcmd,dbconn);

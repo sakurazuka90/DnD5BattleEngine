@@ -20,7 +20,26 @@ public abstract class AbstractSelectOptionController : MonoBehaviour
 		this.gameObject.transform.FindChild ("Text").GetComponent<Text> ().text = pmName;
 	}
 
+	protected abstract void Select();
 
+	protected void MarkSelectedOption()
+	{
+		AbstractPanelController lvController = _controller.GetComponent<AbstractPanelController> ();
+		lvController.DeselectAll ();
+
+		this.SetBackgroundColor(new Color (103.0F / 255.0F, 103.0F / 255.0F, 103.0F / 255.0F));
+		this.SetTextColor (new Color (193.0F / 255.0F, 193.0F / 255.0F, 193.0F / 255.0F));
+	}
+
+	public void SetBackgroundColor(Color pmColor)
+	{
+		this.gameObject.GetComponent<Image> ().color = pmColor;
+	}
+
+	public void SetTextColor(Color pmColor)
+	{
+		this.gameObject.transform.FindChild ("Text").GetComponent<Text> ().color = pmColor;
+	}
 
 	public AbstractSelectOptionController ()
 	{
