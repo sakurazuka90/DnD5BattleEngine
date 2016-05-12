@@ -31,8 +31,8 @@ public abstract class AbstractPanelController : MonoBehaviour
 		foreach (string lvName in lvNames) {
 			GameObject lvInstance = Instantiate (optionPrefab);
 			lvInstance.transform.SetParent(content.transform);
-			lvInstance.GetComponent<SelectOptionController> ().SetName (lvName);
-			lvInstance.GetComponent<SelectOptionController> ().Controller = this.gameObject;
+			lvInstance.GetComponent<AbstractSelectOptionController> ().SetName (lvName);
+			lvInstance.GetComponent<AbstractSelectOptionController> ().Controller = this.gameObject;
 		}
 	}
 
@@ -50,8 +50,8 @@ public abstract class AbstractPanelController : MonoBehaviour
 	public virtual void DeselectAll()
 	{
 		foreach (Transform lvOption in content.transform) {
-			lvOption.gameObject.GetComponent<SelectOptionController> ().SetBackgroundColor (new Color (255.0F / 255.0F, 255.0F / 255.0F, 255.0F / 255.0F));
-			lvOption.gameObject.GetComponent<SelectOptionController> ().SetTextColor (new Color (50.0F / 255.0F, 50.0F / 255.0F, 50.0F / 255.0F));
+			lvOption.gameObject.GetComponent<AbstractSelectOptionController> ().SetBackgroundColor (new Color (255.0F / 255.0F, 255.0F / 255.0F, 255.0F / 255.0F));
+			lvOption.gameObject.GetComponent<AbstractSelectOptionController> ().SetTextColor (new Color (50.0F / 255.0F, 50.0F / 255.0F, 50.0F / 255.0F));
 			this._selected = null;
 		}
 

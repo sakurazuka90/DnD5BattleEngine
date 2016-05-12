@@ -6,6 +6,7 @@ public class SelectFigurineController : AbstractPanelController
 {
 
 	private List<int> _idsList;
+	private Dictionary<int,string> _values;
 
 	public SelectFigurineController ()
 	{
@@ -15,12 +16,12 @@ public class SelectFigurineController : AbstractPanelController
 
 	protected override List<string> GetOptions ()
 	{
-		Dictionary<int,string> lvValue = DatabaseController.GetListOfValues ();
+		_values = DatabaseController.GetListOfValues ();
 		List<string> lvNames = new List<string> ();
 		_idsList = new List<int> ();
-		foreach (int lvId in lvValue.Keys) {
+		foreach (int lvId in _values.Keys) {
 			_idsList.Add (lvId);
-			lvNames.Add (lvValue [lvId]);
+			lvNames.Add (_values [lvId]);
 		}
 
 		return lvNames;
@@ -28,8 +29,11 @@ public class SelectFigurineController : AbstractPanelController
 
 	public override void Load ()
 	{
+		int lvId = int.Parse (_selected);
+
 		AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
-		lvStatusEditor.SetFunction (_selected);
+		lvStatusEditor.SetFunction (_values[lvId]);
+		lvStatusEditor.SetFigurineId (lvId);
 		this.gameObject.SetActive (false);
 	}
 
@@ -41,13 +45,15 @@ public class SelectFigurineController : AbstractPanelController
 
 		content.GetComponent<RectTransform> ().sizeDelta = new Vector2 (0, lvNames.Count * 25);
 
-
-		foreach (string lvName in lvNames) {
+		for (int i = 0; i < lvNames.Count; i++) {
 			GameObject lvInstance = Instantiate (optionPrefab);
 			lvInstance.transform.SetParent(content.transform);
-			lvInstance.GetComponent<SelectOptionController> ().SetName (lvName);
-			lvInstance.GetComponent<SelectOptionController> ().Controller = this.gameObject;
+			lvInstance.GetComponent<SelectFigurineOptionController> ().SetName (lvNames[i]);
+			lvInstance.GetComponent<SelectFigurineOptionController> ().NumericValue = _idsList [i];
+			lvInstance.GetComponent<SelectFigurineOptionController> ().Controller = this.gameObject;
 		}
+
 	}
+
 }
 

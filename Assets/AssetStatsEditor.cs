@@ -51,6 +51,7 @@ public class AssetStatsEditor : MonoBehaviour {
 	{
 		editedFunctionalCell.functionalState = FunctionalStates.NONE;
 		editedFunctionalCell.Function = "";
+		editedFunctionalCell.FigurineId = 0;
 
 		clearFunctional ();
 	}
@@ -113,6 +114,11 @@ public class AssetStatsEditor : MonoBehaviour {
 	{
 		editedFunctionalCell.Function = pmFunction;
 		functionImput.GetComponent<InputField> ().text = pmFunction;
+	}
+
+	public void SetFigurineId(int pmId)
+	{
+		editedFunctionalCell.FigurineId = pmId;
 	}
 
 	public void ShowFigurineSelectPanel()
