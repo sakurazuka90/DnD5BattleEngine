@@ -55,6 +55,8 @@ public class BattleFieldSaver : MonoBehaviour
 		lvData.x = GridDrawer.instance.gridWidth;
 		lvData.z = GridDrawer.instance.gridHeight;
 		lvData.obstacles = CollectObstacleData ();
+		lvData.players = CollectPlayersData ();
+		lvData.enemies = CollectEnemiesData ();
 
 		lvFormater.Serialize (lvFile, lvData);
 		lvFile.Close ();
@@ -98,15 +100,49 @@ public class BattleFieldSaver : MonoBehaviour
 		return lvData;
 	}
 
-	private int [] CollectFigurinesData(int pmPlayerId)
+	private int [] CollectPlayersData()
 	{
-		List<int> lvIds = new List<int> ();
+		
 		GameObject[] lvCells = GridDrawer.instance.mCells;
+		int[] lvIds = new int[lvCells.Length];
+
+		for(int i = 0; i < lvCells.Length; i++) {
+
+			CellStatus lvStatus = lvCells[i].GetComponent<CellStatus> ();
+			if (lvStatus.functionalState == FunctionalStates.PLAYER_SPAWN) {
+				lvIds [i] = lvStatus.FigurineId;
+			} else {
+				lvIds [i] = 0;
+			}
+
+		}
 
 
 
+		return lvIds;
 
-		return lvIds.ToArray ();
+	}
+
+	private int [] CollectEnemiesData()
+	{
+
+		GameObject[] lvCells = GridDrawer.instance.mCells;
+		int[] lvIds = new int[lvCells.Length];
+
+		for(int i = 0; i < lvCells.Length; i++) {
+
+			CellStatus lvStatus = lvCells[i].GetComponent<CellStatus> ();
+			if (lvStatus.functionalState == FunctionalStates.ENEMY_SPAWN) {
+				lvIds [i] = lvStatus.FigurineId;
+			} else {
+				lvIds [i] = 0;
+			}
+
+		}
+
+
+
+		return lvIds;
 
 	}
 

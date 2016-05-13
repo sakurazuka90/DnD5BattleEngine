@@ -10,6 +10,8 @@ public class BattlefieldStateReader : MonoBehaviour
 	private int _gridWidth = 0;
 	private int _gridHeight = 0;
 	private ObstacleData[] _obstacleData;
+	private int[] _players;
+	private int[] _enemies;
 
 	public int GridWidth{
 		get{return _gridWidth;}
@@ -21,6 +23,14 @@ public class BattlefieldStateReader : MonoBehaviour
 
 	public ObstacleData[] Obstacles{
 		get{return _obstacleData; }
+	}
+
+	public int [] Players{
+		get{return _players; }
+	}
+
+	public int [] Enemies{
+		get{return _enemies;}
 	}
 
 	public static BattlefieldStateReader instance;
@@ -48,6 +58,8 @@ public class BattlefieldStateReader : MonoBehaviour
 			_gridWidth = lvData.x;
 			_gridHeight = lvData.z;
 			_obstacleData = lvData.obstacles;
+			_players = lvData.players;
+			_enemies = lvData.enemies;
 		}
 
 	}
