@@ -58,7 +58,7 @@ public class PlayerSpooler : MonoBehaviour {
 				lvMover.gridZ = GridDrawer.instance.getGridZ (i);
 
 				GameObject lvModel = Instantiate(Resources.Load<GameObject> ("Figurines/Models/" + pl1.FigurineModelName));
-				lvModel.transform.SetParent (lvFigurineInstance.transform.GetChild(0));
+				lvModel.transform.SetParent (lvFigurineInstance.transform.GetChild(0),true);
 
 				pl1.Figurine = lvFigurineInstance;
 				Dictionary<string,Item> inventory1 = new Dictionary<string,Item> ();
@@ -142,7 +142,7 @@ public class PlayerSpooler : MonoBehaviour {
 				lvMover.gridZ = GridDrawer.instance.getGridZ (j);
 
 				GameObject lvModel = Instantiate(Resources.Load<GameObject> ("Figurines/Models/" + pl1.FigurineModelName));
-				lvModel.transform.SetParent (lvFigurineInstance.transform.GetChild(0));
+				lvModel.transform.SetParent (lvFigurineInstance.transform.GetChild(0),true);
 
 				pl1.Figurine = lvFigurineInstance;
 
