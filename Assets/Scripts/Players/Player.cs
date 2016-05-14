@@ -34,6 +34,8 @@ public class Player {
 	public int mBasicAc = 10;
 	public int mMaxDexMod = 6;
 
+	private string _figurineModelName;
+
 
 	public int HpTotal
 	{
@@ -50,6 +52,11 @@ public class Player {
 	public Dictionary<string,Item> Inventory{
 		get{ return mInventory;}
 		set{ this.mInventory = value;}
+	}
+
+	public string FigurineModelName{
+		get{ return _figurineModelName;}
+		set{ this._figurineModelName = value;}
 	}
 
 	public Player ()
