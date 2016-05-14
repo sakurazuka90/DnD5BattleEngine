@@ -76,53 +76,6 @@ public class PlayerSpooler : MonoBehaviour {
 			}
 		}
 
-
-		//Player pl1 = DatabaseController.GetPlayerByID (2);
-
-		//pl1.Figurine = fig1;
-
-		//List<EquipementTypes> p1ListEq = new List<EquipementTypes> ();
-		//p1ListEq.Add (EquipementTypes.MAIN_HAND);
-		//p1ListEq.Add (EquipementTypes.OFF_HAND);
-
-		//List<EquipementTypes> p2ListEq = new List<EquipementTypes> ();
-		//p2ListEq.Add (EquipementTypes.ARMOR);
-
-		//List<EquipementTypes> crossbowListEq = new List<EquipementTypes> ();
-		//crossbowListEq.Add (EquipementTypes.MAIN_HAND);
-
-		//Item lvMagicAxe = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 10, 1, p1ListEq);
-		//lvMagicAxe.resourceImageName = "Battleaxe";
-		//lvMagicAxe.inventoryFieldId = "INV4";
-
-		//Item lvArmor = new Armor ("Breastplate", p2ListEq,16,0);
-		//lvArmor.resourceImageName = "ArmorColor";
-		//lvArmor.inventoryFieldId = "INV1";
-
-		//Item lvCrossbow = new Weapon ("Crossbow", WeaponType.RANGED, WeaponCategory.SIMPLE, 10, 1, crossbowListEq,6,24);
-		//lvCrossbow.resourceImageName = "Crossbow";
-		//lvCrossbow.inventoryFieldId = "INV7";
-
-		//Dictionary<string,Item> inventory1 = new Dictionary<string,Item> ();
-		//inventory1.Add ("INV4",lvMagicAxe);
-		//inventory1.Add ("INV1", lvArmor);
-		//inventory1.Add ("INV7", lvCrossbow);
-
-		//DatabaseController.AddPlayersWeaponsToInventory (2, inventory1);
-		//DatabaseController.AddPlayersArmorsToInventory (2, inventory1);
-
-		//pl1.Inventory = inventory1;
-
-		//Attack lvAxe = new Attack ("Unarmed", Weapon.unarmed);
-
-
-
-		//pl1.equippedWeaponAttack = lvAxe;
-
-
-
-		//GameObject fig2 = GameObject.Find ("Figurine2");
-
 		for (int j = 0; j < lvEnemies.Length; j++) {
 
 			int lvPlayerId = lvEnemies [j];
@@ -160,30 +113,6 @@ public class PlayerSpooler : MonoBehaviour {
 
 			}
 		}
-
-		//Player pl2 = DatabaseController.GetPlayerByID (1);
-		//pl2.Figurine = fig2;
-
-		//Weapon lvScimitarWep = new Weapon ("Scimitar", WeaponType.MELEE, WeaponCategory.MARTIAL, 6, 1, p1ListEq);
-
-		//Attack lvScimitar = new Attack ("Unarmed",Weapon.unarmed);
-		//pl2.equippedWeaponAttack = lvScimitar;
-
-		//Dictionary<string,Item> inventory2 = new Dictionary<string,Item> ();
-		//Item lvMagicAxe2 = new Weapon ("Battleaxe", WeaponType.MELEE, WeaponCategory.MARTIAL, 10, 1, p1ListEq);
-		//lvMagicAxe2.resourceImageName = "Battleaxe";
-		//lvMagicAxe2.inventoryFieldId = "INV24";
-
-		//inventory2.Add ("INV24",lvMagicAxe2);
-
-		//DatabaseController.AddPlayersWeaponsToInventory (1, inventory2);
-
-		//DatabaseController.AddPlayersArmorsToInventory (1, inventory2);
-
-		//pl2.Inventory = inventory2;
-
-		//mPool.Add (pl1);
-		//mPool.Add (pl2);
 
 		prepareSpool ();
 
@@ -250,7 +179,6 @@ public class PlayerSpooler : MonoBehaviour {
 				mSpool [lvArrayCount] = lvCurrentPlayer;
 
 				lvArrayCount++;
-				//Debug.Log ("Initiative " + lvKey + " player " + lvCurrentPlayer.playerName);
 			} else {
 				foreach (Player lvCurrentPlayer in lvCurrentInitPlayers) {
 					mSpool [lvArrayCount] = lvCurrentPlayer;
