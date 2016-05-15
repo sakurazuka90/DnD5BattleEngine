@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SelectFigurineController : AbstractPanelController
 {
 
 	private List<int> _idsList;
 	private Dictionary<int,string> _values;
+
+	public GameObject rawImage;
+
+	private GameObject _figurineShowcase;
+
+
 
 	public SelectFigurineController ()
 	{
@@ -52,6 +59,25 @@ public class SelectFigurineController : AbstractPanelController
 			lvInstance.GetComponent<SelectFigurineOptionController> ().NumericValue = _idsList [i];
 			lvInstance.GetComponent<SelectFigurineOptionController> ().Controller = this.gameObject;
 		}
+
+	}
+
+	public override void Select(string pmFilename)
+	{
+		_selected = pmFilename;
+
+		foreach (GameObject button in buttons) {
+			button.GetComponent<Button>().interactable = true;
+		}
+
+		if (_figurineShowcase != null)
+			Destroy (_figurineShowcase);
+
+		GameObject lvResourceFig = Resources.Load<GameObject> ("Figurines/Models/" + DatabaseController.GetFigurineNameByPlayerID(int.Parse(pmFilename)));
+
+		_figurineShowcase = Instantiate (lvResourceFig);
+
+		_figurineShowcase.transform.position = new Vector3 (0.0f, 0.0f, -200.0f);
 
 	}
 

@@ -2,14 +2,14 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Players\PlayerSpooler.cs">
     <Files>
-      <File FileName="Assets\Scripts\Players\PlayerSpooler.cs" Line="61" Column="76" />
+      <File FileName="Assets\Scripts\Players\PlayerSpooler.cs" Line="182" Column="1" />
       <File FileName="Assets\Scripts\DTO\GridData.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\LevelCreator\BattleFieldSaver.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GridScripts\CellStatus.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Database\DatabaseController.cs" Line="82" Column="53" />
-      <File FileName="Assets\Scripts\LevelCreator\BattlefieldStateReader.cs" Line="62" Column="30" />
+      <File FileName="Assets\Scripts\Database\DatabaseController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LevelCreator\BattlefieldStateReader.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GridScripts\GridDrawer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Players\Player.cs" Line="59" Column="31" />
+      <File FileName="Assets\Scripts\Players\Player.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

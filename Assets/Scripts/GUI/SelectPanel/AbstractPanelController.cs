@@ -12,6 +12,7 @@ public abstract class AbstractPanelController : MonoBehaviour
 
 	protected string _selected;
 
+
 	// Use this for initialization
 	void Start () {
 		GenerateContent ();

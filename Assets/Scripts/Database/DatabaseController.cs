@@ -237,6 +237,29 @@ public class DatabaseController{
 		return lvType;
 	}
 
+	public static string GetFigurineNameByPlayerID(int pmPlayerId)
+	{
+		string lvFigurineName = "";
+
+		IDbConnection dbconn = GetConnection ();
+		IDbCommand dbcmd = dbconn.CreateCommand();
+		string sqlQuery = 	"SELECT FI.FIGURINE_NAME  "
+			+ "FROM CHARACTER_STATS ST JOIN FIGURINES FI ON FI.CHARACTER_ID = ST.ID WHERE ST.ID = " + pmPlayerId;
+		dbcmd.CommandText = sqlQuery;
+
+		IDataReader reader = dbcmd.ExecuteReader();
+		if (reader.Read())
+		{
+			lvFigurineName = reader.GetString (0);
+		}
+
+		CleanUp (reader,dbcmd,dbconn);
+		reader = null;
+		dbcmd = null;
+		dbconn = null;
+
+		return lvFigurineName;
+	}
 		
 
 }
