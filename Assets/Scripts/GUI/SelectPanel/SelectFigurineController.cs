@@ -13,6 +13,15 @@ public class SelectFigurineController : AbstractPanelController
 
 	private GameObject _figurineShowcase;
 
+	private bool _rotate = false;
+	private float _direction = 0.0f;
+
+	public void Update()
+	{
+		if (_rotate) {
+			RotateShowcase (_direction);
+		}
+	}
 
 
 	public SelectFigurineController ()
@@ -66,6 +75,7 @@ public class SelectFigurineController : AbstractPanelController
 	{
 		_selected = pmFilename;
 
+
 		foreach (GameObject button in buttons) {
 			button.GetComponent<Button>().interactable = true;
 		}
@@ -75,10 +85,38 @@ public class SelectFigurineController : AbstractPanelController
 
 		GameObject lvResourceFig = Resources.Load<GameObject> ("Figurines/Models/" + DatabaseController.GetFigurineNameByPlayerID(int.Parse(pmFilename)));
 
-		_figurineShowcase = Instantiate (lvResourceFig);
+		GameObject lvFigModel = Instantiate (lvResourceFig);
+
+		_figurineShowcase = lvFigModel;
+
+		Destroy (_figurineShowcase.GetComponent<FigurineMover> ());
 
 		_figurineShowcase.transform.position = new Vector3 (0.0f, 0.0f, -200.0f);
 
+
+	}
+
+	public void RotateShowcaseRight()
+	{
+		_direction = 1.0f;
+		_rotate = true;
+	}
+
+	public void RotateShowcaseLeft()
+	{
+		_direction = -1.0f;
+		_rotate = true;
+	}
+
+	private void RotateShowcase(float pmDirection)
+	{
+		_figurineShowcase.transform.Rotate (new Vector3 (0.0f, 5.0f * pmDirection, 0.0f));
+	}
+
+	public void StopRotate()
+	{
+		_direction = 0.0f;
+		_rotate = false;
 	}
 
 }

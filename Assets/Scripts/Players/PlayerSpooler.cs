@@ -33,7 +33,7 @@ public class PlayerSpooler : MonoBehaviour {
 		int[] lvPlayers = BattlefieldStateReader.instance.Players;
 		int[] lvEnemies = BattlefieldStateReader.instance.Enemies;
 
-		GameObject lvFigurineBase = Resources.Load<GameObject> ("Figurines/FigurineBase");
+		//GameObject lvFigurineBase = Resources.Load<GameObject> ("Figurines/FigurineBase");
 
 		mPool = new List<Player> ();
 
@@ -47,20 +47,22 @@ public class PlayerSpooler : MonoBehaviour {
 				
 				Player pl1 = DatabaseController.GetPlayerByID (lvPlayerId);
 
-				GameObject lvFigurineInstance = Instantiate (lvFigurineBase);
-				FigurineStatus lvStatus = lvFigurineInstance.GetComponent<FigurineStatus> ();
+				//GameObject lvFigurineInstance = Instantiate (lvFigurineBase);
+
+				GameObject lvModel = Instantiate(Resources.Load<GameObject> ("Figurines/Models/" + pl1.FigurineModelName));
+
+				FigurineStatus lvStatus = lvModel.GetComponent<FigurineStatus> ();
 				lvStatus.enemy = false;
 				lvStatus.gridX = GridDrawer.instance.getGridX (i);
 				lvStatus.gridZ = GridDrawer.instance.getGridZ (i);
 
-				FigurineMover lvMover = lvFigurineInstance.GetComponent<FigurineMover> ();
+				FigurineMover lvMover = lvModel.GetComponent<FigurineMover> ();
 				lvMover.gridX = GridDrawer.instance.getGridX (i);
 				lvMover.gridZ = GridDrawer.instance.getGridZ (i);
 
-				GameObject lvModel = Instantiate(Resources.Load<GameObject> ("Figurines/Models/" + pl1.FigurineModelName));
-				lvModel.transform.SetParent (lvFigurineInstance.transform.GetChild(0),true);
+				//lvModel.transform.SetParent (lvFigurineInstance.transform.GetChild(0),true);
 
-				pl1.Figurine = lvFigurineInstance;
+				pl1.Figurine = lvModel;
 				Dictionary<string,Item> inventory1 = new Dictionary<string,Item> ();
 
 				DatabaseController.AddPlayersWeaponsToInventory (lvPlayerId, inventory1);
@@ -84,20 +86,20 @@ public class PlayerSpooler : MonoBehaviour {
 				Player pl1 = DatabaseController.GetPlayerByID (lvPlayerId);
 				//pl1.Figurine = fig2;
 
-				GameObject lvFigurineInstance = Instantiate (lvFigurineBase);
-				FigurineStatus lvStatus = lvFigurineInstance.GetComponent<FigurineStatus> ();
+				//GameObject lvFigurineInstance = Instantiate (lvFigurineBase);
+
+				GameObject lvModel = Instantiate(Resources.Load<GameObject> ("Figurines/Models/" + pl1.FigurineModelName));
+
+				FigurineStatus lvStatus = lvModel.GetComponent<FigurineStatus> ();
 				lvStatus.enemy = true;
 				lvStatus.gridX = GridDrawer.instance.getGridX (j);
 				lvStatus.gridZ = GridDrawer.instance.getGridZ (j);
 
-				FigurineMover lvMover = lvFigurineInstance.GetComponent<FigurineMover> ();
+				FigurineMover lvMover = lvModel.GetComponent<FigurineMover> ();
 				lvMover.gridX = GridDrawer.instance.getGridX (j);
 				lvMover.gridZ = GridDrawer.instance.getGridZ (j);
 
-				GameObject lvModel = Instantiate(Resources.Load<GameObject> ("Figurines/Models/" + pl1.FigurineModelName));
-				lvModel.transform.SetParent (lvFigurineInstance.transform.GetChild(0),true);
-
-				pl1.Figurine = lvFigurineInstance;
+				pl1.Figurine = lvModel;
 
 				Dictionary<string,Item> inventory1 = new Dictionary<string,Item> ();
 
