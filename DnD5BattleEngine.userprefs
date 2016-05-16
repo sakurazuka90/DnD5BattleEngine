@@ -1,8 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Players\PlayerSpooler.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GUI\SelectPanel\SelectFigurineController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Players\PlayerSpooler.cs" Line="182" Column="1" />
+      <File FileName="Assets\Scripts\GUI\SelectPanel\SelectFigurineController.cs" Line="113" Column="58" />
+      <File FileName="Assets\Scripts\Players\PlayerSpooler.cs" Line="101" Column="5" />
       <File FileName="Assets\Scripts\DTO\GridData.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\LevelCreator\BattleFieldSaver.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GridScripts\CellStatus.cs" Line="1" Column="1" />
@@ -10,6 +11,7 @@
       <File FileName="Assets\Scripts\LevelCreator\BattlefieldStateReader.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GridScripts\GridDrawer.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Players\Player.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUI\SelectPanel\AbstractPanelController.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

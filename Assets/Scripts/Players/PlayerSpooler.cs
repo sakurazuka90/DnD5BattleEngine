@@ -20,7 +20,7 @@ public class PlayerSpooler : MonoBehaviour {
 		if (instance == null)
 			instance = this;
 		else if (instance != this)
-			Destroy (this);
+			Destroy (this.gameObject);
 	}
 
 	// Use this for initialization

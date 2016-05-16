@@ -7,7 +7,6 @@ public class CreateNewBattlefield : MonoBehaviour {
 
 	public GameObject obstacleWindow;
 	public GameObject obstacleStatusWindow;
-	public GameObject saveButton;
 
 	public void Create()
 	{
@@ -22,7 +21,6 @@ public class CreateNewBattlefield : MonoBehaviour {
 
 			obstacleWindow.SetActive (true);
 			obstacleStatusWindow.SetActive (true);
-			saveButton.SetActive (true);
 			this.gameObject.SetActive (false);
 		}
 	}

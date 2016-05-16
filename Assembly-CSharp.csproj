@@ -76,6 +76,7 @@
      <Compile Include="Assets\Scripts\GUI\GenericyesNoPanelControler.cs" />
      <Compile Include="Assets\Scripts\GUI\InventoryFiller.cs" />
      <Compile Include="Assets\Scripts\GUI\InventoryObjectStatus.cs" />
+     <Compile Include="Assets\Scripts\GUI\MenuDisplayer.cs" />
      <Compile Include="Assets\Scripts\GUI\MessageDisplayer.cs" />
      <Compile Include="Assets\Scripts\GUI\MessagePool.cs" />
      <Compile Include="Assets\Scripts\GUI\OnlyNumbersField.cs" />

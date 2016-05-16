@@ -64,6 +64,8 @@ public class BattleFieldSaver : MonoBehaviour
 
 	public void Show ()
 	{
+		MenuDisplayer.instance.Hide ();
+
 		saveButton.SetActive (false);
 		assetPanel.SetActive (false);
 		assetStatsPanel.SetActive (false);
