@@ -1,8 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.WindowsPlayer" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Database\DatabaseController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Editor\ScriptBatch.cs">
     <Files>
-      <File FileName="Assets\Scripts\Database\DatabaseController.cs" Line="9" Column="79" />
+      <File FileName="Assets\Editor\ScriptBatch.cs" Line="18" Column="89" />
+      <File FileName="Assets\Scripts\Database\DatabaseController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GUI\MenuWindowsHelper.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GUI\MessageDisplayer.cs" Line="1" Column="1" />
     </Files>
@@ -36,6 +37,7 @@
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\LevelCreator\BattleFieldSaver.cs" line="115" column="1" />
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Players\PlayerSpooler.cs" line="38" column="1" />
       <Breakpoint file="C:\Users\sakurazuka90\Documents\DnD5BattleEngine\Assets\Scripts\Database\DatabaseController.cs" line="32" column="1" />
+      <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Database\DatabaseController.cs" line="9" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
