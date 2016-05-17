@@ -21,6 +21,8 @@ public class CreateNewBattlefield : MonoBehaviour {
 
 			obstacleWindow.SetActive (true);
 			obstacleStatusWindow.SetActive (true);
+			MenuDisplayer.instance.isMenuAvaiable = true;
+
 			this.gameObject.SetActive (false);
 		}
 	}

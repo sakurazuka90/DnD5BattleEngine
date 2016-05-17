@@ -7,6 +7,8 @@ public class MenuDisplayer : MonoBehaviour {
 
 	public static MenuDisplayer instance;
 
+	public bool isMenuAvaiable = false;
+
 	void Awake()
 	{
 		if (instance == null)
@@ -23,7 +25,7 @@ public class MenuDisplayer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetKeyDown (KeyCode.Escape))
+		if (Input.GetKeyDown (KeyCode.Escape) && isMenuAvaiable)
 			menuPanel.SetActive (!menuPanel.activeSelf);
 
 	}

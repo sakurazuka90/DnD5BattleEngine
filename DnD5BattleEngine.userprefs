@@ -1,17 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GUI\SelectPanel\SelectFigurineController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.WindowsPlayer" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Database\DatabaseController.cs">
     <Files>
-      <File FileName="Assets\Scripts\GUI\SelectPanel\SelectFigurineController.cs" Line="113" Column="58" />
-      <File FileName="Assets\Scripts\Players\PlayerSpooler.cs" Line="101" Column="5" />
-      <File FileName="Assets\Scripts\DTO\GridData.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LevelCreator\BattleFieldSaver.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GridScripts\CellStatus.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Database\DatabaseController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LevelCreator\BattlefieldStateReader.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GridScripts\GridDrawer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Players\Player.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GUI\SelectPanel\AbstractPanelController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUI\MenuWindowsHelper.cs" Line="26" Column="3" />
+      <File FileName="Assets\Scripts\Database\DatabaseController.cs" Line="32" Column="1" />
+      <File FileName="Assets\Scripts\GUI\MessageDisplayer.cs" Line="13" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -42,6 +35,7 @@
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\LevelCreator\BattleFieldSaver.cs" line="136" column="1" />
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\LevelCreator\BattleFieldSaver.cs" line="115" column="1" />
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Players\PlayerSpooler.cs" line="38" column="1" />
+      <Breakpoint file="C:\Users\sakurazuka90\Documents\DnD5BattleEngine\Assets\Scripts\Database\DatabaseController.cs" line="32" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

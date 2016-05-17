@@ -10,7 +10,6 @@ public class BattleFieldSaver : MonoBehaviour
 
 	public GameObject assetPanel;
 	public GameObject assetStatsPanel;
-	public GameObject saveButton;
 	public GameObject saveNamePanel;
 
 	public GameObject genericYesNoWindowPrefab;
@@ -66,7 +65,6 @@ public class BattleFieldSaver : MonoBehaviour
 	{
 		MenuDisplayer.instance.Hide ();
 
-		saveButton.SetActive (false);
 		assetPanel.SetActive (false);
 		assetStatsPanel.SetActive (false);
 		saveNamePanel.SetActive (true);
@@ -78,7 +76,6 @@ public class BattleFieldSaver : MonoBehaviour
 
 	public void Hide ()
 	{
-		saveButton.SetActive (true);
 		assetPanel.SetActive (true);
 		assetStatsPanel.SetActive (true);
 		saveNamePanel.SetActive (false);
@@ -141,8 +138,6 @@ public class BattleFieldSaver : MonoBehaviour
 			}
 
 		}
-
-
 
 		return lvIds;
 
