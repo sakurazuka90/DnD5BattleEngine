@@ -50,6 +50,7 @@
      <Compile Include="Assets\3rdParty\FT_FreeSample\Script\FTEM_AnimationSpriteSheet.cs" />
      <Compile Include="Assets\3rdParty\FT_FreeSample\Script\FTEM_DeadTime.cs" />
      <Compile Include="Assets\3rdParty\Free_Rocks\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\Algorithms\astar.cs" />
      <Compile Include="Assets\Scripts\AI_ENGINE\FigurineFactionTypes.cs" />
      <Compile Include="Assets\Scripts\AI_ENGINE\FigurineLocationFinder.cs" />
      <Compile Include="Assets\Scripts\AI_ENGINE\Gambit.cs" />
