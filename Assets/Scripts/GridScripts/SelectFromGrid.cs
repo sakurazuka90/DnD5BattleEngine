@@ -779,11 +779,11 @@ public class SelectFromGrid : MonoBehaviour
 		List<int> lvReturnList = new List<int> ();
 
 		AddAdjacentFieldToListIfGood (findTopFieldId (pmCellId), lvReturnList);
-		AddAdjacentFieldToListIfGood (findTopRightFieldId (pmCellId), lvReturnList);
-		AddAdjacentFieldToListIfGood (findTopLeftFieldId (pmCellId), lvReturnList);
 		AddAdjacentFieldToListIfGood (findRightFieldId (pmCellId), lvReturnList);
 		AddAdjacentFieldToListIfGood (findLeftFieldId (pmCellId), lvReturnList);
 		AddAdjacentFieldToListIfGood (findBottomFieldId (pmCellId), lvReturnList);
+		AddAdjacentFieldToListIfGood (findTopRightFieldId (pmCellId), lvReturnList);
+		AddAdjacentFieldToListIfGood (findTopLeftFieldId (pmCellId), lvReturnList);
 		AddAdjacentFieldToListIfGood (findBottomLeftFieldId (pmCellId), lvReturnList);
 		AddAdjacentFieldToListIfGood (findBottomRightFieldId (pmCellId), lvReturnList);
 

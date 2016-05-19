@@ -4,10 +4,13 @@ using System.Collections.Generic;
 public class astar : MonoBehaviour {
 
 	public int id = 0;
+	public int targetId = 10;
+
+	private Dictionary<int,int> tab;
 
 	// Use this for initialization
 	void Start () {
-	
+		tab = new Dictionary<int,int> ();
 	}
 	
 	// Update is called once per frame
@@ -18,6 +21,13 @@ public class astar : MonoBehaviour {
 	public void test()
 	{
 		GetRouteAstar (new bool[GridDrawer.instance.mCells.Length], id);
+
+		int current = targetId;
+
+		while (current != id) {
+			GridDrawer.instance.mCells [current].GetComponent<CellStatus> ().spawnEnemy = true;
+			current = tab [current];
+		}
 	}
 
 	public int [] GetRouteAstar(bool [] pmGraph, int pmStartId)
@@ -25,7 +35,9 @@ public class astar : MonoBehaviour {
 		Queue<int> frontier = new Queue<int>();
 		frontier.Enqueue (pmStartId);
 
-		bool[] visited = new bool[pmGraph.Length];
+		//bool[] visited = new bool[pmGraph.Length];
+		//int [] cameFrom = new int[pmGraph.Length];
+		Dictionary<int,int> cameFrom = new Dictionary<int,int>(); 
 
 
 		while (frontier.Count > 0) {
@@ -34,12 +46,12 @@ public class astar : MonoBehaviour {
 			List<int> neighbours = SelectFromGrid.instance.GetAdjacentFields (current);
 
 			foreach (int next in neighbours) {
-				if (!visited [next]) {
+				if (!cameFrom.ContainsKey(next)) {
 					frontier.Enqueue (next);
-					visited [next] = true;
+					cameFrom [next] = current;
 					/////////////////////////////////////////////
 
-					GridDrawer.instance.mCells [next].GetComponent<CellStatus> ().avaiable = false;
+					//GridDrawer.instance.mCells [next].GetComponent<CellStatus> ().avaiable = false;
 
 					////////////////////////////////////////////
 
@@ -47,6 +59,8 @@ public class astar : MonoBehaviour {
 			}
 
 		}
+
+		tab = cameFrom;
 
 		return new int[0];
 
