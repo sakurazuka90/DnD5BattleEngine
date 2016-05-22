@@ -20,7 +20,7 @@ public class astar : MonoBehaviour {
 
 	public void test()
 	{
-		GetRouteAstar (new bool[GridDrawer.instance.mCells.Length], id);
+		GetRouteAstar (new bool[GridDrawer.instance.mCells.Length], id, targetId);
 
 		int current = targetId;
 
@@ -30,18 +30,19 @@ public class astar : MonoBehaviour {
 		}
 	}
 
-	public int [] GetRouteAstar(bool [] pmGraph, int pmStartId)
+	public int [] GetRouteAstar(bool [] pmGraph, int pmStartId, int pmTargetId)
 	{
 		Queue<int> frontier = new Queue<int>();
 		frontier.Enqueue (pmStartId);
 
-		//bool[] visited = new bool[pmGraph.Length];
-		//int [] cameFrom = new int[pmGraph.Length];
 		Dictionary<int,int> cameFrom = new Dictionary<int,int>(); 
 
 
 		while (frontier.Count > 0) {
 			int current = frontier.Dequeue ();
+
+			if (current == pmTargetId)
+				break;
 
 			List<int> neighbours = SelectFromGrid.instance.GetAdjacentFields (current);
 
@@ -49,12 +50,6 @@ public class astar : MonoBehaviour {
 				if (!cameFrom.ContainsKey(next)) {
 					frontier.Enqueue (next);
 					cameFrom [next] = current;
-					/////////////////////////////////////////////
-
-					//GridDrawer.instance.mCells [next].GetComponent<CellStatus> ().avaiable = false;
-
-					////////////////////////////////////////////
-
 				}
 			}
 
