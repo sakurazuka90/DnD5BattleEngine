@@ -207,4 +207,22 @@ public class GridDrawer : MonoBehaviour {
 		return IsCellDifficultTerrain (this.mCells[pmCellId]);
 	}
 
+	public static bool IsCellBlockedByObstacle (GameObject pmCell)
+	{
+		if (pmCell.transform.childCount > 0) {
+
+			ObstacleStatus lvStatus = pmCell.transform.GetChild (0).GetComponent<ObstacleStatus> ();
+			if (lvStatus.isBlockingMovement)
+				return true;
+
+		} 
+
+		return false;
+	}
+
+	public bool IsCellBlockedByObstacle (int pmCellId)
+	{
+		return IsCellBlockedByObstacle (this.mCells[pmCellId]);
+	}
+
 }

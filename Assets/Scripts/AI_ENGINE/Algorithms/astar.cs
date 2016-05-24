@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+
+
 public class astar : MonoBehaviour {
 
 	public int id = 0;
@@ -20,6 +22,8 @@ public class astar : MonoBehaviour {
 
 	public void test()
 	{
+		GridDrawer.instance.ClearGridStatus ();
+
 		GetRouteAstar (new bool[GridDrawer.instance.mCells.Length], id, targetId);
 
 		int current = targetId;
@@ -48,14 +52,14 @@ public class astar : MonoBehaviour {
 			if (current == pmTargetId)
 				break;
 
-			List<int> neighbours = SelectFromGrid.instance.GetAdjacentFields (current);
+			List<int> neighbours = SelectFromGrid.instance.GetAdjacentNonBlockedFields (current);
 
 			foreach (int next in neighbours) {
 
 				int newCost = costSoFar [current] + this.GetCellMoveCost (next);
 
 				if (!costSoFar.ContainsKey (next) || newCost < costSoFar [next]) {
-					costSoFar [next] = newCost;
+					costSoFar [next] = newCost + Length (next, pmTargetId);
 					int lvPriority = newCost;
 
 					frontier.Enqueue (next, newCost);
@@ -63,13 +67,12 @@ public class astar : MonoBehaviour {
 					cameFrom [next] = current;
 
 				}
-				/*if (!cameFrom.ContainsKey(next)) {
-					frontier.Enqueue (next);
-					cameFrom [next] = current;
-				}*/
+
 			}
 
 		}
+
+		Debug.Log ("Reached in " + cameFrom.Count + " moves");
 
 		tab = cameFrom;
 
@@ -83,6 +86,11 @@ public class astar : MonoBehaviour {
 			return 2;
 		else
 			return 1;
+	}
+
+	private int Length(int pmStartId, int pmEndId)
+	{
+		return Mathf.Abs (GridDrawer.instance.getGridX (pmEndId) - GridDrawer.instance.getGridX (pmStartId)) + Mathf.Abs (GridDrawer.instance.getGridZ (pmEndId) - GridDrawer.instance.getGridZ (pmStartId));
 	}
 
 

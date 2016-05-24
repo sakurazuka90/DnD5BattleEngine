@@ -790,6 +790,27 @@ public class SelectFromGrid : MonoBehaviour
 		return lvReturnList;
 	}
 
+
+	public List<int> GetAdjacentNonBlockedFields(int pmCellId)
+	{
+		if (pmCellId == 46)
+			Debug.Log ("OMG");
+
+		List<int> lvFields = GetAdjacentFields (pmCellId);
+		List<int> lvResult = new List<int> ();
+
+		foreach (int lvFieldId in lvFields) {
+			if (pmCellId == 46)
+				Debug.Log ("OMG2");
+
+			if (!GridDrawer.instance.IsCellBlockedByObstacle (lvFieldId))
+				lvResult.Add (lvFieldId);
+		}
+
+		return lvResult;
+	}
+
+
 	private void AddAdjacentFieldToListIfGood (int pmCell, List<int> pmAdjacentList)
 	{
 		if (IsCellGood (pmCell))
