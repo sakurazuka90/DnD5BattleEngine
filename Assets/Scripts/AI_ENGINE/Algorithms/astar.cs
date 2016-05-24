@@ -32,13 +32,17 @@ public class astar : MonoBehaviour {
 
 	public int [] GetRouteAstar(bool [] pmGraph, int pmStartId, int pmTargetId)
 	{
-		Queue<int> frontier = new Queue<int>();
-		frontier.Enqueue (pmStartId);
+		//Queue<int> frontier = new Queue<int>();
+		PriorityQueue<int,int> frontier = new PriorityQueue<int, int>();
+		frontier.Enqueue (pmStartId, 0);
 
-		Dictionary<int,int> cameFrom = new Dictionary<int,int>(); 
+		Dictionary<int,int> cameFrom = new Dictionary<int, int>(); 
+		Dictionary<int,int> costSoFar = new Dictionary<int, int> ();
+
+		costSoFar.Add (pmStartId, 0);
 
 
-		while (frontier.Count > 0) {
+		while (!frontier.Empty()) {
 			int current = frontier.Dequeue ();
 
 			if (current == pmTargetId)
@@ -47,10 +51,22 @@ public class astar : MonoBehaviour {
 			List<int> neighbours = SelectFromGrid.instance.GetAdjacentFields (current);
 
 			foreach (int next in neighbours) {
-				if (!cameFrom.ContainsKey(next)) {
+
+				int newCost = costSoFar [current] + this.GetCellMoveCost (next);
+
+				if (!costSoFar.ContainsKey (next) || newCost < costSoFar [next]) {
+					costSoFar [next] = newCost;
+					int lvPriority = newCost;
+
+					frontier.Enqueue (next, newCost);
+
+					cameFrom [next] = current;
+
+				}
+				/*if (!cameFrom.ContainsKey(next)) {
 					frontier.Enqueue (next);
 					cameFrom [next] = current;
-				}
+				}*/
 			}
 
 		}
@@ -59,6 +75,14 @@ public class astar : MonoBehaviour {
 
 		return new int[0];
 
+	}
+
+	private int GetCellMoveCost(int pmCellId)
+	{
+		if (GridDrawer.instance.IsCellDifficultTerrain (pmCellId))
+			return 2;
+		else
+			return 1;
 	}
 
 

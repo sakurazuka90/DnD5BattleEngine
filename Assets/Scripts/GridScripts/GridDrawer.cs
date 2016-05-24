@@ -188,4 +188,23 @@ public class GridDrawer : MonoBehaviour {
 		return new Vector3 (0.0F, lvYRot, 0.0F);
 	}
 
+
+	public static bool IsCellDifficultTerrain (GameObject pmCell)
+	{
+		if (pmCell.transform.childCount > 0) {
+
+			ObstacleStatus lvStatus = pmCell.transform.GetChild (0).GetComponent<ObstacleStatus> ();
+			if (lvStatus.isDifficultTerrain)
+				return true;
+
+		} 
+
+		return false;
+	}
+
+	public bool IsCellDifficultTerrain (int pmCellId)
+	{
+		return IsCellDifficultTerrain (this.mCells[pmCellId]);
+	}
+
 }

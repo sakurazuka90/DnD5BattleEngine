@@ -489,7 +489,7 @@ public class SelectFromGrid : MonoBehaviour
 					lvCellData.Add (PARENT_PATH, lvCellPath);
 					lvCellData.Add (STRAIGHT_LINE, "Y");
 
-					if (isCellDifficultTerrain (lvCellUpp)) {
+					if (GridDrawer.IsCellDifficultTerrain(lvCellUpp)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
 					} else {
 						lvCellData.Add (IS_DIFFICULT, "N");
@@ -518,7 +518,7 @@ public class SelectFromGrid : MonoBehaviour
 					lvCellData.Add (PARENT_PATH, lvCellPath);
 					lvCellData.Add (STRAIGHT_LINE, "Y");
 
-					if (isCellDifficultTerrain (lvCellBott)) {
+					if (GridDrawer.IsCellDifficultTerrain(lvCellBott)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
 					} else {
 						lvCellData.Add (IS_DIFFICULT, "N");
@@ -547,7 +547,7 @@ public class SelectFromGrid : MonoBehaviour
 					lvCellData.Add (PARENT_PATH, lvCellPath);
 					lvCellData.Add (STRAIGHT_LINE, "Y");
 
-					if (isCellDifficultTerrain (lvCellRight)) {
+					if (GridDrawer.IsCellDifficultTerrain(lvCellRight)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
 					} else {
 						lvCellData.Add (IS_DIFFICULT, "N");
@@ -576,7 +576,7 @@ public class SelectFromGrid : MonoBehaviour
 					lvCellData.Add (PARENT_PATH, lvCellPath);
 					lvCellData.Add (STRAIGHT_LINE, "Y");
 
-					if (isCellDifficultTerrain (lvCellLeft)) {
+					if (GridDrawer.IsCellDifficultTerrain(lvCellLeft)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
 					} else {
 						lvCellData.Add (IS_DIFFICULT, "N");
@@ -606,7 +606,7 @@ public class SelectFromGrid : MonoBehaviour
 					lvCellData.Add (PARENT_PATH, lvCellPath);
 					lvCellData.Add (STRAIGHT_LINE, "N");
 
-					if (isCellDifficultTerrain (lvCellTopRight)) {
+					if (GridDrawer.IsCellDifficultTerrain(lvCellTopRight)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
 					} else {
 						lvCellData.Add (IS_DIFFICULT, "N");
@@ -634,7 +634,7 @@ public class SelectFromGrid : MonoBehaviour
 					lvCellData.Add (PARENT_PATH, lvCellPath);
 					lvCellData.Add (STRAIGHT_LINE, "N");
 
-					if (isCellDifficultTerrain (lvCellTopLeft)) {
+					if (GridDrawer.IsCellDifficultTerrain(lvCellTopLeft)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
 					} else {
 						lvCellData.Add (IS_DIFFICULT, "N");
@@ -662,7 +662,7 @@ public class SelectFromGrid : MonoBehaviour
 					lvCellData.Add (PARENT_PATH, lvCellPath);
 					lvCellData.Add (STRAIGHT_LINE, "N");
 
-					if (isCellDifficultTerrain (lvCellBotRight)) {
+					if (GridDrawer.IsCellDifficultTerrain(lvCellBotRight)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
 					} else {
 						lvCellData.Add (IS_DIFFICULT, "N");
@@ -690,7 +690,7 @@ public class SelectFromGrid : MonoBehaviour
 					lvCellData.Add (PARENT_PATH, lvCellPath);
 					lvCellData.Add (STRAIGHT_LINE, "N");
 
-					if (isCellDifficultTerrain (lvCellBotLeft)) {
+					if (GridDrawer.IsCellDifficultTerrain(lvCellBotLeft)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
 					} else {
 						lvCellData.Add (IS_DIFFICULT, "N");
@@ -1033,25 +1033,12 @@ public class SelectFromGrid : MonoBehaviour
 		this.constructorFilledSquares.Add (pmCellId);
 	}
 
-	private bool isCellDifficultTerrain (GameObject pmCell)
-	{
-		if (pmCell.transform.childCount > 0) {
-
-			ObstacleStatus lvStatus = pmCell.transform.GetChild (0).GetComponent<ObstacleStatus> ();
-			if (lvStatus.isDifficultTerrain)
-				return true;
-
-		} 
-
-		return false;
-	}
-
 	public int CountDifficultTerrainFieldsInPath (string[] pmPath)
 	{
 		int count = 0;
 
 		foreach (string id in pmPath) {
-			if (isCellDifficultTerrain (GridDrawer.instance.mCells [int.Parse (id)]))
+			if (GridDrawer.IsCellDifficultTerrain(GridDrawer.instance.mCells [int.Parse (id)]))
 				count++;
 		}
 
