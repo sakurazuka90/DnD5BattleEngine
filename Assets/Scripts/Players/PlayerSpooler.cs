@@ -275,6 +275,10 @@ public class PlayerSpooler : MonoBehaviour {
 			int lvId = GameObject.Find ("GridDrawer").GetComponent<GridDrawer> ().GetGridId (lvStatus.gridX, lvStatus.gridZ);
 
 			lvSelector.SetActivePlayerStartField (lvId);
+
+			if (mSpool [mSpooledId].isAi)
+				mSpool [mSpooledId].DoLove ();
+
 		} else {
 
 			//if player is dead we move to next one

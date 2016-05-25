@@ -34,7 +34,11 @@ public class Player {
 	public int mBasicAc = 10;
 	public int mMaxDexMod = 6;
 
+	public bool isAi = false;
+
 	private string _figurineModelName;
+
+	private List<Gambit> gambitList;
 
 
 	public int HpTotal
@@ -222,6 +226,18 @@ public class Player {
 		ac = lvAc;
 	}
 
+	// Language joke. Hue hue.
+	public void DoLove()
+	{
+
+		PlayerSpooler.instance.spool();
+	}
+
+	public void FillGambitList()
+	{
+		//if (isAi)
+		//	gambitList.Add ();
+	}
 
 
 }

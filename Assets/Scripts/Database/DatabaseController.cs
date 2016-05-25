@@ -57,7 +57,7 @@ public class DatabaseController{
 
 		IDbConnection dbconn = GetConnection ();
 		IDbCommand dbcmd = dbconn.CreateCommand();
-		string sqlQuery = 	"SELECT ST.NAME, FI.PICTURE_NAME, ST.LEVEL, ST.STR, ST.DEX, ST.FOR, ST.INT, ST.WIS, ST.CHA, ST.HP, ST.SPEED, FI.FIGURINE_NAME  "
+		string sqlQuery = 	"SELECT ST.NAME, FI.PICTURE_NAME, ST.LEVEL, ST.STR, ST.DEX, ST.FOR, ST.INT, ST.WIS, ST.CHA, ST.HP, ST.SPEED, FI.FIGURINE_NAME, ST.AI  "
 			+ "FROM CHARACTER_STATS ST JOIN FIGURINES FI ON FI.CHARACTER_ID = ST.ID WHERE ST.ID = " + pmPlayerId;
 		dbcmd.CommandText = sqlQuery;
 
@@ -80,6 +80,9 @@ public class DatabaseController{
 			lvPlayer.SetSpeed (reader.GetInt32(10));
 			lvPlayer.Proficiency = Proficiency.CalculateProficiencyBonusByLevel (reader.GetInt32(2));
 			lvPlayer.FigurineModelName = reader.GetString (11);
+
+			if (reader.GetInt32 (12) != null && reader.GetInt32 (12) > 0)
+				lvPlayer.isAi = true;
 		}
 
 		CleanUp (reader,dbcmd,dbconn);

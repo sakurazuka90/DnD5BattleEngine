@@ -6,8 +6,12 @@ public class MovementGambitImpl:Gambit
 	{
 	}
 
+
+
 	public void Process()
-	{}
+	{
+		
+	}
 
 	public bool Evaluate()
 	{
