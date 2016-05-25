@@ -5,6 +5,16 @@ using System.Collections.Generic;
 
 public class astar : MonoBehaviour {
 
+	public static astar instance;
+
+	void Awake ()
+	{
+		if (instance == null)
+			instance = this;
+		else if (instance != this)
+			Destroy (this.gameObject);
+	}
+
 	public int id = 0;
 	public int targetId = 10;
 
@@ -24,7 +34,7 @@ public class astar : MonoBehaviour {
 	{
 		GridDrawer.instance.ClearGridStatus ();
 
-		GetRouteAstar (new bool[GridDrawer.instance.mCells.Length], id, targetId);
+		GetRouteAstar (id, targetId);
 
 		int current = targetId;
 
@@ -34,7 +44,7 @@ public class astar : MonoBehaviour {
 		}
 	}
 
-	public int [] GetRouteAstar(bool [] pmGraph, int pmStartId, int pmTargetId)
+	public Dictionary<int,int> GetRouteAstar(int pmStartId, int pmTargetId)
 	{
 		//Queue<int> frontier = new Queue<int>();
 		PriorityQueue<int,int> frontier = new PriorityQueue<int, int>();
@@ -76,8 +86,38 @@ public class astar : MonoBehaviour {
 
 		tab = cameFrom;
 
-		return new int[0];
+		return cameFrom;
 
+	}
+
+	public string GetAstarAsMoverSteps(int pmStartId, int pmTargetId){
+
+		Dictionary<int,int> lvDict = GetRouteAstar (pmStartId, pmTargetId);
+
+		int current = pmTargetId;
+
+		List<int> pmSteps = new List<int> ();
+
+		while (current != pmStartId) {
+			pmSteps.Add (current);
+			current = tab [current];
+		}
+
+		pmSteps.Add (pmStartId);
+
+		pmSteps.Reverse ();
+
+		string lvSteps = "";
+
+		for (int i = 0; i < pmSteps.Count; i++) {
+			lvSteps += pmSteps [i];
+
+			if (i != (pmSteps.Count - 1)) {
+				lvSteps += "_";
+			}
+		}
+
+		return lvSteps;
 	}
 
 	private int GetCellMoveCost(int pmCellId)

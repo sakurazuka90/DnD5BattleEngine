@@ -229,6 +229,16 @@ public class Player {
 	// Language joke. Hue hue.
 	public void DoLove()
 	{
+		int id = Localizer.instance.FindClosestEnemy (Figurine.GetComponent<FigurineStatus>().gridX, Figurine.GetComponent<FigurineStatus>().gridZ);
+
+		Debug.Log ("Closest enemy: " + id);
+
+		string steps = astar.instance.GetAstarAsMoverSteps (GridDrawer.instance.GetGridId(Figurine.GetComponent<FigurineStatus>().gridX, Figurine.GetComponent<FigurineStatus>().gridZ), id);
+
+		FigurineMover lvMover = Figurine.GetComponent<FigurineMover> ();
+
+		lvMover.path = steps;
+		lvMover.isMoving = true;
 
 		PlayerSpooler.instance.spool();
 	}
