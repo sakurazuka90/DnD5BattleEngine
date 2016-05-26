@@ -262,6 +262,8 @@ public class PlayerSpooler : MonoBehaviour {
 			UpdateHP ();
 			UpdateAc ();
 
+			mSpool [mSpooledId].RefillActionsPool ();
+
 			GameObject lvGridSelectorObject = GameObject.Find ("GridSelector");
 			SelectFromGrid lvSelector = lvGridSelectorObject.GetComponent<SelectFromGrid> ();
 			lvSelector.updateFields ();
@@ -276,8 +278,7 @@ public class PlayerSpooler : MonoBehaviour {
 
 			lvSelector.SetActivePlayerStartField (lvId);
 
-			if (mSpool [mSpooledId].isAi)
-				mSpool [mSpooledId].DoLove ();
+			AIEngine.instance.InitEngine (mSpool [mSpooledId]);
 
 		} else {
 
@@ -327,6 +328,7 @@ public class PlayerSpooler : MonoBehaviour {
 	{
 		mSpool [mSpooledId].DecreaseMovesLeft (pmValue);
 		UpdateMove ();
+		mSpool [mSpooledId].UseActionForMovement ();
 	}
 
 	private static void UpdateMove()

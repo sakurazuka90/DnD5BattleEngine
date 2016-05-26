@@ -19,6 +19,8 @@ public class FigurineMover : MonoBehaviour {
 
 	Animator _figurineAnimator;
 
+	public bool isAi = false;
+
 	// Use this for initialization
 	void Start () {
 		_figurineAnimator = this.gameObject.GetComponentInChildren<Animator> ();
@@ -103,13 +105,15 @@ public class FigurineMover : MonoBehaviour {
 
 						AbortMovement ();
 
-						GameObject lvSpoolerObject = GameObject.Find ("PlayerSpooler");
-						PlayerSpooler lvSpooler = lvSpoolerObject.GetComponent<PlayerSpooler> ();
-
+						PlayerSpooler lvSpooler = PlayerSpooler.instance;
 						PlayerSpooler.DecreaseMoves (mStepsMoved);
+
 						mStepsMoved = 0;
 
 						_figurineAnimator.SetBool ("isWalking",false);
+
+						if (isAi)
+							AIEngine.instance.free = true;
 					}
 				}
 			}

@@ -10,9 +10,9 @@ public class Player {
 	private Dictionary<TestsNames,AbilityNames> mTestAbilities;
 	private int mSpeed;
 	private int mTotalHp;
-	private int mTotalMoveActions;
-	private int mTotalStandardActions;
-	private int mTotalBonusActions;
+	private int mTotalMoveActions = 1;
+	private int mTotalStandardActions = 1;
+	private int mTotalBonusActions = 1;
 	private int mProficiencyBonus;
 	private int mSurvivalSucceded = 0;
 	private int mSurvivalFailed = 0;
@@ -63,6 +63,11 @@ public class Player {
 		set{ this._figurineModelName = value;}
 	}
 
+	public List<Gambit> GambitList{
+		get{ return gambitList; }
+		set{ this.gambitList = value; }
+	}
+
 	public Player ()
 	{
 		mAbilities = new Dictionary<AbilityNames, Ability> ();
@@ -70,6 +75,9 @@ public class Player {
 		mTestAbilities = new Dictionary<TestsNames, AbilityNames> ();
 		mTestAbilities.Add(TestsNames.INITIATIVE,AbilityNames.DEXTERITY);
 		mWeaponCategoryProficiency = new List<WeaponCategory> ();
+
+		// WILL BE REMOVED WHEN GAMBITS WILL BE LOADED FROM DB
+		FillGambitList();
 	}
 
 	public void SetAbility(AbilityNames pmName, int pmScore)
@@ -226,6 +234,11 @@ public class Player {
 		ac = lvAc;
 	}
 
+	public bool IsAbleToMove()
+	{
+		return mTotalMoveActions > 0 || mTotalStandardActions > 0;
+	}
+
 	// Language joke. Hue hue.
 	public void DoLove()
 	{
@@ -245,8 +258,27 @@ public class Player {
 
 	public void FillGambitList()
 	{
-		//if (isAi)
-		//	gambitList.Add ();
+		MovementGambitImpl lvGambit = new MovementGambitImpl ();
+		lvGambit.GambitPlayer = this;
+
+		gambitList = new List<Gambit> ();
+
+		gambitList.Add (lvGambit);
+	}
+
+	public void RefillActionsPool()
+	{
+		mTotalBonusActions = 1;
+		mTotalMoveActions = 1;
+		mTotalStandardActions = 1;
+	}
+
+	public void UseActionForMovement()
+	{
+		if (mTotalMoveActions > 0)
+			mTotalMoveActions--;
+		else if (mTotalStandardActions > 0)
+			mTotalStandardActions--;
 	}
 
 
