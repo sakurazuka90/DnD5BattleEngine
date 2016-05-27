@@ -38,7 +38,7 @@ public abstract class AbstractAction
 			if (lvAttack >= lvDefValue || lvDice == 20) {
 				ResolveDamage (pmAttacker, pmTarget, lvDice == 20, pmIsAdvantage);
 			} else {
-				pmTarget.Figurine.GetComponent<MessageDisplayer> ().message = "MISS!";
+				pmTarget.Figurine.GetComponent<MessageDisplayer> ().SetMessage ("MiSS!");
 				pmTarget.Figurine.GetComponentInChildren<Animator> ().SetBool ("isEvading", true);
 			}
 
@@ -64,14 +64,14 @@ public abstract class AbstractAction
 		MessageDisplayer lvMessageDisplayer = pmTarget.Figurine.GetComponent<MessageDisplayer> ();
 
 		if (pmIsCritical) {
-			lvMessageDisplayer.message = "CRITICAL HIT!";
+			lvMessageDisplayer.SetMessage("CRITICAL HIT!");
 			lvWeaponAmount = lvWeaponAmount * 2;
 		}
 		int lvWeaponDamage = DiceRoller.RollDice (mWeapon.DieceType, lvWeaponAmount);
 
 		lvWeaponDamage += pmAttacker.GetAbilityModifier (mAbility);
 
-		lvMessageDisplayer.message = lvWeaponDamage.ToString ();
+		lvMessageDisplayer.SetMessage(lvWeaponDamage.ToString ());
 
 		pmTarget.GetDamage (lvWeaponDamage);
 

@@ -5,15 +5,13 @@ public class ScoreTextScript : MonoBehaviour {
 	
 	public float fadeTime=1.0f;
 	float startTime=0;
+
+	public string text = "";
 	
 	void Start () {
 		startTime=Time.time;
 
-		MessagePool lvGlobalPool = GameObject.Find ("GlobalMessagePool").GetComponent<MessagePool> ();
-
-		string lvMessage = lvGlobalPool.message;
-		this.gameObject.GetComponent<TextMesh> ().text = lvMessage;
-		lvGlobalPool.message = "";
+		this.gameObject.GetComponent<TextMesh> ().text = text;
 
 		transform.eulerAngles = new Vector3 (68.0f, 0.0f, 0.0f);
 	}

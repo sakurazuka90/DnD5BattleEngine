@@ -163,7 +163,7 @@ public class Player {
 				mSurvivalFailed = 0;
 				mSurvivalSucceded = 0;
 				isDead = true;
-				Figurine.GetComponent<MessageDisplayer>().message = "DEAD!";
+				Figurine.GetComponent<MessageDisplayer>().SetMessage("DEAD!");
 			}
 
 		} else {
@@ -186,10 +186,10 @@ public class Player {
 		if (lvRoll >= 10) {
 			mSurvivalSucceded += 1;
 
-			Figurine.GetComponent<MessageDisplayer>().message = "SURVIVAL SUCCES!";
+			Figurine.GetComponent<MessageDisplayer>().SetMessage("SURVIVAL SUCCES!");
 
 			if (lvRoll == 20) {
-				Figurine.GetComponent<MessageDisplayer>().message = "CRITICAL SUCCES - STABLE!";
+				Figurine.GetComponent<MessageDisplayer>().SetMessage("CRITICAL SUCCES - STABLE!");
 				mSurvivalFailed = 0;
 				mSurvivalSucceded = 0;
 				hp = 1;
@@ -197,9 +197,9 @@ public class Player {
 		}  else {
 			mSurvivalFailed += 1;
 
-			Figurine.GetComponent<MessageDisplayer>().message = "SURVIVAL FAILURE!";
+			Figurine.GetComponent<MessageDisplayer>().SetMessage("SURVIVAL FAILURE!");
 			if (lvRoll == 1) {
-				Figurine.GetComponent<MessageDisplayer>().message = "CRITICAL FAILURE - DEAD!";
+				Figurine.GetComponent<MessageDisplayer>().SetMessage("CRITICAL FAILURE - DEAD!");
 				mSurvivalFailed = 0;
 				mSurvivalSucceded = 0;
 				isDead = true;
@@ -211,12 +211,12 @@ public class Player {
 				mSurvivalFailed = 0;
 				mSurvivalSucceded = 0;
 				isStable = true;
-				Figurine.GetComponent<MessageDisplayer>().message = "STABLE!";
+				Figurine.GetComponent<MessageDisplayer>().SetMessage("STABLE!");
 			} else if (mSurvivalFailed >= 3) {
 				mSurvivalFailed = 0;
 				mSurvivalSucceded = 0;
 				isDead = true;
-				Figurine.GetComponent<MessageDisplayer>().message = "DEAD!";
+				Figurine.GetComponent<MessageDisplayer>().SetMessage("DEAD!");
 			}
 		}
 
