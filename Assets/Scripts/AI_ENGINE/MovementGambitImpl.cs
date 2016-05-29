@@ -28,6 +28,8 @@ public class MovementGambitImpl:Gambit
 
 		lvMover.path = steps;
 		lvMover.isAi = true;
+
+		lvMover.movePoints = gambitPlayer.movesLeft;
 		lvMover.isMoving = true;
 
 		AIEngine.instance.free = false;

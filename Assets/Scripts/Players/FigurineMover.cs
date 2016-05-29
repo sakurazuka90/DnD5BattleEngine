@@ -21,6 +21,12 @@ public class FigurineMover : MonoBehaviour {
 
 	public bool isAi = false;
 
+	public int movePoints = 0;
+
+	private Vector3 _target = Vector3.zero;
+
+	public bool abort = false;
+
 	// Use this for initialization
 	void Start () {
 		_figurineAnimator = this.gameObject.GetComponentInChildren<Animator> ();
@@ -38,6 +44,7 @@ public class FigurineMover : MonoBehaviour {
 			float figurineZSize = lvTransform.localScale.z;
 
 			Vector3 lvMove = new Vector3 (gridX - figurineX + figurineXSize / 2, 0, gridZ - figurineZ + figurineZSize / 2);
+
 
 			lvTransform.Translate (lvMove);
 		}
@@ -57,37 +64,70 @@ public class FigurineMover : MonoBehaviour {
 				path = "";
 
 				// path containt current cell
-				mStepsMoved = steps.Length - 1;
+				//mStepsMoved = steps.Length - 1;
 
-				if(mStepsMoved > 0)
-				mStepsMoved += SelectFromGrid.instance.CountDifficultTerrainFieldsInPath (steps);
+				//if(mStepsMoved > 0)
+				//mStepsMoved += SelectFromGrid.instance.CountDifficultTerrainFieldsInPath (steps);
 
-				_figurineAnimator.SetBool ("isWalking",true);
-
-			} else if(steps.Length > 0)
-			{
+				//_figurineAnimator.SetBool ("isWalking",true);
 				ButtonToggler.ToggleButtonOff ("MoveButton");
 				ButtonToggler.ToggleButtonOff ("InventoryButton");
 
+			}
+
+			if(steps.Length > 0)
+			{
 				string lvCurrentStep = steps[currentStep];
 
-				Vector3 lvTarget = GridDrawer.instance.getCellPosition(int.Parse(lvCurrentStep));
+				if (_target == Vector3.zero) {
+					
 
-				Vector3 lvPosition = transform.position;
+					Vector3 lvTarget = GridDrawer.instance.getCellPosition(int.Parse(lvCurrentStep));
 
-				if(lvTarget != lvPosition)
+					int moveCost = 1;
+
+					if (GridDrawer.IsCellDifficultTerrain (GridDrawer.instance.mCells [int.Parse (lvCurrentStep)])) {
+						moveCost++;
+					}
+
+					if (moveCost > movePoints) {
+						lvTarget = Vector3.zero;
+						//currentStep = steps.Length - 1;
+						abort = true;
+						lvCurrentStep = steps[(currentStep-1)];
+					} else {
+						movePoints -= moveCost;
+						mStepsMoved += moveCost;
+					}
+
+					_target = lvTarget;
+
+				}
+
+
+
+
+
+
+
+				if(_target != transform.position && _target != Vector3.zero)
 				{
-					transform.position = Vector3.MoveTowards(transform.position, lvTarget, moveSpeed * Time.deltaTime);
+					transform.position = Vector3.MoveTowards(transform.position, _target, moveSpeed * Time.deltaTime);
 				} else {
-					if(currentStep != (steps.Length -1))
+
+					FigurineStatus lvStatus = this.gameObject.GetComponent<FigurineStatus>();
+
+					gridX = GridDrawer.instance.getGridX(int.Parse(lvCurrentStep));
+					lvStatus.gridX = gridX;
+
+					gridZ = GridDrawer.instance.getGridZ(int.Parse(lvCurrentStep));
+					lvStatus.gridZ = gridZ;
+
+					_target = Vector3.zero;
+
+					if(currentStep != (steps.Length -1) && !abort)
 					{
-						FigurineStatus lvStatus = this.gameObject.GetComponent<FigurineStatus>();
 
-						gridX = GridDrawer.instance.getGridX(int.Parse(lvCurrentStep));
-						lvStatus.gridX = gridX;
-
-						gridZ = GridDrawer.instance.getGridZ(int.Parse(lvCurrentStep));
-						lvStatus.gridZ = gridZ;
 
 						currentStep ++;
 
@@ -95,22 +135,12 @@ public class FigurineMover : MonoBehaviour {
 						this.gameObject.transform.eulerAngles = lvRotation;
 
 					} else {
-						FigurineStatus lvStatus = this.gameObject.GetComponent<FigurineStatus>();
-						
-						gridX = GridDrawer.instance.getGridX(int.Parse(lvCurrentStep));
-						lvStatus.gridX = gridX;
-						
-						gridZ = GridDrawer.instance.getGridZ(int.Parse(lvCurrentStep));
-						lvStatus.gridZ = gridZ;
-
 						AbortMovement ();
 
 						PlayerSpooler lvSpooler = PlayerSpooler.instance;
 						PlayerSpooler.DecreaseMoves (mStepsMoved);
 
-						mStepsMoved = 0;
-
-						_figurineAnimator.SetBool ("isWalking",false);
+						//_figurineAnimator.SetBool ("isWalking",false);
 
 						if (isAi)
 							AIEngine.instance.free = true;
@@ -127,6 +157,7 @@ public class FigurineMover : MonoBehaviour {
 		isMoving = false;
 		ButtonToggler.ToggleButtonOn ("MoveButton");
 		ButtonToggler.ToggleButtonOn ("InventoryButton");
+		abort = false;
 	}
 
 }

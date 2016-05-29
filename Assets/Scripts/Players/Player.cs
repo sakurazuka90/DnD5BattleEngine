@@ -236,7 +236,7 @@ public class Player {
 
 	public bool IsAbleToMove()
 	{
-		return mTotalMoveActions > 0 || mTotalStandardActions > 0;
+		return mTotalMoveActions > 0; //|| mTotalStandardActions > 0;
 	}
 
 	public void FillGambitList()
