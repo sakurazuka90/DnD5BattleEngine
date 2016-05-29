@@ -18,7 +18,8 @@ public class MovementGambitImpl:Gambit
 	{
 		int id = Localizer.instance.FindClosestEnemy (gambitPlayer.Figurine.GetComponent<FigurineStatus>().gridX, gambitPlayer.Figurine.GetComponent<FigurineStatus>().gridZ);
 
-		List<int> list = new List<int> ();
+
+		List<int> list = SelectFromGrid.instance.GetAdjacentNonBlockedFields (id);
 		list.Add (id);
 
 		string steps = astar.instance.GetRouteAstar(GridDrawer.instance.GetGridId(gambitPlayer.Figurine.GetComponent<FigurineStatus>().gridX, gambitPlayer.Figurine.GetComponent<FigurineStatus>().gridZ), list, id).GetAstarAsMoverSteps();
