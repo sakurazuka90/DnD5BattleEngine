@@ -1,19 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Database\DatabaseController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Players\Player.cs">
     <Files>
-      <File FileName="Assets\AIEngine.cs" Line="30" Column="58" />
-      <File FileName="Assets\Scripts\AI_ENGINE\MovementGambitImpl.cs" Line="25" Column="23" />
-      <File FileName="Assets\Scripts\Players\Player.cs" Line="276" Column="36" />
-      <File FileName="Assets\Scripts\GridScripts\GridDrawer.cs" Line="21" Column="1" />
-      <File FileName="Assets\Scripts\GridScripts\SelectFromGrid.cs" Line="620" Column="1" />
-      <File FileName="Assets\Scripts\AI_ENGINE\Algorithms\astar.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Database\DatabaseController.cs" Line="113" Column="1" />
-      <File FileName="Assets\Scripts\Players\PlayerSpooler.cs" Line="281" Column="1" />
-      <File FileName="Assets\Scripts\AI_ENGINE\Gambit.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\AI_ENGINE\Algorithms\AstarResponse.cs" Line="24" Column="1" />
       <File FileName="Assets\Scripts\AI_ENGINE\Algorithms\Localizer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Utils\MathUtils.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Players\FigurineMover.cs" Line="109" Column="34" />
+      <File FileName="Assets\Scripts\AI_ENGINE\Algorithms\astar.cs" Line="93" Column="63" />
+      <File FileName="Assets\Scripts\AI_ENGINE\MovementGambitImpl.cs" Line="24" Column="202" />
+      <File FileName="Assets\Scripts\Players\Player.cs" Line="242" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -50,7 +43,6 @@
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\GridScripts\SelectFromGrid.cs" line="797" column="1" />
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\GridScripts\SelectFromGrid.cs" line="804" column="1" />
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\AI_ENGINE\Algorithms\astar.cs" line="50" column="1" />
-      <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\AI_ENGINE\Algorithms\astar.cs" line="62" column="1" />
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\GridScripts\SelectFromGrid.cs" line="807" column="1" />
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Database\DatabaseController.cs" line="85" column="1" />
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Players\PlayerSpooler.cs" line="281" column="53" />

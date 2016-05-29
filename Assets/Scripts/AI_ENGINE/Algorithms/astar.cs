@@ -34,7 +34,7 @@ public class astar : MonoBehaviour {
 	{
 		GridDrawer.instance.ClearGridStatus ();
 
-		GetRouteAstar (id, targetId);
+		GetRouteAstar (id, new List<int>(targetId), targetId);
 
 		int current = targetId;
 
@@ -44,7 +44,7 @@ public class astar : MonoBehaviour {
 		}
 	}
 
-	public Dictionary<int,int> GetRouteAstar(int pmStartId, int pmTargetId)
+	public AstarResponse GetRouteAstar(int pmStartId, List<int> pmTargets, int heuresticPoint)
 	{
 		//Queue<int> frontier = new Queue<int>();
 		PriorityQueue<int,int> frontier = new PriorityQueue<int, int>();
@@ -55,12 +55,16 @@ public class astar : MonoBehaviour {
 
 		costSoFar.Add (pmStartId, 0);
 
+		int foundTarget = 0;
+
 
 		while (!frontier.Empty()) {
 			int current = frontier.Dequeue ();
 
-			if (current == pmTargetId)
+			if (pmTargets.Contains (current)) {
+				foundTarget = current;
 				break;
+			}
 
 			List<int> neighbours = SelectFromGrid.instance.GetAdjacentNonBlockedFields (current);
 
@@ -69,7 +73,7 @@ public class astar : MonoBehaviour {
 				int newCost = costSoFar [current] + this.GetCellMoveCost (next);
 
 				if (!costSoFar.ContainsKey (next) || newCost < costSoFar [next]) {
-					costSoFar [next] = newCost + Length (next, pmTargetId);
+					costSoFar [next] = newCost + Length (next, heuresticPoint);
 					int lvPriority = newCost;
 
 					frontier.Enqueue (next, newCost);
@@ -86,38 +90,8 @@ public class astar : MonoBehaviour {
 
 		tab = cameFrom;
 
-		return cameFrom;
+		return new AstarResponse (cameFrom, pmStartId, foundTarget);
 
-	}
-
-	public string GetAstarAsMoverSteps(int pmStartId, int pmTargetId){
-
-		Dictionary<int,int> lvDict = GetRouteAstar (pmStartId, pmTargetId);
-
-		int current = pmTargetId;
-
-		List<int> pmSteps = new List<int> ();
-
-		while (current != pmStartId) {
-			pmSteps.Add (current);
-			current = tab [current];
-		}
-
-		pmSteps.Add (pmStartId);
-
-		pmSteps.Reverse ();
-
-		string lvSteps = "";
-
-		for (int i = 0; i < pmSteps.Count; i++) {
-			lvSteps += pmSteps [i];
-
-			if (i != (pmSteps.Count - 1)) {
-				lvSteps += "_";
-			}
-		}
-
-		return lvSteps;
 	}
 
 	private int GetCellMoveCost(int pmCellId)

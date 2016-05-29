@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public class MovementGambitImpl:Gambit
 {
@@ -17,7 +18,10 @@ public class MovementGambitImpl:Gambit
 	{
 		int id = Localizer.instance.FindClosestEnemy (gambitPlayer.Figurine.GetComponent<FigurineStatus>().gridX, gambitPlayer.Figurine.GetComponent<FigurineStatus>().gridZ);
 
-		string steps = astar.instance.GetAstarAsMoverSteps (GridDrawer.instance.GetGridId(gambitPlayer.Figurine.GetComponent<FigurineStatus>().gridX, gambitPlayer.Figurine.GetComponent<FigurineStatus>().gridZ), id);
+		List<int> list = new List<int> ();
+		list.Add (id);
+
+		string steps = astar.instance.GetRouteAstar(GridDrawer.instance.GetGridId(gambitPlayer.Figurine.GetComponent<FigurineStatus>().gridX, gambitPlayer.Figurine.GetComponent<FigurineStatus>().gridZ), list, id).GetAstarAsMoverSteps();
 
 		FigurineMover lvMover = gambitPlayer.Figurine.GetComponent<FigurineMover> ();
 
