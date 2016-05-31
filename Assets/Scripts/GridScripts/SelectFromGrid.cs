@@ -112,6 +112,7 @@ public class SelectFromGrid : MonoBehaviour
 								
 							string lvId = lvCellId.ToString ();
 							if (mPaths.ContainsKey (lvId)) {
+								lvMover.movePoints = 4;
 								lvMover.path = mPaths [lvId];
 								lvMover.isMoving = true;
 
