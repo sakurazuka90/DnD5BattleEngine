@@ -794,18 +794,72 @@ public class SelectFromGrid : MonoBehaviour
 
 	public List<int> GetAdjacentNonBlockedFields(int pmCellId)
 	{
-		if (pmCellId == 46)
-			Debug.Log ("OMG");
-
 		List<int> lvFields = GetAdjacentFields (pmCellId);
 		List<int> lvResult = new List<int> ();
 
 		foreach (int lvFieldId in lvFields) {
-			if (pmCellId == 46)
-				Debug.Log ("OMG2");
 
 			if (!GridDrawer.instance.IsCellBlockedByObstacle (lvFieldId))
 				lvResult.Add (lvFieldId);
+		}
+
+		return lvResult;
+	}
+
+	public List<int> GetAdjacentNonBlockedFieldsWithDiagonalCheck(int pmCellId)
+	{
+		List<int> lvFields = GetAdjacentFields (pmCellId);
+		List<int> lvResult = new List<int> ();
+
+		bool topMovable = false;
+		bool bottomMovable = false;
+		bool leftMovable = false;
+		bool rightMovable = false;
+
+		for(int i = 0; i< lvFields.Count; i++) {
+
+			if (!GridDrawer.instance.IsCellBlockedByObstacle (lvFields[i])) {
+
+				if (i < 4) {
+					lvResult.Add (lvFields [i]);
+
+					switch (i) {
+					case 0:
+						topMovable = true;
+						break;
+					case 1:
+						rightMovable = true;
+						break;
+					case 2:
+						leftMovable = true;
+						break;
+					case 3:
+						bottomMovable = true;
+						break;
+					}
+				} else {
+					switch (i) {
+					case 4:
+						if (topMovable && rightMovable)
+							lvResult.Add (lvFields [i]);
+						break;
+					case 5:
+						if (topMovable && leftMovable)
+							lvResult.Add (lvFields [i]);
+						break;
+					case 6:
+						if (bottomMovable && leftMovable)
+							lvResult.Add (lvFields [i]);
+						break;
+					case 7:
+						if (bottomMovable && rightMovable)
+							lvResult.Add (lvFields [i]);
+						break;
+					}
+				}
+
+
+			}
 		}
 
 		return lvResult;

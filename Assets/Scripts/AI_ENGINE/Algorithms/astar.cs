@@ -66,7 +66,7 @@ public class astar : MonoBehaviour {
 				break;
 			}
 
-			List<int> neighbours = SelectFromGrid.instance.GetAdjacentNonBlockedFields (current);
+			List<int> neighbours = SelectFromGrid.instance.GetAdjacentNonBlockedFieldsWithDiagonalCheck (current);
 
 			foreach (int next in neighbours) {
 
