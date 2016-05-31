@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class FigurineMover : MonoBehaviour {
@@ -59,7 +59,14 @@ public class FigurineMover : MonoBehaviour {
 				// reset to first step of path
 				currentStep = 0;
 				// set steps array
-				steps = path.Split ('_');
+				string [] tempsteps = path.Split ('_');
+
+				steps = new string[tempsteps.Length - 1];
+
+				for (int i = 1; i < tempsteps.Length; i++) {
+					steps [i - 1] = tempsteps [i];
+				}
+
 
 				path = "";
 
