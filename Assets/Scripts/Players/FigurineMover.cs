@@ -49,7 +49,6 @@ public class FigurineMover : MonoBehaviour {
 			lvTransform.Translate (lvMove);
 		}
 		handlePath ();
-
 	}
 
 	private void handlePath(){
@@ -165,6 +164,13 @@ public class FigurineMover : MonoBehaviour {
 		ButtonToggler.ToggleButtonOn ("MoveButton");
 		ButtonToggler.ToggleButtonOn ("InventoryButton");
 		abort = false;
+	}
+
+	public bool IsOnSelectedField()
+	{
+		Vector3 fieldPosition = GridDrawer.instance.getCellPosition (GridDrawer.instance.GetGridId (gridX, gridZ));
+
+		return  new Vector3 (fieldPosition.x, 0.0f, fieldPosition.z) == transform.position;
 	}
 
 }

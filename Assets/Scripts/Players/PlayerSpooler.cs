@@ -23,17 +23,10 @@ public class PlayerSpooler : MonoBehaviour {
 			Destroy (this.gameObject);
 	}
 
-	// Use this for initialization
-	void Start () {
-
-	}
-
 	public void Run()
 	{
 		int[] lvPlayers = BattlefieldStateReader.instance.Players;
 		int[] lvEnemies = BattlefieldStateReader.instance.Enemies;
-
-		//GameObject lvFigurineBase = Resources.Load<GameObject> ("Figurines/FigurineBase");
 
 		mPool = new List<Player> ();
 
@@ -47,8 +40,6 @@ public class PlayerSpooler : MonoBehaviour {
 				
 				Player pl1 = DatabaseController.GetPlayerByID (lvPlayerId);
 
-				//GameObject lvFigurineInstance = Instantiate (lvFigurineBase);
-
 				GameObject lvModel = Instantiate(Resources.Load<GameObject> ("Figurines/Models/" + pl1.FigurineModelName));
 
 				FigurineStatus lvStatus = lvModel.GetComponent<FigurineStatus> ();
@@ -60,7 +51,7 @@ public class PlayerSpooler : MonoBehaviour {
 				lvMover.gridX = GridDrawer.instance.getGridX (i);
 				lvMover.gridZ = GridDrawer.instance.getGridZ (i);
 
-				//lvModel.transform.SetParent (lvFigurineInstance.transform.GetChild(0),true);
+				FigurinePositionController.instance.AddFigurineMover (lvMover);
 
 				pl1.Figurine = lvModel;
 				Dictionary<string,Item> inventory1 = new Dictionary<string,Item> ();
@@ -84,9 +75,6 @@ public class PlayerSpooler : MonoBehaviour {
 
 			if (lvPlayerId > 0) {
 				Player pl1 = DatabaseController.GetPlayerByID (lvPlayerId);
-				//pl1.Figurine = fig2;
-
-				//GameObject lvFigurineInstance = Instantiate (lvFigurineBase);
 
 				GameObject lvModel = Instantiate(Resources.Load<GameObject> ("Figurines/Models/" + pl1.FigurineModelName));
 
@@ -115,6 +103,8 @@ public class PlayerSpooler : MonoBehaviour {
 
 			}
 		}
+
+		FigurinePositionController.instance.isInitialized = true;
 
 		prepareSpool ();
 
