@@ -10,9 +10,9 @@ public class Player {
 	private Dictionary<TestsNames,AbilityNames> mTestAbilities;
 	private int mSpeed;
 	private int mTotalHp;
-	private int mTotalMoveActions = 1;
-	private int mTotalStandardActions = 1;
-	private int mTotalBonusActions = 1;
+	public int mTotalMoveActions = 1;
+	public int mTotalStandardActions = 1;
+	public int mTotalBonusActions = 1;
 	private int mProficiencyBonus;
 	private int mSurvivalSucceded = 0;
 	private int mSurvivalFailed = 0;
@@ -236,7 +236,7 @@ public class Player {
 
 	public bool IsAbleToMove()
 	{
-		return mTotalMoveActions > 0; //|| mTotalStandardActions > 0;
+		return mTotalMoveActions > 0 || mTotalStandardActions > 0;
 	}
 
 	public void FillGambitList()
@@ -262,6 +262,13 @@ public class Player {
 			mTotalMoveActions--;
 		else if (mTotalStandardActions > 0)
 			mTotalStandardActions--;
+	}
+
+	public void ConvertStandardActionToMove()
+	{
+		ResetMovesLeft ();
+		mTotalMoveActions++;
+		mTotalStandardActions--;
 	}
 
 

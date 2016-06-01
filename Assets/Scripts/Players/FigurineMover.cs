@@ -68,16 +68,10 @@ public class FigurineMover : MonoBehaviour {
 
 
 				path = "";
-
-				// path containt current cell
-				//mStepsMoved = steps.Length - 1;
-
-				//if(mStepsMoved > 0)
-				//mStepsMoved += SelectFromGrid.instance.CountDifficultTerrainFieldsInPath (steps);
-
-				//_figurineAnimator.SetBool ("isWalking",true);
 				ButtonToggler.ToggleButtonOff ("MoveButton");
 				ButtonToggler.ToggleButtonOff ("InventoryButton");
+
+
 
 			}
 
@@ -146,7 +140,6 @@ public class FigurineMover : MonoBehaviour {
 						PlayerSpooler lvSpooler = PlayerSpooler.instance;
 						PlayerSpooler.DecreaseMoves (mStepsMoved);
 
-						//_figurineAnimator.SetBool ("isWalking",false);
 
 						if (isAi)
 							AIEngine.instance.free = true;

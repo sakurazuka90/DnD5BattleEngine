@@ -15,6 +15,10 @@ public class PlayerSpooler : MonoBehaviour {
 
 	public static PlayerSpooler instance;
 
+	public GameObject genericYesNoWindowPrefab;
+
+	private string _convertActionString = "Do you really want to convert 1 Standard Action into 1 Move Action?";
+
 	void Awake()
 	{
 		if (instance == null)
@@ -126,6 +130,7 @@ public class PlayerSpooler : MonoBehaviour {
 		UpdateWeapon ();
 		UpdateHP ();
 		UpdateAc ();
+		UpdateActions ();
 
 		GameObject lvGridSelectorObject = GameObject.Find("GridSelector");
 		SelectFromGrid lvSelector = lvGridSelectorObject.GetComponent<SelectFromGrid> ();
@@ -217,12 +222,32 @@ public class PlayerSpooler : MonoBehaviour {
 
 	public void pick()
 	{
-		if (!GameObject.Find ("GridSelector").GetComponent<SelectFromGrid> ().mMoveMode) {
+		if (!SelectFromGrid.instance.mMoveMode) {
+
 			int lvMovesLeft = mSpool [mSpooledId].movesLeft;
-			mSpooledObject.GetComponent<FigurineStatus> ().pick (lvMovesLeft);
+
+			if (lvMovesLeft == 0 && mSpool[mSpooledId].mTotalStandardActions > 0) {
+
+				GameObject lvWindow = GameObject.Instantiate (genericYesNoWindowPrefab);
+				lvWindow.GetComponent<GenericyesNoPanelControler> ().InitializePanel (_convertActionString, this.ConvertStandardActionToMove);
+
+				lvWindow.transform.parent = GameObject.Find ("Canvas").transform;
+				lvWindow.GetComponent<RectTransform> ().anchoredPosition = Vector2.zero;
+
+			} else {			
+				mSpooledObject.GetComponent<FigurineStatus> ().pick (lvMovesLeft);
+			}
 		} else {
-			GameObject.Find ("GridSelector").GetComponent<SelectFromGrid> ().DeactivateWalking ();
+			SelectFromGrid.instance.DeactivateWalking ();
 		}
+	}
+
+	public void ConvertStandardActionToMove()
+	{
+		mSpool [mSpooledId].ConvertStandardActionToMove ();
+		UpdateMove ();
+		UpdateActions ();
+		pick ();
 	}
 
 	public void ShowDefaultWeaponTargets()
@@ -251,6 +276,7 @@ public class PlayerSpooler : MonoBehaviour {
 			UpdateWeapon ();
 			UpdateHP ();
 			UpdateAc ();
+			UpdateActions ();
 
 			mSpool [mSpooledId].RefillActionsPool ();
 
@@ -319,7 +345,9 @@ public class PlayerSpooler : MonoBehaviour {
 		mSpool [mSpooledId].DecreaseMovesLeft (pmValue);
 		UpdateMove ();
 		mSpool [mSpooledId].UseActionForMovement ();
+		UpdateActions ();
 	}
+		
 
 	private static void UpdateMove()
 	{
@@ -349,6 +377,13 @@ public class PlayerSpooler : MonoBehaviour {
 	public static void UpdateTextField(string pmValue, string pmName)
 	{
 		GameObject.Find (pmName).GetComponent<Text> ().text = pmValue;
+	}
+
+	public static void UpdateActions()
+	{
+		UpdateTextField (mSpool [mSpooledId].mTotalMoveActions.ToString(),"MoveActionsText");
+		UpdateTextField (mSpool [mSpooledId].mTotalStandardActions.ToString(),"StandardActionsText");
+		UpdateTextField (mSpool [mSpooledId].mTotalBonusActions.ToString(),"BasicActionsText");
 	}
 
 	public Player GetPlayerOnField(int pmCell)
