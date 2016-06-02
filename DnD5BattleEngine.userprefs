@@ -1,15 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Players\FigurineMover.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GUI\InventoryFiller.cs">
     <Files>
-      <File FileName="Assets\Scripts\Players\PlayerSpooler.cs" Line="26" Column="1" />
-      <File FileName="Assets\AIEngine.cs" Line="8" Column="30" />
-      <File FileName="Assets\Scripts\AI_ENGINE\Algorithms\astar.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Players\FigurineMover.cs" Line="52" Column="1" />
-      <File FileName="Assets\Scripts\GridScripts\SelectFromGrid.cs" Line="45" Column="1" />
-      <File FileName="Assets\Scripts\AI_ENGINE\Algorithms\AstarResponse.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\AI_ENGINE\MovementGambitImpl.cs" Line="1" Column="1" />
-      <File FileName="Assets\FigurinePositionController.cs" Line="6" Column="9" />
+      <File FileName="Assets\Scripts\Database\DatabaseController.cs" Line="105" Column="1" />
+      <File FileName="Assets\Scripts\AI_ENGINE\MovementGambitImpl.cs" Line="42" Column="1" />
+      <File FileName="Assets\Scripts\Players\PlayerSpooler.cs" Line="66" Column="9" />
+      <File FileName="Assets\Scripts\Players\Player.cs" Line="56" Column="33" />
+      <File FileName="Assets\Scripts\Players\FigurineMover.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GridScripts\SelectFromGrid.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUI\InventoryFiller.cs" Line="31" Column="24" />
+      <File FileName="Assets\Scripts\GUI\Slot.cs" Line="28" Column="73" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -33,19 +33,12 @@
       <Breakpoint file="C:\Users\sakurazuka90\Documents\DnD5BattleEngine\Assets\Scripts\Database\DatabaseController.cs" line="55" column="1" />
       <Breakpoint file="C:\Users\sakurazuka90\Documents\DnD5BattleEngine\Assets\Scripts\Database\DatabaseController.cs" line="67" column="1" />
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\GUI\InventoryFiller.cs" line="27" column="1" />
-      <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\GUI\InventoryFiller.cs" line="41" column="1" />
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\LevelCreator\BattleFieldSaver.cs" line="136" column="1" />
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\LevelCreator\BattleFieldSaver.cs" line="115" column="1" />
       <Breakpoint file="C:\Users\sakurazuka90\Documents\DnD5BattleEngine\Assets\Scripts\Database\DatabaseController.cs" line="32" column="1" />
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Database\DatabaseController.cs" line="9" column="1" />
-      <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\AI_ENGINE\MovementGambitImpl.cs" line="32" column="3" />
-      <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Players\FigurineMover.cs" line="91" column="1" />
-      <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Players\FigurineMover.cs" line="109" column="1" />
-      <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Players\FigurineMover.cs" line="144" column="1" />
-      <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Players\FigurineMover.cs" line="126" column="11" />
-      <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Players\FigurineMover.cs" line="129" column="1" />
-      <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\GridScripts\SelectFromGrid.cs" line="418" column="1" />
-      <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\GridScripts\SelectFromGrid.cs" line="434" column="1" />
+      <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Database\DatabaseController.cs" line="113" column="1" />
+      <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\GUI\InventoryFiller.cs" line="40" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
