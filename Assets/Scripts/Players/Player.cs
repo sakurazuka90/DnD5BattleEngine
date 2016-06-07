@@ -40,6 +40,8 @@ public class Player {
 
 	private List<Gambit> gambitList;
 
+	public int databaseEqWeaponId = 0;
+
 
 	public int HpTotal
 	{

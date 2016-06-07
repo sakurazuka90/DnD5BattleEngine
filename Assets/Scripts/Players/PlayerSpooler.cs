@@ -60,15 +60,21 @@ public class PlayerSpooler : MonoBehaviour {
 				pl1.Figurine = lvModel;
 				Dictionary<string,Item> inventory1 = new Dictionary<string,Item> ();
 
-				DatabaseController.AddPlayersWeaponsToInventory (lvPlayerId, inventory1);
-				DatabaseController.AddPlayersArmorsToInventory (lvPlayerId, inventory1);
+				DatabaseController.AddPlayersWeaponsToInventory (lvPlayerId, inventory1, pl1);
+				DatabaseController.AddPlayersArmorsToInventory (lvPlayerId, inventory1, pl1);
 
 				pl1.Inventory = inventory1;
 
-				Attack lvAxe = new Attack ("Unarmed", Weapon.unarmed);
-				pl1.equippedWeaponAttack = lvAxe;
+				if (pl1.databaseEqWeaponId == 0) {
+					Attack lvAxe = new Attack ("Unarmed", Weapon.unarmed);
+					pl1.equippedWeaponAttack = lvAxe;
+				}
+
+				pl1.UpdateAc ();
 
 				mPool.Add (pl1);
+
+
 
 			}
 		}
@@ -95,13 +101,18 @@ public class PlayerSpooler : MonoBehaviour {
 
 				Dictionary<string,Item> inventory1 = new Dictionary<string,Item> ();
 
-				DatabaseController.AddPlayersWeaponsToInventory (lvPlayerId, inventory1);
-				DatabaseController.AddPlayersArmorsToInventory (lvPlayerId, inventory1);
+				DatabaseController.AddPlayersWeaponsToInventory (lvPlayerId, inventory1, pl1);
+				DatabaseController.AddPlayersArmorsToInventory (lvPlayerId, inventory1, pl1);
 
 				pl1.Inventory = inventory1;
 
-				Attack lvAxe = new Attack ("Unarmed", Weapon.unarmed);
-				pl1.equippedWeaponAttack = lvAxe;
+				if (pl1.databaseEqWeaponId == 0) {
+					Attack lvAxe = new Attack ("Unarmed", Weapon.unarmed);
+					pl1.equippedWeaponAttack = lvAxe;
+				}
+
+				pl1.UpdateAc ();
+				//UpdateWeapon ();
 
 				mPool.Add (pl1);
 

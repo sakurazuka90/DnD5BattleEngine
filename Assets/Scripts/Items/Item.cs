@@ -40,11 +40,11 @@ public class Item{
 		return lvItem;
 	}
 
-	public virtual void Equip(Player pmPlayer)
+	public virtual void Equip(Player pmPlayer, bool pmUpdateUi = true)
 	{
 	}
 
-	public virtual void UnEquip(Player pmPlayer)
+	public virtual void UnEquip(Player pmPlayer, bool pmUpdateUi = true)
 	{
 	}
 

@@ -57,7 +57,7 @@ public class DatabaseController{
 
 		IDbConnection dbconn = GetConnection ();
 		IDbCommand dbcmd = dbconn.CreateCommand();
-		string sqlQuery = 	"SELECT ST.NAME, FI.PICTURE_NAME, ST.LEVEL, ST.STR, ST.DEX, ST.FOR, ST.INT, ST.WIS, ST.CHA, ST.HP, ST.SPEED, FI.FIGURINE_NAME, ST.AI  "
+		string sqlQuery = 	"SELECT ST.NAME, FI.PICTURE_NAME, ST.LEVEL, ST.STR, ST.DEX, ST.FOR, ST.INT, ST.WIS, ST.CHA, ST.HP, ST.SPEED, FI.FIGURINE_NAME, ST.AI, ST.EQUIPPED_WEAPON_SLOT "
 			+ "FROM CHARACTER_STATS ST JOIN FIGURINES FI ON FI.CHARACTER_ID = ST.ID WHERE ST.ID = " + pmPlayerId;
 		dbcmd.CommandText = sqlQuery;
 
@@ -83,6 +83,8 @@ public class DatabaseController{
 
 			if (reader.GetInt32 (12) != null && reader.GetInt32 (12) > 0)
 				lvPlayer.isAi = true;
+
+			lvPlayer.databaseEqWeaponId = reader.GetInt32 (13);
 		}
 
 		CleanUp (reader,dbcmd,dbconn);
@@ -93,7 +95,7 @@ public class DatabaseController{
 		return lvPlayer;
 	}
 
-	public static void AddPlayersArmorsToInventory(int pmPlayerId, Dictionary<string,Item> pmInventory)
+	public static void AddPlayersArmorsToInventory(int pmPlayerId, Dictionary<string,Item> pmInventory, Player player)
 	{
 		IDbConnection dbconn = GetConnection ();
 		IDbCommand dbcmd = dbconn.CreateCommand();
@@ -109,8 +111,10 @@ public class DatabaseController{
 			Item lvItem = new Armor (reader.GetString(1), lvTypes,reader.GetInt32(2),reader.GetInt32(3));
 			lvItem.resourceImageName = reader.GetString (4);
 			lvItem.inventoryFieldId = reader.GetString (5);
-
 			pmInventory.Add (reader.GetString (5), lvItem);
+
+			if ("INV_ARMOR".Equals (reader.GetString (5)))
+				lvItem.Equip (player, false);
 
 		}
 
@@ -120,11 +124,11 @@ public class DatabaseController{
 		dbconn = null;
 	}
 
-	public static void AddPlayersWeaponsToInventory(int pmPlayerId, Dictionary<string,Item> pmInventory)
+	public static void AddPlayersWeaponsToInventory(int pmPlayerId, Dictionary<string,Item> pmInventory, Player player)
 	{
 		IDbConnection dbconn = GetConnection ();
 		IDbCommand dbcmd = dbconn.CreateCommand();
-		string sqlQuery = 	"select w.ID, w.NAME, w.WEAPON_TYPE_ID, w.WEAPON_CATEGORY_ID, w.WEAPON_DAMAGE_DIE_SIDES, w.WEAPON_DAMAGE_DIE_QUANTITY, w.SHORT_RANGE, w.LONG_RANGE, w.ICON_NAME, es.NAME " +
+		string sqlQuery = 	"select w.ID, w.NAME, w.WEAPON_TYPE_ID, w.WEAPON_CATEGORY_ID, w.WEAPON_DAMAGE_DIE_SIDES, w.WEAPON_DAMAGE_DIE_QUANTITY, w.SHORT_RANGE, w.LONG_RANGE, w.ICON_NAME, es.NAME, es.ID " +
 			"FROM WEAPONS w join CHARACTERS_ITEMS ci on ci.ITEM_ID = w.ID and ci.ITEM_TYPE = 1  JOIN EQUIPEMENT_SLOTS es on ci.FIELD_ID = es.ID  where ci.CHARACTER_ID = " + pmPlayerId;
 		dbcmd.CommandText = sqlQuery;
 
@@ -137,9 +141,12 @@ public class DatabaseController{
 			lvItem.resourceImageName = reader.GetString (8);
 			lvItem.inventoryFieldId = reader.GetString (9);
 
-			pmInventory.Add (reader.GetString (9), lvItem);
+			if (reader.GetInt32 (10) == player.databaseEqWeaponId)
+				lvItem.Equip (player, false);
+				
 
-		}
+			pmInventory.Add (reader.GetString (9), lvItem);
+	}
 
 		CleanUp (reader,dbcmd,dbconn);
 		reader = null;

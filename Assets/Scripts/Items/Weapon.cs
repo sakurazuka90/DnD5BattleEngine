@@ -60,16 +60,18 @@ public class Weapon : Item {
 		get { return this.mType; }
 	}
 
-	public override void Equip(Player pmPlayer)
+	public override void Equip(Player pmPlayer, bool pmUpdateUi)
 	{
 		pmPlayer.equippedWeaponAttack = new Attack (mName, this);
-		PlayerSpooler.UpdateWeapon ();
+		if(pmUpdateUi)
+			PlayerSpooler.UpdateWeapon ();
 	}
 
-	public override void UnEquip(Player pmPlayer)
+	public override void UnEquip(Player pmPlayer, bool pmUpdateUi)
 	{
 		pmPlayer.equippedWeaponAttack = new Attack ("Unarmed", unarmed);
-		PlayerSpooler.UpdateWeapon ();
+		if(pmUpdateUi)
+			PlayerSpooler.UpdateWeapon ();
 	}
 
 
