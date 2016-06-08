@@ -42,6 +42,8 @@ public class Player {
 
 	public int databaseEqWeaponId = 0;
 
+	private Player targetPlayer = null;
+
 
 	public int HpTotal
 	{
@@ -68,6 +70,11 @@ public class Player {
 	public List<Gambit> GambitList{
 		get{ return gambitList; }
 		set{ this.gambitList = value; }
+	}
+
+	public Player TargetPlayer{
+		get{ return targetPlayer; }
+		set{ this.targetPlayer = value; }
 	}
 
 	public Player ()

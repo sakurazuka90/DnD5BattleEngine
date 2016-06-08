@@ -37,7 +37,7 @@ public class MovementGambitImpl:Gambit
 
 	public bool Evaluate()
 	{
-		if (gambitPlayer != null && gambitPlayer.IsAbleToMove ()) {
+		if (gambitPlayer != null && gambitPlayer.IsAbleToMove () && doNeadToMove()) {
 
 			if (gambitPlayer.mTotalMoveActions == 0 && gambitPlayer.mTotalStandardActions > 0 && gambitPlayer.movesLeft == 0)
 				gambitPlayer.ConvertStandardActionToMove ();
@@ -46,6 +46,20 @@ public class MovementGambitImpl:Gambit
 		}
 		else
 			return false;
+	}
+
+	public bool doNeadToMove()
+	{
+		int id = Localizer.instance.FindClosestEnemy (gambitPlayer.Figurine.GetComponent<FigurineStatus>().gridX, gambitPlayer.Figurine.GetComponent<FigurineStatus>().gridZ);
+
+		List<int> list = SelectFromGrid.instance.GetAdjacentNonBlockedFields (id);
+
+		int targetField = GridDrawer.instance.GetGridId (gambitPlayer.Figurine.GetComponent<FigurineStatus> ().gridX, gambitPlayer.Figurine.GetComponent<FigurineStatus> ().gridZ);
+
+		if (list.Contains (targetField))
+			return false;
+		else
+			return true;
 	}
 }
 
