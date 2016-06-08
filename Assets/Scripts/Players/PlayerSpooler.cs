@@ -429,6 +429,26 @@ public class PlayerSpooler : MonoBehaviour {
 		
 	}
 
+	public List<Player> GetPlayersByPlayerType(PlayerTypes pmType)
+	{
+		bool isPlayer = false;
+
+		if (pmType == PlayerTypes.PLAYER) {
+			isPlayer = true;
+		}
+
+		List<Player> result = new List<Player> ();
+
+		foreach (Player pooled in mPool) {
+			FigurineStatus status = pooled.Figurine.GetComponent<FigurineStatus> ();
+
+			if (status.enemy == !isPlayer)
+				result.Add (pooled);
+		}
+
+		return result;
+	}
+
 
 
 }
