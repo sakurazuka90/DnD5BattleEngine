@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public class TargetPlayerGambitImpl : Gambit
 {
@@ -17,10 +18,29 @@ public class TargetPlayerGambitImpl : Gambit
 
 	public void Process ()
 	{
-		if (type == PlayerTypes.ENEMY) {
+		List<Player> players = PlayerSpooler.instance.GetPlayersByPlayerType (type); 
 
-		} else if (type == PlayerTypes.PLAYER) {
+		switch (feature) {
+		case Features.ANY:
+			break;
+		case Features.LOWEST_HEALTH:
+			break;
+		case Features.LOWEST_ARMOUR:
+			break;
+		case Features.LOWEST_LEVEL:
+			break;
+		case Features.HIGHEST_ARMOUR:
+			break;
+		case Features.HIGHEST_HEALTH:
+			break;
+		case Features.HIGHEST_LEVEL:
+			break;
+		case Features.SPELLCASTER:
+			break;
+		case Features.HEALER:
+			break;
 		}
+
 	}
 
 	public bool Evaluate ()

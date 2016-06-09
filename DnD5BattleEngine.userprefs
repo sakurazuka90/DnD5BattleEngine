@@ -1,16 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\AI_ENGINE\TargetPlayerGambit.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Players\Player.cs">
     <Files>
-      <File FileName="Assets\Scripts\AI_ENGINE\TargetPlayerGambit.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\AI_ENGINE\TargetPlayerGambitImpl.cs" Line="30" Column="30" />
       <File FileName="Assets\Scripts\AI_ENGINE\MovementGambitImpl.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Players\PlayerSpooler.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Database\DatabaseController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Items\Armor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Items\Item.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Items\Weapon.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GUI\InventoryFiller.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Players\Player.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\AI_ENGINE\PlayerTypes.cs" Line="5" Column="15" />
+      <File FileName="Assets\Scripts\Players\PlayerSpooler.cs" Line="449" Column="17" />
+      <File FileName="Assets\Scripts\GridScripts\SelectFromGrid.cs" Line="755" Column="22" />
+      <File FileName="Assets\Scripts\AI_ENGINE\Features.cs" Line="5" Column="127" />
+      <File FileName="Assets\Scripts\Actions\Attack.cs" Line="26" Column="20" />
+      <File FileName="Assets\Scripts\Actions\AbstractAction.cs" Line="40" Column="24" />
+      <File FileName="Assets\Scripts\Players\Player.cs" Line="84" Column="23" />
+      <File FileName="Assets\Scripts\AI_ENGINE\Conditions\AndCondition.cs" Line="18" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

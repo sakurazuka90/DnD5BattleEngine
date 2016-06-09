@@ -44,6 +44,8 @@ public class Player {
 
 	private Player targetPlayer = null;
 
+	private Player lastHitter = null;
+
 
 	public int HpTotal
 	{
@@ -75,6 +77,11 @@ public class Player {
 	public Player TargetPlayer{
 		get{ return targetPlayer; }
 		set{ this.targetPlayer = value; }
+	}
+
+	public Player LastHitter{
+		get{ return lastHitter; }
+		set{ this.lastHitter = value; }
 	}
 
 	public Player ()

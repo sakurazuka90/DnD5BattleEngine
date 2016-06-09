@@ -36,6 +36,9 @@ public abstract class AbstractAction
 			int lvAttack = lvDice + lvAttackBonus;
 
 			if (lvAttack >= lvDefValue || lvDice == 20) {
+
+				pmTarget.LastHitter = pmAttacker;
+
 				ResolveDamage (pmAttacker, pmTarget, lvDice == 20, pmIsAdvantage);
 			} else {
 				pmTarget.Figurine.GetComponent<MessageDisplayer> ().SetMessage ("MiSS!");
