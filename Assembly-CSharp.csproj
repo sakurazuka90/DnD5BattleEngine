@@ -38,10 +38,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>E:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>D:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>E:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>D:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -55,8 +55,10 @@
      <Compile Include="Assets\Scripts\AI_ENGINE\Algorithms\AstarResponse.cs" />
      <Compile Include="Assets\Scripts\AI_ENGINE\Algorithms\Localizer.cs" />
      <Compile Include="Assets\Scripts\AI_ENGINE\Algorithms\astar.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\Conditions\AmountSpecyfication.cs" />
      <Compile Include="Assets\Scripts\AI_ENGINE\Conditions\AndCondition.cs" />
      <Compile Include="Assets\Scripts\AI_ENGINE\Conditions\Condition.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\Conditions\OrCondition.cs" />
      <Compile Include="Assets\Scripts\AI_ENGINE\Features.cs" />
      <Compile Include="Assets\Scripts\AI_ENGINE\FigurineFactionTypes.cs" />
      <Compile Include="Assets\Scripts\AI_ENGINE\FigurineLocationFinder.cs" />
@@ -64,6 +66,10 @@
      <Compile Include="Assets\Scripts\AI_ENGINE\LocationFinder.cs" />
      <Compile Include="Assets\Scripts\AI_ENGINE\MovementGambitImpl.cs" />
      <Compile Include="Assets\Scripts\AI_ENGINE\PlayerAdjectives.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\PlayerSelectors\AbstractAmountParentSelector.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\PlayerSelectors\AcPlayerSelector.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\PlayerSelectors\HpPlayerSelector.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\PlayerSelectors\PlayerSelector.cs" />
      <Compile Include="Assets\Scripts\AI_ENGINE\PlayerTypes.cs" />
      <Compile Include="Assets\Scripts\AI_ENGINE\TargetPlayerGambitImpl.cs" />
      <Compile Include="Assets\Scripts\Actions\AbstractAction.cs" />
@@ -159,22 +165,22 @@
      <None Include="Assets\Shaders\SmokeTurbulent.shader" />
      <None Include="Assets\Shaders\Additive.shader" />
  <Reference Include="UnityEngine.UI">
- <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Data">
- <HintPath>C:/Users/Sakurazuka/Documents/DnD5BattleEngine/Assets/Plugins/Mono.Data.dll</HintPath>
+ <HintPath>C:/Users/sakurazuka90/Documents/DnD5BattleEngine/Assets/Plugins/Mono.Data.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Data.Sqlite">
- <HintPath>C:/Users/Sakurazuka/Documents/DnD5BattleEngine/Assets/Plugins/Mono.Data.Sqlite.dll</HintPath>
+ <HintPath>C:/Users/sakurazuka90/Documents/DnD5BattleEngine/Assets/Plugins/Mono.Data.Sqlite.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Data.SqliteClient">
- <HintPath>C:/Users/Sakurazuka/Documents/DnD5BattleEngine/Assets/Plugins/Mono.Data.SqliteClient.dll</HintPath>
+ <HintPath>C:/Users/sakurazuka90/Documents/DnD5BattleEngine/Assets/Plugins/Mono.Data.SqliteClient.dll</HintPath>
  </Reference>
  <Reference Include="System.Data">
- <HintPath>C:/Users/Sakurazuka/Documents/DnD5BattleEngine/Assets/Plugins/System.Data.dll</HintPath>
+ <HintPath>C:/Users/sakurazuka90/Documents/DnD5BattleEngine/Assets/Plugins/System.Data.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

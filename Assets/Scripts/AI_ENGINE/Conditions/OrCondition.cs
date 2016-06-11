@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class AndCondition : Condition
+public class OrCondition
 {
 	List<Condition> conditions;
 
-
-	public AndCondition ()
+	public OrCondition ()
 	{
 		conditions = new List<Condition> ();
 	}
+
+
 
 	#region Condition implementation
 
 	public bool Evaluate ()
 	{
-		bool result = true;
+		bool result = false;
 
 		foreach (Condition lvCon in conditions) {
-			result = result && lvCon.Evaluate ();
+			result = result || lvCon.Evaluate ();
 		}
 
 		return result;
