@@ -29,6 +29,7 @@ public class Player {
 	public bool isDead = false;
 	public bool isStable = false;
 	private Dictionary<string,Item> mInventory;
+	public int level;
 
 
 	public int mBasicAc = 10;
@@ -285,6 +286,11 @@ public class Player {
 		ResetMovesLeft ();
 		mTotalMoveActions++;
 		mTotalStandardActions--;
+	}
+
+	public int GetCellIndex()
+	{
+		return GridDrawer.instance.GetGridId (Figurine.GetComponent<FigurineStatus> ().gridX, Figurine.GetComponent<FigurineStatus> ().gridZ);
 	}
 
 

@@ -16,8 +16,9 @@ public class MovementGambitImpl:Gambit
 
 	public void Process()
 	{
-		int id = Localizer.instance.FindClosestEnemy (gambitPlayer.Figurine.GetComponent<FigurineStatus>().gridX, gambitPlayer.Figurine.GetComponent<FigurineStatus>().gridZ);
+		//int id = Localizer.instance.FindClosestEnemy (gambitPlayer.Figurine.GetComponent<FigurineStatus>().gridX, gambitPlayer.Figurine.GetComponent<FigurineStatus>().gridZ);
 
+		int id = gambitPlayer.TargetPlayer.GetCellIndex ();
 
 		List<int> list = SelectFromGrid.instance.GetAdjacentNonBlockedFields (id);
 		list.Add (id);

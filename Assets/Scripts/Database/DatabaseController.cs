@@ -69,6 +69,8 @@ public class DatabaseController{
 			Sprite spr1 = Resources.Load<Sprite>(reader.GetString(1));
 			lvPlayer.PlayerSprite = spr1;
 
+			lvPlayer.level = reader.GetInt32 (2);
+
 			lvPlayer.SetAbility (AbilityNames.STRENGTH, reader.GetInt32(3));
 			lvPlayer.SetAbility (AbilityNames.DEXTERITY, reader.GetInt32(4));
 			lvPlayer.SetAbility (AbilityNames.CONSTITUTION, reader.GetInt32(5));
@@ -78,7 +80,7 @@ public class DatabaseController{
 			lvPlayer.HpTotal = reader.GetInt32 (9);
 			lvPlayer.hp = lvPlayer.HpTotal;
 			lvPlayer.SetSpeed (reader.GetInt32(10));
-			lvPlayer.Proficiency = Proficiency.CalculateProficiencyBonusByLevel (reader.GetInt32(2));
+			lvPlayer.Proficiency = Proficiency.CalculateProficiencyBonusByLevel (lvPlayer.level);
 			lvPlayer.FigurineModelName = reader.GetString (11);
 
 			if (reader.GetInt32 (12) != null && reader.GetInt32 (12) > 0)
