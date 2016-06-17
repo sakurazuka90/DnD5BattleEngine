@@ -3,8 +3,9 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
+    <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{D76A72C6-98F3-E9B0-BACB-83DEA4349EA3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -18,7 +19,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_3_4;UNITY_5_3;UNITY_5;UNITY_64;ENABLE_NEW_BUGREPORTER;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_SPRITE_POLYGON;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;ENABLE_EDITOR_TESTS_RUNNER;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_LOG_MIXED_STACKTRACE;ENABLE_UNITYWEBREQUEST;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;QuitButton</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_3_5;UNITY_5_3;UNITY_5;UNITY_64;ENABLE_NEW_BUGREPORTER;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_SPRITE_POLYGON;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;ENABLE_EDITOR_TESTS_RUNNER;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_LOG_MIXED_STACKTRACE;ENABLE_UNITYWEBREQUEST;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;QuitButton</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -33,157 +34,157 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.XML" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>D:\Program Files\Unity\Editor\Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>E:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>D:\Program Files\Unity\Editor\Data\Managed\UnityEditor.dll</HintPath>
+      <HintPath>E:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\3rdParty\FT_FreeSample\Scene\SampleSceneData\FTsample_ClickToSpawn.cs" />
-    <Compile Include="Assets\3rdParty\FT_FreeSample\Script\FTEM_AnimationScrollTexture.cs" />
-    <Compile Include="Assets\3rdParty\FT_FreeSample\Script\FTEM_AnimationSpriteSheet.cs" />
-    <Compile Include="Assets\3rdParty\FT_FreeSample\Script\FTEM_DeadTime.cs" />
-    <Compile Include="Assets\3rdParty\Free_Rocks\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
-    <Compile Include="Assets\AIEngine.cs" />
-    <Compile Include="Assets\FigurinePositionController.cs" />
-    <Compile Include="Assets\Scripts\AI_ENGINE\Algorithms\AstarResponse.cs" />
-    <Compile Include="Assets\Scripts\AI_ENGINE\Algorithms\Localizer.cs" />
-    <Compile Include="Assets\Scripts\AI_ENGINE\Algorithms\astar.cs" />
-    <Compile Include="Assets\Scripts\AI_ENGINE\Conditions\AmountSpecyfication.cs" />
-    <Compile Include="Assets\Scripts\AI_ENGINE\Conditions\AndCondition.cs" />
-    <Compile Include="Assets\Scripts\AI_ENGINE\Conditions\Condition.cs" />
-    <Compile Include="Assets\Scripts\AI_ENGINE\Conditions\OrCondition.cs" />
-    <Compile Include="Assets\Scripts\AI_ENGINE\Features.cs" />
-    <Compile Include="Assets\Scripts\AI_ENGINE\FigurineFactionTypes.cs" />
-    <Compile Include="Assets\Scripts\AI_ENGINE\FigurineLocationFinder.cs" />
-    <Compile Include="Assets\Scripts\AI_ENGINE\Gambit.cs" />
-    <Compile Include="Assets\Scripts\AI_ENGINE\LocationFinder.cs" />
-    <Compile Include="Assets\Scripts\AI_ENGINE\MovementGambitImpl.cs" />
-    <Compile Include="Assets\Scripts\AI_ENGINE\PlayerAdjectives.cs" />
-    <Compile Include="Assets\Scripts\AI_ENGINE\PlayerSelectors\AbstractAmountParentSelector.cs" />
-    <Compile Include="Assets\Scripts\AI_ENGINE\PlayerSelectors\AcPlayerSelector.cs" />
-    <Compile Include="Assets\Scripts\AI_ENGINE\PlayerSelectors\DistancePlayerSelector.cs" />
-    <Compile Include="Assets\Scripts\AI_ENGINE\PlayerSelectors\HpPlayerSelector.cs" />
-    <Compile Include="Assets\Scripts\AI_ENGINE\PlayerSelectors\LevelPlayerSelector.cs" />
-    <Compile Include="Assets\Scripts\AI_ENGINE\PlayerSelectors\PlayerSelector.cs" />
-    <Compile Include="Assets\Scripts\AI_ENGINE\PlayerTypes.cs" />
-    <Compile Include="Assets\Scripts\AI_ENGINE\TargetPlayerGambitImpl.cs" />
-    <Compile Include="Assets\Scripts\Actions\AbstractAction.cs" />
-    <Compile Include="Assets\Scripts\Actions\ActiveAttackDefenceTypes.cs" />
-    <Compile Include="Assets\Scripts\Actions\Attack.cs" />
-    <Compile Include="Assets\Scripts\Actions\MissleStats.cs" />
-    <Compile Include="Assets\Scripts\AnimationScripts\AnimationPlayer.cs" />
-    <Compile Include="Assets\Scripts\AnimationScripts\DisableDead.cs" />
-    <Compile Include="Assets\Scripts\AnimationScripts\DisableEvasion.cs" />
-    <Compile Include="Assets\Scripts\DTO\GridData.cs" />
-    <Compile Include="Assets\Scripts\DTO\ObstacleData.cs" />
-    <Compile Include="Assets\Scripts\DataStructures\PriorituQueue.cs" />
-    <Compile Include="Assets\Scripts\Database\DatabaseController.cs" />
-    <Compile Include="Assets\Scripts\Engine\ApplicationController.cs" />
-    <Compile Include="Assets\Scripts\Engine\MoveCamera.cs" />
-    <Compile Include="Assets\Scripts\GUI\AccordionPanelAdjuster.cs" />
-    <Compile Include="Assets\Scripts\GUI\AssetStatsEditor.cs" />
-    <Compile Include="Assets\Scripts\GUI\ButtonToggler.cs" />
-    <Compile Include="Assets\Scripts\GUI\DisplayWindow.cs" />
-    <Compile Include="Assets\Scripts\GUI\DragDropHandler.cs" />
-    <Compile Include="Assets\Scripts\GUI\EquipementFieldsLighter.cs" />
-    <Compile Include="Assets\Scripts\GUI\GenericItemButton.cs" />
-    <Compile Include="Assets\Scripts\GUI\GenericyesNoPanelControler.cs" />
-    <Compile Include="Assets\Scripts\GUI\InventoryFiller.cs" />
-    <Compile Include="Assets\Scripts\GUI\InventoryObjectStatus.cs" />
-    <Compile Include="Assets\Scripts\GUI\MenuDisplayer.cs" />
-    <Compile Include="Assets\Scripts\GUI\MenuWindowsHelper.cs" />
-    <Compile Include="Assets\Scripts\GUI\MessageDisplayer.cs" />
-    <Compile Include="Assets\Scripts\GUI\OnlyNumbersField.cs" />
-    <Compile Include="Assets\Scripts\GUI\PanelShrinker.cs" />
-    <Compile Include="Assets\Scripts\GUI\SceneLoader.cs" />
-    <Compile Include="Assets\Scripts\GUI\ScoreTextScript.cs" />
-    <Compile Include="Assets\Scripts\GUI\SelectPanel\AbstractPanelController.cs" />
-    <Compile Include="Assets\Scripts\GUI\SelectPanel\AbstractSelectOptionController.cs" />
-    <Compile Include="Assets\Scripts\GUI\SelectPanel\LoadPanelController.cs" />
-    <Compile Include="Assets\Scripts\GUI\SelectPanel\SelectFigurineController.cs" />
-    <Compile Include="Assets\Scripts\GUI\SelectPanel\SelectFigurineOptionController.cs" />
-    <Compile Include="Assets\Scripts\GUI\SelectPanel\SelectOptionController.cs" />
-    <Compile Include="Assets\Scripts\GUI\Slot.cs" />
-    <Compile Include="Assets\Scripts\GUI\UiItemLibrary.cs" />
-    <Compile Include="Assets\Scripts\GridScripts\BattlefieldConstructor.cs" />
-    <Compile Include="Assets\Scripts\GridScripts\CellStates.cs" />
-    <Compile Include="Assets\Scripts\GridScripts\CellStatus.cs" />
-    <Compile Include="Assets\Scripts\GridScripts\CreateNewBattlefield.cs" />
-    <Compile Include="Assets\Scripts\GridScripts\FunctionalStates.cs" />
-    <Compile Include="Assets\Scripts\GridScripts\GridDrawer.cs" />
-    <Compile Include="Assets\Scripts\GridScripts\SelectFromGrid.cs" />
-    <Compile Include="Assets\Scripts\Items\Armor.cs" />
-    <Compile Include="Assets\Scripts\Items\EquipementTypes.cs" />
-    <Compile Include="Assets\Scripts\Items\Item.cs" />
-    <Compile Include="Assets\Scripts\Items\Weapon.cs" />
-    <Compile Include="Assets\Scripts\Items\WeaponCategory.cs" />
-    <Compile Include="Assets\Scripts\Items\WeaponFactory.cs" />
-    <Compile Include="Assets\Scripts\Items\WeaponType.cs" />
-    <Compile Include="Assets\Scripts\LevelCreator\BattleFieldSaver.cs" />
-    <Compile Include="Assets\Scripts\LevelCreator\BattlefieldStateReader.cs" />
-    <Compile Include="Assets\Scripts\LevelCreator\CreatorNameController.cs" />
-    <Compile Include="Assets\Scripts\LevelCreator\FloorCreator.cs" />
-    <Compile Include="Assets\Scripts\Obstacle\ObstacleRotator.cs" />
-    <Compile Include="Assets\Scripts\Obstacle\ObstacleStatus.cs" />
-    <Compile Include="Assets\Scripts\Obstacle\PlaceNewObstacle.cs" />
-    <Compile Include="Assets\Scripts\Obstacle\ShaderSwitcher.cs" />
-    <Compile Include="Assets\Scripts\Players\AttackInstantiator.cs" />
-    <Compile Include="Assets\Scripts\Players\FigurineMover.cs" />
-    <Compile Include="Assets\Scripts\Players\FigurineStatus.cs" />
-    <Compile Include="Assets\Scripts\Players\Player.cs" />
-    <Compile Include="Assets\Scripts\Players\PlayerSpooler.cs" />
-    <Compile Include="Assets\Scripts\Players\Stats\Ability.cs" />
-    <Compile Include="Assets\Scripts\Players\Stats\AbilityNames.cs" />
-    <Compile Include="Assets\Scripts\Players\Stats\BonusConditionNames.cs" />
-    <Compile Include="Assets\Scripts\Players\Stats\DiceRoller.cs" />
-    <Compile Include="Assets\Scripts\Players\Stats\Proficiency.cs" />
-    <Compile Include="Assets\Scripts\Players\Stats\TestsNames.cs" />
-    <Compile Include="Assets\Scripts\Utils\GameObjectUtils.cs" />
-    <Compile Include="Assets\Scripts\Utils\MathUtils.cs" />
-    <None Include="Assets\Shaders\WarpJump.shader" />
-    <None Include="Assets\Shaders\Billboard.shader" />
-    <None Include="Assets\Shaders\Burnout.shader" />
-    <None Include="Assets\Shaders\Heat.shader" />
-    <None Include="Assets\Shaders\WarpTunnelDistortion.shader" />
-    <None Include="Assets\Shaders\Trail.shader" />
-    <None Include="Assets\Shaders\NewSurfaceShader.shader" />
-    <None Include="Assets\Shaders\AlphaBlended.shader" />
-    <None Include="Assets\3rdParty\Free_Rocks\Standard Assets\Skyboxes\_skybox info.txt" />
-    <None Include="Assets\Shaders\Surface.shader" />
-    <None Include="Assets\Shaders\Debris.shader" />
-    <None Include="Assets\Shaders\WarpJumpDistortion.shader" />
-    <None Include="Assets\Shaders\NebulaStaticBoard.shader" />
-    <None Include="Assets\Shaders\Holographic.shader" />
-    <None Include="Assets\Shaders\WarpJumpTwist.shader" />
-    <None Include="Assets\Shaders\ExhaustFlame.shader" />
-    <None Include="Assets\Shaders\WarpTunnel.shader" />
-    <None Include="Assets\Shaders\SmokeTurbulent.shader" />
-    <None Include="Assets\Shaders\Additive.shader" />
-    <Reference Include="UnityEngine.UI">
-      <HintPath>D:\Program Files\Unity\Editor\Data\UnityExtensions\Unity\GUISystem\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>D:\Program Files\Unity\Editor\Data\UnityExtensions\Unity\Networking\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Data">
-      <HintPath>C:\Users\sakurazuka90\Documents\DnD5BattleEngine\Assets\Plugins\Mono.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Data.Sqlite">
-      <HintPath>C:\Users\sakurazuka90\Documents\DnD5BattleEngine\Assets\Plugins\Mono.Data.Sqlite.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Data.SqliteClient">
-      <HintPath>C:\Users\sakurazuka90\Documents\DnD5BattleEngine\Assets\Plugins\Mono.Data.SqliteClient.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data">
-      <HintPath>C:\Users\sakurazuka90\Documents\DnD5BattleEngine\Assets\Plugins\System.Data.dll</HintPath>
-    </Reference>
-    <Compile Include="Assets\Scripts\AI_ENGINE\PlayerArchetypes.cs" />
+     <Compile Include="Assets\3rdParty\FT_FreeSample\Scene\SampleSceneData\FTsample_ClickToSpawn.cs" />
+     <Compile Include="Assets\3rdParty\FT_FreeSample\Script\FTEM_AnimationScrollTexture.cs" />
+     <Compile Include="Assets\3rdParty\FT_FreeSample\Script\FTEM_AnimationSpriteSheet.cs" />
+     <Compile Include="Assets\3rdParty\FT_FreeSample\Script\FTEM_DeadTime.cs" />
+     <Compile Include="Assets\3rdParty\Free_Rocks\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
+     <Compile Include="Assets\AIEngine.cs" />
+     <Compile Include="Assets\FigurinePositionController.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\Algorithms\AstarResponse.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\Algorithms\Localizer.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\Algorithms\astar.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\Conditions\AmountSpecyfication.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\Conditions\AndCondition.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\Conditions\Condition.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\Conditions\OrCondition.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\Features.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\FigurineFactionTypes.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\FigurineLocationFinder.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\Gambit.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\LocationFinder.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\MovementGambitImpl.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\PlayerAdjectives.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\PlayerArchetypes.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\PlayerSelectors\AbstractAmountParentSelector.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\PlayerSelectors\AcPlayerSelector.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\PlayerSelectors\DistancePlayerSelector.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\PlayerSelectors\HpPlayerSelector.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\PlayerSelectors\LevelPlayerSelector.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\PlayerSelectors\PlayerSelector.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\PlayerTypes.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\TargetPlayerGambitImpl.cs" />
+     <Compile Include="Assets\Scripts\Actions\AbstractAction.cs" />
+     <Compile Include="Assets\Scripts\Actions\ActiveAttackDefenceTypes.cs" />
+     <Compile Include="Assets\Scripts\Actions\Attack.cs" />
+     <Compile Include="Assets\Scripts\Actions\MissleStats.cs" />
+     <Compile Include="Assets\Scripts\AnimationScripts\AnimationPlayer.cs" />
+     <Compile Include="Assets\Scripts\AnimationScripts\DisableDead.cs" />
+     <Compile Include="Assets\Scripts\AnimationScripts\DisableEvasion.cs" />
+     <Compile Include="Assets\Scripts\DTO\GridData.cs" />
+     <Compile Include="Assets\Scripts\DTO\ObstacleData.cs" />
+     <Compile Include="Assets\Scripts\DataStructures\PriorituQueue.cs" />
+     <Compile Include="Assets\Scripts\Database\DatabaseController.cs" />
+     <Compile Include="Assets\Scripts\Engine\ApplicationController.cs" />
+     <Compile Include="Assets\Scripts\Engine\MoveCamera.cs" />
+     <Compile Include="Assets\Scripts\GUI\AccordionPanelAdjuster.cs" />
+     <Compile Include="Assets\Scripts\GUI\AssetStatsEditor.cs" />
+     <Compile Include="Assets\Scripts\GUI\ButtonToggler.cs" />
+     <Compile Include="Assets\Scripts\GUI\DisplayWindow.cs" />
+     <Compile Include="Assets\Scripts\GUI\DragDropHandler.cs" />
+     <Compile Include="Assets\Scripts\GUI\EquipementFieldsLighter.cs" />
+     <Compile Include="Assets\Scripts\GUI\GenericItemButton.cs" />
+     <Compile Include="Assets\Scripts\GUI\GenericyesNoPanelControler.cs" />
+     <Compile Include="Assets\Scripts\GUI\InventoryFiller.cs" />
+     <Compile Include="Assets\Scripts\GUI\InventoryObjectStatus.cs" />
+     <Compile Include="Assets\Scripts\GUI\MenuDisplayer.cs" />
+     <Compile Include="Assets\Scripts\GUI\MenuWindowsHelper.cs" />
+     <Compile Include="Assets\Scripts\GUI\MessageDisplayer.cs" />
+     <Compile Include="Assets\Scripts\GUI\OnlyNumbersField.cs" />
+     <Compile Include="Assets\Scripts\GUI\PanelShrinker.cs" />
+     <Compile Include="Assets\Scripts\GUI\SceneLoader.cs" />
+     <Compile Include="Assets\Scripts\GUI\ScoreTextScript.cs" />
+     <Compile Include="Assets\Scripts\GUI\SelectPanel\AbstractPanelController.cs" />
+     <Compile Include="Assets\Scripts\GUI\SelectPanel\AbstractSelectOptionController.cs" />
+     <Compile Include="Assets\Scripts\GUI\SelectPanel\LoadPanelController.cs" />
+     <Compile Include="Assets\Scripts\GUI\SelectPanel\SelectFigurineController.cs" />
+     <Compile Include="Assets\Scripts\GUI\SelectPanel\SelectFigurineOptionController.cs" />
+     <Compile Include="Assets\Scripts\GUI\SelectPanel\SelectOptionController.cs" />
+     <Compile Include="Assets\Scripts\GUI\Slot.cs" />
+     <Compile Include="Assets\Scripts\GUI\UiItemLibrary.cs" />
+     <Compile Include="Assets\Scripts\GridScripts\BattlefieldConstructor.cs" />
+     <Compile Include="Assets\Scripts\GridScripts\CellStates.cs" />
+     <Compile Include="Assets\Scripts\GridScripts\CellStatus.cs" />
+     <Compile Include="Assets\Scripts\GridScripts\CreateNewBattlefield.cs" />
+     <Compile Include="Assets\Scripts\GridScripts\FunctionalStates.cs" />
+     <Compile Include="Assets\Scripts\GridScripts\GridDrawer.cs" />
+     <Compile Include="Assets\Scripts\GridScripts\SelectFromGrid.cs" />
+     <Compile Include="Assets\Scripts\Items\Armor.cs" />
+     <Compile Include="Assets\Scripts\Items\EquipementTypes.cs" />
+     <Compile Include="Assets\Scripts\Items\Item.cs" />
+     <Compile Include="Assets\Scripts\Items\Weapon.cs" />
+     <Compile Include="Assets\Scripts\Items\WeaponCategory.cs" />
+     <Compile Include="Assets\Scripts\Items\WeaponFactory.cs" />
+     <Compile Include="Assets\Scripts\Items\WeaponType.cs" />
+     <Compile Include="Assets\Scripts\LevelCreator\BattleFieldSaver.cs" />
+     <Compile Include="Assets\Scripts\LevelCreator\BattlefieldStateReader.cs" />
+     <Compile Include="Assets\Scripts\LevelCreator\CreatorNameController.cs" />
+     <Compile Include="Assets\Scripts\LevelCreator\FloorCreator.cs" />
+     <Compile Include="Assets\Scripts\Obstacle\ObstacleRotator.cs" />
+     <Compile Include="Assets\Scripts\Obstacle\ObstacleStatus.cs" />
+     <Compile Include="Assets\Scripts\Obstacle\PlaceNewObstacle.cs" />
+     <Compile Include="Assets\Scripts\Obstacle\ShaderSwitcher.cs" />
+     <Compile Include="Assets\Scripts\Players\AttackInstantiator.cs" />
+     <Compile Include="Assets\Scripts\Players\FigurineMover.cs" />
+     <Compile Include="Assets\Scripts\Players\FigurineStatus.cs" />
+     <Compile Include="Assets\Scripts\Players\Player.cs" />
+     <Compile Include="Assets\Scripts\Players\PlayerSpooler.cs" />
+     <Compile Include="Assets\Scripts\Players\Stats\Ability.cs" />
+     <Compile Include="Assets\Scripts\Players\Stats\AbilityNames.cs" />
+     <Compile Include="Assets\Scripts\Players\Stats\BonusConditionNames.cs" />
+     <Compile Include="Assets\Scripts\Players\Stats\DiceRoller.cs" />
+     <Compile Include="Assets\Scripts\Players\Stats\Proficiency.cs" />
+     <Compile Include="Assets\Scripts\Players\Stats\TestsNames.cs" />
+     <Compile Include="Assets\Scripts\Utils\GameObjectUtils.cs" />
+     <Compile Include="Assets\Scripts\Utils\MathUtils.cs" />
+     <None Include="Assets\Shaders\WarpJump.shader" />
+     <None Include="Assets\Shaders\Billboard.shader" />
+     <None Include="Assets\Shaders\Burnout.shader" />
+     <None Include="Assets\Shaders\Heat.shader" />
+     <None Include="Assets\Shaders\WarpTunnelDistortion.shader" />
+     <None Include="Assets\Shaders\Trail.shader" />
+     <None Include="Assets\Shaders\NewSurfaceShader.shader" />
+     <None Include="Assets\Shaders\AlphaBlended.shader" />
+     <None Include="Assets\3rdParty\Free_Rocks\Standard Assets\Skyboxes\_skybox info.txt" />
+     <None Include="Assets\Shaders\Surface.shader" />
+     <None Include="Assets\Shaders\Debris.shader" />
+     <None Include="Assets\Shaders\WarpJumpDistortion.shader" />
+     <None Include="Assets\Shaders\NebulaStaticBoard.shader" />
+     <None Include="Assets\Shaders\Holographic.shader" />
+     <None Include="Assets\Shaders\WarpJumpTwist.shader" />
+     <None Include="Assets\Shaders\ExhaustFlame.shader" />
+     <None Include="Assets\Shaders\WarpTunnel.shader" />
+     <None Include="Assets\Shaders\SmokeTurbulent.shader" />
+     <None Include="Assets\Shaders\Additive.shader" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="Mono.Data">
+ <HintPath>C:/Users/Sakurazuka/Documents/DnD5BattleEngine/Assets/Plugins/Mono.Data.dll</HintPath>
+ </Reference>
+ <Reference Include="Mono.Data.Sqlite">
+ <HintPath>C:/Users/Sakurazuka/Documents/DnD5BattleEngine/Assets/Plugins/Mono.Data.Sqlite.dll</HintPath>
+ </Reference>
+ <Reference Include="Mono.Data.SqliteClient">
+ <HintPath>C:/Users/Sakurazuka/Documents/DnD5BattleEngine/Assets/Plugins/Mono.Data.SqliteClient.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Data">
+ <HintPath>C:/Users/Sakurazuka/Documents/DnD5BattleEngine/Assets/Plugins/System.Data.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -193,4 +194,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  
 </Project>

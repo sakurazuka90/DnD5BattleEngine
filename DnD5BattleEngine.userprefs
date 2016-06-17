@@ -1,14 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\AI_ENGINE\PlayerSelectors\DistancePlayerSelector.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Players\Player.cs">
     <Files>
-      <File FileName="Assets\Scripts\Players\PlayerSpooler.cs" Line="121" Column="1" />
-      <File FileName="Assets\Scripts\Players\Player.cs" Line="283" Column="2" />
+      <File FileName="Assets\Scripts\AI_ENGINE\MovementGambitImpl.cs" Line="58" Column="39" />
+      <File FileName="Assets\Scripts\Players\PlayerSpooler.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Players\Player.cs" Line="270" Column="35" />
       <File FileName="Assets\Scripts\AI_ENGINE\TargetPlayerGambitImpl.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Database\DatabaseController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\AI_ENGINE\MovementGambitImpl.cs" Line="21" Column="54" />
-      <File FileName="Assets\Scripts\AI_ENGINE\PlayerSelectors\DistancePlayerSelector.cs" Line="6" Column="1" />
-      <File FileName="Assets\Scripts\AI_ENGINE\PlayerArchetypes.cs" Line="5" Column="26" />
+      <File FileName="Assets\Scripts\AI_ENGINE\PlayerSelectors\DistancePlayerSelector.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\AI_ENGINE\PlayerArchetypes.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

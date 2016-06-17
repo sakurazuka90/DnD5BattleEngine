@@ -38,7 +38,7 @@ public class MovementGambitImpl:Gambit
 
 	public bool Evaluate()
 	{
-		if (gambitPlayer != null && gambitPlayer.IsAbleToMove () && doNeadToMove()) {
+		if (gambitPlayer != null && gambitPlayer.IsAbleToMove () && doNeadToMove() && gambitPlayer.TargetPlayer != null) {
 
 			if (gambitPlayer.mTotalMoveActions == 0 && gambitPlayer.mTotalStandardActions > 0 && gambitPlayer.movesLeft == 0)
 				gambitPlayer.ConvertStandardActionToMove ();
