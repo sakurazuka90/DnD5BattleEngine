@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\AI_ENGINE\Algorithms\AstarResponse.cs" />
      <Compile Include="Assets\Scripts\AI_ENGINE\Algorithms\Localizer.cs" />
      <Compile Include="Assets\Scripts\AI_ENGINE\Algorithms\astar.cs" />
+     <Compile Include="Assets\Scripts\AI_ENGINE\AttackGambitImpl.cs" />
      <Compile Include="Assets\Scripts\AI_ENGINE\Conditions\AmountSpecyfication.cs" />
      <Compile Include="Assets\Scripts\AI_ENGINE\Conditions\AndCondition.cs" />
      <Compile Include="Assets\Scripts\AI_ENGINE\Conditions\Condition.cs" />

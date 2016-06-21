@@ -15,9 +15,9 @@ public abstract class AbstractAction
 
 	protected void ResolveActiveHit (Player pmAttacker, Player pmTarget, bool pmIsAdvantage, bool pmIsMissleShoot = false)
 	{
-		if (mWeapon.Type == WeaponType.MELEE ||(pmIsMissleShoot && mWeapon.Type == WeaponType.RANGED)) {
+		if (mWeapon.WeaponType == WeaponType.MELEE ||(pmIsMissleShoot && mWeapon.WeaponType == WeaponType.RANGED)) {
 
-			if(mWeapon.Type == WeaponType.MELEE)
+			if(mWeapon.WeaponType == WeaponType.MELEE)
 				pmAttacker.Figurine.GetComponent<AnimationPlayer> ().play = true;
 		
 			int lvDefValue = pmTarget.GetActiveDefence (mDefenceType);
@@ -100,7 +100,7 @@ public abstract class AbstractAction
 
 		int lvCellId = GridDrawer.instance.GetGridId (lvStatus.gridX, lvStatus.gridZ);
 
-		if (mWeapon != null && mWeapon.Type != WeaponType.RANGED) {
+		if (mWeapon != null && mWeapon.WeaponType != WeaponType.RANGED) {
 			List<int> lvFields = lvSelector.GetAdjacentFields (lvCellId);
 
 			List<int> lvTargetFields = new List<int> ();
@@ -117,6 +117,16 @@ public abstract class AbstractAction
 
 		}
 
+	}
+
+	public bool IsTargerInRange(Player pmPlayer)
+	{
+		//pmPlayer.
+
+		//if(mWeapon.WeaponType == WeaponType.MELEE)
+			
+
+		return false;
 	}
 }
 

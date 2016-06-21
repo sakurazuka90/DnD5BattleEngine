@@ -56,7 +56,7 @@ public class Weapon : Item {
 		get { return this.mCategory; }
 	}
 
-	public WeaponType Type{
+	public WeaponType WeaponType{
 		get { return this.mType; }
 	}
 
