@@ -265,9 +265,11 @@ public class Player {
 
 		TargetPlayerGambitImpl lvTargetGambit = new TargetPlayerGambitImpl (Features.HIGHEST_ARMOUR, PlayerTypes.PLAYER, PlayerAdjectives.CLOSEST, this);
 
+		AttackGambitImpl lvAttackGambit = new AttackGambitImpl ();
 
 		gambitList.Add (lvGambit);
 		gambitList.Add (lvTargetGambit);
+		gambitList.Add (lvAttackGambit);
 	}
 
 	public void RefillActionsPool()

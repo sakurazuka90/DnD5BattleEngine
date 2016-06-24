@@ -981,6 +981,59 @@ public class SelectFromGrid : MonoBehaviour
 
 	}
 
+	public List<int> GetSimpleRangeMoore (int pmInitialCell, int pmNormalRange, int pmLongRange)
+	{
+		List<int> lvLastLevel = new List<int> ();
+		List<int> lvNormalRangeCells = new List<int> ();
+		List<int> lvLongRangeCells = new List<int> ();
+		List<int> lvEnemyCells = new List<int> ();
+
+		lvLastLevel.Add (pmInitialCell);
+
+
+		for (int i = 0; i < pmNormalRange; i++) {
+			List<int> lvAdjacentCells = GetAdjacentFields (lvLastLevel);
+			lvNormalRangeCells.AddRange (lvLastLevel);
+			lvLastLevel = lvAdjacentCells;
+		}
+
+		for (int j = pmNormalRange; j < pmLongRange; j++) {
+			List<int> lvAdjacentCells = GetAdjacentFields (lvLastLevel);
+			if (pmNormalRange != j)
+				lvLongRangeCells.AddRange (lvLastLevel);
+			else
+				lvNormalRangeCells.AddRange (lvLastLevel);
+
+			lvLastLevel = new List<int> ();
+
+			foreach (int lvLongRangeCell in lvAdjacentCells) {
+				if (!lvNormalRangeCells.Contains (lvLongRangeCell))
+					lvLastLevel.Add (lvLongRangeCell);
+			}
+		}
+
+		lvLongRangeCells.AddRange (lvLastLevel);
+
+		lvNormalRangeCells = RemoveCellsWithBlockedLoS (pmInitialCell, lvNormalRangeCells);
+		lvLongRangeCells = RemoveCellsWithBlockedLoS (pmInitialCell, lvLongRangeCells);
+
+		foreach (int lvEnemyCell in lvNormalRangeCells) {
+			if (IsEnemyField (lvEnemyCell))
+				lvEnemyCells.Add (lvEnemyCell);
+		}
+
+		foreach (int lvEnemyCell in lvLongRangeCells) {
+			if (IsEnemyField (lvEnemyCell))
+				lvEnemyCells.Add (lvEnemyCell);
+		}
+
+		List<int> allFields = new List<int> ();
+		allFields.AddRange (lvNormalRangeCells);
+		allFields.AddRange (lvLongRangeCells);
+
+		return allFields;
+	}
+
 	private List<int> RemoveCellsWithBlockedLoS (int pmInitialCell, List<int> pmRangeCells)
 	{
 		Vector3 lvStartPos = GridDrawer.instance.getCellPosition (pmInitialCell, 1.0f);

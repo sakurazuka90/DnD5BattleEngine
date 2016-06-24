@@ -16,8 +16,14 @@ public class AttackGambitImpl:Gambit
 
 	public void Process ()
 	{
-		gambitPlayer.equippedWeaponAttack.
+		if (gambitPlayer.equippedWeaponAttack.IsTargerInRange (gambitPlayer.TargetPlayer)) {
+			gambitPlayer.equippedWeaponAttack.resolveHit (gambitPlayer, gambitPlayer.TargetPlayer);
+		}
+		//gambitPlayer.equippedWeaponAttack.
 	}
+
+
+
 
 	public bool Evaluate ()
 	{

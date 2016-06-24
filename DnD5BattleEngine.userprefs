@@ -1,15 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Actions\AbstractAction.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Players\Player.cs">
     <Files>
-      <File FileName="Assets\Scripts\AI_ENGINE\AttackGambitImpl.cs" Line="22" Column="25" />
-      <File FileName="Assets\Scripts\AI_ENGINE\MovementGambitImpl.cs" Line="7" Column="1" />
-      <File FileName="Assets\Scripts\Actions\Attack.cs" Line="11" Column="18" />
+      <File FileName="Assets\Scripts\Players\Player.cs" Line="272" Column="35" />
+      <File FileName="Assets\Scripts\Actions\AbstractAction.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\AI_ENGINE\AttackGambitImpl.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\AI_ENGINE\MovementGambitImpl.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Actions\Attack.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Actions\ActiveAttackDefenceTypes.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Actions\MissleStats.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Actions\AbstractAction.cs" Line="103" Column="44" />
-      <File FileName="Assets\Scripts\Items\Weapon.cs" Line="59" Column="30" />
-      <File FileName="Assets\Scripts\Players\PlayerSpooler.cs" Line="448" Column="3" />
+      <File FileName="Assets\Scripts\Items\Weapon.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Players\PlayerSpooler.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GridScripts\SelectFromGrid.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GridScripts\GridDrawer.cs" Line="1" Column="1" />
     </Files>
