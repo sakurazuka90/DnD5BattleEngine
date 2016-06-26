@@ -42,8 +42,12 @@ public class AIEngine : MonoBehaviour {
 
 			if (gambit.Evaluate ()) {
 				gambit.Process ();
-				foundGambit = true;
-				break;
+
+				if (!(gambit.GetType () == typeof(TargetPlayerGambitImpl)))
+				{
+					foundGambit = true;
+					break;
+				}
 			}
 		}
 

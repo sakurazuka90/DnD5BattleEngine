@@ -123,12 +123,8 @@ public abstract class AbstractAction
 	{
 		List<int> lvTargetFields = new List<int> ();
 		if (mWeapon != null && mWeapon.WeaponType != WeaponType.RANGED) {
-			List<int> lvFields = SelectFromGrid.instance.GetAdjacentFields (pmCellId);
+			lvTargetFields = SelectFromGrid.instance.GetAdjacentFields (pmCellId);
 
-			foreach (int lvField in lvFields) {
-				if (SelectFromGrid.instance.IsEnemyField (lvField))
-					lvTargetFields.Add (lvField);
-			}
 		} else {
 			lvTargetFields = SelectFromGrid.instance.GetSimpleRangeMoore (pmCellId, mWeapon.rangeNormal, mWeapon.rangeLong);
 		}
@@ -142,7 +138,7 @@ public abstract class AbstractAction
 	{
 		List<int> fields = GetTargetFieldsList (pmPlayer.equippedWeaponAttack.mWeapon, pmPlayer.GetCellIndex());
 
-		return fields.Contains (pmPlayer.TargetPlayer.GetCellIndex ());
+		return fields.Contains (pmPlayer.TargetPlayer.GetCellIndex());
 	}
 }
 

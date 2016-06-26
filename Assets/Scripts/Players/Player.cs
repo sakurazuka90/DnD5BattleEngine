@@ -266,6 +266,7 @@ public class Player {
 		TargetPlayerGambitImpl lvTargetGambit = new TargetPlayerGambitImpl (Features.HIGHEST_ARMOUR, PlayerTypes.PLAYER, PlayerAdjectives.CLOSEST, this);
 
 		AttackGambitImpl lvAttackGambit = new AttackGambitImpl ();
+		lvAttackGambit.GambitPlayer = this;
 
 		gambitList.Add (lvGambit);
 		gambitList.Add (lvTargetGambit);

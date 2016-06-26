@@ -16,10 +16,8 @@ public class AttackGambitImpl:Gambit
 
 	public void Process ()
 	{
-		if (gambitPlayer.equippedWeaponAttack.IsTargerInRange (gambitPlayer.TargetPlayer)) {
-			gambitPlayer.equippedWeaponAttack.resolveHit (gambitPlayer, gambitPlayer.TargetPlayer);
-		}
-		//gambitPlayer.equippedWeaponAttack.
+		gambitPlayer.equippedWeaponAttack.resolveHit (gambitPlayer, gambitPlayer.TargetPlayer);
+
 	}
 
 
@@ -27,7 +25,7 @@ public class AttackGambitImpl:Gambit
 
 	public bool Evaluate ()
 	{
-		return gambitPlayer.mTotalStandardActions > 0;
+		return (gambitPlayer.mTotalStandardActions > 0) && gambitPlayer.equippedWeaponAttack.IsTargerInRange (gambitPlayer);
 	}
 
 	#endregion
