@@ -25,7 +25,7 @@ public class AttackGambitImpl:Gambit
 
 	public bool Evaluate ()
 	{
-		return (gambitPlayer.mTotalStandardActions > 0) && gambitPlayer.equippedWeaponAttack.IsTargerInRange (gambitPlayer);
+		return (gambitPlayer.mTotalStandardActions > 0) && gambitPlayer.equippedWeaponAttack.IsTargerInRange (gambitPlayer) && !gambitPlayer.TargetPlayer.isDead;
 	}
 
 	#endregion
