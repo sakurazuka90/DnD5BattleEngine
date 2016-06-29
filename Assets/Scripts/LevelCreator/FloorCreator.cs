@@ -25,7 +25,15 @@ public class FloorCreator : MonoBehaviour {
 	{
 		GameObjectUtils.RemoveAllChildren (this.gameObject);
 
-		lvTileSize = floorTile.GetComponent<MeshRenderer> ().bounds.size;
+		MeshRenderer renderer = floorTile.GetComponent<MeshRenderer> ();
+		Terrain terrain = floorTile.GetComponent<Terrain> ();
+
+		if (renderer != null)
+			lvTileSize = renderer.bounds.size;
+		else if (terrain != null)
+			lvTileSize = terrain.terrainData.size;
+
+
 		nextTileX = -lvTileSize.x / 2;
 		nextTileZ = -lvTileSize.z / 2;
 
