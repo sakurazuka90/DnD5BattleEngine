@@ -11,6 +11,8 @@ public class FloorCreator : MonoBehaviour {
 	private float nextTileX;
 	private float nextTileZ;
 
+	private int graphicsStyle = 0;
+
 	public static FloorCreator instance;
 
 	void Awake()
@@ -21,10 +23,16 @@ public class FloorCreator : MonoBehaviour {
 			Destroy (this);
 	}
 
+	public int GraphicsStyle{
+		get{ return this.graphicsStyle; }
+	}
+
 	public void CreateFloor(int x, int y, int pmGraphicsStyle)
 	{
 		GameObjectUtils.RemoveAllChildren (this.gameObject);
 		string floorAssetName = "";
+
+		this.graphicsStyle = pmGraphicsStyle;
 
 		switch (pmGraphicsStyle) {
 		case 0:

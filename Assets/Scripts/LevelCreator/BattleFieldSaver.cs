@@ -53,6 +53,7 @@ public class BattleFieldSaver : MonoBehaviour
 		GridData lvData = new GridData ();
 		lvData.x = GridDrawer.instance.gridWidth;
 		lvData.z = GridDrawer.instance.gridHeight;
+		lvData.graphicsStyle = FloorCreator.instance.GraphicsStyle;
 		lvData.obstacles = CollectObstacleData ();
 		lvData.players = CollectPlayersData ();
 		lvData.enemies = CollectEnemiesData ();

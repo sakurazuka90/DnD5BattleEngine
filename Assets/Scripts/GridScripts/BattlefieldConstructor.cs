@@ -24,7 +24,7 @@ public class BattlefieldConstructor : MonoBehaviour {
 		BattlefieldStateReader.instance.ParseBattlefieldFile (pmFilename);
 		GenerateGridFromFile ();
 		SetupCameraMover ((float)BattlefieldStateReader.instance.GridWidth, (float)BattlefieldStateReader.instance.GridHeight);
-		CreateFloor (BattlefieldStateReader.instance.GridWidth, BattlefieldStateReader.instance.GridHeight, 0);
+		CreateFloor (BattlefieldStateReader.instance.GridWidth, BattlefieldStateReader.instance.GridHeight, BattlefieldStateReader.instance.GraphicsStyle);
 		CreateWalls (BattlefieldStateReader.instance.GridWidth, BattlefieldStateReader.instance.GridHeight);
 		SetupObstacles(BattlefieldStateReader.instance.Obstacles);
 	}
