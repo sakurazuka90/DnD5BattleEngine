@@ -24,7 +24,7 @@ public class BattlefieldConstructor : MonoBehaviour {
 		BattlefieldStateReader.instance.ParseBattlefieldFile (pmFilename);
 		GenerateGridFromFile ();
 		SetupCameraMover ((float)BattlefieldStateReader.instance.GridWidth, (float)BattlefieldStateReader.instance.GridHeight);
-		CreateFloor (BattlefieldStateReader.instance.GridWidth, BattlefieldStateReader.instance.GridHeight);
+		CreateFloor (BattlefieldStateReader.instance.GridWidth, BattlefieldStateReader.instance.GridHeight, 0);
 		CreateWalls (BattlefieldStateReader.instance.GridWidth, BattlefieldStateReader.instance.GridHeight);
 		SetupObstacles(BattlefieldStateReader.instance.Obstacles);
 	}
@@ -46,9 +46,9 @@ public class BattlefieldConstructor : MonoBehaviour {
 		MoveCamera.instance.maxZ = pmY;
 	}
 
-	public void CreateFloor(int pmGridWidth, int pmGridHeight)
+	public void CreateFloor(int pmGridWidth, int pmGridHeight, int pmGraphicsStyle)
 	{
-		FloorCreator.instance.CreateFloor (pmGridWidth,pmGridHeight);
+		FloorCreator.instance.CreateFloor (pmGridWidth,pmGridHeight, pmGraphicsStyle);
 	}
 
 	public void CreateWalls(int pmGridWidth, int pmGridHeight)

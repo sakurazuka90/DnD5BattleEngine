@@ -21,9 +21,23 @@ public class FloorCreator : MonoBehaviour {
 			Destroy (this);
 	}
 
-	public void CreateFloor(int x, int y)
+	public void CreateFloor(int x, int y, int pmGraphicsStyle)
 	{
 		GameObjectUtils.RemoveAllChildren (this.gameObject);
+		string floorAssetName = "";
+
+		switch (pmGraphicsStyle) {
+		case 0:
+			floorAssetName = "Floor_A";
+			break;
+		case 1:
+			floorAssetName = "Terrain_woodland_1";
+			break;
+		case 2:
+			break;
+		}
+
+		floorTile = Resources.Load<GameObject> (floorAssetName);
 
 		MeshRenderer renderer = floorTile.GetComponent<MeshRenderer> ();
 		Terrain terrain = floorTile.GetComponent<Terrain> ();
