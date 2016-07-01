@@ -96,7 +96,7 @@ public class FloorCreator : MonoBehaviour {
 
 	private void CreateSideWalls(int x, int y)
 	{
-		nextTileX = -lvTileSize.x / 2;
+		nextTileX = -(lvTileSize.x / 2) -1;
 		float lvNextTileXRight = (nextTileX * -1) + x;
 		nextTileZ = -lvTileSize.z / 2;
 
