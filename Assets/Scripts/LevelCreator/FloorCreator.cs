@@ -88,7 +88,9 @@ public class FloorCreator : MonoBehaviour {
 			GameObject lvWall = GameObject.Instantiate (walls [0]);
 			lvWall.transform.parent = this.gameObject.transform;
 			lvWall.transform.position = new Vector3 (nextTileX,0.0f,nextTileZ);
-			lvWall.transform.Rotate (0.0f, 90.0f, 0.0f);
+
+			if(lvWall.transform.GetChild(0).gameObject.GetComponent<Terrain>() == null)
+				lvWall.transform.Rotate (0.0f, 90.0f, 0.0f);
 			nextTileX += lvTileSize.x;
 		}
 
@@ -104,12 +106,16 @@ public class FloorCreator : MonoBehaviour {
 			GameObject lvWall = GameObject.Instantiate (walls [0]);
 			lvWall.transform.parent = this.gameObject.transform;
 			lvWall.transform.position = new Vector3 (nextTileX,0.0f,nextTileZ);
-			lvWall.transform.Rotate (0.0f, 0.0f, 0.0f);
+
+			if(lvWall.transform.GetChild(0).gameObject.GetComponent<Terrain>() == null)
+				lvWall.transform.Rotate (0.0f, 0.0f, 0.0f);
 
 			GameObject lvWallRight = GameObject.Instantiate (walls [0]);
 			lvWallRight.transform.parent = this.gameObject.transform;
 			lvWallRight.transform.position = new Vector3 (lvNextTileXRight,0.0f,nextTileZ);
-			lvWallRight.transform.Rotate (0.0f, 180.0f, 0.0f);
+
+			if(lvWall.transform.GetChild(0).gameObject.GetComponent<Terrain>() == null)
+				lvWallRight.transform.Rotate (0.0f, 180.0f, 0.0f);
 
 			nextTileZ += lvTileSize.z;
 		}
