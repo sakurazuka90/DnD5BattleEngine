@@ -75,6 +75,21 @@ public class FloorCreator : MonoBehaviour {
 		
 	public void CreateWalls(int x, int y)
 	{
+		string wallAssetName = "";
+
+		switch (graphicsStyle) {
+		case 0:
+			wallAssetName = "WallPref2";
+			break;
+		case 1:
+			wallAssetName = "WallPref1";
+			break;
+		case 2:
+			break;
+		}
+
+		walls[0] = Resources.Load<GameObject> (wallAssetName);
+
 		CreateTopWall(x, y);
 		CreateSideWalls (x, y);
 	}
