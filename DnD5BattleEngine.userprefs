@@ -1,8 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Obstacle\PlaceNewObstacle.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Shaders\Holographic.shader">
     <Files>
-      <File FileName="Assets\Scripts\Obstacle\PlaceNewObstacle.cs" Line="58" Column="76" />
+      <File FileName="Assets\Shaders\Holographic.shader" Line="1" Column="1" />
+      <File FileName="Assets\Shaders\Heat.shader" Line="1" Column="1" />
+      <File FileName="Assets\Shaders\Trail.shader" Line="1" Column="1" />
+      <File FileName="Assets\Shaders\WarpTunnelDistortion.shader" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Obstacle\ShaderSwitcher.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Obstacle\PlaceNewObstacle.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GUI\SelectPanel\SelectFigurineController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\LevelCreator\FloorCreator.cs" Line="1" Column="1" />
       <File FileName="Assets\PanelSelector.cs" Line="1" Column="1" />
