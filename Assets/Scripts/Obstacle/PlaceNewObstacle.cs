@@ -16,10 +16,11 @@ public class PlaceNewObstacle : MonoBehaviour
 	{
 		GenerateContent ("Dungeon");
 		_selectedOption = 0;
-		_options = new string[2];
+		_options = new string[3];
 
 		_options [0] = "Dungeon";
-		_options [1] = "Functional";
+		_options [1] = "Woodland";
+		_options [2] = "Functional";
 	}
 
 	public void GenerateContent (int pmOptionId)
@@ -51,7 +52,7 @@ public class PlaceNewObstacle : MonoBehaviour
 
 	public void Place (string pmPrefabName)
 	{
-		if (_selectedOption != 1) {
+		if (_selectedOption != 2) {
 			SelectFromGrid.instance.functionalPlaceMode = false;
 
 			obstacle = Resources.Load<GameObject> ("ObstaclePrefabs/" + pmPrefabName);
