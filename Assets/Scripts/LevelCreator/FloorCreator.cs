@@ -79,16 +79,16 @@ public class FloorCreator : MonoBehaviour {
 
 		switch (graphicsStyle) {
 		case 0:
-			wallAssetName = "WallPref2";
+			wallAssetName = "Dungeon";
 			break;
 		case 1:
-			wallAssetName = "WallPref1";
+			wallAssetName = "Woodland";
 			break;
 		case 2:
 			break;
 		}
 
-		walls[0] = Resources.Load<GameObject> (wallAssetName);
+		walls = Resources.LoadAll<GameObject> ("Walls/" + wallAssetName); 
 
 		CreateTopWall(x, y);
 		CreateSideWalls (x, y);
@@ -100,7 +100,7 @@ public class FloorCreator : MonoBehaviour {
 		nextTileZ = (float)y + lvTileSize.z / 2;
 		
 		for (float i = -lvTileSize.x; i < (x + lvTileSize.x); i += lvTileSize.x) {
-			GameObject lvWall = GameObject.Instantiate (walls [0]);
+			GameObject lvWall = GameObject.Instantiate (walls [Random.Range(1,walls.Length)]);
 			lvWall.transform.parent = this.gameObject.transform;
 			lvWall.transform.position = new Vector3 (nextTileX,0.0f,nextTileZ);
 
@@ -118,14 +118,14 @@ public class FloorCreator : MonoBehaviour {
 		nextTileZ = -lvTileSize.z / 2;
 
 		for (float i = -lvTileSize.z; i < (y + lvTileSize.z); i += lvTileSize.z) {
-			GameObject lvWall = GameObject.Instantiate (walls [0]);
+			GameObject lvWall = GameObject.Instantiate (walls [Random.Range(1,walls.Length)]);
 			lvWall.transform.parent = this.gameObject.transform;
 			lvWall.transform.position = new Vector3 (nextTileX,0.0f,nextTileZ);
 
 			if(lvWall.transform.GetChild(0).gameObject.GetComponent<Terrain>() == null)
 				lvWall.transform.Rotate (0.0f, 0.0f, 0.0f);
 
-			GameObject lvWallRight = GameObject.Instantiate (walls [0]);
+			GameObject lvWallRight = GameObject.Instantiate (walls [Random.Range(1,walls.Length)]);
 			lvWallRight.transform.parent = this.gameObject.transform;
 			lvWallRight.transform.position = new Vector3 (lvNextTileXRight,0.0f,nextTileZ);
 
