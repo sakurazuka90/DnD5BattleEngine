@@ -100,7 +100,13 @@ public class FloorCreator : MonoBehaviour {
 		nextTileZ = (float)y + lvTileSize.z / 2;
 		
 		for (float i = -lvTileSize.x; i < (x + lvTileSize.x); i += lvTileSize.x) {
-			GameObject lvWall = GameObject.Instantiate (walls [Random.Range(1,walls.Length)]);
+			GameObject lvWall = null;
+
+			if(i == -lvTileSize.x || (i + lvTileSize.x) >= (x + lvTileSize.x))
+				lvWall = GameObject.Instantiate (walls [0]);
+			else
+				lvWall = GameObject.Instantiate (walls [Random.Range(0,walls.Length)]);
+
 			lvWall.transform.parent = this.gameObject.transform;
 			lvWall.transform.position = new Vector3 (nextTileX,0.0f,nextTileZ);
 
@@ -118,14 +124,27 @@ public class FloorCreator : MonoBehaviour {
 		nextTileZ = -lvTileSize.z / 2;
 
 		for (float i = -lvTileSize.z; i < (y + lvTileSize.z); i += lvTileSize.z) {
-			GameObject lvWall = GameObject.Instantiate (walls [Random.Range(1,walls.Length)]);
+
+			GameObject lvWall = null;
+			if(i+lvTileSize.z >= (y + lvTileSize.z))
+				lvWall = GameObject.Instantiate (walls [0]);
+			else
+				lvWall = GameObject.Instantiate (walls [Random.Range(0,walls.Length)]);
+			
 			lvWall.transform.parent = this.gameObject.transform;
 			lvWall.transform.position = new Vector3 (nextTileX,0.0f,nextTileZ);
 
 			if(lvWall.transform.GetChild(0).gameObject.GetComponent<Terrain>() == null)
 				lvWall.transform.Rotate (0.0f, 0.0f, 0.0f);
+			
+			GameObject lvWallRight = null;
 
-			GameObject lvWallRight = GameObject.Instantiate (walls [Random.Range(1,walls.Length)]);
+			if(i+lvTileSize.z >= (y + lvTileSize.z))
+				lvWallRight = GameObject.Instantiate (walls [0]);
+			else
+				lvWallRight = GameObject.Instantiate (walls [Random.Range(0,walls.Length)]);
+
+
 			lvWallRight.transform.parent = this.gameObject.transform;
 			lvWallRight.transform.position = new Vector3 (lvNextTileXRight,0.0f,nextTileZ);
 
