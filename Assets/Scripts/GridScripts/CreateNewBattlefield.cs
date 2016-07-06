@@ -20,6 +20,7 @@ public class CreateNewBattlefield : MonoBehaviour {
 			BattlefieldConstructor.instance.CreateFloor (int.Parse (lvX), int.Parse (lvY), graphicStyle);
 			BattlefieldConstructor.instance.CreateWalls (int.Parse (lvX), int.Parse (lvY));
 
+			obstacleWindow.GetComponent<PlaceNewObstacle> ()._selectedOption = graphicStyle;
 			obstacleWindow.SetActive (true);
 			obstacleStatusWindow.SetActive (true);
 			MenuDisplayer.instance.isMenuAvaiable = true;

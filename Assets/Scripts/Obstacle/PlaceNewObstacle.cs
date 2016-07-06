@@ -8,19 +8,22 @@ public class PlaceNewObstacle : MonoBehaviour
 	public GameObject obstacle;
 	public GameObject content;
 	public GameObject genericButtonPrefab;
+	public GameObject dropdownObject;
 
-	private int _selectedOption;
+	public int _selectedOption;
 	private string[] _options;
 
 	void Start ()
 	{
-		GenerateContent ("Dungeon");
-		_selectedOption = 0;
 		_options = new string[3];
 
 		_options [0] = "Dungeon";
 		_options [1] = "Woodland";
 		_options [2] = "Functional";
+
+		dropdownObject.GetComponent<Dropdown> ().value = _selectedOption;
+		GenerateContent (_selectedOption);
+
 	}
 
 	public void GenerateContent (int pmOptionId)
