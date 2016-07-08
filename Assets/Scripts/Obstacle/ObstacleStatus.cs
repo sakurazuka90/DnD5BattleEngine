@@ -10,6 +10,7 @@ public class ObstacleStatus : MonoBehaviour {
 	public bool isDifficultTerrain;
 	public bool isBlockingMovement;
 	public bool isBlockingLoS;
+	public int coverValue;
 
 	public ObstacleData getData()
 	{
@@ -18,7 +19,7 @@ public class ObstacleStatus : MonoBehaviour {
 		lvData.isBlockingLineOfSight = isBlockingLoS;
 		lvData.isBlockingMovement = isBlockingMovement;
 		lvData.isDifficultTerrain = isDifficultTerrain;
-		lvData.providedCover = 0.0f;
+		lvData.providedCover = coverValue;
 		lvData.obstaclePrefabName = this.prefabName;
 		lvData.rotation = this.gameObject.transform.GetChild (0).eulerAngles.y;
 

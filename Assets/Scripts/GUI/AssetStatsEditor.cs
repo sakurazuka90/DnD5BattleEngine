@@ -125,4 +125,10 @@ public class AssetStatsEditor : MonoBehaviour {
 	{
 		figurineSelectPanel.SetActive (true);
 	}
+
+	public void SetCoverValue(int pmValue)
+	{
+		if (obstacleStatus != null)
+			obstacleStatus.coverValue = pmValue;
+	}
 }

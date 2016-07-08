@@ -8,6 +8,6 @@ public class ObstacleData{
 	public bool isDifficultTerrain;
 	public bool isBlockingMovement;
 	public bool isBlockingLineOfSight;
-	public float providedCover;
+	public int providedCover;
 	public float rotation;
 }

@@ -76,6 +76,8 @@ public class BattlefieldConstructor : MonoBehaviour {
 				lvStatus.isBlockingLoS = lvData.isBlockingLineOfSight;
 				lvStatus.isDifficultTerrain = lvData.isDifficultTerrain;
 				lvStatus.isBlockingMovement = lvData.isBlockingMovement;
+				lvStatus.coverValue = lvData.providedCover;
+
 
 				lvInstance.GetComponent<ObstacleRotator> ().Rotate (lvData.rotation);
 
