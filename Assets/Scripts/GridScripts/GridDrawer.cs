@@ -218,4 +218,17 @@ public class GridDrawer : MonoBehaviour
 		return IsCellBlockedByObstacle (this.mCells [pmCellId]);
 	}
 
+	public List<int> GetFunctionalFields(FunctionalStates state)
+	{
+		List<int> fields = new List<int> ();
+		for (int i = 0; i < mCells.Length; i++) {
+
+			GameObject cell = mCells [i];
+			if (cell.GetComponent<CellStatus> ().functionalState == state)
+				fields.Add (i);
+		}
+
+		return fields;
+	}
+
 }
