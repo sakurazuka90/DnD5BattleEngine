@@ -13,27 +13,37 @@ public class BattleFieldSaver : MonoBehaviour
 	public GameObject saveNamePanel;
 
 	public GameObject genericYesNoWindowPrefab;
+	public GameObject genericAlertWindowPrefab;
 
 	private static string _FileExistsMessage = "File with that name already exists. Do you want to save anyway?";
+	private static string _NotEnoughSpawnPointsMessage = "There is not enough spawn points ont the map. Add at least one for each side of conflict";
 
 	public void Save ()
 	{
-		GameObject lvObject = saveNamePanel.transform.FindChild ("SaveFileName").gameObject;
-		string lvFileName = lvObject.GetComponent<InputField> ().text;
-
-		if (File.Exists (Application.persistentDataPath + "/" + lvFileName + ".dat")) {
-
-			GameObject lvWindow = GameObject.Instantiate (genericYesNoWindowPrefab);
-			lvWindow.GetComponent<GenericyesNoPanelControler> ().InitializePanel (_FileExistsMessage, this.SaveMapToFile);
+		if (GridDrawer.instance.GetFunctionalFields (FunctionalStates.PLAYER_SPAWN).Capacity == 0 || GridDrawer.instance.GetFunctionalFields (FunctionalStates.ENEMY_SPAWN).Capacity == 0) {
+			GameObject lvWindow = GameObject.Instantiate (genericAlertWindowPrefab);
+			lvWindow.GetComponent<GenericyesNoPanelControler> ().InitializePanel (_NotEnoughSpawnPointsMessage, null);
 
 			lvWindow.transform.parent = GameObject.Find ("Canvas").transform;
 			lvWindow.GetComponent<RectTransform> ().anchoredPosition = Vector2.zero;
-
 		} else {
-			SaveMapToFile (lvFileName);
-			Hide ();
-		}
 
+			GameObject lvObject = saveNamePanel.transform.FindChild ("SaveFileName").gameObject;
+			string lvFileName = lvObject.GetComponent<InputField> ().text;
+
+			if (File.Exists (Application.persistentDataPath + "/" + lvFileName + ".dat")) {
+
+				GameObject lvWindow = GameObject.Instantiate (genericYesNoWindowPrefab);
+				lvWindow.GetComponent<GenericyesNoPanelControler> ().InitializePanel (_FileExistsMessage, this.SaveMapToFile);
+
+				lvWindow.transform.parent = GameObject.Find ("Canvas").transform;
+				lvWindow.GetComponent<RectTransform> ().anchoredPosition = Vector2.zero;
+
+			} else {
+				SaveMapToFile (lvFileName);
+				Hide ();
+			}
+		}
 
 	}
 
