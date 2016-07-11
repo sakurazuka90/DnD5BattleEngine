@@ -16,9 +16,12 @@ public class AssetStatsEditor : MonoBehaviour {
 	public GameObject functionalNameInput;
 	public GameObject functionalImage;
 	public GameObject functionImput;
+	public GameObject functionalRemoveButton;
+	public GameObject functionalSelectButton;
 	public CellStatus editedFunctionalCell;
 
 	public GameObject figurineSelectPanel;
+
 
 	public void populate()
 	{
@@ -39,6 +42,10 @@ public class AssetStatsEditor : MonoBehaviour {
 		functionalImage.GetComponent<Image> ().sprite = lvButtonSprite;
 		pmStatus.edited = true;
 		editedFunctionalCell = pmStatus;
+
+		functionImput.GetComponent<InputField>().text = "DYNAMIC";
+		functionalSelectButton.GetComponent<Button> ().interactable = true;
+		functionalRemoveButton.GetComponent<Button> ().interactable = true;
 	}
 
 	public void populateFunctional(string pmFunctionalName, string pmFunctionalButtonName, CellStatus pmStatus, string pmFunction)
@@ -65,6 +72,9 @@ public class AssetStatsEditor : MonoBehaviour {
 
 		if(editedFunctionalCell != null)
 			editedFunctionalCell.edited = false;
+
+		functionalSelectButton.GetComponent<Button> ().interactable = false;
+		functionalRemoveButton.GetComponent<Button> ().interactable = false;
 	}
 
 	public void clear()
