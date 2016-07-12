@@ -31,6 +31,7 @@ public class Player {
 	private Dictionary<string,Item> mInventory;
 	public int level;
 
+	private Sizes size;
 
 	public int mBasicAc = 10;
 	public int mMaxDexMod = 6;
@@ -83,6 +84,11 @@ public class Player {
 	public Player LastHitter{
 		get{ return lastHitter; }
 		set{ this.lastHitter = value; }
+	}
+
+	public Sizes Size{
+		get{ return size; }
+		set{ this.size = value; }
 	}
 
 	public Player ()
