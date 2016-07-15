@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace AssemblyCSharp
+public enum CreatureTypes
 {
-	public enum CREATURE_TYPES
-	{
-	}
+	
 }
+
 
