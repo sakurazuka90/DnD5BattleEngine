@@ -19,8 +19,13 @@ public class Ability{
 
 	}
 
+
 	public int Modifier{
 		get{ return mModifier; }
+	}
+
+	public int Value{
+		get{ return mValue; }
 	}
 
 

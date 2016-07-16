@@ -14,6 +14,7 @@ public class SelectFigurineController : AbstractPanelController
 	private GameObject _figurineShowcase;
 
 	public GameObject characterNameText;
+	public GameObject abilitiesPanel;
 
 	private bool _rotate = false;
 	private float _direction = 0.0f;
@@ -102,7 +103,7 @@ public class SelectFigurineController : AbstractPanelController
 	{
 		Player lvSelectedPlayer = DatabaseController.GetPlayerByID (pmCharacterId);
 		characterNameText.GetComponent<Text> ().text = lvSelectedPlayer.playerName;
-
+		abilitiesPanel.GetComponent<AbilityPanel> ().FillAbilities (lvSelectedPlayer);
 
 	}
 

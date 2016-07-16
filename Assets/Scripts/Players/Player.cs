@@ -109,6 +109,11 @@ public class Player {
 		mAbilities.Add (pmName, new Ability(pmScore));
 	}
 
+	public int GetAbilityValue(AbilityNames pmName)
+	{
+		return mAbilities [pmName].Value;
+	}
+
 	public int GetAbilityModifier(AbilityNames pmName)
 	{
 		return mAbilities [pmName].Modifier;
