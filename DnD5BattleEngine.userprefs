@@ -1,15 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Database\DatabaseController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GUI\SelectPanel\SelectFigurineOptionController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Database\DatabaseController.cs" Line="98" Column="1" />
+      <File FileName="Assets\Scripts\GUI\SelectPanel\SelectFigurineOptionController.cs" Line="23" Column="50" />
+      <File FileName="Assets\Scripts\Database\DatabaseController.cs" Line="30" Column="39" />
       <File FileName="Assets\Scripts\Players\Player.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GridScripts\SelectFromGrid.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GUI\SelectPanel\SelectFigurineController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUI\SelectPanel\SelectFigurineController.cs" Line="104" Column="78" />
       <File FileName="Assets\Scripts\GUI\AssetStatsEditor.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Players\Stats\Sizes.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Players\Stats\CreatureTypes.cs" Line="5" Column="2" />
-      <File FileName="Assets\Scripts\LevelCreator\FloorCreator.cs" Line="152" Column="1" />
+      <File FileName="Assets\Scripts\Players\Stats\CreatureTypes.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LevelCreator\FloorCreator.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUI\SelectPanel\AbstractSelectOptionController.cs" Line="27" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -33,13 +35,13 @@
       <Breakpoint file="C:\Users\sakurazuka90\Documents\DnD5BattleEngine\Assets\Scripts\Database\DatabaseController.cs" line="55" column="1" />
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\LevelCreator\BattleFieldSaver.cs" line="147" column="1" />
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\LevelCreator\BattleFieldSaver.cs" line="126" column="1" />
-      <Breakpoint file="C:\Users\sakurazuka90\Documents\DnD5BattleEngine\Assets\Scripts\Database\DatabaseController.cs" line="32" column="1" />
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Database\DatabaseController.cs" line="9" column="1" />
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Database\DatabaseController.cs" line="144" column="27" />
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Actions\AbstractAction.cs" line="139" column="1" />
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Actions\AbstractAction.cs" line="124" column="1" />
       <Breakpoint file="C:\Users\sakurazuka90\Documents\DnD5BattleEngine\Assets\Scripts\Obstacle\PlaceNewObstacle.cs" line="60" column="1" />
       <Breakpoint file="C:\Users\sakurazuka90\Documents\DnD5BattleEngine\Assets\Scripts\Database\DatabaseController.cs" line="98" column="1" />
+      <Breakpoint file="C:\Users\sakurazuka90\Documents\DnD5BattleEngine\Assets\Scripts\GUI\SelectPanel\SelectFigurineOptionController.cs" line="18" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

@@ -13,6 +13,8 @@ public class SelectFigurineController : AbstractPanelController
 
 	private GameObject _figurineShowcase;
 
+	public GameObject characterNameText;
+
 	private bool _rotate = false;
 	private float _direction = 0.0f;
 
@@ -92,6 +94,14 @@ public class SelectFigurineController : AbstractPanelController
 		Destroy (_figurineShowcase.GetComponent<FigurineMover> ());
 
 		_figurineShowcase.transform.position = new Vector3 (0.0f, 0.0f, -200.0f);
+
+
+	}
+
+	public void FillCharacterData(int pmCharacterId)
+	{
+		Player lvSelectedPlayer = DatabaseController.GetPlayerByID (pmCharacterId);
+		characterNameText.GetComponent<Text> ().text = lvSelectedPlayer.playerName;
 
 
 	}

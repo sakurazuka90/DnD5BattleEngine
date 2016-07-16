@@ -18,7 +18,9 @@ public class SelectFigurineOptionController : AbstractSelectOptionController
 		MarkSelectedOption ();
 
 		SelectFigurineController lvController = _controller.GetComponent<SelectFigurineController> ();
+
 		lvController.Select (_numericValue.ToString());
+		lvController.FillCharacterData (_numericValue);
 	}
 
 
