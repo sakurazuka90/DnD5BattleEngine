@@ -140,24 +140,35 @@ CREATE TABLE "CHARACTER_STATS" (
 	`ID`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
 	`NAME`	TEXT NOT NULL,
 	`LEVEL`	INTEGER NOT NULL,
-	`STR`	INTEGER NOT NULL,
-	`DEX`	INTEGER NOT NULL,
-	`FOR`	INTEGER NOT NULL,
-	`INT`	INTEGER NOT NULL,
-	`WIS`	INTEGER NOT NULL,
-	`CHA`	INTEGER NOT NULL,
 	`HP`	INTEGER NOT NULL,
 	`SPEED`	INTEGER NOT NULL,
 	`AI`	NUMERIC,
 	`EQUIPPED_WEAPON_SLOT`	INTEGER,
 	`RACE_ID`	INTEGER
 );
-INSERT INTO `CHARACTER_STATS` (ID,NAME,LEVEL,STR,DEX,FOR,INT,WIS,CHA,HP,SPEED,AI,EQUIPPED_WEAPON_SLOT,RACE_ID) VALUES (1,'Goblin',1,8,14,10,10,8,8,7,4,1,83,1),
- (2,'Kurrdar the Mighty',1,16,10,25,12,10,8,22,4,0,83,2);
+INSERT INTO `CHARACTER_STATS` (ID,NAME,LEVEL,HP,SPEED,AI,EQUIPPED_WEAPON_SLOT,RACE_ID) VALUES (1,'Goblin',1,7,4,1,83,1),
+ (2,'Kurrdar the Mighty',1,22,4,0,83,2);
 CREATE TABLE `CHARACTER_PROFICIENT_SKILLS` (
 	`CHARACTER_STATS_ID`	INTEGER NOT NULL,
 	`SKILLS_ID`	INTEGER NOT NULL
 );
+CREATE TABLE "CHARACTER_ABILITY_VALUES" (
+	`ABILITY_ID`	INTEGER NOT NULL,
+	`CHARACTER_ID`	INTEGER NOT NULL,
+	`VALUE`	INTEGER NOT NULL
+);
+INSERT INTO `CHARACTER_ABILITY_VALUES` (ABILITY_ID,CHARACTER_ID,VALUE) VALUES (1,1,8),
+ (2,1,14),
+ (3,1,10),
+ (4,1,10),
+ (5,1,8),
+ (6,1,8),
+ (1,2,16),
+ (2,2,10),
+ (3,2,20),
+ (4,2,12),
+ (5,2,10),
+ (6,2,8);
 CREATE TABLE "CHARACTERS_ITEMS" (
 	`ID`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
 	`CHARACTER_ID`	INTEGER NOT NULL,
@@ -186,4 +197,15 @@ CREATE TABLE "ARMORS" (
 	`ICON_NAME`	TEXT NOT NULL
 );
 INSERT INTO `ARMORS` (ID,NAME,AC,MAX_DEX,ICON_NAME) VALUES (1,'Breastplate',16,0,'ArmorColor');
+CREATE TABLE `ABILITIES` (
+	`ID`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+	`NAME`	TEXT NOT NULL UNIQUE,
+	`DESCRIPTION`	TEXT
+);
+INSERT INTO `ABILITIES` (ID,NAME,DESCRIPTION) VALUES (1,'Strength','Strength measures bodily power, athletic training, and the extent to which you can exert raw physical force.'),
+ (2,'Dexterity','Dexterity measures agility, reflexes, and balance.'),
+ (3,'Constitution','Dexterity measures agility, reflexes, and balance.'),
+ (4,'Intelligence','Intelligence measures mental acuity, accuracy of recall, and the ability to reason.'),
+ (5,'Wisdom','Wisdom reflects how attuned you are to the world around you and represents perceptiveness and intuition.'),
+ (6,'Charisma','Charisma measures your ability to interact effectively with others. It includes such factors as confidence and eloquence, and it can represent a charming or commanding personality.');
 COMMIT;

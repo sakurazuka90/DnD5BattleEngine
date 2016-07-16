@@ -57,7 +57,7 @@ public class DatabaseController{
 
 		IDbConnection dbconn = GetConnection ();
 		IDbCommand dbcmd = dbconn.CreateCommand();
-		string sqlQuery = 	"SELECT ST.NAME, FI.PICTURE_NAME, ST.LEVEL, ST.STR, ST.DEX, ST.FOR, ST.INT, ST.WIS, ST.CHA, ST.HP, ST.SPEED, FI.FIGURINE_NAME, ST.AI, ST.EQUIPPED_WEAPON_SLOT "
+		string sqlQuery = 	"SELECT ST.NAME, FI.PICTURE_NAME, ST.LEVEL, ST.HP, ST.SPEED, FI.FIGURINE_NAME, ST.AI, ST.EQUIPPED_WEAPON_SLOT "
 			+ "FROM CHARACTER_STATS ST JOIN FIGURINES FI ON FI.CHARACTER_ID = ST.ID WHERE ST.ID = " + pmPlayerId;
 		dbcmd.CommandText = sqlQuery;
 
@@ -70,23 +70,19 @@ public class DatabaseController{
 			lvPlayer.PlayerSprite = spr1;
 
 			lvPlayer.level = reader.GetInt32 (2);
-
-			lvPlayer.SetAbility (AbilityNames.STRENGTH, reader.GetInt32(3));
-			lvPlayer.SetAbility (AbilityNames.DEXTERITY, reader.GetInt32(4));
-			lvPlayer.SetAbility (AbilityNames.CONSTITUTION, reader.GetInt32(5));
-			lvPlayer.SetAbility (AbilityNames.INTELLIGENCE, reader.GetInt32(6));
-			lvPlayer.SetAbility (AbilityNames.WISDOM, reader.GetInt32(7));
-			lvPlayer.SetAbility (AbilityNames.CHARISMA, reader.GetInt32(8));
-			lvPlayer.HpTotal = reader.GetInt32 (9);
+			FillPlayerAbilityScores (lvPlayer, pmPlayerId);
+			lvPlayer.HpTotal = reader.GetInt32 (3);
 			lvPlayer.hp = lvPlayer.HpTotal;
-			lvPlayer.SetSpeed (reader.GetInt32(10));
+			lvPlayer.SetSpeed (reader.GetInt32(4));
 			lvPlayer.Proficiency = Proficiency.CalculateProficiencyBonusByLevel (lvPlayer.level);
-			lvPlayer.FigurineModelName = reader.GetString (11);
+			lvPlayer.FigurineModelName = reader.GetString (5);
 
-			if (reader.GetInt32 (12) != null && reader.GetInt32 (12) > 0)
+			if (reader.GetInt32 (6) != null && reader.GetInt32 (6) > 0)
 				lvPlayer.isAi = true;
 
-			lvPlayer.databaseEqWeaponId = reader.GetInt32 (13);
+			lvPlayer.databaseEqWeaponId = reader.GetInt32 (7);
+
+
 		}
 
 		CleanUp (reader,dbcmd,dbconn);
@@ -95,6 +91,48 @@ public class DatabaseController{
 		dbconn = null;
 
 		return lvPlayer;
+	}
+
+	private static void FillPlayerAbilityScores(Player pmPlayer, int pmPlayerId)
+	{
+		IDbConnection dbconn = GetConnection ();
+		IDbCommand dbcmd = dbconn.CreateCommand();
+		string sqlQuery = "SELECT ABILITY_ID, VALUE FROM CHARACTER_ABILITY_VALUES WHERE CHARACTER_ID = " + pmPlayerId;
+		dbcmd.CommandText = sqlQuery;
+
+		IDataReader reader = dbcmd.ExecuteReader();
+
+		while (reader.Read ()) {
+
+			int abilityId = reader.GetInt32 (0);
+
+			switch (abilityId) {
+			case 1:
+				pmPlayer.SetAbility (AbilityNames.STRENGTH, reader.GetInt32(1));
+				break;
+			case 2:
+				pmPlayer.SetAbility (AbilityNames.DEXTERITY, reader.GetInt32(1));
+				break;
+			case 3:
+				pmPlayer.SetAbility (AbilityNames.CONSTITUTION, reader.GetInt32(1));
+				break;
+			case 4:
+				pmPlayer.SetAbility (AbilityNames.INTELLIGENCE, reader.GetInt32(1));
+				break;
+			case 5:
+				pmPlayer.SetAbility (AbilityNames.WISDOM, reader.GetInt32(1));
+				break;
+			case 6:
+				pmPlayer.SetAbility (AbilityNames.CHARISMA, reader.GetInt32(1));
+				break;
+			}
+		}
+
+		CleanUp (reader,dbcmd,dbconn);
+		reader = null;
+		dbcmd = null;
+		dbconn = null;
+		
 	}
 
 	public static void AddPlayersArmorsToInventory(int pmPlayerId, Dictionary<string,Item> pmInventory, Player player)
