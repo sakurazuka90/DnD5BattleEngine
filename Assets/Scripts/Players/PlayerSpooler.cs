@@ -43,6 +43,7 @@ public class PlayerSpooler : MonoBehaviour {
 			if (lvPlayerId > 0) {
 				
 				Player pl1 = DatabaseController.GetPlayerByID (lvPlayerId);
+				pl1.Saves = DatabaseController.GetCharacterSavesByCharacterId (lvPlayerId);
 
 				GameObject lvModel = Instantiate(Resources.Load<GameObject> ("Figurines/Models/" + pl1.FigurineModelName));
 
@@ -85,6 +86,7 @@ public class PlayerSpooler : MonoBehaviour {
 
 			if (lvPlayerId > 0) {
 				Player pl1 = DatabaseController.GetPlayerByID (lvPlayerId);
+				pl1.Saves = DatabaseController.GetCharacterSavesByCharacterId (lvPlayerId);
 
 				GameObject lvModel = Instantiate(Resources.Load<GameObject> ("Figurines/Models/" + pl1.FigurineModelName));
 

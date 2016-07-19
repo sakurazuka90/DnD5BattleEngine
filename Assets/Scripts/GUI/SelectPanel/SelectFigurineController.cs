@@ -15,6 +15,7 @@ public class SelectFigurineController : AbstractPanelController
 
 	public GameObject characterNameText;
 	public GameObject abilitiesPanel;
+	public GameObject savesPanel;
 
 	private bool _rotate = false;
 	private float _direction = 0.0f;
@@ -102,8 +103,10 @@ public class SelectFigurineController : AbstractPanelController
 	public void FillCharacterData(int pmCharacterId)
 	{
 		Player lvSelectedPlayer = DatabaseController.GetPlayerByID (pmCharacterId);
+		lvSelectedPlayer.Saves = DatabaseController.GetCharacterSavesByCharacterId (pmCharacterId);
 		characterNameText.GetComponent<Text> ().text = lvSelectedPlayer.playerName;
 		abilitiesPanel.GetComponent<AbilityPanel> ().FillAbilities (lvSelectedPlayer);
+		savesPanel.GetComponent<SavesPanelController> ().FillSaves(lvSelectedPlayer);
 
 	}
 

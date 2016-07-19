@@ -48,6 +48,14 @@ public class Player {
 
 	private Player lastHitter = null;
 
+	private List<int> saves = null;
+
+	public List<int> Saves
+	{
+		get{ return saves;}
+		set{ this.saves = value;}
+	}
+
 
 	public int HpTotal
 	{

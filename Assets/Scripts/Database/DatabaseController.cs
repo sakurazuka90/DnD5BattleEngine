@@ -310,6 +310,30 @@ public class DatabaseController{
 
 		return lvFigurineName;
 	}
+
+	public static List<int> GetCharacterSavesByCharacterId(int pmPlayerId)
+	{
+		List<int> values = new List<int> ();
+
+		IDbConnection dbconn = GetConnection ();
+		IDbCommand dbcmd = dbconn.CreateCommand();
+		string sqlQuery = 	"select ABILITY_ID FROM CHARACTER_PROFICIENT_SAVING_THROWS WHERE CHARACTER_ID = " + pmPlayerId;
+		dbcmd.CommandText = sqlQuery;
+
+		IDataReader reader = dbcmd.ExecuteReader();
+		while (reader.Read())
+		{
+			values.Add (reader.GetInt32 (0));
+		}
+
+		CleanUp (reader,dbcmd,dbconn);
+		reader = null;
+		dbcmd = null;
+		dbconn = null;
+
+		return values;
+	}
+
 		
 
 }
