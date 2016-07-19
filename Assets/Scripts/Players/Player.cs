@@ -50,6 +50,9 @@ public class Player {
 
 	private List<int> saves = null;
 
+	private int type = 0;
+	private string subtype = "";
+
 	public List<int> Saves
 	{
 		get{ return saves;}

@@ -14,6 +14,7 @@ public class SelectFigurineController : AbstractPanelController
 	private GameObject _figurineShowcase;
 
 	public GameObject characterNameText;
+	public GameObject sizeText;
 	public GameObject abilitiesPanel;
 	public GameObject savesPanel;
 
@@ -105,6 +106,7 @@ public class SelectFigurineController : AbstractPanelController
 		Player lvSelectedPlayer = DatabaseController.GetPlayerByID (pmCharacterId);
 		lvSelectedPlayer.Saves = DatabaseController.GetCharacterSavesByCharacterId (pmCharacterId);
 		characterNameText.GetComponent<Text> ().text = lvSelectedPlayer.playerName;
+		sizeText.GetComponent<Text> ().text = Dictionaries.sizes[lvSelectedPlayer.Size];
 		abilitiesPanel.GetComponent<AbilityPanel> ().FillAbilities (lvSelectedPlayer);
 		savesPanel.GetComponent<SavesPanelController> ().FillSaves(lvSelectedPlayer);
 
