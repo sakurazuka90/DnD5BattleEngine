@@ -11,6 +11,10 @@ public static class Dictionaries
 		{Sizes.HUGE, "Huge"},
 		{Sizes.GARGANTUAN, "Gargantuan"}
 	};
+
+	public static Dictionary<Types,String> types = new Dictionary<Types, string> () {
+		{Types.HUMANOID, "Humanoid"}
+	};
 		
 }
 

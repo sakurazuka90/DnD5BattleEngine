@@ -50,8 +50,18 @@ public class Player {
 
 	private List<int> saves = null;
 
-	private int type = 0;
+	private Types characterType;
 	private string subtype = "";
+
+	public string Subtype{
+		get{ return subtype; }
+		set{ this.subtype = value; }
+	}
+
+	public Types CharacterType{
+		get{ return characterType; }
+		set{ this.characterType = value; }
+	}
 
 	public List<int> Saves
 	{

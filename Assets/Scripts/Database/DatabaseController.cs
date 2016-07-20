@@ -57,7 +57,7 @@ public class DatabaseController{
 
 		IDbConnection dbconn = GetConnection ();
 		IDbCommand dbcmd = dbconn.CreateCommand();
-		string sqlQuery = 	"SELECT ST.NAME, FI.PICTURE_NAME, ST.LEVEL, ST.HP, ST.SPEED, FI.FIGURINE_NAME, ST.AI, ST.EQUIPPED_WEAPON_SLOT, RC.SIZE "
+		string sqlQuery = 	"SELECT ST.NAME, FI.PICTURE_NAME, ST.LEVEL, ST.HP, ST.SPEED, FI.FIGURINE_NAME, ST.AI, ST.EQUIPPED_WEAPON_SLOT, RC.SIZE, RC.TYPE, RC.SUBTYPE "
 			+ "FROM CHARACTER_STATS ST JOIN FIGURINES FI ON FI.CHARACTER_ID = ST.ID JOIN RACES RC ON RC.ID = ST.RACE_ID WHERE ST.ID = " + pmPlayerId;
 		dbcmd.CommandText = sqlQuery;
 
@@ -82,6 +82,8 @@ public class DatabaseController{
 
 			lvPlayer.databaseEqWeaponId = reader.GetInt32 (7);
 			lvPlayer.Size = (Sizes)reader.GetInt32 (8);
+			lvPlayer.CharacterType = (Types)reader.GetInt32 (9);
+			lvPlayer.Subtype = reader.GetString (10);
 
 
 		}
