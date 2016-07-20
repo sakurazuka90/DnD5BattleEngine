@@ -153,11 +153,14 @@
      <Compile Include="Assets\Scripts\Players\Stats\DiceRoller.cs" />
      <Compile Include="Assets\Scripts\Players\Stats\Proficiency.cs" />
      <Compile Include="Assets\Scripts\Players\Stats\Sizes.cs" />
+     <Compile Include="Assets\Scripts\Players\Stats\Skill.cs" />
      <Compile Include="Assets\Scripts\Players\Stats\TestsNames.cs" />
      <Compile Include="Assets\Scripts\Players\Stats\Types.cs" />
      <Compile Include="Assets\Scripts\Utils\Dictionaries.cs" />
      <Compile Include="Assets\Scripts\Utils\GameObjectUtils.cs" />
      <Compile Include="Assets\Scripts\Utils\MathUtils.cs" />
+     <Compile Include="Assets\SkillPanel.cs" />
+     <Compile Include="Assets\SkillPanelController.cs" />
      <None Include="Assets\Shaders\NewSurfaceShader.shader" />
      <None Include="Assets\3rdParty\Free_Rocks\Standard Assets\Skyboxes\_skybox info.txt" />
  <Reference Include="UnityEngine.UI">

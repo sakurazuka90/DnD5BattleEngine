@@ -337,6 +337,31 @@ public class DatabaseController{
 		return values;
 	}
 
+	public static List<Skill> GetCharacterSkillsByCharacterId(int pmPlayerId)
+	{
+		List<Skill> values = new List<Skill> ();
+
+		IDbConnection dbconn = GetConnection ();
+		IDbCommand dbcmd = dbconn.CreateCommand();
+		string sqlQuery = "select S.NAME, S.ATRIBUTE_ID,  CPS.CHARACTER_STATS_ID from skills S LEFT JOIN CHARACTER_PROFICIENT_SKILLS CPS ON S.ID = CPS.SKILLS_ID AND CPS.CHARACTER_STATS_ID = "+ pmPlayerId +" order by NAME ASC";
+		dbcmd.CommandText = sqlQuery;
+
+		IDataReader reader = dbcmd.ExecuteReader();
+		while (reader.Read())
+		{
+			object lvObj = reader.GetValue (2);
+
+			values.Add (new Skill(reader.GetString(0), (AbilityNames)reader.GetInt32(1), reader.GetValue(2).GetType() != typeof(System.DBNull)));
+		}
+
+		CleanUp (reader,dbcmd,dbconn);
+		reader = null;
+		dbcmd = null;
+		dbconn = null;
+
+		return values;
+	}
+
 		
 
 }

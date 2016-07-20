@@ -19,6 +19,7 @@ public class SelectFigurineController : AbstractPanelController
 	public GameObject subtypeText;
 	public GameObject abilitiesPanel;
 	public GameObject savesPanel;
+	public GameObject skillPanel;
 
 	private bool _rotate = false;
 	private float _direction = 0.0f;
@@ -107,13 +108,14 @@ public class SelectFigurineController : AbstractPanelController
 	{
 		Player lvSelectedPlayer = DatabaseController.GetPlayerByID (pmCharacterId);
 		lvSelectedPlayer.Saves = DatabaseController.GetCharacterSavesByCharacterId (pmCharacterId);
+		lvSelectedPlayer.Skills = DatabaseController.GetCharacterSkillsByCharacterId (pmCharacterId);
 		characterNameText.GetComponent<Text> ().text = lvSelectedPlayer.playerName;
 		sizeText.GetComponent<Text> ().text = Dictionaries.sizes[lvSelectedPlayer.Size];
 		typeText.GetComponent<Text> ().text = Dictionaries.types[lvSelectedPlayer.CharacterType];
 		subtypeText.GetComponent<Text> ().text = lvSelectedPlayer.Subtype;
 		abilitiesPanel.GetComponent<AbilityPanel> ().FillAbilities (lvSelectedPlayer);
 		savesPanel.GetComponent<SavesPanelController> ().FillSaves(lvSelectedPlayer);
-
+		skillPanel.GetComponent<SkillPanelController> ().FillSkills (lvSelectedPlayer);
 	}
 
 	public void RotateShowcaseRight()

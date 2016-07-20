@@ -53,6 +53,13 @@ public class Player {
 	private Types characterType;
 	private string subtype = "";
 
+	List<Skill> skills;
+
+	public List<Skill> Skills{
+		get{ return skills; }
+		set{ this.skills = value; }
+	}
+
 	public string Subtype{
 		get{ return subtype; }
 		set{ this.subtype = value; }
