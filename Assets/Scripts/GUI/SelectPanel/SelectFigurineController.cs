@@ -17,6 +17,9 @@ public class SelectFigurineController : AbstractPanelController
 	public GameObject sizeText;
 	public GameObject typeText;
 	public GameObject subtypeText;
+	public GameObject acText;
+	public GameObject hpText;
+	public GameObject proficiencyText;
 	public GameObject abilitiesPanel;
 	public GameObject savesPanel;
 	public GameObject skillPanel;
@@ -116,6 +119,9 @@ public class SelectFigurineController : AbstractPanelController
 		abilitiesPanel.GetComponent<AbilityPanel> ().FillAbilities (lvSelectedPlayer);
 		savesPanel.GetComponent<SavesPanelController> ().FillSaves(lvSelectedPlayer);
 		skillPanel.GetComponent<SkillPanelController> ().FillSkills (lvSelectedPlayer);
+		hpText.GetComponent<Text> ().text = lvSelectedPlayer.hp.ToString ();
+		acText.GetComponent<Text> ().text = lvSelectedPlayer.ac.ToString ();
+		proficiencyText.GetComponent<Text> ().text = lvSelectedPlayer.Proficiency.ToString ();
 	}
 
 	public void RotateShowcaseRight()
