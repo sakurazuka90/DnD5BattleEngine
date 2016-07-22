@@ -1,21 +1,22 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\SkillPanelController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GUI\SelectPanel\SelectFigurineController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Database\DatabaseController.cs" Line="354" Column="133" />
-      <File FileName="Assets\Scripts\Players\Stats\Skill.cs" Line="26" Column="25" />
-      <File FileName="Assets\Scripts\Players\Player.cs" Line="60" Column="1" />
-      <File FileName="Assets\Scripts\GUI\SelectPanel\SelectFigurineController.cs" Line="118" Column="82" />
-      <File FileName="Assets\Scripts\Players\PlayerSpooler.cs" Line="91" Column="68" />
-      <File FileName="Assets\SkillPanel.cs" Line="11" Column="28" />
-      <File FileName="Assets\SkillPanelController.cs" Line="16" Column="51" />
-      <File FileName="Assets\Scripts\Utils\Dictionaries.cs" Line="25" Column="31" />
+      <File FileName="Assets\Scripts\GUI\MenuWindowsHelper.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUI\SelectPanel\SelectFigurineController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Database\DatabaseController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Players\Stats\Skill.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Players\Player.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Players\PlayerSpooler.cs" Line="1" Column="1" />
+      <File FileName="Assets\SkillPanel.cs" Line="1" Column="1" />
+      <File FileName="Assets\SkillPanelController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Utils\Dictionaries.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GUI\SelectPanel\LoadPanelController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GUI\SelectPanel\AbstractSelectOptionController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GUI\SelectPanel\AbstractPanelController.cs" Line="1" Column="1" />
-      <File FileName="Assets\SavesPanelController.cs" Line="8" Column="14" />
-      <File FileName="Assets\Scripts\Players\Stats\AbilityNames.cs" Line="14" Column="92" />
-      <File FileName="Assets\Scripts\AI_ENGINE\Algorithms\Localizer.cs" Line="34" Column="1" />
+      <File FileName="Assets\SavesPanelController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Players\Stats\AbilityNames.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\AI_ENGINE\Algorithms\Localizer.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -53,6 +53,7 @@
      <Compile Include="Assets\AIEngine.cs" />
      <Compile Include="Assets\AbilityDisplayerController.cs" />
      <Compile Include="Assets\AbilityPanel.cs" />
+     <Compile Include="Assets\AddFigurineMenu.cs" />
      <Compile Include="Assets\FigurinePositionController.cs" />
      <Compile Include="Assets\PanelSelector.cs" />
      <Compile Include="Assets\SavePanel.cs" />
