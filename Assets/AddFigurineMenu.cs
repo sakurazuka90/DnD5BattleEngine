@@ -3,13 +3,18 @@ using System.Collections;
 
 public class AddFigurineMenu : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
+	public GameObject CreateCharacterPanel;
+
+	private Player newPlayer;
+
+	void OnEnable()
+	{
+		Debug.Log("NEW?!?!");
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public void OpenCreateCharacter()
+	{
+		CreateCharacterPanel.SetActive(true);
+		this.gameObject.SetActive(false);
 	}
 }
