@@ -13,6 +13,8 @@ public class CharacterCreationPanel : AbstractPanelController {
 	private Sprite[] characterImages;
 	private GameObject[] figurinePrefabs;
 
+	private GameObject _figurineShowcase;
+
 
 	void OnEnable()
 	{
@@ -83,4 +85,29 @@ public class CharacterCreationPanel : AbstractPanelController {
 		
 	}
 	#endregion
+
+	public override void Select(string pmFilename)
+	{
+		_selected = pmFilename;
+
+
+		foreach (GameObject button in buttons) {
+			button.GetComponent<Button>().interactable = true;
+		}
+
+		if (_figurineShowcase != null)
+			Destroy (_figurineShowcase);
+
+		GameObject lvResourceFig = Resources.Load<GameObject> ("Figurines/Models/" + pmFilename);
+
+		GameObject lvFigModel = Instantiate (lvResourceFig);
+
+		_figurineShowcase = lvFigModel;
+
+		Destroy (_figurineShowcase.GetComponent<FigurineMover> ());
+
+		_figurineShowcase.transform.position = new Vector3 (0.0f, 0.0f, -200.0f);
+
+
+	}
 }
