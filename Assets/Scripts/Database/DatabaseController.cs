@@ -66,7 +66,7 @@ public class DatabaseController{
 		{
 
 			lvPlayer.playerName = reader.GetString (0);
-			Sprite spr1 = Resources.Load<Sprite>(reader.GetString(1));
+			Sprite spr1 = Resources.Load<Sprite>("CharacterImages/"+reader.GetString(1));
 			lvPlayer.PlayerSprite = spr1;
 
 			lvPlayer.level = reader.GetInt32 (2);

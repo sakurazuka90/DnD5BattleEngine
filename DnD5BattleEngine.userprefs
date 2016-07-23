@@ -1,23 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GUI\SelectPanel\SelectFigurineController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CharacterCreationPanel.cs">
     <Files>
-      <File FileName="Assets\AddFigurineMenu.cs" Line="12" Column="24" />
-      <File FileName="Assets\Scripts\GUI\MenuWindowsHelper.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GUI\SelectPanel\SelectFigurineController.cs" Line="73" Column="1" />
+      <File FileName="Assets\CharacterCreationPanel.cs" Line="21" Column="69" />
       <File FileName="Assets\Scripts\Database\DatabaseController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Players\Stats\Skill.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Players\Player.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Players\PlayerSpooler.cs" Line="1" Column="1" />
-      <File FileName="Assets\SkillPanel.cs" Line="1" Column="1" />
-      <File FileName="Assets\SkillPanelController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Utils\Dictionaries.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GUI\SelectPanel\LoadPanelController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GUI\SelectPanel\AbstractSelectOptionController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GUI\SelectPanel\AbstractPanelController.cs" Line="1" Column="1" />
-      <File FileName="Assets\SavesPanelController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Players\Stats\AbilityNames.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\AI_ENGINE\Algorithms\Localizer.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

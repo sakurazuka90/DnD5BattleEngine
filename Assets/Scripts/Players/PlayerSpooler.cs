@@ -34,8 +34,6 @@ public class PlayerSpooler : MonoBehaviour {
 
 		mPool = new List<Player> ();
 
-		GameObject fig1 = GameObject.Find ("Figurine1");
-
 		for (int i = 0; i < lvPlayers.Length; i++) {
 
 			int lvPlayerId = lvPlayers [i];
