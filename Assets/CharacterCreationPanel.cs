@@ -15,6 +15,9 @@ public class CharacterCreationPanel : AbstractPanelController {
 
 	private GameObject _figurineShowcase;
 
+	public GameObject characterNameTextField;
+	public GameObject playerNameTextField;
+	public GameObject image;
 
 	void OnEnable()
 	{
@@ -38,6 +41,17 @@ public class CharacterCreationPanel : AbstractPanelController {
 	public List<string> ValidateStep0()
 	{
 		return null;
+	}
+
+	public void GatherDataStep0()
+	{
+		newPlayer.playerName = characterNameTextField.GetComponent<InputField> ().text;
+		newPlayer.gamerName = playerNameTextField.GetComponent<InputField> ().text;
+		newPlayer.Figurine = _figurineShowcase;
+		newPlayer.PlayerSprite = image.GetComponent<Image> ().sprite;
+
+		PlayerDatabaseSaver.Save (newPlayer, _selected);
+
 	}
 
 	private void UpdateCharacterImage()

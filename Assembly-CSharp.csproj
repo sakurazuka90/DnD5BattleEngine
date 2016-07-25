@@ -94,6 +94,7 @@
      <Compile Include="Assets\Scripts\DTO\ObstacleData.cs" />
      <Compile Include="Assets\Scripts\DataStructures\PriorituQueue.cs" />
      <Compile Include="Assets\Scripts\Database\DatabaseController.cs" />
+     <Compile Include="Assets\Scripts\Database\PlayerDatabaseSaver.cs" />
      <Compile Include="Assets\Scripts\Engine\ApplicationController.cs" />
      <Compile Include="Assets\Scripts\Engine\MoveCamera.cs" />
      <Compile Include="Assets\Scripts\GUI\AccordionPanelAdjuster.cs" />

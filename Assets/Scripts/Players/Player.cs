@@ -53,6 +53,8 @@ public class Player {
 	private Types characterType;
 	private string subtype = "";
 
+	public string gamerName;
+
 	List<Skill> skills;
 
 	public List<Skill> Skills{
