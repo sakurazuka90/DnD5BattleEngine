@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class CharacterCreationPanel : AbstractPanelController {
 
+	public GameObject generalPanel;
+	public GameObject racePanel;
+
 	private Player newPlayer;
 	int step = 0;
 
@@ -50,7 +53,10 @@ public class CharacterCreationPanel : AbstractPanelController {
 		newPlayer.Figurine = _figurineShowcase;
 		newPlayer.PlayerSprite = image.GetComponent<Image> ().sprite;
 
-		PlayerDatabaseSaver.Save (newPlayer, _selected);
+		generalPanel.SetActive (false);
+		racePanel.SetActive (true);
+
+		//PlayerDatabaseSaver.Save (newPlayer, _selected);
 
 	}
 
