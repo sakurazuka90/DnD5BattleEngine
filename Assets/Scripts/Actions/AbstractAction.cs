@@ -140,5 +140,7 @@ public abstract class AbstractAction
 
 		return fields.Contains (pmPlayer.TargetPlayer.GetCellIndex());
 	}
+
+
 }
 

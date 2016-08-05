@@ -197,6 +197,36 @@ public class DatabaseController{
 		dbconn = null;
 	}
 
+	public static void AddUsableItemsToInventory(int pmPlayerId, Dictionary<string,Item> pmInventory, Player player)
+	{
+		IDbConnection dbconn = GetConnection ();
+		IDbCommand dbcmd = dbconn.CreateCommand();
+		string sqlQuery = 	"select w.ID, w.NAME, w.WEAPON_TYPE_ID, w.WEAPON_CATEGORY_ID, w.WEAPON_DAMAGE_DIE_SIDES, w.WEAPON_DAMAGE_DIE_QUANTITY, w.SHORT_RANGE, w.LONG_RANGE, w.ICON_NAME, es.NAME, es.ID " +
+			"FROM WEAPONS w join CHARACTERS_ITEMS ci on ci.ITEM_ID = w.ID and ci.ITEM_TYPE = 1  JOIN EQUIPEMENT_SLOTS es on ci.FIELD_ID = es.ID  where ci.CHARACTER_ID = " + pmPlayerId;
+		dbcmd.CommandText = sqlQuery;
+
+		IDataReader reader = dbcmd.ExecuteReader();
+		while (reader.Read ()) {
+
+			List<EquipementTypes> lvTypes = GetWeaponEqTypes (reader.GetInt32 (0), dbconn);
+
+			Item lvItem = new Weapon (reader.GetString (1), GetWeaponTypeById (reader.GetInt32 (2)), GetWeaponCategoryById (reader.GetInt32 (3)), reader.GetInt32 (4), reader.GetInt32 (5), lvTypes, reader.GetInt32 (6), reader.GetInt32 (7));
+			lvItem.resourceImageName = reader.GetString (8);
+			lvItem.inventoryFieldId = reader.GetString (9);
+
+			if (reader.GetInt32 (10) == player.databaseEqWeaponId)
+				lvItem.Equip (player, false);
+
+
+			pmInventory.Add (reader.GetString (9), lvItem);
+		}
+
+		CleanUp (reader,dbcmd,dbconn);
+		reader = null;
+		dbcmd = null;
+		dbconn = null;
+	}
+
 	private static WeaponType GetWeaponTypeById(int pmId)
 	{
 		switch (pmId) {
@@ -360,6 +390,30 @@ public class DatabaseController{
 		dbconn = null;
 
 		return values;
+	}
+
+	public static Dictionary<int,string> GetListOfRaces()
+	{
+		Dictionary<int,string> names = new Dictionary<int,string> ();
+
+		IDbConnection dbconn = GetConnection ();
+		IDbCommand dbcmd = dbconn.CreateCommand();
+		string sqlQuery = "SELECT R.NAME, R.ID FROM CHARACTER_RACE CR LEFT JOIN RACES R ON CR.RACE_ID = R.ID";
+		dbcmd.CommandText = sqlQuery;
+		IDataReader reader = dbcmd.ExecuteReader();
+		while (reader.Read())
+		{
+			string name = reader.GetString (0);
+			int id = reader.GetInt32 (1);
+			names.Add (id,name);
+		}
+
+		CleanUp (reader,dbcmd,dbconn);
+		reader = null;
+		dbcmd = null;
+		dbconn = null;
+
+		return names;
 	}
 
 		
