@@ -62,6 +62,7 @@ public class PlayerSpooler : MonoBehaviour {
 
 				DatabaseController.AddPlayersWeaponsToInventory (lvPlayerId, inventory1, pl1);
 				DatabaseController.AddPlayersArmorsToInventory (lvPlayerId, inventory1, pl1);
+				DatabaseController.AddUsableItemsToInventory (lvPlayerId, inventory1, pl1);
 
 				pl1.Inventory = inventory1;
 
@@ -105,6 +106,7 @@ public class PlayerSpooler : MonoBehaviour {
 
 				DatabaseController.AddPlayersWeaponsToInventory (lvPlayerId, inventory1, pl1);
 				DatabaseController.AddPlayersArmorsToInventory (lvPlayerId, inventory1, pl1);
+				DatabaseController.AddUsableItemsToInventory (lvPlayerId, inventory1, pl1);
 
 				pl1.Inventory = inventory1;
 

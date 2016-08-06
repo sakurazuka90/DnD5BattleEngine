@@ -201,24 +201,36 @@ public class DatabaseController{
 	{
 		IDbConnection dbconn = GetConnection ();
 		IDbCommand dbcmd = dbconn.CreateCommand();
-		string sqlQuery = 	"select w.ID, w.NAME, w.WEAPON_TYPE_ID, w.WEAPON_CATEGORY_ID, w.WEAPON_DAMAGE_DIE_SIDES, w.WEAPON_DAMAGE_DIE_QUANTITY, w.SHORT_RANGE, w.LONG_RANGE, w.ICON_NAME, es.NAME, es.ID " +
-			"FROM WEAPONS w join CHARACTERS_ITEMS ci on ci.ITEM_ID = w.ID and ci.ITEM_TYPE = 1  JOIN EQUIPEMENT_SLOTS es on ci.FIELD_ID = es.ID  where ci.CHARACTER_ID = " + pmPlayerId;
+		string sqlQuery = "select ui.NAME, ui.DESCRIPTION, ui.EFFECT_TYPE, ui.DIECE_NUMBER, ui.DIECE_VALUE, ui.STATIC_VALUE, ui.TARGETS_NUMBER, ui.TARGETS_TYPE, ui.RANGE, ui.EFFECT_SHAPE, ui.EFFECT_SHAPE_SIZE, ui.ICON_NAME, es.NAME, ui.CAN_BE_SHORTCUT " +
+			" from usable_items ui join CHARACTERS_ITEMS ci on ci.ITEM_ID = ui.ID  and ci.ITEM_TYPE = 3 JOIN EQUIPEMENT_SLOTS es on ci.FIELD_ID = es.ID where ci.CHARACTER_ID = " + pmPlayerId;	
 		dbcmd.CommandText = sqlQuery;
 
 		IDataReader reader = dbcmd.ExecuteReader();
 		while (reader.Read ()) {
 
-			List<EquipementTypes> lvTypes = GetWeaponEqTypes (reader.GetInt32 (0), dbconn);
+			List<EquipementTypes> types = new List<EquipementTypes> ();
+			types.Add (EquipementTypes.ANY);
 
-			Item lvItem = new Weapon (reader.GetString (1), GetWeaponTypeById (reader.GetInt32 (2)), GetWeaponCategoryById (reader.GetInt32 (3)), reader.GetInt32 (4), reader.GetInt32 (5), lvTypes, reader.GetInt32 (6), reader.GetInt32 (7));
-			lvItem.resourceImageName = reader.GetString (8);
-			lvItem.inventoryFieldId = reader.GetString (9);
+			Debug.Log ("AAAA" + reader.GetString (0));
+			Debug.Log ("BBBB" + reader.GetInt32 (3));
+			Debug.Log ("CCCC" + reader.GetInt32 (4));
+			Debug.Log ("DDDD" + reader.GetInt32 (5));
+			Debug.Log ("EEEE" + reader.GetInt32 (2));
 
-			if (reader.GetInt32 (10) == player.databaseEqWeaponId)
-				lvItem.Equip (player, false);
+			SelfEffect effect = new SelfEffect (reader.GetString (0),
+				                    null,
+				                    reader.GetInt32 (3),
+				                    reader.GetInt32 (4),
+				                    reader.GetInt32 (5),
+				                    reader.GetInt32 (2)
+			                    );
+
+			Item lvItem = new UsableItem (reader.GetString (0), types, effect);  
+			lvItem.resourceImageName = reader.GetString (11);
+			lvItem.inventoryFieldId = reader.GetString (12);
 
 
-			pmInventory.Add (reader.GetString (9), lvItem);
+			pmInventory.Add (reader.GetString (12), lvItem);
 		}
 
 		CleanUp (reader,dbcmd,dbconn);
