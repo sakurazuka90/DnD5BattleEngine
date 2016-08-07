@@ -16,6 +16,10 @@ public class UsableItem : Item {
 	public void Use(Player pmTarget)
 	{
 		mSelfEffect.Resolve (pmTarget);
+		PlayerSpooler.UpdateHP ();
+
+		GameObjectUtils.RemoveAllChildren (GameObject.Find (this.inventoryFieldId));
+
 	}
 
 }
