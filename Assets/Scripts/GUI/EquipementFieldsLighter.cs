@@ -102,5 +102,8 @@ public class EquipementFieldsLighter : MonoBehaviour {
 		lvNamesList.Add ("INV_MH5");
 		mEquipementFieldsNames.Add (EquipementTypes.MAIN_HAND, lvNamesList);
 
+		lvNamesList = new List<string> ();
+		mEquipementFieldsNames.Add (EquipementTypes.ANY, lvNamesList);
+
 	}
 }
