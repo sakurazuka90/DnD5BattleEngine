@@ -35,6 +35,7 @@ public class ItemDisplayController : MonoBehaviour {
 	{
 		if (mItem is UsableItem) {
 			((UsableItem)mItem).Use (PlayerSpooler.instance.GetSpooledPlayer ());
+			Close ();
 		}
 	}
 }

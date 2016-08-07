@@ -19,6 +19,8 @@ public class UsableItem : Item {
 		PlayerSpooler.UpdateHP ();
 
 		GameObjectUtils.RemoveAllChildren (GameObject.Find (this.inventoryFieldId));
+		pmTarget.RemoveItem (this.inventoryFieldId);
+
 
 	}
 

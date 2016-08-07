@@ -341,5 +341,10 @@ public class Player {
 		return GridDrawer.instance.GetGridId (Figurine.GetComponent<FigurineStatus> ().gridX, Figurine.GetComponent<FigurineStatus> ().gridZ);
 	}
 
+	public void RemoveItem(string pmKey)
+	{
+		mInventory.Remove(pmKey);
+	}
+
 
 }
