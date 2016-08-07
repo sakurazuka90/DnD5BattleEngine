@@ -7,6 +7,7 @@ public class Item{
 
 	protected string mName;
 	protected float mPrice;
+	protected string mDescription;
 
 	public string inventoryFieldId;
 
@@ -27,7 +28,7 @@ public class Item{
 		lvItem = GameObject.Instantiate (lvItem);
 
 		Image lvItemImage = lvItem.GetComponent<Image> ();
-		Sprite lvItemSprite = (Sprite)Resources.Load(resourceImageName, typeof(Sprite));
+		Sprite lvItemSprite = this.GetSprite ();
 
 		InventoryObjectStatus lvInvStatus = lvItem.GetComponent<InventoryObjectStatus>();
 		lvInvStatus.InventorySlotId = inventoryFieldId;
@@ -45,6 +46,21 @@ public class Item{
 
 	public virtual void UnEquip(Player pmPlayer, bool pmUpdateUi = true)
 	{
+	}
+
+	public string GetName()
+	{
+		return mName;
+	}
+
+	public string GetDescription()
+	{
+		return mDescription;
+	}
+
+	public Sprite GetSprite()
+	{
+		return Resources.Load<Sprite>(resourceImageName);
 	}
 
 }

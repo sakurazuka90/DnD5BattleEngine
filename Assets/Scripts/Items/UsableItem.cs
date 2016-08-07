@@ -3,9 +3,10 @@ using System.Collections.Generic;
 
 public class UsableItem : Item {
 
-	public UsableItem (string pmName, List<EquipementTypes> pmTypes, SelfEffect pmSelfEffect)
+	public UsableItem (string pmName, string pmDescription, List<EquipementTypes> pmTypes, SelfEffect pmSelfEffect)
 	{
 		mName = pmName;
+		mDescription = pmDescription;
 		mEquipementTypes = pmTypes;
 		mSelfEffect = pmSelfEffect;
 	}

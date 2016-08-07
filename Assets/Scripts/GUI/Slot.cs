@@ -24,7 +24,7 @@ public class Slot : MonoBehaviour, IDropHandler {
 
 			InventoryObjectStatus lvStatus = DragDropHandler.draggedObject.GetComponent<InventoryObjectStatus> ();
 
-			PlayerSpooler lvSpooler = GameObject.Find ("PlayerSpooler").GetComponent<PlayerSpooler> ();
+			PlayerSpooler lvSpooler = PlayerSpooler.instance;
 			Dictionary<string, Item> lvInventory = lvSpooler.GetSpooledPlayer ().Inventory;
 			Item lvItem = lvInventory [lvStatus.InventorySlotId];
 

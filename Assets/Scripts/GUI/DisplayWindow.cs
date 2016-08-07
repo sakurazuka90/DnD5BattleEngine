@@ -10,6 +10,17 @@ public class DisplayWindow : MonoBehaviour {
 	public bool displayEditor;
 
 	public GameObject InventoryPanel;
+	public GameObject InventoryDisplay;
+
+	public static DisplayWindow instance;
+
+	void Awake()
+	{
+		if (instance == null)
+			instance = this;
+		else if (instance != this)
+			Destroy (this);
+	}
 
 	public Image lvImage;
 	void OnGUI() {
@@ -46,5 +57,11 @@ public class DisplayWindow : MonoBehaviour {
 	public void CloseInventoryPanel()
 	{
 		InventoryPanel.SetActive (false);
+	}
+
+	public void OpenItemDisplay(Item pmItem)
+	{
+		InventoryDisplay.SetActive (true);
+		InventoryDisplay.GetComponent<ItemDisplayController> ().FillDisplay (pmItem);
 	}
 }

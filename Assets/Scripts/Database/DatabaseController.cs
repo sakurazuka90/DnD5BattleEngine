@@ -225,7 +225,7 @@ public class DatabaseController{
 				                    reader.GetInt32 (2)
 			                    );
 
-			Item lvItem = new UsableItem (reader.GetString (0), types, effect);  
+			Item lvItem = new UsableItem (reader.GetString (0), reader.GetString (1), types, effect);  
 			lvItem.resourceImageName = reader.GetString (11);
 			lvItem.inventoryFieldId = reader.GetString (12);
 
