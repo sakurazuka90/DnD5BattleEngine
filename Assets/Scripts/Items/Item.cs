@@ -22,8 +22,7 @@ public class Item{
 
 	public GameObject createInventoryObject()
 	{
-		//GameObject lvItem = new GameObject ();
-		GameObject lvItem = (GameObject)Resources.Load("ItemPref", typeof(GameObject));
+		GameObject lvItem = Resources.Load<GameObject>("ItemPref");
 
 		lvItem = GameObject.Instantiate (lvItem);
 
