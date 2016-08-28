@@ -44,7 +44,7 @@ public class PlaceNewObstacle : MonoBehaviour
 
 			string name = lvImage.name;
 
-			lvInstance.GetComponent<GenericItemButton> ().GetComponent<Button> ().onClick.AddListener (() => {
+			lvInstance.GetComponent<Button> ().onClick.AddListener (() => {
 				Place (name);
 			});
 
