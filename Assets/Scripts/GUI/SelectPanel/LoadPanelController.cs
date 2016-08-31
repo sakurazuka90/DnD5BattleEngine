@@ -13,8 +13,14 @@ public class LoadPanelController : AbstractPanelController {
 
 	public override void Load()
 	{
-		BattlefieldConstructor.instance.GenerateGameplay(_selected);
+		if(BattlefieldConstructor.instance.GenerateGameplay(_selected))
+			ActivateUi ();
 
+		this.gameObject.SetActive (false);
+	}
+
+	public void ActivateUi()
+	{
 		UiItemLibrary.instance.spoolerPanel.SetActive (true);
 		UiItemLibrary.instance.inventoryButton.SetActive (true);
 		UiItemLibrary.instance.playerInfoPanel.SetActive (true);
@@ -22,8 +28,6 @@ public class LoadPanelController : AbstractPanelController {
 		UiItemLibrary.instance.skillsButton.SetActive (true);
 
 		PlayerSpooler.instance.Run ();
-
-		this.gameObject.SetActive (false);
 	}
 
 	public void Delete()

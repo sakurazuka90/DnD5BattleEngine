@@ -23,8 +23,9 @@ public class SelectFigurineController : AbstractPanelController
 	public GameObject abilitiesPanel;
 	public GameObject savesPanel;
 	public GameObject skillPanel;
-	public GameObject xText;
-	public GameObject yText;
+
+	public Queue<int> players;
+	public Queue<int> enemies;
 
 	private bool _rotate = false;
 	private float _direction = 0.0f;
@@ -60,12 +61,27 @@ public class SelectFigurineController : AbstractPanelController
 
 	public override void Load ()
 	{
-		int lvId = int.Parse (_selected);
+		if (enemies == null && players == null) {
+			int lvId = int.Parse (_selected);
 
-		AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
-		lvStatusEditor.SetFunction (_values[lvId]);
-		lvStatusEditor.SetFigurineId (lvId);
-		this.gameObject.SetActive (false);
+			AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
+			lvStatusEditor.SetFunction (_values [lvId]);
+			lvStatusEditor.SetFigurineId (lvId);
+			this.gameObject.SetActive (false);
+		} else {
+			if (players.Count > 0) {
+				int field = players.Dequeue();
+				BattlefieldStateReader.instance.Players [field] = int.Parse (_selected);
+			} else if (enemies.Count > 0) {
+				int field = enemies.Dequeue();
+				BattlefieldStateReader.instance.Enemies [field] = int.Parse (_selected);
+			}
+
+			if (players.Count == 0 && enemies.Count == 0) {
+				this.gameObject.SetActive(false);
+				UiItemLibrary.instance.fileLoadPanel.GetComponent<LoadPanelController> ().ActivateUi ();
+			}
+		}
 	}
 
 	#endregion

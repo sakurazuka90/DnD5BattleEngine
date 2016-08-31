@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BattlefieldConstructor : MonoBehaviour {
 
@@ -34,16 +35,36 @@ public class BattlefieldConstructor : MonoBehaviour {
 		int dynamicPlayers = 0;
 		int dynamicEnemies = 0;
 
-		foreach (int i in players) {
-			dynamicPlayers++;
+		Queue<int> enemiesQueue = new Queue<int> ();
+		Queue<int> playersQueue = new Queue<int> ();
+
+		for (int i = 0; i < players.Length; i++) {
+
+			int j = players [i];
+
+			if (j < 0) {
+				dynamicPlayers++;
+				playersQueue.Enqueue (i);
+			}
 		}
 
-		foreach (int i in players) {
-			dynamicEnemies++;
+		for (int i = 0; i < enemies.Length; i++) {
+
+			int j = enemies [i];
+
+			if (j < 0) {
+				dynamicEnemies++;
+				enemiesQueue.Enqueue (i);
+			}
 		}
 
-		if (dynamicEnemies > 0 || dynamicPlayers > 0)
+		if (dynamicEnemies > 0 || dynamicPlayers > 0) {
 			finished = false;
+
+			UiItemLibrary.instance.selectFigurinePanel.GetComponent<SelectFigurineController> ().enemies = enemiesQueue;
+			UiItemLibrary.instance.selectFigurinePanel.GetComponent<SelectFigurineController> ().players = playersQueue;
+			UiItemLibrary.instance.selectFigurinePanel.SetActive (true);
+		}
 
 		return finished;
 	}
