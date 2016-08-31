@@ -19,14 +19,33 @@ public class BattlefieldConstructor : MonoBehaviour {
 	void Start () {
 	}
 
-	public void GenerateGameplay(string pmFilename)
+	public bool GenerateGameplay(string pmFilename)
 	{
+		bool finished = true;
 		BattlefieldStateReader.instance.ParseBattlefieldFile (pmFilename);
 		GenerateGridFromFile ();
 		SetupCameraMover ((float)BattlefieldStateReader.instance.GridWidth, (float)BattlefieldStateReader.instance.GridHeight);
 		CreateFloor (BattlefieldStateReader.instance.GridWidth, BattlefieldStateReader.instance.GridHeight, BattlefieldStateReader.instance.GraphicsStyle);
 		CreateWalls (BattlefieldStateReader.instance.GridWidth, BattlefieldStateReader.instance.GridHeight);
 		SetupObstacles(BattlefieldStateReader.instance.Obstacles);
+
+		int [] players = BattlefieldStateReader.instance.Players;
+		int [] enemies = BattlefieldStateReader.instance.Enemies;
+		int dynamicPlayers = 0;
+		int dynamicEnemies = 0;
+
+		foreach (int i in players) {
+			dynamicPlayers++;
+		}
+
+		foreach (int i in players) {
+			dynamicEnemies++;
+		}
+
+		if (dynamicEnemies > 0 || dynamicPlayers > 0)
+			finished = false;
+
+		return finished;
 	}
 
 	public void GenerateGrid(int pmGridWidth, int pmGridHeight)

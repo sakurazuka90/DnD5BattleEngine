@@ -23,9 +23,13 @@ public class SelectFigurineController : AbstractPanelController
 	public GameObject abilitiesPanel;
 	public GameObject savesPanel;
 	public GameObject skillPanel;
+	public GameObject xText;
+	public GameObject yText;
 
 	private bool _rotate = false;
 	private float _direction = 0.0f;
+
+
 
 	public void Update()
 	{

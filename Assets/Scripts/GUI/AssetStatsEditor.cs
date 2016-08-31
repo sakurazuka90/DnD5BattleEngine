@@ -46,6 +46,9 @@ public class AssetStatsEditor : MonoBehaviour {
 		functionImput.GetComponent<InputField>().text = "DYNAMIC";
 		functionalSelectButton.GetComponent<Button> ().interactable = true;
 		functionalRemoveButton.GetComponent<Button> ().interactable = true;
+
+		pmStatus.Function = "DYNAMIC";
+		pmStatus.FigurineId = -1;
 	}
 
 	public void populateFunctional(string pmFunctionalName, string pmFunctionalButtonName, CellStatus pmStatus, string pmFunction)

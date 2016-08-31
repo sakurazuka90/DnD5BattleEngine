@@ -12,6 +12,7 @@ public class UiItemLibrary : MonoBehaviour {
 
 	public GameObject skillsButton;
 	public GameObject inventoryButton;
+	public GameObject selectFigurinePanel;
 
 	public static UiItemLibrary instance;
 
