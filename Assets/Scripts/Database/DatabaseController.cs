@@ -5,7 +5,7 @@ using System.Data;
 using System.Collections.Generic;
 
 public class DatabaseController{
-
+	
 	private static string _connectionURI = "URI=file:" + Application.dataPath + "/Database/battleEngine.db";
 
 	public static IDbConnection GetConnection()

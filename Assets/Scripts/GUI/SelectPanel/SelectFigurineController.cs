@@ -30,6 +30,12 @@ public class SelectFigurineController : AbstractPanelController
 	private bool _rotate = false;
 	private float _direction = 0.0f;
 
+	public GameObject xText;
+	public GameObject yText;
+	public GameObject image;
+
+	public Sprite playerFieldImage;
+	public Sprite enemyFieldImage;
 
 
 	public void Update()
@@ -42,6 +48,7 @@ public class SelectFigurineController : AbstractPanelController
 
 	public SelectFigurineController ()
 	{
+
 	}
 
 	#region implemented abstract members of AbstractPanelController
@@ -71,9 +78,11 @@ public class SelectFigurineController : AbstractPanelController
 		} else {
 			if (players.Count > 0) {
 				int field = players.Dequeue();
+				FillShowFieldControlls (field, true);
 				BattlefieldStateReader.instance.Players [field] = int.Parse (_selected);
 			} else if (enemies.Count > 0) {
 				int field = enemies.Dequeue();
+				FillShowFieldControlls (field, false);
 				BattlefieldStateReader.instance.Enemies [field] = int.Parse (_selected);
 			}
 
@@ -83,8 +92,24 @@ public class SelectFigurineController : AbstractPanelController
 			}
 		}
 	}
+		
 
 	#endregion
+
+	private void FillShowFieldControlls(int field, bool isPlayer)
+	{
+		int x = GridDrawer.instance.getGridX (field);
+		int y = GridDrawer.instance.getGridZ (field);
+
+		xText.GetComponent<Text> ().text = x.ToString ();
+		yText.GetComponent<Text> ().text = y.ToString ();
+
+		if (isPlayer)
+			image.GetComponent<Image> ().sprite = playerFieldImage;
+		else
+			image.GetComponent<Image> ().sprite = enemyFieldImage;
+
+	}
 
 	public override void GenerateContent()
 	{

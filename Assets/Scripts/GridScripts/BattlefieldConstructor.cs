@@ -63,6 +63,9 @@ public class BattlefieldConstructor : MonoBehaviour {
 
 			UiItemLibrary.instance.selectFigurinePanel.GetComponent<SelectFigurineController> ().enemies = enemiesQueue;
 			UiItemLibrary.instance.selectFigurinePanel.GetComponent<SelectFigurineController> ().players = playersQueue;
+
+			UiItemLibrary.instance.selectFigurinePanel.GetComponent<SelectFigurineController> ();
+
 			UiItemLibrary.instance.selectFigurinePanel.SetActive (true);
 		}
 

@@ -1,17 +1,23 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Items/UsableItem.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GUI\SelectPanel\SelectFigurineController.cs">
     <Files>
-      <File FileName="Assets/Scripts/Database/DatabaseController.cs" Line="200" Column="35" />
-      <File FileName="Assets/Scripts/GUI/SelectPanel/SelectFigurineOptionController.cs" Line="1" Column="1" />
-      <File FileName="Assets/CharacterCreationPanel.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GUI/SelectPanel/SelectFigurineController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Items/UsableItem.cs" Line="2" Column="33" />
-      <File FileName="Assets/Scripts/Items/Item.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Items/Armor.cs" Line="11" Column="1" />
-      <File FileName="Assets/Scripts/Actions/SelfEffect.cs" Line="20" Column="30" />
-      <File FileName="Assets/Scripts/Actions/AbstractAction.cs" Line="54" Column="18" />
-      <File FileName="Assets/Scripts/Actions/Attack.cs" Line="23" Column="1" />
+      <File FileName="Assets\Scripts\Database\DatabaseController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUI\SelectPanel\SelectFigurineOptionController.cs" Line="1" Column="1" />
+      <File FileName="Assets\CharacterCreationPanel.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUI\SelectPanel\SelectFigurineController.cs" Line="108" Column="58" />
+      <File FileName="Assets\Scripts\Items\UsableItem.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Items\Item.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Items\Armor.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Actions\SelfEffect.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Actions\AbstractAction.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Actions\Attack.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LevelCreator\BattlefieldStateReader.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GridScripts\BattlefieldConstructor.cs" Line="67" Column="88" />
+      <File FileName="Assets\Scripts\GUI\SelectPanel\LoadPanelController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUI\SelectPanel\AbstractPanelController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Editor\ScriptBatch.cs" Line="18" Column="3" />
+      <File FileName="Assets\Scripts\GridScripts\CellStatus.cs" Line="60" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
