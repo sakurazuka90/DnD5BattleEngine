@@ -12,6 +12,10 @@ public class Attack : AbstractAction{
 		mIsActive = true;
 		mWeapon = pmWeapon;
 
+		if (WeaponType.MELEE == pmWeapon.WeaponType)
+			mAbility = AbilityNames.STRENGTH;
+		else
+			mAbility = AbilityNames.DEXTERITY;
 
 	}
 
