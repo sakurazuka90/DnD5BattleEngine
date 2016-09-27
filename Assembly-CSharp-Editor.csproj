@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Editor\ScriptBatch.cs" />
      <None Include="Assets\Shaders\NewSurfaceShader.shader" />
+     <None Include="Assets\Images\Nowy dokument tekstowy.txt" />
      <None Include="Assets\3rdParty\Free_Rocks\Standard Assets\Skyboxes\_skybox info.txt" />
  <Reference Include="Assembly-UnityScript">
  <HintPath>C:/Users/Sakurazuka/Documents/DnD5BattleEngine/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
@@ -96,6 +97,10 @@
  <Reference Include="UnityEditor.WindowsStandalone.Extensions">
  <HintPath>E:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp.csproj">
+      <Project>{D76A72C6-98F3-E9B0-BACB-83DEA4349EA3}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

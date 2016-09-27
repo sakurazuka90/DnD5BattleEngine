@@ -130,6 +130,15 @@ public class GridDrawer : MonoBehaviour
 
 		return new Vector3 (gridX + 0.5f, pmY, gridZ + 0.5f);
 	}
+
+
+	public Vector3 getCellPositionRaycast (int id, float pmY = 0.0f)
+	{
+		float gridX = getGridX (id);
+		float gridZ = getGridZ (id);
+
+		return new Vector3 (gridX + 0.5f, pmY, gridZ + 0.5f);
+	}
 	/*
 	 * Czysci statusy wszystkich pol grida 
 	 */

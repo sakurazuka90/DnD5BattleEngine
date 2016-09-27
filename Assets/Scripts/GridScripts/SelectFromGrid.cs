@@ -1036,11 +1036,11 @@ public class SelectFromGrid : MonoBehaviour
 
 	private List<int> RemoveCellsWithBlockedLoS (int pmInitialCell, List<int> pmRangeCells)
 	{
-		Vector3 lvStartPos = GridDrawer.instance.getCellPosition (pmInitialCell, 1.0f);
+		Vector3 lvStartPos = GridDrawer.instance.getCellPositionRaycast (pmInitialCell, 1.0f);
 		List<int> lvResult = new List<int> ();
 
 		foreach (int lvCellId in pmRangeCells) {
-			Vector3 lvNewVec = GridDrawer.instance.getCellPosition (lvCellId, 1.0f);
+			Vector3 lvNewVec = GridDrawer.instance.getCellPositionRaycast (lvCellId, 1.0f);
 			Vector3 lvDirection = lvNewVec - lvStartPos;
 
 			float lvLength = lvDirection.magnitude;
