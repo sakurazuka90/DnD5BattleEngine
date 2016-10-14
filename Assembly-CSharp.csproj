@@ -58,6 +58,7 @@
      <Compile Include="Assets\EventController.cs" />
      <Compile Include="Assets\FigurinePositionController.cs" />
      <Compile Include="Assets\ItemDisplayController.cs" />
+     <Compile Include="Assets\ObstacleBaseMapper.cs" />
      <Compile Include="Assets\PanelSelector.cs" />
      <Compile Include="Assets\RightClickController.cs" />
      <Compile Include="Assets\SavePanel.cs" />
