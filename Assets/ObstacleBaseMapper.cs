@@ -28,7 +28,7 @@ public class ObstacleBaseMapper : MonoBehaviour {
 			for (int i = 0; i < 3; i++) {
 				if (mapping [i + (level * 3)]) {
 					GameObject instance = Instantiate (block);
-					instance.transform.SetParent (this.gameObject.transform);
+					instance.transform.SetParent (this.gameObject.transform.GetChild(0));
 					instance.transform.Translate (new Vector3 (xMove, 1.0f, zMove));
 				}
 				xMove += 1.0F;
