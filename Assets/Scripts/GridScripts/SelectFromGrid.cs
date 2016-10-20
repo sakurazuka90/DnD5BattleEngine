@@ -176,7 +176,7 @@ public class SelectFromGrid : MonoBehaviour
 							lvMover.gridX = (int)lvPosition.x;
 							lvMover.gridZ = (int)lvPosition.z;
 
-							if (Input.GetMouseButtonDown (0)) {
+							if (Input.GetMouseButtonDown (0) && lvFigurine.GetComponent<ObstacleBaseMapper>().IsObstacleOnLegalFields()) {
 								lvStatus.picked = false;
 								lvStatus.gridX = (int)lvPosition.x;
 								lvStatus.gridZ = (int)lvPosition.z;
