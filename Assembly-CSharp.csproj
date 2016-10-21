@@ -133,7 +133,9 @@
      <Compile Include="Assets\Scripts\GridScripts\CreateNewBattlefield.cs" />
      <Compile Include="Assets\Scripts\GridScripts\FunctionalStates.cs" />
      <Compile Include="Assets\Scripts\GridScripts\GridDrawer.cs" />
-     <Compile Include="Assets\Scripts\GridScripts\SelectFromGrid.cs" />
+     <Compile Include="Assets\Scripts\GridScripts\SelectFromGrid\AbstractSelectFromGrid.cs" />
+     <Compile Include="Assets\Scripts\GridScripts\SelectFromGrid\CreatorSelectFromGrid.cs" />
+     <Compile Include="Assets\Scripts\GridScripts\SelectFromGrid\SelectFromGrid.cs" />
      <Compile Include="Assets\Scripts\Items\Armor.cs" />
      <Compile Include="Assets\Scripts\Items\EquipementTypes.cs" />
      <Compile Include="Assets\Scripts\Items\Item.cs" />

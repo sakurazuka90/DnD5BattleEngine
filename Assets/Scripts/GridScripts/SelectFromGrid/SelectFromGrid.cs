@@ -2,10 +2,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
-public class SelectFromGrid : MonoBehaviour
+public class SelectFromGrid : AbstractSelectFromGrid
 {
-
-	private CellStatus lastStatus;
 
 	private static string XPOSITION = "XPOSITION";
 	private static string ZPOSITION = "ZPOSITION";
@@ -64,212 +62,197 @@ public class SelectFromGrid : MonoBehaviour
 	}
 
 
-	void Update ()
+	protected override void RaycastAction (GameObject gridCell)
 	{
-		handleLastStatus ();		
 
-		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-		RaycastHit[] hits = Physics.RaycastAll (ray);
+		CellStatus lvCellStatus = gridCell.GetComponent<CellStatus> ();
 
-		if (!inventoryOpen && !EventSystem.current.IsPointerOverGameObject ()) {
+		handleMouseOverCell (lvCellStatus);
 
-			foreach (RaycastHit hit in hits) {
+		Vector3 lvPosition = gridCell.transform.position;
+		int lvCellId = GridDrawer.instance.GetGridId ((int)lvPosition.x, (int)lvPosition.z);
 
-				// podswietlanie klatek, przesylanie koordynatow do figurki
-				if (hit.collider.tag.Equals ("GridCell") && hit.collider.gameObject.GetComponent<CellStatus> ().avaiable) {
-					CellStatus lvCellStatus = hit.collider.gameObject.GetComponent<CellStatus> ();
-
-					handleMouseOverCell (lvCellStatus);
-
-					Vector3 lvPosition = hit.collider.transform.position;
-					int lvCellId = GridDrawer.instance.GetGridId ((int)lvPosition.x, (int)lvPosition.z);
-
-					if (mMoveMode && lvCellStatus.movable) {
-						string lvId = lvCellId.ToString ();
-						DrawWalkableLine (mPaths [lvId]);
-					}
+		if (mMoveMode && lvCellStatus.movable) {
+			string lvId = lvCellId.ToString ();
+			DrawWalkableLine (mPaths [lvId]);
+		}
 
 
-					GameObject lvFigurine;
-					PlayerSpooler lvSpooler = null;
-					FigurineStatus lvStatus = null;
+		GameObject lvFigurine;
+		FigurineStatus lvStatus = null;
 
-					if (!mCreatorMode) {
-						lvSpooler = PlayerSpooler.instance;
-						lvFigurine = lvSpooler.mSpooledObject;
-					} else {
-						lvFigurine = creatorObstacle;
-						SetStateToCells (constructorFilledSquares, CellStates.ENABLED);
-					}
+		if (!mCreatorMode) {
+			lvFigurine = PlayerSpooler.instance.mSpooledObject;
+		} else {
+			lvFigurine = creatorObstacle;
+			SetStateToCells (constructorFilledSquares, CellStates.ENABLED);
+		}
 
-					if (lvFigurine != null)
-						lvStatus = lvFigurine.GetComponent<FigurineStatus> ();
+		if (lvFigurine != null)
+			lvStatus = lvFigurine.GetComponent<FigurineStatus> ();
 					
 
-					if (mMoveMode) {
-						if (Input.GetMouseButtonDown (0)) {
-							FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover> ();
-								
-							string lvId = lvCellId.ToString ();
-							if (mPaths.ContainsKey (lvId)) {
-								lvMover.movePoints = lvSpooler.GetSpooledPlayer ().movesLeft;
-								lvMover.path = mPaths [lvId];
-								lvMover.isMoving = true;
+		if (mMoveMode) {
+			MoveModeAction (lvCellId, lvFigurine);
+		} else if (mTargetMode) {
+			if (Input.GetMouseButtonDown (0) && lvCellStatus.target) {
+				Player lvTarget = PlayerSpooler.instance.GetPlayerOnField (lvCellId);
+				PlayerSpooler.instance.ResolveSpooledAttack (lvTarget);
+				mTargetMode = false;
+			}
 
-								GridDrawer.instance.ClearGridStatus ();
+		} else if (mCreatorMode) {
 
-								mMoveMode = false;
-								ClearWalkableLine ();
-								mPaths = new Dictionary<string, string> ();
-							}
-						} else if (Input.GetMouseButtonDown (1)) {
-							mMoveMode = false;
-							GridDrawer.instance.ClearGridStatus ();
+			if (functionalPlaceMode) {
+				if (Input.GetMouseButtonDown (0)) {
+					lvCellStatus.functionalState = currentFunctionalState;
+					functionalPlaceMode = false;
+					currentFunctionalState = FunctionalStates.NONE;
 
-							mMoveMode = false;
-							ClearWalkableLine ();
-							mPaths = new Dictionary<string, string> ();
-							FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover> ();
-							lvMover.AbortMovement ();
+					lvCellStatus.ClearTemporaryFunctionalStates ();
+
+					AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
+					lvStatusEditor.clearFunctional ();
+
+					string lvFunctionalName = "";
+					string lvFunctionalButtonName = "";
+
+					switch (lvCellStatus.functionalState) {
+					case FunctionalStates.PLAYER_SPAWN:
+						lvFunctionalName = "Player Spawn Point";
+						lvFunctionalButtonName = "SpawnPlayersSprite";
+						break;
+					case FunctionalStates.ENEMY_SPAWN:
+						lvFunctionalName = "Enemy Spawn Point";
+						lvFunctionalButtonName = "SpawnPlayersSprite2";
+						break;
+					}
+
+					lvStatusEditor.populateFunctional (lvFunctionalName, lvFunctionalButtonName, lvCellStatus);
+				}
+
+			} else if (lvStatus != null && lvStatus.picked) {
+				SetStateToCells (this.constructorFilledSquares, CellStates.DISABLED);
+				FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover> ();
+				lvMover.gridX = (int)lvPosition.x;
+				lvMover.gridZ = (int)lvPosition.z;
+
+				if (Input.GetMouseButtonDown (0) && lvFigurine.GetComponent<ObstacleBaseMapper> ().IsObstacleOnLegalFields ()) {
+					lvStatus.picked = false;
+					lvStatus.gridX = (int)lvPosition.x;
+					lvStatus.gridZ = (int)lvPosition.z;
+					putObstacleOnField (lvCellId, new List<int> ());
+
+					lvFigurine.transform.parent = GridDrawer.instance.mCells [lvCellId].transform;
+				}
+
+				if (Input.GetMouseButtonDown (1)) {
+					lvFigurine.GetComponent<ObstacleRotator> ().Rotate (90.0f);
+				}
+			} else {
+				if (Input.GetMouseButtonDown (0)) {
+					if (gridCell.transform.childCount > 0) {
+						ObstacleStatus lvObstacleStatus = gridCell.transform.GetChild (0).GetComponent<ObstacleStatus> ();
+						AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
+
+						if (lvStatusEditor.obstacleStatus != null && !"".Equals (lvStatusEditor.obstacleStatus.name)) {
+							GameObject lvOldObstacle = GameObject.Find (lvStatusEditor.obstacleStatus.name);
+							lvOldObstacle.GetComponent<ShaderSwitcher> ().SwitchOutlineOff ();
 						}
 
-					} else if (mTargetMode) {
-						if (Input.GetMouseButtonDown (0) && lvCellStatus.target) {
-							Player lvTarget = lvSpooler.GetPlayerOnField (lvCellId);
-							lvSpooler.ResolveSpooledAttack (lvTarget);
-							mTargetMode = false;
+						lvStatusEditor.obstacleStatus = lvObstacleStatus;
+						lvStatusEditor.populate ();
+
+						gridCell.transform.GetChild (0).GetComponent<ShaderSwitcher> ().SwitchOutlineOn ();
+					} else {
+
+						AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
+
+						if (lvStatusEditor.obstacleStatus != null && !"".Equals (lvStatusEditor.obstacleStatus.name)) {
+							GameObject lvOldObstacle = GameObject.Find (lvStatusEditor.obstacleStatus.name);
+							lvOldObstacle.GetComponent<ShaderSwitcher> ().SwitchOutlineOff ();
 						}
 
-					} else if (mCreatorMode) {
-
-						if (functionalPlaceMode) {
-							if (Input.GetMouseButtonDown (0)) {
-								lvCellStatus.functionalState = currentFunctionalState;
-								functionalPlaceMode = false;
-								currentFunctionalState = FunctionalStates.NONE;
-
-								lvCellStatus.ClearTemporaryFunctionalStates ();
-
-								AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
-								lvStatusEditor.clearFunctional ();
-
-								string lvFunctionalName = "";
-								string lvFunctionalButtonName = "";
-
-								switch (lvCellStatus.functionalState) {
-								case FunctionalStates.PLAYER_SPAWN:
-									lvFunctionalName = "Player Spawn Point";
-									lvFunctionalButtonName = "SpawnPlayersSprite";
-									break;
-								case FunctionalStates.ENEMY_SPAWN:
-									lvFunctionalName = "Enemy Spawn Point";
-									lvFunctionalButtonName = "SpawnPlayersSprite2";
-									break;
-								}
-
-								lvStatusEditor.populateFunctional (lvFunctionalName, lvFunctionalButtonName, lvCellStatus);
-							}
-
-						} else if (lvStatus != null && lvStatus.picked) {
-							SetStateToCells (this.constructorFilledSquares, CellStates.DISABLED);
-							FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover> ();
-							lvMover.gridX = (int)lvPosition.x;
-							lvMover.gridZ = (int)lvPosition.z;
-
-							if (Input.GetMouseButtonDown (0) && lvFigurine.GetComponent<ObstacleBaseMapper>().IsObstacleOnLegalFields()) {
-								lvStatus.picked = false;
-								lvStatus.gridX = (int)lvPosition.x;
-								lvStatus.gridZ = (int)lvPosition.z;
-								putObstacleOnField (lvCellId, new List<int> ());
-
-								lvFigurine.transform.parent = GridDrawer.instance.mCells [lvCellId].transform;
-							}
-
-							if (Input.GetMouseButtonDown (1)) {
-								lvFigurine.GetComponent<ObstacleRotator> ().Rotate (90.0f);
-							}
-						} else {
-							if (Input.GetMouseButtonDown (0)) {
-								if (hit.collider.gameObject.transform.childCount > 0) {
-									ObstacleStatus lvObstacleStatus = hit.collider.gameObject.transform.GetChild (0).GetComponent<ObstacleStatus> ();
-									AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
-
-									if (lvStatusEditor.obstacleStatus != null && !"".Equals (lvStatusEditor.obstacleStatus.name)) {
-										GameObject lvOldObstacle = GameObject.Find (lvStatusEditor.obstacleStatus.name);
-										lvOldObstacle.GetComponent<ShaderSwitcher> ().SwitchOutlineOff ();
-									}
-
-									lvStatusEditor.obstacleStatus = lvObstacleStatus;
-									lvStatusEditor.populate ();
-
-									hit.collider.gameObject.transform.GetChild (0).GetComponent<ShaderSwitcher> ().SwitchOutlineOn ();
-								} else {
-
-									AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
-
-									if (lvStatusEditor.obstacleStatus != null && !"".Equals (lvStatusEditor.obstacleStatus.name)) {
-										GameObject lvOldObstacle = GameObject.Find (lvStatusEditor.obstacleStatus.name);
-										lvOldObstacle.GetComponent<ShaderSwitcher> ().SwitchOutlineOff ();
-									}
-
-									lvStatusEditor.clear ();
-								}
+						lvStatusEditor.clear ();
+					}
 
 							
-								FunctionalStates lvState = lvCellStatus.functionalState;
+					FunctionalStates lvState = lvCellStatus.functionalState;
 
-								if (lvState != FunctionalStates.NONE) {
+					if (lvState != FunctionalStates.NONE) {
 
-									string lvFunctionalName = "";
-									string lvFunctionalButtonName = "";
+						string lvFunctionalName = "";
+						string lvFunctionalButtonName = "";
 
-									switch (lvState) {
-									case FunctionalStates.PLAYER_SPAWN:
-										lvFunctionalName = "Player Spawn Point";
-										lvFunctionalButtonName = "SpawnPlayersSprite";
-										break;
-									case FunctionalStates.ENEMY_SPAWN:
-										lvFunctionalName = "Enemy Spawn Point";
-										lvFunctionalButtonName = "SpawnPlayersSprite2";
-										break;
-									}
-
-									AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
-									lvStatusEditor.clearFunctional ();
-									lvStatusEditor.populateFunctional (lvFunctionalName, lvFunctionalButtonName, lvCellStatus, lvCellStatus.Function);
-
-								} else {
-									AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
-									lvStatusEditor.clearFunctional ();
-
-								}
-							}
+						switch (lvState) {
+						case FunctionalStates.PLAYER_SPAWN:
+							lvFunctionalName = "Player Spawn Point";
+							lvFunctionalButtonName = "SpawnPlayersSprite";
+							break;
+						case FunctionalStates.ENEMY_SPAWN:
+							lvFunctionalName = "Enemy Spawn Point";
+							lvFunctionalButtonName = "SpawnPlayersSprite2";
+							break;
 						}
+
+						AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
+						lvStatusEditor.clearFunctional ();
+						lvStatusEditor.populateFunctional (lvFunctionalName, lvFunctionalButtonName, lvCellStatus, lvCellStatus.Function);
+
+					} else {
+						AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
+						lvStatusEditor.clearFunctional ();
+
 					}
 				}
 			}
 		}
+
 	}
 
-	private void handleLastStatus()
+	protected override bool RaycastActionCondition ()
 	{
-		if (lastStatus != null) {
-			lastStatus.selected = false;
-			if (functionalPlaceMode) {
-				lastStatus.spawnEnemy = false;
-				lastStatus.spawnPlayer = false;
+		return !inventoryOpen && !EventSystem.current.IsPointerOverGameObject ();
+	}
+
+
+	private void MoveModeAction (int cellId, GameObject figurine)
+	{
+		if (Input.GetMouseButtonDown (0)) {
+			FigurineMover lvMover = figurine.GetComponent<FigurineMover> ();
+
+			string lvId = cellId.ToString ();
+			if (mPaths.ContainsKey (lvId)) {
+				lvMover.movePoints = PlayerSpooler.instance.GetSpooledPlayer ().movesLeft;
+				lvMover.path = mPaths [lvId];
+				lvMover.isMoving = true;
+
+				GridDrawer.instance.ClearGridStatus ();
+
+				mMoveMode = false;
+				ClearWalkableLine ();
+				mPaths = new Dictionary<string, string> ();
 			}
+		} else if (Input.GetMouseButtonDown (1)) {
+			mMoveMode = false;
+			GridDrawer.instance.ClearGridStatus ();
+
+			mMoveMode = false;
+			ClearWalkableLine ();
+			mPaths = new Dictionary<string, string> ();
+			FigurineMover lvMover = figurine.GetComponent<FigurineMover> ();
+			lvMover.AbortMovement ();
 		}
 	}
 
-	private void handleMouseOverCell(CellStatus pmCellStatus)
+	private void handleMouseOverCell (CellStatus pmCellStatus)
 	{
 		if (!mMoveMode && !mTargetMode && !functionalPlaceMode) {
 			pmCellStatus.selected = true;
 		} else if (mTargetMode) {
 			if (pmCellStatus.target)
 				pmCellStatus.selected = true;
-		} else if(functionalPlaceMode){
+		} else if (functionalPlaceMode) {
 			switch (currentFunctionalState) {
 			case FunctionalStates.PLAYER_SPAWN:
 				pmCellStatus.spawnPlayer = true;
@@ -490,7 +473,7 @@ public class SelectFromGrid : MonoBehaviour
 					lvCellData.Add (PARENT_PATH, lvCellPath);
 					lvCellData.Add (STRAIGHT_LINE, "Y");
 
-					if (GridDrawer.IsCellDifficultTerrain(lvCellUpp)) {
+					if (GridDrawer.IsCellDifficultTerrain (lvCellUpp)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
 					} else {
 						lvCellData.Add (IS_DIFFICULT, "N");
@@ -519,7 +502,7 @@ public class SelectFromGrid : MonoBehaviour
 					lvCellData.Add (PARENT_PATH, lvCellPath);
 					lvCellData.Add (STRAIGHT_LINE, "Y");
 
-					if (GridDrawer.IsCellDifficultTerrain(lvCellBott)) {
+					if (GridDrawer.IsCellDifficultTerrain (lvCellBott)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
 					} else {
 						lvCellData.Add (IS_DIFFICULT, "N");
@@ -548,7 +531,7 @@ public class SelectFromGrid : MonoBehaviour
 					lvCellData.Add (PARENT_PATH, lvCellPath);
 					lvCellData.Add (STRAIGHT_LINE, "Y");
 
-					if (GridDrawer.IsCellDifficultTerrain(lvCellRight)) {
+					if (GridDrawer.IsCellDifficultTerrain (lvCellRight)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
 					} else {
 						lvCellData.Add (IS_DIFFICULT, "N");
@@ -577,7 +560,7 @@ public class SelectFromGrid : MonoBehaviour
 					lvCellData.Add (PARENT_PATH, lvCellPath);
 					lvCellData.Add (STRAIGHT_LINE, "Y");
 
-					if (GridDrawer.IsCellDifficultTerrain(lvCellLeft)) {
+					if (GridDrawer.IsCellDifficultTerrain (lvCellLeft)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
 					} else {
 						lvCellData.Add (IS_DIFFICULT, "N");
@@ -607,7 +590,7 @@ public class SelectFromGrid : MonoBehaviour
 					lvCellData.Add (PARENT_PATH, lvCellPath);
 					lvCellData.Add (STRAIGHT_LINE, "N");
 
-					if (GridDrawer.IsCellDifficultTerrain(lvCellTopRight)) {
+					if (GridDrawer.IsCellDifficultTerrain (lvCellTopRight)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
 					} else {
 						lvCellData.Add (IS_DIFFICULT, "N");
@@ -635,7 +618,7 @@ public class SelectFromGrid : MonoBehaviour
 					lvCellData.Add (PARENT_PATH, lvCellPath);
 					lvCellData.Add (STRAIGHT_LINE, "N");
 
-					if (GridDrawer.IsCellDifficultTerrain(lvCellTopLeft)) {
+					if (GridDrawer.IsCellDifficultTerrain (lvCellTopLeft)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
 					} else {
 						lvCellData.Add (IS_DIFFICULT, "N");
@@ -663,7 +646,7 @@ public class SelectFromGrid : MonoBehaviour
 					lvCellData.Add (PARENT_PATH, lvCellPath);
 					lvCellData.Add (STRAIGHT_LINE, "N");
 
-					if (GridDrawer.IsCellDifficultTerrain(lvCellBotRight)) {
+					if (GridDrawer.IsCellDifficultTerrain (lvCellBotRight)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
 					} else {
 						lvCellData.Add (IS_DIFFICULT, "N");
@@ -691,7 +674,7 @@ public class SelectFromGrid : MonoBehaviour
 					lvCellData.Add (PARENT_PATH, lvCellPath);
 					lvCellData.Add (STRAIGHT_LINE, "N");
 
-					if (GridDrawer.IsCellDifficultTerrain(lvCellBotLeft)) {
+					if (GridDrawer.IsCellDifficultTerrain (lvCellBotLeft)) {
 						lvCellData.Add (IS_DIFFICULT, "Y");
 					} else {
 						lvCellData.Add (IS_DIFFICULT, "N");
@@ -792,7 +775,7 @@ public class SelectFromGrid : MonoBehaviour
 	}
 
 
-	public List<int> GetAdjacentNonBlockedFields(int pmCellId)
+	public List<int> GetAdjacentNonBlockedFields (int pmCellId)
 	{
 		List<int> lvFields = GetAdjacentFields (pmCellId);
 		List<int> lvResult = new List<int> ();
@@ -806,7 +789,7 @@ public class SelectFromGrid : MonoBehaviour
 		return lvResult;
 	}
 
-	public List<int> GetAdjacentNonBlockedFieldsWithDiagonalCheck(int pmCellId)
+	public List<int> GetAdjacentNonBlockedFieldsWithDiagonalCheck (int pmCellId)
 	{
 		List<int> lvFields = GetAdjacentFields (pmCellId);
 		List<int> lvResult = new List<int> ();
@@ -816,9 +799,9 @@ public class SelectFromGrid : MonoBehaviour
 		bool leftMovable = false;
 		bool rightMovable = false;
 
-		for(int i = 0; i< lvFields.Count; i++) {
+		for (int i = 0; i < lvFields.Count; i++) {
 
-			if (!GridDrawer.instance.IsCellBlockedByObstacle (lvFields[i])) {
+			if (!GridDrawer.instance.IsCellBlockedByObstacle (lvFields [i])) {
 
 				if (i < 4) {
 					lvResult.Add (lvFields [i]);
@@ -1167,7 +1150,7 @@ public class SelectFromGrid : MonoBehaviour
 		int count = 0;
 
 		foreach (string id in pmPath) {
-			if (GridDrawer.IsCellDifficultTerrain(GridDrawer.instance.mCells [int.Parse (id)]))
+			if (GridDrawer.IsCellDifficultTerrain (GridDrawer.instance.mCells [int.Parse (id)]))
 				count++;
 		}
 

@@ -96,37 +96,6 @@ public class CellStatus : MonoBehaviour
 		}
 	}
 
-	private void renderSelected()
-	{
-		if (FunctionalStates.NONE != functionalState) {
-			renderFunctional(true);
-		} else {
-			cellMeshRenderer.material = lvSelectedMaterial;
-		}
-	}
-
-	private void renderFunctional(bool pmSelected)
-	{
-		if (!pmSelected) {
-			switch (functionalState) {
-			case FunctionalStates.PLAYER_SPAWN:
-				cellMeshRenderer.material = lvSpawnPlayerMaterial;
-				break;
-			case FunctionalStates.ENEMY_SPAWN:
-				cellMeshRenderer.material = lvSpawnEnemyMaterial;
-				break;
-			}
-		} else {
-			switch (functionalState) {
-			case FunctionalStates.PLAYER_SPAWN:
-				cellMeshRenderer.material = lvSpawnPlayerMaterialSelected;
-				break;
-			case FunctionalStates.ENEMY_SPAWN:
-				cellMeshRenderer.material = lvSpawnEnemyMaterialSelected;
-				break;
-			}
-		}
-	}
 
 	public void ClearStatus ()
 	{
@@ -155,4 +124,45 @@ public class CellStatus : MonoBehaviour
 				return false;
 		}
 	}
+
+	public void Deselect()
+	{
+		this.selected = false;
+		ClearTemporaryFunctionalStates ();
+	}
+
+	private void renderSelected()
+	{
+		if (FunctionalStates.NONE != functionalState) {
+			renderFunctional(true);
+		} else {
+			cellMeshRenderer.material = lvSelectedMaterial;
+		}
+	}
+
+
+
+	private void renderFunctional(bool pmSelected)
+	{
+		if (!pmSelected) {
+			switch (functionalState) {
+			case FunctionalStates.PLAYER_SPAWN:
+				cellMeshRenderer.material = lvSpawnPlayerMaterial;
+				break;
+			case FunctionalStates.ENEMY_SPAWN:
+				cellMeshRenderer.material = lvSpawnEnemyMaterial;
+				break;
+			}
+		} else {
+			switch (functionalState) {
+			case FunctionalStates.PLAYER_SPAWN:
+				cellMeshRenderer.material = lvSpawnPlayerMaterialSelected;
+				break;
+			case FunctionalStates.ENEMY_SPAWN:
+				cellMeshRenderer.material = lvSpawnEnemyMaterialSelected;
+				break;
+			}
+		}
+	}
+
 }

@@ -30,7 +30,6 @@ public class GridDrawer : MonoBehaviour
 
 	void Start ()
 	{
-		//Create ();
 	}
 
 	public void Create ()
