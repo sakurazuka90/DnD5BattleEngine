@@ -131,6 +131,37 @@ public class CellStatus : MonoBehaviour
 		ClearTemporaryFunctionalStates ();
 	}
 
+	public void SetState(CellStates state)
+	{
+		switch (state) {
+			case CellStates.DISABLED:
+				this.avaiable = false;
+				break;
+			case CellStates.ENABLED:
+				this.avaiable = true;
+				break;
+			case CellStates.TARGET:
+				this.target = true;
+				break;
+			case CellStates.OPPORTUNITY:
+				this.lvOportunity = true;
+				break;
+			case CellStates.MOVABLE:
+				this.movable = true;
+				break;
+			case CellStates.CLOSE_RANGE:
+				this.closeRange = true;
+				break;
+			case CellStates.FAR_RANGE:
+				this.farRange = true;
+				break;	
+			default:
+				this.avaiable = true;
+				break;
+		}
+	}
+
+
 	private void renderSelected()
 	{
 		if (FunctionalStates.NONE != functionalState) {
@@ -139,8 +170,6 @@ public class CellStatus : MonoBehaviour
 			cellMeshRenderer.material = lvSelectedMaterial;
 		}
 	}
-
-
 
 	private void renderFunctional(bool pmSelected)
 	{

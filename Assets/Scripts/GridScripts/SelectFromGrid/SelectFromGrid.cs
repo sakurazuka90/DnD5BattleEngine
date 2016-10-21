@@ -879,31 +879,17 @@ public class SelectFromGrid : AbstractSelectFromGrid
 	{
 		foreach (int lvField in pmCellsList) {
 			CellStatus lvStatus = GridDrawer.instance.mCells [lvField].GetComponent<CellStatus> ();
+			lvStatus.SetState (pmStatus);
 
 			switch (pmStatus) {
-			case CellStates.DISABLED:
-				lvStatus.avaiable = false;
-				break;
-			case CellStates.ENABLED:
-				lvStatus.avaiable = true;
-				break;
 			case CellStates.TARGET:
 				mTargetMode = true;
-				lvStatus.target = true;
-				break;
-			case CellStates.OPPORTUNITY:
-				lvStatus.lvOportunity = true;
-				break;
-			case CellStates.MOVABLE:
-				lvStatus.movable = true;
 				break;
 			case CellStates.CLOSE_RANGE:
 				mTargetMode = true;
-				lvStatus.closeRange = true;
 				break;
 			case CellStates.FAR_RANGE:
 				mTargetMode = true;
-				lvStatus.farRange = true;
 				break;	
 			default:
 				break;

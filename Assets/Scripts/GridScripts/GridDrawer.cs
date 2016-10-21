@@ -239,4 +239,12 @@ public class GridDrawer : MonoBehaviour
 		return fields;
 	}
 
+	public void SetStateToCells (List<int> pmCellsList, CellStates pmStatus)
+	{
+		foreach (int lvField in pmCellsList) {
+			CellStatus lvStatus = instance.mCells [lvField].GetComponent<CellStatus> ();
+			lvStatus.SetState (pmStatus);
+		}
+	}
+
 }

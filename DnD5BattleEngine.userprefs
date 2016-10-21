@@ -1,9 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GridScripts\SelectFromGrid.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GridScripts\SelectFromGrid\SelectFromGrid.cs">
     <Files>
-      <File FileName="Assets\ObstacleBaseMapper.cs" Line="57" Column="16" />
-      <File FileName="Assets\Scripts\GridScripts\SelectFromGrid.cs" Line="23" Column="2" />
+      <File FileName="Assets\Scripts\GridScripts\SelectFromGrid\SelectFromGrid.cs" Line="95" Column="15" />
+      <File FileName="Assets\Scripts\GridScripts\SelectFromGrid\CreatorSelectFromGrid.cs" Line="29" Column="3" />
+      <File FileName="Assets\Scripts\GridScripts\CellStatus.cs" Line="159" Column="5" />
+      <File FileName="Assets\Scripts\GridScripts\GridDrawer.cs" Line="247" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
