@@ -81,16 +81,10 @@ public class SelectFromGrid : AbstractSelectFromGrid
 		GameObject lvFigurine;
 		FigurineStatus lvStatus = null;
 
-		if (!mCreatorMode) {
-			lvFigurine = PlayerSpooler.instance.mSpooledObject;
-		} else {
-			lvFigurine = creatorObstacle;
-			SetStateToCells (constructorFilledSquares, CellStates.ENABLED);
-		}
+		lvFigurine = PlayerSpooler.instance.mSpooledObject;
 
 		if (lvFigurine != null)
 			lvStatus = lvFigurine.GetComponent<FigurineStatus> ();
-					
 
 		if (mMoveMode) {
 			MoveModeAction (lvCellId, lvFigurine);
@@ -101,112 +95,7 @@ public class SelectFromGrid : AbstractSelectFromGrid
 				mTargetMode = false;
 			}
 
-		} else if (mCreatorMode) {
-
-			if (functionalPlaceMode) {
-				if (Input.GetMouseButtonDown (0)) {
-					lvCellStatus.functionalState = currentFunctionalState;
-					functionalPlaceMode = false;
-					currentFunctionalState = FunctionalStates.NONE;
-
-					lvCellStatus.ClearTemporaryFunctionalStates ();
-
-					AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
-					lvStatusEditor.clearFunctional ();
-
-					string lvFunctionalName = "";
-					string lvFunctionalButtonName = "";
-
-					switch (lvCellStatus.functionalState) {
-					case FunctionalStates.PLAYER_SPAWN:
-						lvFunctionalName = "Player Spawn Point";
-						lvFunctionalButtonName = "SpawnPlayersSprite";
-						break;
-					case FunctionalStates.ENEMY_SPAWN:
-						lvFunctionalName = "Enemy Spawn Point";
-						lvFunctionalButtonName = "SpawnPlayersSprite2";
-						break;
-					}
-
-					lvStatusEditor.populateFunctional (lvFunctionalName, lvFunctionalButtonName, lvCellStatus);
-				}
-
-			} else if (lvStatus != null && lvStatus.picked) {
-				SetStateToCells (this.constructorFilledSquares, CellStates.DISABLED);
-				FigurineMover lvMover = lvFigurine.GetComponent<FigurineMover> ();
-				lvMover.gridX = (int)lvPosition.x;
-				lvMover.gridZ = (int)lvPosition.z;
-
-				if (Input.GetMouseButtonDown (0) && lvFigurine.GetComponent<ObstacleBaseMapper> ().IsObstacleOnLegalFields ()) {
-					lvStatus.picked = false;
-					lvStatus.gridX = (int)lvPosition.x;
-					lvStatus.gridZ = (int)lvPosition.z;
-					putObstacleOnField (lvCellId, new List<int> ());
-
-					lvFigurine.transform.parent = GridDrawer.instance.mCells [lvCellId].transform;
-				}
-
-				if (Input.GetMouseButtonDown (1)) {
-					lvFigurine.GetComponent<ObstacleRotator> ().Rotate (90.0f);
-				}
-			} else {
-				if (Input.GetMouseButtonDown (0)) {
-					if (gridCell.transform.childCount > 0) {
-						ObstacleStatus lvObstacleStatus = gridCell.transform.GetChild (0).GetComponent<ObstacleStatus> ();
-						AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
-
-						if (lvStatusEditor.obstacleStatus != null && !"".Equals (lvStatusEditor.obstacleStatus.name)) {
-							GameObject lvOldObstacle = GameObject.Find (lvStatusEditor.obstacleStatus.name);
-							lvOldObstacle.GetComponent<ShaderSwitcher> ().SwitchOutlineOff ();
-						}
-
-						lvStatusEditor.obstacleStatus = lvObstacleStatus;
-						lvStatusEditor.populate ();
-
-						gridCell.transform.GetChild (0).GetComponent<ShaderSwitcher> ().SwitchOutlineOn ();
-					} else {
-
-						AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
-
-						if (lvStatusEditor.obstacleStatus != null && !"".Equals (lvStatusEditor.obstacleStatus.name)) {
-							GameObject lvOldObstacle = GameObject.Find (lvStatusEditor.obstacleStatus.name);
-							lvOldObstacle.GetComponent<ShaderSwitcher> ().SwitchOutlineOff ();
-						}
-
-						lvStatusEditor.clear ();
-					}
-
-							
-					FunctionalStates lvState = lvCellStatus.functionalState;
-
-					if (lvState != FunctionalStates.NONE) {
-
-						string lvFunctionalName = "";
-						string lvFunctionalButtonName = "";
-
-						switch (lvState) {
-						case FunctionalStates.PLAYER_SPAWN:
-							lvFunctionalName = "Player Spawn Point";
-							lvFunctionalButtonName = "SpawnPlayersSprite";
-							break;
-						case FunctionalStates.ENEMY_SPAWN:
-							lvFunctionalName = "Enemy Spawn Point";
-							lvFunctionalButtonName = "SpawnPlayersSprite2";
-							break;
-						}
-
-						AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
-						lvStatusEditor.clearFunctional ();
-						lvStatusEditor.populateFunctional (lvFunctionalName, lvFunctionalButtonName, lvCellStatus, lvCellStatus.Function);
-
-					} else {
-						AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
-						lvStatusEditor.clearFunctional ();
-
-					}
-				}
-			}
-		}
+		} 
 
 	}
 
