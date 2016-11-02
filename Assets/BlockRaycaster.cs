@@ -33,7 +33,8 @@ public class BlockRaycaster : MonoBehaviour {
 		{
 			GameObject item = hit.collider.gameObject;
 			if ("GridCell".Equals (item.tag)) {
-				isFieldFree = true;
+				CellStatus cellStatus = item.GetComponent<CellStatus> ();
+				isFieldFree = cellStatus.avaiable;
 			}
 		}
 

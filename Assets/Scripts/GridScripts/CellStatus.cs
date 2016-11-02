@@ -21,6 +21,7 @@ public class CellStatus : MonoBehaviour
 	public FunctionalStates functionalState;
 	private string function;
 	private int figurineId;
+	public int cellId;
 
 
 	public bool movable = false;
@@ -45,6 +46,11 @@ public class CellStatus : MonoBehaviour
 	public int FigurineId{
 		get{ return this.figurineId; }
 		set{ this.figurineId = value;}
+	}
+
+	public int CellId{
+		get{ return this.cellId; }
+		set{ this.cellId = value;}
 	}
 
 	// Use this for initialization

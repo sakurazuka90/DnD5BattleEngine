@@ -69,9 +69,11 @@ public class GridDrawer : MonoBehaviour
 		lvObject.AddComponent<MeshRenderer> ();
 
 		lvObject.GetComponent<MeshRenderer> ().material = cellMaterialValid;
-		lvObject.AddComponent<CellStatus> ().avaiable = true;
 
-
+		CellStatus cellStatus = lvObject.AddComponent<CellStatus> ();
+		cellStatus.avaiable = true;
+		cellStatus.CellId = GetGridId (x, z);
+	
 		Mesh lvMesh = CreateMesh ();
 		lvMesh.vertices = new Vector3[] {
 			MeshVertex (0, 0),

@@ -119,6 +119,7 @@ public class AssetStatsEditor : MonoBehaviour {
 
 	public void removeObstacle()
 	{
+
 		Destroy (GameObject.Find (obstacleStatus.name));
 		this.clear ();
 	}
