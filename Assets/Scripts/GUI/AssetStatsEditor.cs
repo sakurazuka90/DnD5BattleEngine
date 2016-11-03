@@ -119,8 +119,10 @@ public class AssetStatsEditor : MonoBehaviour {
 
 	public void removeObstacle()
 	{
-
-		Destroy (GameObject.Find (obstacleStatus.name));
+		GameObject obstacle = GameObject.Find (obstacleStatus.name);
+		int cellId = obstacle.transform.parent.gameObject.GetComponent<CellStatus> ().CellId;
+		CreatorSelectFromGrid.instance.RemoveObstacleFromField (cellId);
+		Destroy (obstacle);
 		this.clear ();
 	}
 

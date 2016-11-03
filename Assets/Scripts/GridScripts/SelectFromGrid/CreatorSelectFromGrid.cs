@@ -191,6 +191,12 @@ public class CreatorSelectFromGrid : AbstractSelectFromGrid
 		this.constructorFilledSquares.Add (pmCellId);
 	}
 
+	public void RemoveObstacleFromField(int pmCellId)
+	{
+		if(this.constructorFilledSquares.Contains(pmCellId))
+			this.constructorFilledSquares.Remove (pmCellId);
+	}
+
 	protected override bool RaycastActionCondition ()
 	{
 		return true;
