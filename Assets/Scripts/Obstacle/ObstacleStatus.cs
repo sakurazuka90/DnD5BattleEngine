@@ -11,6 +11,7 @@ public class ObstacleStatus : MonoBehaviour {
 	public bool isBlockingMovement;
 	public bool isBlockingLoS;
 	public int coverValue;
+	public List<int> fieldsUsed;
 
 	public ObstacleData getData()
 	{

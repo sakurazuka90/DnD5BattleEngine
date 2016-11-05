@@ -57,5 +57,22 @@ public class ObstacleBaseMapper : MonoBehaviour {
 		return legal;
 	}
 
+	public List<int> GetObstacleFields()
+	{
+		List<int> fields = new List<int> ();
+
+		foreach (GameObject block in blocks) {
+			BlockRaycaster raycaster = block.GetComponent<BlockRaycaster> ();
+
+			if (raycaster != null) {
+				int? field = raycaster.GetRaycastFieldId ();
+				if (field != null)
+					fields.Add (field.Value);
+			}
+		}
+
+		return fields;
+	}
+
 
 }

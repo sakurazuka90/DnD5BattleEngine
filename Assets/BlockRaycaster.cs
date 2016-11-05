@@ -40,4 +40,21 @@ public class BlockRaycaster : MonoBehaviour {
 
 		return isFieldFree;
 	}
+
+	public int? GetRaycastFieldId()
+	{
+		RaycastHit[] hits;
+		int? fieldId = null;
+		hits = Physics.RaycastAll(transform.position, new Vector3(0.0F, -1.0F, 0.0F), 100.0F);
+		foreach(RaycastHit hit in hits)
+		{
+			GameObject item = hit.collider.gameObject;
+			if ("GridCell".Equals (item.tag)) {
+				CellStatus cellStatus = item.GetComponent<CellStatus> ();
+				fieldId = cellStatus.CellId;
+			}
+		}
+
+		return fieldId;
+	}
 }

@@ -21,7 +21,7 @@ public class CellStatus : MonoBehaviour
 	public FunctionalStates functionalState;
 	private string function;
 	private int figurineId;
-	public int cellId;
+	private int cellId;
 
 
 	public bool movable = false;

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
+using System.Collections.Generic;
 
 public class AssetStatsEditor : MonoBehaviour {
 
@@ -120,8 +120,8 @@ public class AssetStatsEditor : MonoBehaviour {
 	public void removeObstacle()
 	{
 		GameObject obstacle = GameObject.Find (obstacleStatus.name);
-		int cellId = obstacle.transform.parent.gameObject.GetComponent<CellStatus> ().CellId;
-		CreatorSelectFromGrid.instance.RemoveObstacleFromField (cellId);
+		List<int> fields = obstacle.GetComponent<ObstacleStatus> ().fieldsUsed;
+		CreatorSelectFromGrid.instance.RemoveObstacleFromField (fields);
 		Destroy (obstacle);
 		this.clear ();
 	}

@@ -172,13 +172,19 @@ public class CreatorSelectFromGrid : AbstractSelectFromGrid
 		lvMover.gridX = (int)lvPosition.x;
 		lvMover.gridZ = (int)lvPosition.z;
 
+
 		if (Input.GetMouseButtonDown (0) && figurine.GetComponent<ObstacleBaseMapper> ().IsObstacleOnLegalFields ()) {
+			
 			status.picked = false;
 			status.gridX = (int)lvPosition.x;
 			status.gridZ = (int)lvPosition.z;
-			PutObstacleOnField (lvCellId, new List<int> ());
+			List<int> fields = figurine.GetComponent<ObstacleBaseMapper> ().GetObstacleFields ();
+			PutObstacleOnField (fields);
 
+			ObstacleStatus obstacleStatus = figurine.GetComponent<ObstacleStatus> ();
+			obstacleStatus.fieldsUsed = fields;
 			figurine.transform.parent = GridDrawer.instance.mCells [lvCellId].transform;
+
 		}
 
 		if (Input.GetMouseButtonDown (1)) {
@@ -186,15 +192,17 @@ public class CreatorSelectFromGrid : AbstractSelectFromGrid
 		}
 	}
 
-	public void PutObstacleOnField (int pmCellId, List<int> pmAdjacentCells)
+	public void PutObstacleOnField (List<int> pmCells)
 	{
-		this.constructorFilledSquares.Add (pmCellId);
+		this.constructorFilledSquares.AddRange (pmCells);
 	}
 
-	public void RemoveObstacleFromField(int pmCellId)
+	public void RemoveObstacleFromField(List<int> pmCellId)
 	{
-		if(this.constructorFilledSquares.Contains(pmCellId))
-			this.constructorFilledSquares.Remove (pmCellId);
+		foreach (int id in pmCellId) {
+			if(this.constructorFilledSquares.Contains(id))
+				this.constructorFilledSquares.Remove (id);
+		}
 	}
 
 	protected override bool RaycastActionCondition ()
