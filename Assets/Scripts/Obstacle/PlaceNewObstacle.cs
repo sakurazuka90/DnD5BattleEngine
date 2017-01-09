@@ -52,40 +52,43 @@ public class PlaceNewObstacle : MonoBehaviour
 		}
 	}
 
+	public void PickObstacle(GameObject obstacle)
+	{
+		CreatorSelectFromGrid.instance.functionalPlaceMode = false;
+		FigurineStatus lvStatus = obstacle.GetComponent<FigurineStatus> ();
+		lvStatus.active = true;
+		lvStatus.picked = true;
+
+		AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
+
+		if (lvStatusEditor.obstacleStatus != null && !"".Equals (lvStatusEditor.obstacleStatus.name)) {
+			GameObject lvOldObstacle = GameObject.Find (lvStatusEditor.obstacleStatus.name);
+			lvOldObstacle.GetComponent<ShaderSwitcher> ().SwitchOutlineOff ();
+		}
+
+		ObstacleStatus lvObstacleStatus = obstacle.GetComponent<ObstacleStatus> ();
+
+		lvStatusEditor.obstacleStatus = lvObstacleStatus;
+		lvStatusEditor.populate ();
+
+		obstacle.GetComponent<ShaderSwitcher> ().SwitchOutlineOn ();
+		CreatorSelectFromGrid.instance.creatorObstacle = obstacle;
+	}
 
 	public void Place (string pmPrefabName)
 	{
 		if (_selectedOption != 2) {
-			CreatorSelectFromGrid.instance.functionalPlaceMode = false;
-
 			obstacle = Resources.Load<GameObject> ("ObstaclePrefabs/" + pmPrefabName);
 
 			GameObject lvObstacle = GameObject.Instantiate (obstacle);
 
 			lvObstacle.name = GameObject.Find ("CreatorUniqueController").GetComponent<CreatorNameController> ().CreateUniqueName (lvObstacle.name);
 
-			FigurineStatus lvStatus = lvObstacle.GetComponent<FigurineStatus> ();
-			lvStatus.active = true;
-			lvStatus.picked = true;
-
 			ObstacleStatus lvObstacleStatus = lvObstacle.GetComponent<ObstacleStatus> ();
 			lvObstacleStatus.name = lvObstacle.name;
 			lvObstacleStatus.prefabName = obstacle.name;
-			AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
 
-			if (lvStatusEditor.obstacleStatus != null && !"".Equals (lvStatusEditor.obstacleStatus.name)) {
-				GameObject lvOldObstacle = GameObject.Find (lvStatusEditor.obstacleStatus.name);
-				lvOldObstacle.GetComponent<ShaderSwitcher> ().SwitchOutlineOff ();
-			}
-
-
-			lvStatusEditor.obstacleStatus = lvObstacleStatus;
-			lvStatusEditor.populate ();
-
-			lvObstacle.GetComponent<ShaderSwitcher> ().SwitchOutlineOn ();
-
-			//GameObject.Find ("GridSelector").GetComponent<SelectFromGrid> ().creatorObstacle = lvObstacle;
-			CreatorSelectFromGrid.instance.creatorObstacle = lvObstacle;
+			PickObstacle (lvObstacle);
 		} else {
 			CreatorSelectFromGrid.instance.functionalPlaceMode = true;
 

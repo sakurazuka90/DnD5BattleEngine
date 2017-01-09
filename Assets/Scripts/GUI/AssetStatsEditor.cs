@@ -114,7 +114,11 @@ public class AssetStatsEditor : MonoBehaviour {
 
 	public void rotateObstacle()
 	{
-		GameObject.Find (obstacleStatus.name).GetComponent<ObstacleRotator> ().Rotate (90.0f);
+		GameObject obstacle = GameObject.Find (obstacleStatus.name);
+
+		GameObject.Find ("AssetPanel").GetComponent<PlaceNewObstacle> ().PickObstacle (obstacle);
+		List<int> fields = obstacle.GetComponent<ObstacleStatus> ().fieldsUsed;
+		CreatorSelectFromGrid.instance.RemoveObstacleFromField (fields);
 	}
 
 	public void removeObstacle()
