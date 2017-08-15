@@ -182,6 +182,7 @@
      <None Include="Assets\Shaders\NewSurfaceShader.shader" />
      <None Include="Assets\Images\Nowy dokument tekstowy.txt" />
      <None Include="Assets\3rdParty\Free_Rocks\Standard Assets\Skyboxes\_skybox info.txt" />
+     <None Include="Assets\Stonewall\readme.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

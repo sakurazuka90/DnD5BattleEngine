@@ -1,10 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\DTO\ObstacleData.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.AttachToProcess" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GridScripts\SelectFromGrid\CreatorSelectFromGrid.cs">
     <Files>
-      <File FileName="Assets\Scripts\LevelCreator\BattleFieldSaver.cs" Line="104" Column="91" />
-      <File FileName="Assets\Scripts\Obstacle\ObstacleStatus.cs" Line="30" Column="1" />
-      <File FileName="Assets\Scripts\DTO\ObstacleData.cs" Line="12" Column="24" />
+      <File FileName="Assets\Scripts\GUI\AssetStatsEditor.cs" Line="117" Column="1" />
+      <File FileName="Assets\Scripts\GridScripts\SelectFromGrid\CreatorSelectFromGrid.cs" Line="213" Column="1" />
+      <File FileName="Assets\Scripts\Obstacle\PlaceNewObstacle.cs" Line="58" Column="1" />
+      <File FileName="Assets\Scripts\Database\DatabaseController.cs" Line="247" Column="4" />
+      <File FileName="Assets\Scripts\GridScripts\SelectFromGrid\AbstractSelectFromGrid.cs" Line="32" Column="5" />
+      <File FileName="Assets\Scripts\GridScripts\SelectFromGrid\SelectFromGrid.cs" Line="104" Column="72" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -45,6 +48,7 @@
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\Actions\AbstractAction.cs" line="18" column="1" />
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\GridScripts\GridDrawer.cs" line="246" column="1" />
       <Breakpoint file="C:\Users\Sakurazuka\Documents\DnD5BattleEngine\Assets\Scripts\GridScripts\GridDrawer.cs" line="75" column="1" />
+      <Breakpoint file="D:\git\DnD5BattleEngine\Assets\CanvasRaycastFilter.cs" line="9" column="22" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
