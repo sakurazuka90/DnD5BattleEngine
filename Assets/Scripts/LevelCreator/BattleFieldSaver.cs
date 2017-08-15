@@ -28,7 +28,7 @@ public class BattleFieldSaver : MonoBehaviour
 			lvWindow.GetComponent<RectTransform> ().anchoredPosition = Vector2.zero;
 		} else {
 
-			GameObject lvObject = saveNamePanel.transform.FindChild ("SaveFileName").gameObject;
+			GameObject lvObject = saveNamePanel.transform.Find ("SaveFileName").gameObject;
 			string lvFileName = lvObject.GetComponent<InputField> ().text;
 
 			if (File.Exists (Application.persistentDataPath + "/" + lvFileName + ".dat")) {
@@ -49,7 +49,7 @@ public class BattleFieldSaver : MonoBehaviour
 
 	public void SaveMapToFile ()
 	{
-		GameObject lvObject = saveNamePanel.transform.FindChild ("SaveFileName").gameObject;
+		GameObject lvObject = saveNamePanel.transform.Find ("SaveFileName").gameObject;
 		string lvFileName = lvObject.GetComponent<InputField> ().text;
 		SaveMapToFile (lvFileName);
 		this.Hide ();
@@ -79,7 +79,7 @@ public class BattleFieldSaver : MonoBehaviour
 		assetPanel.SetActive (false);
 		assetStatsPanel.SetActive (false);
 		saveNamePanel.SetActive (true);
-		GameObject lvObject = saveNamePanel.transform.FindChild ("SaveFileName").gameObject;
+		GameObject lvObject = saveNamePanel.transform.Find ("SaveFileName").gameObject;
 		lvObject.GetComponent<InputField> ().text = "NewMap";
 
 		MoveCamera.instance.isMovable = false;

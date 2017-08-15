@@ -17,7 +17,7 @@ public abstract class AbstractSelectOptionController : MonoBehaviour
 
 	public void SetName(string pmName)
 	{
-		this.gameObject.transform.FindChild ("Text").GetComponent<Text> ().text = pmName;
+		this.gameObject.transform.Find ("Text").GetComponent<Text> ().text = pmName;
 	}
 
 	protected abstract void Select();
@@ -38,7 +38,7 @@ public abstract class AbstractSelectOptionController : MonoBehaviour
 
 	public void SetTextColor(Color pmColor)
 	{
-		this.gameObject.transform.FindChild ("Text").GetComponent<Text> ().color = pmColor;
+		this.gameObject.transform.Find ("Text").GetComponent<Text> ().color = pmColor;
 	}
 
 	public AbstractSelectOptionController ()

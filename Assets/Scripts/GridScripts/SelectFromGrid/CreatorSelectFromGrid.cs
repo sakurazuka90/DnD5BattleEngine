@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CreatorSelectFromGrid : AbstractSelectFromGrid
 {
@@ -207,7 +208,8 @@ public class CreatorSelectFromGrid : AbstractSelectFromGrid
 
 	protected override bool RaycastActionCondition ()
 	{
-		return true;
+		bool uiChecker = EventSystem.current.IsPointerOverGameObject ();
+		return !uiChecker;
 	}
 }
 

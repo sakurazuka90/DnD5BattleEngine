@@ -17,7 +17,7 @@ public class SelectOptionController : AbstractSelectOptionController {
 
 	public string GetValue()
 	{
-		return this.gameObject.transform.FindChild ("Text").GetComponent<Text> ().text;
+		return this.gameObject.transform.Find ("Text").GetComponent<Text> ().text;
 	}
 
 }
