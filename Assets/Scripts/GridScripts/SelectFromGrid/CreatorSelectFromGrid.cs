@@ -57,8 +57,8 @@ public class CreatorSelectFromGrid : AbstractSelectFromGrid
 	{
 		CellStatus lvCellStatus = gridCell.GetComponent<CellStatus> ();
 		if (Input.GetMouseButtonDown (0)) {
-			if (gridCell.transform.childCount > 0) {
-				ObstacleStatus lvObstacleStatus = gridCell.transform.GetChild (0).GetComponent<ObstacleStatus> ();
+			if (lvCellStatus.obstacle != null) {
+				ObstacleStatus lvObstacleStatus = lvCellStatus.obstacle.GetComponent<ObstacleStatus> ();
 				AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
 
 				if (lvStatusEditor.obstacleStatus != null && !"".Equals (lvStatusEditor.obstacleStatus.name)) {
@@ -69,7 +69,7 @@ public class CreatorSelectFromGrid : AbstractSelectFromGrid
 				lvStatusEditor.obstacleStatus = lvObstacleStatus;
 				lvStatusEditor.populate ();
 
-				gridCell.transform.GetChild (0).GetComponent<ShaderSwitcher> ().SwitchOutlineOn ();
+				lvCellStatus.obstacle.GetComponent<ShaderSwitcher> ().SwitchOutlineOn ();
 			} else {
 
 				AssetStatsEditor lvStatusEditor = GameObject.Find ("AssetEditPanel").GetComponent<AssetStatsEditor> ();
@@ -181,6 +181,9 @@ public class CreatorSelectFromGrid : AbstractSelectFromGrid
 			status.gridZ = (int)lvPosition.z;
 			List<int> fields = figurine.GetComponent<ObstacleBaseMapper> ().GetObstacleFields ();
 			PutObstacleOnField (fields);
+			foreach(int id in fields){
+				GridDrawer.instance.mCells [id].GetComponent<CellStatus> ().obstacle = figurine;
+			}
 
 			ObstacleStatus obstacleStatus = figurine.GetComponent<ObstacleStatus> ();
 			obstacleStatus.fieldsUsed = fields;

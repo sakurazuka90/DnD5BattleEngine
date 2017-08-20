@@ -22,7 +22,7 @@ public class CellStatus : MonoBehaviour
 	private string function;
 	private int figurineId;
 	private int cellId;
-
+	public GameObject obstacle;
 
 	public bool movable = false;
 	public bool lvOportunity = false;

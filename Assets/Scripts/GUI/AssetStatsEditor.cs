@@ -125,6 +125,9 @@ public class AssetStatsEditor : MonoBehaviour {
 	{
 		GameObject obstacle = GameObject.Find (obstacleStatus.name);
 		List<int> fields = obstacle.GetComponent<ObstacleStatus> ().fieldsUsed;
+		foreach (int id in fields) {
+			GridDrawer.instance.mCells [id].GetComponent<CellStatus> ().obstacle = null;
+		}
 		CreatorSelectFromGrid.instance.RemoveObstacleFromField (fields);
 		Destroy (obstacle);
 		this.clear ();
